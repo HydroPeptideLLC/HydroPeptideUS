@@ -1,0 +1,44 @@
+<!-- testinit -->
+{% if checkout %}
+
+	{% if request.path contains 'thank_you' %}
+    
+	<script type="text/javascript">
+        (function(c,e,k,l,a){c[e]=c[e]||{};for(c[e].q=c[e].q||[];a<l.length;)k(l[a++],c[e])})(window,"extole",function(c,e){e[c]=e[c]||function(){e.q.push([c,arguments])}},["createZone"],0);
+
+           extole.createZone({
+             name: 'conversion',
+             data: {
+
+               "first_name": {{ checkout.customer.first_name | json }}, 
+
+               "last_name": {{  checkout.customer.last_name  | json }}, 
+
+               "email": {{ checkout.customer.email | json }},
+
+               {% if  order.id %}
+
+               "order_id": {{ order.id | json }}, 
+
+               {% endif %}
+               "cart_value": {{ checkout.total_price | json }},
+
+            {% for line_item in checkout.line_items %}
+
+               "products": {{ line_item.product.title | json }}, 
+
+            {% endfor %}
+
+            {% if checkout.discount_applications %}
+
+                "coupon_code": {{ checkout.discount_applications[0].title | json  }}
+
+               {% endif %}
+
+             }
+          });
+        </script>
+
+	{% endif %}
+
+{% endif %}

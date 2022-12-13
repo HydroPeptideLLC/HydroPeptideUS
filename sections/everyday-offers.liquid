@@ -1,0 +1,153 @@
+<div class="everyday_offers_main">
+  <div class="everyday_title">
+    {% if section.settings.title != blank %}
+    	<h2 class="h3">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+    <div class="grid">
+     
+
+    {% for block in section.blocks %}  
+    	<div class="block s1 sm_s1 lg_s13">
+          <h3 class="everyday_section_title">
+            <img src="{{block.settings.image | img_url: 'master'}}" class="offer_image">
+          </h3>
+          <p class="icon_title">{{block.settings.title}}</p>
+          {{block.settings.text}}
+     {% if forloop.index0 == 1 %}
+      <div class="everyday_email">
+    </div>
+           
+      {% endif %}
+      
+    </div>
+      
+    {% endfor %}
+      
+    </div>
+    
+    
+    
+  </div>
+</div>
+
+<style>
+  #mc_embed_signup #mce-success-response {
+    margin: 0 0 13px;
+    padding: 0;
+    width: 100%;
+}      
+      
+#mc_embed_signup div#mce-responses {
+    width: 100%;
+    margin: 0;
+
+}      
+      
+#mc_embed_signup #mce-error-response {
+    margin: 0 0 10px;
+    padding: 0;
+    width: 100%;
+} 
+  
+#mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error {
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+  
+#mc_embed_signup .mc-field-group {
+    width:72% !important;
+} 
+  
+div#mc_embed_signup_scroll label {
+    display: none !important;
+}
+  
+ @media only screen and (max-width: 768px) {  
+#mc_embed_signup .mc-field-group {
+    width: 100% !important;
+}
+   
+#mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error {
+    position: static;
+    margin: 0 !important;
+}
+   
+#mc_embed_signup .mc-field-group {
+    padding-bottom: 0% !important;
+    min-height: auto !important;
+}   
+   
+ } 
+  
+@media only screen and (max-width: 900px) {
+#mc_embed_signup .mc-field-group {
+    width: 100% !important;
+}
+}  
+  
+  
+</style>  
+
+{% schema %}
+   {
+    "name": "Everyday Offers",
+    "settings": [
+      {
+      "id": "title",
+      "type": "text",
+      "label": "Heading",
+      "default": "Title"
+    }
+    ],
+    "blocks": [
+        {
+          "type": "select",
+          "name": "Add Row",
+          "settings": [
+            {
+              "id": "image",
+              "type": "image_picker",
+                "label": "Image"
+            },
+            
+		{
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>contents</p>"
+      }
+     
+          ]
+        }
+      ],
+    "presets": [
+      {
+        "name": "Everyday Offers",
+        "category": "Exclusive"
+      }
+    ]
+  }
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+<script>
+  jQuery(document).ready(function(){
+  setTimeout(function(){ jQuery( ".mailchimpform" ).clone().appendTo( ".everyday_email" );
+ jQuery(".everyday_email #mc_embed_signup .button").val('JOIN'); }, 2000);
+  
+})
+</script>
+
+

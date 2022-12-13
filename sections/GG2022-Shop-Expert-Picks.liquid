@@ -1,0 +1,224 @@
+<section id="Shop-Expert-Sets">
+        <div id="Expert-sets">
+            <div id="Expert-image">
+                <div class="best-sellers-copy">
+                    <span class="Slider-Headline">Shop Expert Picks</span>
+                    <span class="Slider-Text">During the winter months, the best thing you can do for your skin is keep it hydrated. I love these formulas because all skin types can benefit from them.</span>
+                </div>
+                <a class="Best-Sellers-Text-Button" href="https://hydropeptide.com/pages/online-consultations">
+                    <span class="CTA-Copy">Book a Virtual Consultation</span>
+                </a>
+            </div>
+            <div id="Expert-products">
+                  {% include 'Expert-Type-Collection' %}
+                  {% include 'Expert-Type-Mobile-Collection' %}
+                  <div class="Slider-EP-UI Slider-UI"> 
+                      <div class="Arrow-Button-EP-Prev Arrow-Button"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></div>
+                      <span class="slider-EP-count">1 / 44</span>
+                      <div class="Arrow-Button-EP-Next Arrow-Button"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></div>
+                  </div>
+            </div>
+        </div>
+        <style>
+          #Shop-Expert-Sets
+          {
+              width: 100%;
+              height: auto;
+              flex-grow: 0;
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-start;
+              align-items: flex-start;
+              gap: 20px;
+              padding: 50px 0px;
+          }
+          #Expert-sets
+          {
+              height: auto;
+              flex-grow: 0;
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-start;
+              padding: 0 120px;
+          }
+          #Expert-products
+          {
+              display: flex;
+              flex-direction: column;
+              flex-grow: 0;
+          }
+          .collectionGrid
+          {
+              margin: 0 !important;
+          }
+          .collection-wrap
+          { 
+              margin: 0 !important;
+          }
+          #Expert-Type-Collection
+          {
+              max-height: 484px;
+              padding: 0 20px !important;
+          }
+          #Expert-image 
+          { 
+            background-image:url({{ section.settings.desktop_bg | img_url: 'master' }}); 
+            background-position: center;
+          } 
+          @media screen and (min-width: 1000px) and (max-width: 1440px) 
+          {
+              #Expert-image
+              {
+                  width: 850px !important; 
+                  background-position: center !important;
+              }
+              .best-sellers-copy
+              {
+                  width: 350px !important;
+              }
+          }
+          @media screen and (min-width: 1441px)
+          {
+              #Expert-image
+              {
+                  width: 1015px;
+              }
+          }
+          @media screen and (max-width: 540px)
+          {
+              .Slider-Text
+              {
+                  width: 300px;
+              }
+              #Expert-products
+              {
+                  background-color: {{ section.settings.product_background_color }};
+              }
+              .best-sellers-copy
+              {
+                  height: auto !important;
+              }
+              .best-sellers-copy .Slider-Headline
+               {
+                  height: auto !important;
+              }
+              #Expert-image 
+              { 
+                background-image:url({{ section.settings.mobile_bg | img_url: 'master' }}) !important; 
+                width: 390px;
+                background-position: center;
+              } 
+              #Expert-sets
+              {
+                  width: 100%;
+                  height: auto;
+                  flex-grow: 0;
+                  display: flex;
+                  flex-direction: column !important;
+                  justify-content: flex-start;
+                  padding: 0 !important;
+              }
+              .collection-slider .collectionBlock
+              {
+                  margin: 0 auto !important;
+              }
+          }
+        </style>
+        <script>
+          if (screen.availWidth < 540)
+          {
+              $('#Expert-Type-Collection').addClass('hide');
+              $('#Expert-Type-Mobile-Collection').removeClass('hide');
+              $('.Slider-EP-UI').addClass('hide');
+          }
+          else 
+          {
+              $('#Expert-Type-Collection').removeClass('hide');
+              $('#Expert-Type-Mobile-Collection').addClass('hide');
+              $('.Slider-EP-UI').removeClass('hide');
+          }
+            $(document).ready(() => {
+                var currentSlick;
+                if (screen.availWidth < 540)
+                {
+                    currentSlick = $('#expert-picks-mobile-slider').slick('getSlick');
+                }
+                else
+                {
+                    currentSlick = $('#expert-picks-slider').slick('getSlick');
+                }
+                var slickCount = currentSlick.slideCount;
+                var currentPage = 1;
+                $('.Arrow-Button-EP-Next').click(() => {
+                  console.log('next');
+                    if(currentPage < slickCount)
+                    {
+                        currentPage++;
+                    }
+                  $('.slider-EP-count').text(currentPage + ' / ' + slickCount);
+                });
+                $('.Arrow-Button-EP-Prev').click(() => {
+                    if(currentPage > 1)
+                    {
+                        currentPage--;
+                    }
+                  $('.slider-EP-count').text(currentPage + ' / ' + slickCount);
+                });
+                $('.slider-EP-count').text(currentPage + ' / ' + slickCount);
+            });
+        </script>
+    </section>
+<!--   <section id="Shop-Expert-Sets-Mobile" class="hide">
+        <div id="Expert-mobile" style="width: 100% !important">
+            <div id="Expert-mobile-image" style="background-image: url({{ section.settings.mobile_bg | img_url: 'master' }});">
+                <div class="best-sellers-copy">
+                    <span class="Slider-Headline">Shop Expert Picks</span>
+                    <span class="Lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-Pellentesque-amet-felis-mattis-eget-et-ultr">During the winter months, the best thing you can do for your skin is keep it hydrated. I love these formulas because all skin types can benefit from them.</span>
+                </div>
+                <a class="Best-Sellers-Text-Button" href="https://hydropeptide.com/pages/online-consultations">
+                    <span class="CTA-Copy">Book a Virtual Consultation</span>
+                </a>
+            </div>
+            <div id="Expert-mobile-products" style="float: left !important">
+                  {% comment %}{% include 'Expert-Type-Collection' %}{% endcomment %}
+                  <div class="Slider-UI"> 
+                      <div class="Mobile-Arrow-Button-EP-Prev Arrow-Button"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></div>
+                      <span class="mobile-slider-EP-count">1 / 44</span>
+                      <div class="Mobile-Arrow-Button-EP-Next Arrow-Button"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></div>
+                  </div>
+            </div>
+        </div>
+    </section> -->
+{% schema %}
+  {
+    "name": "Expert Picks",
+    "settings": [
+      {
+        "id": "expert-picks",
+        "type": "collection",
+        "label": "Expert Collection"
+      },
+      {
+        "id": "desktop_bg",
+        "type": "image_picker",
+        "label": "Expert Desktop Collection"
+      },
+      {
+        "id": "mobile_bg",
+        "type": "image_picker",
+        "label": "Expert Mobile Collection"
+      },
+      {
+        "id": "product-background-color",
+        "type": "color",
+        "label": "Expert Mobile Collection"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,710 @@
+<section id="Explore-Gifts-By">
+    <span id="title">Explore Gifts By</span>
+    <div class="section-btns">
+        <a href="#Shop-By-Skin-Type" class="Text-Button">
+            <span class="CTA-Copy">Skin type</span>
+        </a>
+        <a href="#Shop-Best-Sellers" class="Text-Button">
+            <span class="CTA-Copy">Best Sellers</span>
+        </a>
+        <a href="#Shop-By-Target-Treatment" class="Text-Button">
+            <span class="CTA-Copy">Targeted Areas</span>
+        </a>
+        <a href="#Shop-kits-sets" class="Text-Button">
+            <span class="CTA-Copy">Kits & Sets</span>
+        </a>
+        <a href="#Shop-By-Recipient" class="Text-Button">
+            <span class="CTA-Copy">Recipient</span>
+        </a>
+        <a href="#Shop-Expert-Sets" class="Text-Button">
+            <span class="CTA-Copy">Expert Picks</span>
+        </a>
+        <a href="#Shop-By-Price" class="Text-Button">
+            <span class="CTA-Copy">Price Point</span>
+        </a>
+    </div>
+    <div class="mobile-section-btns hide">
+        <a href="#Shop-By-Skin-Type-Mobile" class="Text-Button">
+            <span class="CTA-Copy">Skin type</span>
+        </a>
+        <a href="#Shop-Best-Sellers" class="Text-Button">
+            <span class="CTA-Copy">Best Sellers</span>
+        </a>
+    </div>
+    <div class="mobile-section-btns hide">
+        <a href="#Shop-By-Target-Treatment-Mobile" class="Text-Button">
+            <span class="CTA-Copy">Targeted Areas</span>
+        </a>
+        <a href="#Shop-kits-sets-Mobile" class="Text-Button">
+            <span class="CTA-Copy">Kits & Sets</span>
+        </a>
+    </div>
+    <div class="mobile-section-btns hide"> 
+        <a href="#Shop-By-Recipient-Mobile" class="Text-Button">
+            <span class="CTA-Copy">Recipient</span>
+        </a>
+        <a href="#Shop-Expert-Sets-Mobile" class="Text-Button">
+            <span class="CTA-Copy">Expert Picks</span>
+        </a>
+    </div>
+    <div class="mobile-section-btns hide">
+        <a href="#Shop-By-Price-Mobile" class="Text-Button">
+            <span class="CTA-Copy">Price Point</span> 
+        </a>
+    </div> 
+</section>
+    
+{% stylesheet %}
+    #Contact-About-Gift {
+        width: 100%;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 0 64px;
+        background-color: #deeaff;
+    }
+    #Contact-About-Gift .Text-Button {
+        min-width: 132px;
+        height: 44px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px; 
+        border: solid 1px #e4e4e4;
+        background-color: #fff;
+        margin-top: 20px;
+    }
+    #Contact-About-Gift .Text-Button  .CTA-Copy {
+      width: 100px;
+      height: 17px;
+      flex-grow: 0;
+      font-family: TT Norms1;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: 2px;
+      text-align: center;
+      color: #393939;
+      text-transform: uppercase;
+    }
+    #Contact-About-Gift .text { 
+        max-width: 100%;
+        min-height: 81px;
+        word-wrap: normal;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 0;
+    }
+    #Contact-About-Gift .text .Gift-Guide-Headline {
+        max-width: 1600;
+        height: 50px;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 45px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.11;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000;
+    }
+    #Contact-About-Gift .text .Lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-Ut-et-massa-mi {
+        max-width: 1600px;
+        height: 21px;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.31;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000;
+    }
+    #Skin-Type-Collection
+    {
+      max-width: 92.6%;
+      margin-top: 0px !important;
+    }
+    #Explore-Gifts-By 
+    {
+        width: 100%;
+        height: auto;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0px;
+        background-color: #f1f1f1;
+    }
+    #Shop-By-Skin-Type {
+        width: 100%;
+        height: auto;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 30px;
+        padding: 50px 0px;
+        background-color: #fff;
+    }
+    #Shop-Best-Sellers
+    {
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center; 
+        align-items: center;
+        gap: 20px;
+        padding: 50px 0px;
+    }
+    #Shop-Kits-Sets
+    {
+        width: 100%;
+        height: auto;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 50px 0px;
+    }
+    #Explore-Gifts-By #title 
+    {
+        width: auto;
+        height: auto;
+        flex-grow: 0;
+        font-family: TT Norms Bold;
+        font-size: 18px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.17;
+        letter-spacing: normal;
+        text-align: left;
+        color: #393939;
+        text-transform: uppercase;
+    }
+    #Explore-Gifts-By .section-btns 
+    {
+        width: 92.6%; 
+        height: 44px; 
+        align-self: stretch; 
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center; 
+        align-items: flex-start;
+        gap: 20px;
+        padding: 0 120px;
+        margin: 0 auto;
+    }
+    #Explore-Gifts-By .mobile-section-btns  {
+        height: 44px;
+        width: 100%;
+        align-self: center;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20px; 
+        padding: 0;
+    }
+    #Explore-Gifts-By .section-btns .Text-Button {
+        height: 44px;
+        max-width: 155px;
+        flex-grow: 1;
+        display: flex; 
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px; 
+        padding: 10px 12px;  
+        border: solid 1px #e4e4e4;
+        background-color: #fff;
+    }
+    #Explore-Gifts-By .mobile-section-btns .Text-Button {
+        height: 44px;
+        max-width: 155px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px; 
+/*         padding: 10px 20px; */
+        border: solid 1px #e4e4e4;
+        background-color: #fff;
+    }
+    .section-btns .Text-Button .CTA-Copy {
+        width: auto;
+        height: auto;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #393939;
+        text-transform: uppercase;
+    }
+    .mobile-section-btns .Text-Button .CTA-Copy {
+        width: auto;
+        height: auto;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 14px; 
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #393939;
+        text-transform: uppercase;
+    }
+    @media screen and (min-width: 400px)
+    {
+        #Explore-Gifts-By .mobile-section-btns .Text-Button 
+        {
+            height: 44px;
+            max-width: 160px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; 
+ /*         padding: 10px 20px; */
+            border: solid 1px #e4e4e4;
+            background-color: #fff;
+        }
+    }
+    .HF-product-slider-header {
+        width: 100%; 
+        height: auto;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 30px;
+        padding: 0 120px;
+    }
+    .Title {
+        align-self: stretch;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 10px;
+        padding: 10px 0;
+    } 
+    .Title .Skin-Title {
+        align-self: stretch;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 45px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.11;
+        letter-spacing: normal;
+        text-align: left;
+        color: #393939;
+    }
+    .Title .From-blemishes-to-fine-lines-and-hyperpigmentation-youll-find-clinical-skincare-solutions-for-ever 
+    {
+        align-self: stretch;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.31;
+        letter-spacing: normal;
+        text-align: left;
+        color: #393939;
+    }
+    .HF-product-slider-header-mobile
+    {
+        align-self: stretch;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 20px;
+        padding: 0 30px;
+    }
+    .Skin-Type-Mobile-Header {
+        width: 83.5%; 
+        height: auto;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 20px;
+/*         padding: 0 120px; */
+        margin: auto; 
+        padding-top: 50px
+    }
+    .Mobile-Title {
+        height: auto;
+        align-self: stretch;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 5px;
+        padding: 0;
+    } 
+    .Mobile-Title .Skin-Title {
+        height: auto;
+        align-self: stretch;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 45px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.11; 
+        letter-spacing: normal;
+        text-align: left;
+        color: #393939;
+    }
+    .Mobile-Title .From-blemishes-to-fine-lines-and-hyperpigmentation-youll-find-clinical-skincare-solutions-for-ever 
+    {
+        height: auto;
+        align-self: stretch;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 16px; 
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.31; 
+        letter-spacing: normal;
+        text-align: left;
+        color: #393939;  
+    }
+/*  .Dropdown {
+        height: 44px !important;
+        width: 100% !important;
+        align-self:  !important; 
+        flex-grow: 0 !important;
+        display: flex !important; 
+        flex-direction: row !important;
+        justify-content: space-between !important; 
+        align-items: left !important;  
+        padding: 10px 20px !important; 
+        border: solid 1px #e4e4e4 !important;
+        background-color: #fff !important;
+        text-transform: uppercase !important;
+        text-align: left !important;
+    }  */
+  .Dropdown{width:100%;height:44px;align-self:stretch;flex-grow:0;display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:10px 20px;border:solid 1px #e4e4e4;background-color:#fff}
+    .Shop-all {
+        width: auto;
+        height: auto;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal; 
+        letter-spacing: 2px;
+        text-align: left;
+        color: #393939;
+        text-transform: uppercase;
+        border: solid 1px #e4e4e4;
+    }
+    .Line-1-Stroke {
+        width: 14.7px;
+        height: 14.7px;
+        flex-grow: 0;
+        transform: rotate(-315deg);
+        background-color: #393939;
+    }
+    .HF-product-slider-UI {
+        height: 44px;
+        width: 100%;
+        align-self: stretch;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: 0;
+    } 
+    .HF-product-slider-UI .Text-Button-Collection-One.active {
+        width: 190px;
+        height: 27px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center; 
+        padding: 0 0 10px;
+        border-bottom: solid 2px #6d9dea;
+        background-color: #fff;
+    }
+    .HF-product-slider-UI .Text-Button-Collection-One {
+        width: 190px !important;
+        height: 27px;
+        flex-grow: 0; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0 10px;
+        background-color: #fff;
+        border-bottom: solid 1px #f1f1f1 
+    }
+    .HF-product-slider-UI .Text-Button-Collection-One.active .CTA-Copy
+    {
+        width: auto;
+        height: auto;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #6d9dea;
+        text-transform: uppercase;
+    }
+    .HF-product-slider-UI .Text-Button-Collection-One .CTA-Copy
+    {
+        width: auto; 
+        height: auto;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #393939;
+        text-transform: uppercase;
+    }
+   
+    #Shop-Best-Sellers #best-sellers
+    {
+        height: auto;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 0 120px;
+    }
+    #Shop-Best-Sellers #best-sellers #best-sellers-image
+    {
+        height: 528px; 
+        align-self: stretch;
+        flex-grow: 1; 
+        display: flex; 
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 50px 0 50px 50px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #kits-sets-image
+    {
+        height: 528px; 
+        align-self: stretch;
+        flex-grow: 1; 
+        display: flex; 
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 50px 0 50px 50px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #Expert-image
+    {
+        height: 528px; 
+        align-self: stretch;
+        flex-grow: 1; 
+        display: flex; 
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 50px 0 50px 50px;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    #Shop-Best-Sellers #best-sellers .best-sellers-copy {
+        width: 480px;
+        height: 152px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 10px;
+        padding: 0;
+    }
+    .Slider-Headline {
+        height: 100px;
+        align-self: stretch;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 45px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.11;
+        letter-spacing: normal;
+        text-align: left;
+        color: #393939;
+    }
+    .Best-Sellers-Text-Button {
+        width: 245px;
+        height: 44px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        border: solid 1px #e4e4e4;
+        background-color: #fff;
+    }
+    .Best-Sellers-Text-Button .CTA-Copy {
+        width: auto;
+        height: auto;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #393939;
+    }
+    #best-sellers-products .HF-product-slider-card {
+        width: 325px;
+        height: 484px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        padding: 0 0 20px;
+    }
+    .Slider-UI {
+        max-width: 300px;
+        height: 44px;
+        align-self: stretch;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+        padding: 0;
+        margin-left: 20px;
+    }
+    .Arrow-Button {
+        width: 44px;
+        height: 44px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        border: solid 1px #e4e4e4;
+        background-color: #fff;
+    }
+    .Arrow-Button .Vector-1-Stroke {
+        width: 20px;
+        height: 13px;
+        transform: rotate(-180deg);
+        color: #e4e4e4;
+    }
+    .Arrow-Button .Vector-2-Stroke {
+        width: 20px;
+        height: 13px;
+        color: #e4e4e4;
+    }
+    #Best-Sellers-Collection {
+      margin: 0px !important;
+    }
+
+    @media screen and (max-width: 500px)
+    {
+        .slick-dots
+        {
+            max-width: 390px !important;
+        }
+        #Explore-Gifts-By
+        {
+            height: auto;
+            align-self: stretch;
+            flex-grow: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 30px;
+            background-color: #f1f1f1;
+        }
+    }
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+{% schema %}
+  {
+    "name": "GG2022",
+    "settings": [],
+    "blocks": []
+  }
+{% endschema %}

@@ -1,0 +1,70 @@
+{%- assign enableSection = section.settings.related_products_enable -%}
+{%- assign limit = section.settings.limit -%}
+{%- assign heading = section.settings.product_recommendations_heading -%}
+{%- assign productsColumns = settings.products_columns | plus: 0 -%}
+{%- assign columnsSize = productsColumns | replace: '1', '' -%}
+{%- assign product_collection = product.collections.first -%}
+{%- assign handle_name = product_collection.handle -%}
+
+{%- include 'bold-product' with product, hide_action: 'break', output: 'none' -%}
+
+<section class="related-products container-wrap collectionGrid js-collectionGrid {% unless enableSection %}visually-hidden{% endunless%}" 
+  data-section-type="recommend-products"
+  data-section-id="{{ section.id }}"
+  data-product-id="{{ product.id }}"
+  data-limit="{{ section.settings.limit }}">
+
+  {%- if enableSection -%}
+    
+
+        <div class="carousel container">
+          <div class="row row-sm carousel-title">
+            {%- if heading != blank -%}
+              <h2>{{ heading }}</h2>
+            {%- endif -%}
+          </div>
+       
+          <div class="collectionGrid-row row row-lg inline row--products-{{ limit }}">
+            
+            {%- for product in collections[handle_name].products limit: limit -%}
+            
+              {%- include 'collectionGrid-block' -%}
+            
+            {%- endfor -%}
+          </div>
+
+        </div>
+      
+    
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Recommend Products",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "related_products_enable",
+      "label": "Show related products",
+      "info": "Dynamic recommendations change and improve with time. [Learn more](https://help.shopify.com/en/themes/development/recommended-products)",
+      "default": true
+    },
+    {
+      "type":    "range",
+      "id":      "limit",
+      "min":     1,
+      "max":     6,
+      "step":    1,
+      "label":   "Product limit",
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "product_recommendations_heading",
+      "label": "Heading",
+      "default": "Related products"
+    }
+  ]
+}
+{% endschema %}

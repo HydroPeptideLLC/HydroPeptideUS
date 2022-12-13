@@ -1,0 +1,191 @@
+<div class="hero_main">
+<div class="hero desktop-promise-banner hero--{{ section.settings.hero_size }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %} box ratio-container lazyload js">
+  <img src="{{ section.settings.image | img_url: 'master' }}">
+  </div>
+  <div class="mobile-promise-banner">
+    <img src="{{ section.settings.mobile_image | img_url: 'master' }}">
+  </div>
+  {% if section.settings.image == blank %}
+    <div class="placeholder-background">
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {% endif %}
+  <div class="hero__inner custom_wrapper padding_120">
+    <div class="page-width hero_content one-half medium--one-whole" style="color:{{section.settings.color}};{% if section.settings.alignment == 'left' %}float:left; {% endif %} {% if section.settings.alignment == 'right' %}float:right; {% endif %} {% if section.settings.alignment == 'center' %}margin:0 auto;text-align:center; {% endif %}">
+      
+      {% if section.settings.title != blank %}
+        <h2 class="h1 mega-title" style="font-size:{{section.settings.heading_size}};font-family: 'TT Norms Medium';color:{{section.settings.color}};line-height:{{section.settings.heading_size}};">{{ section.settings.title | escape }}</h2>
+      {% endif %}
+      
+      {% if section.settings.subtitle != blank %}
+     	 <div class="sub-heading" style="font-size:{{section.settings.subheading_size}};line-height:{{section.settings.subheading_size}};">{{section.settings.subtitle}}</div>
+      {% endif %}
+      
+      {% if section.settings.text != blank %}
+        <div class="rte-setting mega-subtitle" style="font-size:{{section.settings.text_size}}">{{ section.settings.text }}</div>
+      {% endif %}
+      
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <!--a onclick="getdata(this.getAttribute('data-link'))" data-link="{{ section.settings.button_link }}" href="javascript:void(0)" class="btn hero__btn myvideoBtn">
+          {{ section.settings.button_label | escape }} <i class="fa fa-caret-right"></i>
+        </a -->
+      <a target="_blank" href="{{ section.settings.button_link }}" class="btn hero__btn myvideoBtn">
+          {{ section.settings.button_label | escape }} <i class="fa fa-caret-right"></i>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+<noscript>
+  <div class="hero hero--{{ section.settings.hero_size }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %}"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center center;"{% endif %}></div>
+</noscript>
+<style>
+  a.btn.hero__btn {
+    color: {{section.settings.color}};
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-family: 'TT Norms Bold' !important;
+    background: transparent;
+    border: 1px solid {{section.settings.color}};
+    padding: 4px 40px;
+    line-height: 30px;
+}
+   a.btn.hero__btn:hover
+  {	    background-color: #299bf4;
+    color: #fff!important;
+    border: 1px solid #299bf4!important;
+  }
+  .hero_content{
+    padding: 10% 60px;
+  }
+</style>
+{% schema %}
+  {
+    "name": "Promise Banner",
+    "class": "promise-banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+		{
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile Image"
+      },
+      {
+        "type": "select",
+        "id": "alignment",
+        "label": "Text alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Text Color",
+        "default": "#000"
+      },
+		{
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Intro Headline"
+      },
+		{
+        "type": "richtext",
+        "id": "subtitle",
+        "label": "Sub Heading",
+        "default": "<p>Campagin Title Lorem Ipsum</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Suspendisse mollis, lacus malesuada eleifend lobortis, odio ante dignissim mauris, ultrices rutrum nisi ipsum vel augue.</p>"
+      },
+      {
+        "type": "select",
+        "id": "hero_size",
+        "label": "Section height",
+        "default": "medium",
+        "options": [
+          {
+            "label": "Extra Small",
+            "value": "x-small"
+          },
+          {
+            "label": "Small",
+            "value": "small"
+          },
+          {
+            "label": "Medium",
+            "value": "medium"
+          },
+          {
+            "label": "Large",
+            "value": "large"
+          },
+          {
+            "label": "Extra Large",
+            "value": "x-large"
+          }
+        ]
+      },
+      
+		{
+        "type": "text",
+        "id": "heading_size",
+        "label": "Heading size",
+        "default": "24px"
+       
+      },
+		{
+        "type": "text",
+        "id": "subheading_size",
+        "label": "Subheading size",
+        "default": "60px"
+       
+      },
+		{
+        "type": "text",
+        "id": "text_size",
+        "label": "Text size",
+        "default": "16px"
+       
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "text",
+        "id": "button_link",
+        "label": "Button link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Promise Banner",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}

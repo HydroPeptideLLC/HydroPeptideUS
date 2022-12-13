@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+  {% render 'elevar-head' %}<script 
+        id="script_tag_id"
+        data-last-check-status-key="_prevCheckIsOk"
+        data-last-check-timestamp-key="_prevCheckTimestamp"
+        data-refresh-interval-ms="120000"
+        data-script-src="https://d2fj3s7h83rb61.cloudfront.net/k5QAM35Mbv/bin"
+        data-app-info="1-1--1.1.11"
+        data-app-platform="1"
+        data-app-type="1"
+        data-app-version="1.1.11">
+    (function () {
+        var currentScript = document.currentScript;
+        var currentScriptDataset = currentScript.dataset;
+        var lastCheckStatusKey = currentScriptDataset.lastCheckStatusKey;
+        var lastCheckTimestampKey = currentScriptDataset.lastCheckTimestampKey;
+        var refreshIntervalMs = parseInt(currentScriptDataset.refreshIntervalMs, 10);
+        var scriptSrc = currentScriptDataset.scriptSrc;
+
+        if (lastCheckStatusKey && lastCheckTimestampKey && refreshIntervalMs && scriptSrc && !isNaN(refreshIntervalMs)) {
+            if (localStorage.getItem(lastCheckStatusKey) === null) {
+                localStorage.setItem(lastCheckStatusKey, String(false));
+            }
+            
+            if (localStorage.getItem(lastCheckTimestampKey) === null){
+                localStorage.setItem(lastCheckTimestampKey, String(0));
+            }
+
+            var locationHref = document.location.href;
+            var now = Date.now();
+            var lastCheckStatus = String(localStorage.getItem(lastCheckStatusKey)).toLowerCase() === 'true';
+            var lastCheckTimestamp = parseInt(localStorage.getItem(lastCheckTimestampKey), 10);
+
+            if (!isNaN(lastCheckTimestamp)) {
+                var needRefreshByInterval = now - lastCheckTimestamp > refreshIntervalMs;
+
+                if (needRefreshByInterval || lastCheckStatus) {
+                    var LOAD = 'load';
+                    var ERROR = 'error';
+                    var script = document.createElement('script');
+
+                    function scriptEventHandler(evt) {
+                        var target = evt.target;
+                        var evtType = evt.type;
+
+                        var currentCheckStatus = false;
+                        var currentCheckTimestamp = Date.now();
+
+                        if (evtType === LOAD) {
+                            currentCheckStatus = true;
+                        }
+
+                        localStorage.setItem(lastCheckStatusKey, String(currentCheckStatus));
+                        localStorage.setItem(lastCheckTimestampKey, String(currentCheckTimestamp));
+
+                        target.removeEventListener(LOAD, scriptEventHandler);
+                        target.removeEventListener(ERROR, scriptEventHandler);
+                    }
+
+                    if (!locationHref.match(/(\/checkouts\/|\/thank_you)/gi)) {
+                        script.defer = true;
+                    }
+
+                    script.addEventListener(LOAD, scriptEventHandler);
+                    script.addEventListener(ERROR, scriptEventHandler);
+
+                    script.src = scriptSrc;
+
+                    document.head.insertBefore(script, currentScript);
+                }
+            }
+        } else {
+            console.error('wrapper is not right configured');
+        }
+    })();
+</script>
+  {% render 'elevar-head-listener' %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+	
+    <title>{{ page_title }}</title>
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+    
+    
+    <style>
+      .product__price .order-summary__small-text {
+        display: none;
+      }
+      .product__price br {
+        display: none;
+      }
+      .product .reduction-code {
+        display: none;
+      }
+    </style>
+  
+  <!--Narrativ Tag Begin-->
+    
+    <script type="text/javascript">
+      var purchased = Shopify.checkout.line_items;
+      var productsPurchased = [];
+      var orderTotal = 0;
+      for (var i = 0; i < purchased.length; i++) {
+        productsPurchased.push({
+          product_id: purchased[i].product_id.toString(),
+          product_name: purchased[i].title,
+          product_brand: purchased[i].vendor,
+          product_price: purchased[i].price,
+          product_quantity: purchased[i].quantity
+        });
+        orderTotal += (purchased[i].price * purchased[i].quantity);
+      }
+
+       window.NRTV_EVENT_DATA = {
+              page_type: 'checkout',
+              is_new_customer: null,
+              products_purchased: productsPurchased,
+              order_id: Shopify.checkout.order_id.toString(),
+              order_value: orderTotal,
+              currency: Shopify.checkout.presentment_currency
+      };
+
+      (function (window, document, accountId) {
+          var b = document.createElement("script");
+          b.type = "text/javascript";
+          b.src = "https://static.narrativ.com/tags/narrativ-brand.1.0.0.js";
+          b.async = true;
+          b.id = 'nrtvTag';
+          b.setAttribute('data-narrativ-id', accountId);
+          var a = document.getElementsByTagName("script")[0];
+          a.parentNode.insertBefore(b, a);
+      })(window, document, 1410);
+  </script>
+    
+    <!--Narrativ Tag End-->
+
+  {% render 'shogun-head' %}
+ <!-- Attentive + Shopify Checkout Integration-->    
+<!-- <script src="https://cdn.attn.tv/checkout/checkout.js" defer></script>
+<script src="https://cdn.attn.tv/hydropeptide/dtag.js"></script> -->
+<style type="text/css">
+.section__content.section__content__attentive {
+border-radius: 4px;
+background-color: #fafafa;
+border: solid 1px #e6e6e6;
+padding: 12px;
+}
+.section__content.section__content__attentive .input-checkbox {
+background: #fff;
+}
+.section__footer__attentive {
+font-size: 9px;
+font-weight: normal;
+font-style: normal;
+font-stretch: normal;
+line-height: 1.25;
+letter-spacing: normal;
+text-align: left;
+color: #000000;
+padding-top: 4px;
+}
+.section__footer__attentive a {
+color: #000000;
+text-decoration: underline;
+}
+.section__footer__attentive b {
+font-weight: bold;
+}
+.checkbox__label.checkbox__label__attentive {
+cursor: auto;
+margin-left: 0.75em;
+}
+.checkbox__label__attentive__header {
+font-size: 14px;
+font-weight: bold;
+font-style: normal;
+font-stretch: normal;
+line-height: 1;
+letter-spacing: normal;
+text-align: left;
+color: #333333;
+}
+.checkbox__label__attentive__subheader {
+font-size: 12px;
+font-weight: normal;
+font-style: normal;
+font-stretch: normal;
+line-height: 1.17;
+letter-spacing: normal;
+text-align: left;
+color: #737373;
+padding-top: 4px;
+}
+.checkbox-wrapper {
+display: -webkit-box;
+display: -ms-flexbox;
+display: -webkit-flex;
+display: flex;
+align-items: baseline;
+}
+</style>  
+    
+    <!-- ADDRESS VALIDATOR -->
+<script async src="https://d3ox8tdk614ykk.cloudfront.net/pobox_checker.js"></script>
+</head>
+  
+  <body>
+  {% render 'elevar-checkout-end' %}
+    {{ skip_to_content_link }}
+
+    <div class="banner" data-header>
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </div>
+
+    {{ order_summary_toggle }}
+
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main" role="main">
+          <div class="main__header">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </div>
+          
+          <div class="main__content">
+            {{ content_for_layout }}
+            
+            <div id="attentiveOptIn" class="fieldset-description" data-buyer-accepts-marketing-attentive=""
+aria-label="Phone Sign Up">
+<div class="section__content section__content__attentive">
+<div class="checkbox-wrapper">
+<div class="checkbox__input">
+<input name="attributes[buyer_accepts_marketing_attentive]" type="hidden" value="0">
+<input class="input-checkbox" data-backup="buyer_accepts_marketing" type="checkbox"
+value="1" name="attributes[buyer_accepts_marketing_attentive]"
+id="checkout_buyer_accepts_marketing_attentive" aria-labelledby="headers" tabindex="0"
+focusable="true">
+</div>
+<div class="checkbox__label checkbox__label__attentive">
+<span id="headers" tabindex="0" focusable="true">
+<div class="checkbox__label__attentive__header">Get 15% off your next order</div>
+<div class="checkbox__label__attentive__subheader">Sign up to get texts from
+HydroPeptide and we'll text you a coupon code</div>
+</span>
+<div class="section__footer__attentive">By checking this box, you agree to receive
+recurring automated promotional and personalized marketing text messages <b>(e.g. cart
+reminders)</b> from HydroPeptide at the cell number used when signing up. Consent is not a
+condition of any purchase. <b>Reply HELP for help and STOP to cancel.</b> Msg frequency varies.
+Msg & data rates may apply. View <a href="http://attn.tv/hydropeptide/terms.html" target="_blank"
+rel="noopener noreferrer" aria-label="HydroPeptide Terms Link" >Terms</a> &amp; <a
+href="https://attnl.tv/p/4tD" target="_blank" rel="noopener noreferrer" aria-label="HydroPeptide
+Privacy Link">Privacy</a>.</div>
+</div>
+</div>
+</div>
+</div>
+
+          </div>
+          <div class="main__footer">
+            {% if settings.show_custom_checkout_menu %}
+            <ul class="policy-list">
+              {% for link in linklists.checkout-page-footer-menu.links %}
+                <li class="policy-list__item">
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+            {% else %}
+              {{ content_for_footer }}
+            {% endif %}
+            *By checking this box, you agree to receive recurring automated promotional and personalized marketing email messages from HydroPeptide at the email used when placing the order. Consent is not a condition of any purchase. You may unsubscribe at any time.
+
+ 
+          </div>
+        </div>
+        <div class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{ tracking_code }}
+    <img src="https://listen.audiohook.com/4eaff59d-7c6d-405f-aeaa-93ce663573a6/pixel.png?order={{ order_number }}&value={{ total_price | money_without_currency }}" style="display: none;">â€¨â€¨
+
+
+<!--     <script type="text/javascript">
+usi_installed = 0; USI_installCode = function() { if (usi_installed == 0) { usi_installed = 1; var USI_headID = document.getElementsByTagName("head")[0]; var USI_installID = document.createElement('script'); USI_installID.type = 'text/javascript'; USI_installID.src = 'https://www.upsellit.com/active/hydropeptide.jsp'; USI_headID.appendChild(USI_installID); } }; if (typeof(document.readyState) != "undefined" && document.readyState === "complete") { USI_installCode(); } else if (window.addEventListener){ window.addEventListener('load', USI_installCode, true); } else if (window.attachEvent) { window.attachEvent('onload', USI_installCode); } else { USI_installCode(); } setTimeout("USI_installCode()", 10000);
+</script> -->
+    
+    {% render 'conversiontag' %}
+    
+    {% if request.path contains 'thank_you' %} 
+    
+    {% render 'Extole-confirmation-tag' %}
+
+    {% endif %}
+      <script src='https://share.hydropeptide.com/core.js' async></script>
+    
+  </body>
+</html>

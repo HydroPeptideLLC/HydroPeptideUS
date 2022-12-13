@@ -1,0 +1,159 @@
+
+<div class="blog_breadcrumbs">
+  <div class="container">
+    <p>
+      <a href="/">Home</a> / <a href="/pages/blogs/">Blogs</a> / <a href="{{ blog.url }}">{{ blog.title }}</a> / {{ article.title }}
+    </p>
+  </div>
+</div>
+<div id="blog-new-template">
+  <div class="container">
+    <div class="article_header">
+      <h1>{{ article.title }}</h1>
+      <div class="author_sec">
+        <span>
+          <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%B %d, %Y' }}</time>
+          {{ 'blog.article.by_author' | t: author: article.author }}
+        </span>
+        <p class="share"><span>Share:</span> {% include 'site-shareLinksBlog' %}</p>
+      </div>
+    </div>
+    <div class="main_listing">
+      
+      <div class="article_content">
+        <img src="{{ article.image | img_url: 'master' }}" alt="{{ article.title }}">
+        {{ article.content }}
+      </div>
+      
+    </div>
+    <div class="side_bar">
+      
+      {% assign blog_handles = "sun-protection,anti-aging,skin-hydration,skincare-routines" | split: "," %}
+      {% for handle in blog_handles %}
+      {% unless handle == blog.handle %}
+      <div class="tag_list">
+        <h2>{{ blogs[handle].title }}</h2>
+        {% for article in blogs[handle].articles limit:3 %}
+        <a href="{{ article.url }}">
+          <div class="blog_item">
+            <div class="right_img">
+              <img src="{{ article.image | img_url: 'master' }}">
+            </div>
+            <div class="left_img">
+              <h4>{{ article.title }}</h4>
+              <p>{{article.excerpt_or_content | strip_html | strip | truncate: 60 }}</p>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+        
+        
+        <a href="{{ blogs[handle].url }}">SEE MORE ON {{ blogs[handle].title }} > </a>
+        
+      </div>
+      {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+  
+ 
+
+  
+</div>
+
+{% schema %}
+  {
+    "name": "Blog pages",
+    "settings": [
+		{
+          "type": "text",
+          "id": "headline",
+          "label": "Headline"
+        }
+      
+    ],
+	"blocks": [
+    {
+      "type": "banner",
+      "name": "Block",
+      "settings": [
+			{
+            "type": "text",
+            "id": "headline",
+            "label": "Headline"
+            },
+			{
+              "type": "image_picker",
+              "id": "image1",
+              "label": "First Blog Image"
+            },
+			{
+            "type": "text",
+            "id": "title1",
+            "label": "First Blog title"
+            },
+			{
+            "type": "text",
+            "id": "text1",
+            "label": "First Blog Summary"
+            },
+			{
+            "type": "url",
+            "id": "url1",
+            "label": "First Blog Link"
+            },
+			{
+              "type": "image_picker",
+              "id": "image2",
+              "label": "Second Blog Image"
+            },
+			{
+            "type": "text",
+            "id": "title2",
+            "label": "Second Blog title"
+            },
+			{
+            "type": "text",
+            "id": "text2",
+            "label": "Second Blog Summary"
+            },
+			{
+            "type": "url",
+            "id": "url2",
+            "label": "Second Blog Link"
+            },
+			{
+              "type": "image_picker",
+              "id": "image3",
+              "label": "Third Blog Image"
+            },
+			{
+            "type": "text",
+            "id": "title3",
+            "label": "Third Blog title"
+            },
+			{
+            "type": "text",
+            "id": "text3",
+            "label": "Third Blog Summary"
+            },
+			{
+            "type": "url",
+            "id": "url3",
+            "label": "Third Blog Link"
+            },
+			{
+            "type": "text",
+            "id": "text4",
+            "label": "All link text"
+            },
+			{
+            "type": "url",
+            "id": "url4",
+            "label": "All Link"
+            }
+		]
+	}
+	]
+  }
+{% endschema %}

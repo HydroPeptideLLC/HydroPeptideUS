@@ -1,0 +1,30 @@
+<span id='extole_zone_mobile_footer' class="mobilescript" ></span>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script id="extolemobile" type="text/javascript">
+      (function(c,b,f,k,a){c[b]=c[b]||{};for(c[b].q=c[b].q||[];a<k.length;)f(k[a++],c[b])})(window,"extole",function (c,b){b[c]=b[c]||function (){b.q.push([c,arguments])}},["createZone"],0);
+    extole.createZone({
+        name: "mobile_footer",
+        element_id: 'extole_zone_mobile_footer'
+      
+    });
+</script>
+
+<script>
+  
+  let isMobile = window.matchMedia("(max-width: 767px)").matches;
+  
+    if(isMobile){
+
+                
+  	}
+    else{
+      
+       $('#extolemobile').remove();
+ 
+      $('.mobilescript').remove();
+      
+  }
+  
+</script>

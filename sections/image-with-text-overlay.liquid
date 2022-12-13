@@ -1,0 +1,147 @@
+<style>
+  .placeholder-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  .placeholder-background .icon {
+    border: 0;
+  }
+  .hero {
+    position: relative;
+    height: 475px;
+    display: table;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+
+  .hero--x-small {
+    height: 94px;
+  }
+
+  .hero--small {
+    height: 225px;
+  }
+
+  .hero--medium {
+    height: 357px;
+  }
+
+  .hero--large {
+    height: 488px;
+  }
+
+  .hero--x-large {
+    height: 582px;
+  }
+
+  @media only screen and (min-width: 750px) {
+    .hero--x-small {
+      height: 125px;
+    }
+
+    .hero--small {
+      height: 300px;
+    }
+
+    .hero--medium {
+      height: 475px;
+    }
+
+    .hero--large {
+      height: 650px;
+      }
+
+    .hero--x-large {
+      height: 775px;
+    }
+  }
+</style>
+<div class="cta_wrapper" id="cta_wrapper_{{ section.id }}">
+  <a href="{{ section.settings.cta_link }}">
+    <div class="hero hero--{{ section.settings.hero_size }}"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}>
+      {% if section.settings.image == blank %}
+        <div class="placeholder-background">
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {% endif %}
+    </div>
+  </a>
+</div>
+
+{% schema %}
+  {
+    "name": "Image with CTA",
+    "class": "index-section index-section--flush",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "alignment",
+        "label": "Image alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "center",
+            "label": "Middle"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "hero_size",
+        "label": "Section height",
+        "default": "medium",
+        "options": [
+          {
+            "label": "Extra Small",
+            "value": "x-small"
+          },
+          {
+            "label": "Small",
+            "value": "small"
+          },
+          {
+            "label": "Medium",
+            "value": "medium"
+          },
+          {
+            "label": "Large",
+            "value": "large"
+          },
+          {
+            "label": "Extra Large",
+            "value": "x-large"
+          }
+        ]
+      },
+      {
+        "type": "url",
+        "id": "cta_link",
+        "label": "CTA Link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image with CTA",
+        "category": "HydroPeptide"
+      }
+    ]
+  }
+{% endschema %}

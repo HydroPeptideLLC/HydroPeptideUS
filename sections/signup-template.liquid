@@ -1,0 +1,364 @@
+   <style>
+        .custom-form{
+            width: 100%;
+            padding: 50px 0px;
+            background: #BFCBE5;
+        }
+        .custom-form-content{
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .cus-form-group.bithday-select {
+            display: flex;
+        }
+        .dobselect select {
+            width: 100%;
+        }
+        .dobselect {
+            width: 30%;
+            margin-right: 20px;
+        }
+        .custom-form-content label{
+            margin: 0px 0px 5px 0px;
+            text-transform: uppercase;
+        }
+        .custom-form-content .cus-form-control{
+            border-radius: unset;
+            border: 1px solid #6d6d6d;
+        }
+        .custom-form-content .cus-form-control:focus{
+            box-shadow: unset;
+        }
+        .custom-form-content select{
+            background: #fff url(../../frontend/Corra/sugarfina/en_US/images/select-bg.svg) no-repeat 99% 50%;
+            background-size: 30px 60px;
+            border: 1px solid #6d6d6d;
+            height: 45px;
+            padding: 5.5px 11px 4px;
+        }
+        .form-box .custom-control-label::before{
+            top: .05rem;
+            left: -2.0rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background-color: #BEE5EC;
+        }
+        .form-box .custom-control-label::after{
+            top: .05rem;
+            left: -2.0rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background-color: #BEE5EC;
+        }
+        .custom-control.form-box{
+            padding-left: 2rem !important;
+        }
+        .form-box .custom-control-label a{
+            text-decoration: underline;
+        }
+
+        .cus-form-group{
+            margin-bottom: 1rem;
+        }
+        .cus-form-control{
+            display: block;
+            width: 100%;
+            height: calc(1.5em + .75rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #000;
+        }
+        .cus-form-btn{
+            width: 100%;
+            background: #BEE5EC;
+            color: #fff;
+            border: none;
+            padding: 17px 20px;
+            letter-spacing: .18em;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 30px;
+        }
+        .Birthday-header{
+            text-transform: uppercase;
+            font-size: 17px;
+            font-weight: 400;
+        }
+        .birthday-text{
+            margin-bottom: 10px;
+        }
+        .form-heading{
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .form-heading h3{
+            text-transform: uppercase;
+            padding: 10px;
+            font-size: 18px;
+            letter-spacing: 5px;
+            margin:0px;
+        }
+        .form-heading h2{
+            font-size: 26px;
+            letter-spacing: 5px;
+        }
+     .custom-control-label::after {
+    position: absolute;
+    top: .05rem;
+    left: -2.0rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #BEE5EC;
+    content: "";
+    background: no-repeat 50%/50% 50%;
+}
+
+.custom-control-label::before {
+    position: absolute;
+    top: .05rem;
+    left: -2.0rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #BEE5EC;
+    pointer-events: none;
+    content: "";
+    border: #adb5bd solid 1px;
+}
+
+.custom-control-input {
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    width: 1rem;
+    height: 1.25rem;
+    opacity: 0;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/%3e%3c/svg%3e");
+}
+     #signup .custom-control-label{
+margin-top: 10px;
+padding-top: 5px;
+}
+     @media(max-width:552px){
+
+            .full-page-content{
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            .full-page-content h1{
+                font-size: 52px;
+            }
+            .full-page-content h3{
+                font-size: 32px;
+            }
+            .full-page-detail{
+                font-size: 14px;
+            }
+            #signup .custom-control-label{
+                max-width: 220px;
+            }
+            .custom-form-content{
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+        }
+    </style>
+
+
+   <div class="custom-form">
+        <div class="container">
+            <div class="custom-form-content">
+
+                <div class="form-heading">
+                    <h3>{{section.settings.title}}</h3>
+                    <h2>{{section.settings.title1}}</h2>
+                  <h3>{{section.settings.title2}}</h3>
+                </div>
+
+               {% form 'create_customer' %}
+                    <input type="hidden" name="checkout_url" value="/pages/loyalty-dashboard">
+
+                    <div class="cus-form-group">
+                        <label>First Name *</label>
+                      <input type="text" class="cus-form-control" name="customer[first_name]" {% if form.first_name %}value="{{ form.first_name }}"{% endif %} autocapitalize="words" autofocus required>
+                    </div>
+                    <div class="cus-form-group">
+                        <label>Last Name *</label>
+                      <input type="text" class="cus-form-control" name="customer[last_name]" {% if form.last_name %}value="{{ form.last_name }}"{% endif %} autocapitalize="words" required>
+                    </div>
+                    <div class="cus-form-group">
+                        <label>Email *</label>
+                      <input type="email" class="cus-form-control" name="customer[email]" {% if form.email %} value="{{ form.email }}"{% endif %} autocorrect="off" autocapitalize="off" required>
+                    </div>
+                    <div class="cus-form-group">
+                        <label>Phone Number *</label>
+                        <input type="text" id="phonenumber" onkeypress="return (event.charCode >= 48 && event.charCode <= 57 || event.charCode==32 || event.charCode==43 || event.charCode==45)" class="cus-form-control" name="customer[phone]" required>
+                    </div>
+                    <div class="cus-form-group">
+                        <label>Password *</label>
+                      <input type="password" class="cus-form-control" name="customer[password]" required>
+                    </div>
+                   <input type="hidden" id="customer_tags" name="customer[tags]" value="">
+<!--                     <div class="cus-form-group">
+                        <label>Confirm Password *</label>
+                        <input type="password" class="cus-form-control" required>
+                    </div> -->
+                    <fieldset class="field dateofbirth dateofbirthsection">
+                        <legend class="Birthday-header">Birthday*</legend>
+                        <div class="birthday-text">{{section.settings.detail}}</div>
+                        <div class="cus-form-group bithday-select">
+                            <div class="dobselect">
+                                <select name="customer[months]" id="months" aria-label="month" required>
+                                    <option value="">Month</option>
+                                    <option value="01">Jan.</option>
+                                    <option value="02">Feb.</option>
+                                    <option value="03">Mar.</option>
+                                    <option value="04">Apr.</option>
+                                    <option value="05">May</option>
+                                    <option value="06">Jun.</option>
+                                    <option value="07">Jul.</option>
+                                    <option value="08">Aug.</option>
+                                    <option value="09">Sep.</option>
+                                    <option value="10">Oct.</option>
+                                    <option value="11">Nov.</option>
+                                    <option value="12">Dec.</option>
+                                </select>
+                            </div>
+                            <div class="dobselect" id="dayselect">
+                                <select name="customer[days]" id="days" aria-label="day" required>
+                                    <option value="">Day</option>
+                                    <option value="01">1</option>
+                                    <option value="02">2</option>
+                                    <option value="03">3</option>
+                                    <option value="04">4</option>
+                                    <option value="05">5</option>
+                                    <option value="06">6</option>
+                                    <option value="07">7</option>
+                                    <option value="08">8</option>
+                                    <option value="09">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                </select>
+                            </div>   
+                        </div>
+                    </fieldset>
+
+                    <!-- CheckBox Area -->
+                    <label>TERMS OF USE*</label>
+                    <div class="custom-control custom-checkbox form-box">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                        <label class="custom-control-label" for="customCheck1">{{section.settings.policy-text}}</label>
+                       <span class="checkmark"></span>
+                       <p class="checkboxStatus"></p>    
+              </div>
+                  
+                    <button class="cus-form-btn" id="buttoncheck" type="submit" >Create Account</button>
+            
+              {% endform %}
+
+            </div>
+        </div>
+    </div>
+<script>
+ //Checks if there is any change on checkBox class
+  $("#customCheck1").change(function() {
+     // If change is confirmed this checks if the checkbox is checked
+      if(this.checked) {
+		// Changes the value attribute to you value 
+          $('#customer_tags').attr('value', 'Loyalty');
+      }
+      else{
+        $('#customer_tags').attr('value', '');
+      }
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Customer Register",
+    "settings": [
+      {
+        "type":"text",
+        "id":"title",
+        "label":"title"
+      },
+      {
+        "type":"text",
+        "id":"title1",
+        "label":"title one"
+      },
+      {
+        "type":"text",
+        "id":"title2",
+        "label":"title two"
+      },      
+      {
+        "type":"textarea",
+        "id":"detail",
+        "label":"detail"
+      },
+	  {
+        "type":"textarea",
+        "id":"policy-text",
+        "label":"policy text"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+<!-- <script>
+jQuery(function() {
+jQuery('#create_customer').submit(function(event) {
+  event.preventDefault();
+  var data = jQuery(this).serialize();
+
+ //create new account
+  jQuery.post('/account', data)
+    .done(function(data){
+    var logErrors = jQuery(data).find('.errors').text();
+
+    //if there are errors show them in the html form
+    if (logErrors != "" && logErrors != 'undefined'){
+        jQuery('#create_customer .errors').html(logErrors);
+        jQuery('#create_customer .errors').show();
+
+    //if account creation is successful show checkout page
+    }else{
+       console.log('success');
+      document.location.href = '/pages/loyalty-dashboard';
+    }
+    }).fail(function(){console.log('error');});
+   return false;
+}); 
+});
+</script> -->

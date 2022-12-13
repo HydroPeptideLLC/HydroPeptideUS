@@ -1,0 +1,411 @@
+<section id="Shop-By-Recipient">
+        <div class="Recipient-Header HF-product-slider-header">
+            <div class="Title">
+                <span class="Skin-Title">Shop by Recipient</span>
+                <span class="From-blemishes-to-fine-lines-and-hyperpigmentation-youll-find-clinical-skincare-solutions-for-ever">Formulas that are perfect for every age and every skin type: From teens to moms and everyone in between.</span>
+            </div>
+            <div class="Recipient-product-slider-UI">
+              <div id="Recipient-buttons">
+                <button class="Text-Button-Collection-Three active" id="expecting-collection" name="#Expecting-Mothers-Collection" value="#expecting-mothers-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">EXPECTING MOTHERS</span>
+                </button>
+                <button class="Text-Button-Collection-Three" id="teens-Collection" name="#Teens-Type-Collection" value="#teens-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">TEENS</span>
+                </button>
+                <button class="Text-Button-Collection-Three" id="men-collection" name="#Men-Type-Collection" value="#men-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">MEN</span>
+                </button>
+                <button class="Text-Button-Collection-Three" id="women-collection" name="#Women-Type-Collection" value="#women-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">WOMEN</span>
+                </button>
+<!--                 <button class="Text-Button-Collection-Three" id="over-collection" name="#Over-Fifty-Collection" value="#over-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">OVER 50</span>
+                </button> -->
+              </div>
+                <div class="Slider-UI">
+                    <div class="Arrow-Button-Three-Prev Arrow-Button"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></div>
+                    <span class="slider-Three-count">1 / 2</span>
+                    <div class="Arrow-Button-Three-Next Arrow-Button"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></div>
+                </div>
+            </div>
+            
+        </div> 
+        {% include 'Expecting-Mothers-Collection' %}
+        {% include 'Teens-Type-Collection' %}
+        {% include 'Men-Type-Collection' %}
+        {% include 'Women-Type-Collection' %}
+       {% comment %} {% include 'Over-Fifty-Collection' %}{% endcomment %}
+        
+        <script> 
+          if(screen.availWidth > 480)
+            {
+              header = document.getElementById("HF-product-slider-UI");
+              btns = document.getElementsByClassName('Text-Button-Collection-Three'); 
+              for (let i = 0; i < btns.length; i++) { 
+                  btns[i].addEventListener("click", function() {
+                      current = document.getElementsByClassName("Text-Button-Collection-Three active"); 
+                      $(current[0].name).addClass('hide');
+                      $(current[0].value).slick('unslick');
+                      if (current.length > 0) { 
+                          current[0].className = current[0].className.replace(" active", "");
+                      }
+                      this.className += " active";
+                      $(this.name).removeClass('hide');
+                      $(this.value).slick({
+                          infinite: false,
+                          slidesToShow: 4,
+                          slidesToScroll: 4,
+                          centerPadding: '40px',
+                          nextArrow: $('.Arrow-Button-Three-Next'),
+                          prevArrow: $('.Arrow-Button-Three-Prev')
+                      });
+                      var currentSlick = $(this.value).slick('getSlick');
+                      var slickCount = Math.ceil(currentSlick.slideCount / 4);
+                      var currentPage = 1;
+                      $('.Arrow-Button-Three-Next').click(() => {
+                        if(currentPage < slickCount)
+                        {
+                            currentPage++;
+                        }
+                      $('.slider-Three-count').text(currentPage + ' / ' + slickCount);
+                    });
+                    $('.Arrow-Button-Three-Prev').click(() => {
+                        if(currentPage > 1)
+                        {
+                            currentPage--;
+                        }
+                      $('.slider-Three-count').text(currentPage + ' / ' + slickCount);
+                    });
+                    $('.slider-Three-count').text(currentPage + ' / ' + slickCount);            
+                  });
+              }
+              $(document).ready(() => {
+                  var currentSlider = $(".Text-Button-Collection-Three.active");
+                  currentSlider = currentSlider[0].value;
+                  var currentSlick = $(currentSlider).slick('getSlick');
+                  currentSlick = currentSlick.slideCount;
+                  console.log(currentSlick);
+                  var slickCount = Math.ceil(currentSlick / 4);
+                  console.log(slickCount);
+                  var currentPage = 1;
+                  $('.Arrow-Button-Three-Next').click(() => {
+                      if(currentPage < slickCount)
+                      {
+                          currentPage++;
+                      }
+                    $('.slider-Three-count').text(currentPage + ' / ' + slickCount);
+                  });
+                  $('.Arrow-Button-Three-Prev').click(() => {
+                      if(currentPage > 1)
+                      {
+                          currentPage--;
+                      }
+                    $('.slider-Three-count').text(currentPage + ' / ' + slickCount);
+                  }); 
+                  $('.slider-Three-count').text(currentPage + ' / ' + slickCount);
+              })
+            }
+          
+        </script>
+</section>
+<section id="Shop-By-Recipient-Mobile" class="hide">
+    <div id="mobile-header HF-product-slider-header-mobile">
+        <div class="Title">
+            <span class="SBP-Title">Shop by Recipient</span>
+            <span class="SBP-Subtitle">Formulas that are perfect for every age and every skin type: From teens to moms and everyone in between.</span>
+        </div>
+        <div class="HF-product-slider-UI-Mobile">
+            <select name="Shop-By-Recipient-Dropdown" class="Dropdown" id="select-Recipient" style="-webkit-appearance: auto !important;">
+              <option class="Shop-all" name="#Expecting-Mothers-Mobile-Collection" value="#expecting-mothers-mobile-slider">EXPECTING MOTHERS</option>
+              <option class="Shop-all" name="#Teens-Type-Mobile-Collection" value="#teens-mobile-slider">TEENS</option> 
+              <option class="Shop-all" name="#Men-Type-Mobile-Collection" value="#men-mobile-slider">MEN</option> 
+              <option class="Shop-all" name="#Women-Type-Mobile-Collection" value="#women-mobile-slider">WOMEN</option>
+<!--               <option class="Shop-all" name="#Over-Fifty-Mobile-Collection" value="#over-mobile-slider">WOMEN</option> -->
+            </select>
+        </div>
+    </div> 
+        {% include 'Expecting-Mothers-Mobile-Collection' %}
+        {% include 'Teens-Type-Mobile-Collection' %}
+        {% include 'Men-Type-Mobile-Collection' %}
+        {% include 'Women-Type-Mobile-Collection' %}
+        {% comment %}{% include 'Over-Fifty-Mobile-Collection' %}{% endcomment %} 
+</section>
+<script> 
+  if(screen.availWidth <= 540){
+   $(document).ready(() => {
+      var currentSlider = $('#select-Recipient')[0].value;
+      var currentSlick = $(currentSlider).slick('getSlick');
+      var slickCount = currentSlick.slideCount;
+      var currentPage = 1;
+      $('.Mobile-Arrow-Button-Three-Next').click(() => {
+        console.log('next');
+          if(currentPage < slickCount)
+          {
+              currentPage++;
+          }
+        $('.mobile-slider-Three-count').text(currentPage + ' / ' + slickCount);
+      });
+      $('.Mobile-Arrow-Button-Three-Prev').click(() => {
+          if(currentPage > 1)
+          {
+              currentPage--;
+          }
+        $('.mobile-slider-Three-count').text(currentPage + ' / ' + slickCount);
+      });
+      $('.mobile-slider-Three-count').text(currentPage + ' / ' + slickCount);
+  });
+        var selection = "#expecting-mothers-mobile-slider";
+        var currentVal = $('#Recipient').value;
+        var currentName ="";
+        $('select#select-Recipient').on('focus', function() {
+            console.log('focusing');
+            currentVal = this.value;
+            console.log(currentVal);
+            if(this.value == "#expecting-mothers-mobile-slider")
+            {
+                currentName = "#Expecting-Mothers-Mobile-Collection";
+            }
+            if(this.value == "#teens-mobile-slider")
+            {
+                currentName = "#Teens-Type-Mobile-Collection";
+            }
+            if(this.value == "#men-mobile-slider")
+            {
+                currentName = "#Men-Type-Mobile-Collection";
+            }
+            if(this.value == "#women-mobile-slider")
+            {
+                currentName = "#Women-Type-Mobile-Collection";
+            }
+            if(this.value == "#over-mobile-slider")
+            {
+                currentName = "#Over-Fifty-Mobile-Collection";
+            }
+          console.log(currentName);
+        })
+        .change(() => {
+            console.log('starting change');
+            var newVal = $('#select-Recipient')[0];
+            console.log(newVal);
+            var newName;
+            if(newVal.value == "#expecting-mothers-mobile-slider")
+            {
+                newName = "#Expecting-Mothers-Mobile-Collection";
+            }
+            if(newVal.value == "#teens-mobile-slider")
+            {
+                newName = "#Teens-Type-Mobile-Collection";
+            }
+            if(newVal.value == "#men-mobile-slider")
+            {
+                newName = "#Men-Type-Mobile-Collection";
+            }
+            if(newVal.value == "#women-mobile-slider")
+            {
+                newName = "#Women-Type-Mobile-Collection";
+            }
+            if(newVal.value == "#over-mobile-slider")
+            {
+                newName = "#Over-Fifty-Mobile-Collection";
+            }
+            $(currentName).addClass('hide');
+            $(currentVal).slick('unslick');
+            $(newName).removeClass('hide');
+            $(newVal.value).not('.slick-initialized').slick({
+                infinite: false,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                dots: true
+            }); 
+            var currentSlick = $(newVal.value).slick('getSlick'); 
+            var slickCount = currentSlick.slideCount;
+          var currentPage = 1;
+          $('.Mobile-Arrow-Button-Three-Next').click(() => {
+            if(currentPage < slickCount)
+            {
+                currentPage++;
+            }
+          $('.mobile-slider-Three-count').text(currentPage + ' / ' + slickCount);
+        });
+        $('.Mobile-Arrow-Button-Three-Prev').click(() => {
+            if(currentPage > 1)
+            {
+                currentPage--;
+            }
+          $('.mobile-slider-Three-count').text(currentPage + ' / ' + slickCount);
+        });
+        $('.mobile-slider-Three-count').text(currentPage + ' / ' + slickCount);
+        });
+  }
+</script>
+</section>
+  <style>
+    .Recipient-product-slider-UI {
+        height: 44px;
+        width: 100%;
+        align-self: stretch;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: 0;
+    } 
+    #Recipient-buttons
+    {
+      align-self: stretch;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: row;
+    }
+    .Recipient-product-slider-UI .Text-Button-Collection-Three.active {
+        width: 200px;
+        height: 27px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0 10px;
+        border-bottom: solid 2px #6d9dea;
+        background-color: #fff;
+    }
+    .Recipient-product-slider-UI .Text-Button-Collection-Three {
+        width: 200px !important;
+        height: 27px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0 10px;
+        background-color: #fff;
+        border-bottom: solid 1px #f1f1f1 
+    }
+    .Recipient-product-slider-UI .Text-Button-Collection-Three.active .CTA-Copy
+    {
+        width: auto;
+        height: auto;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #6d9dea;
+        text-transform: uppercase;
+    }
+    .Recipient-product-slider-UI .Text-Button-Collection-Three .CTA-Copy
+    {
+        width: auto; 
+        height: auto;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #393939;
+        text-transform: uppercase;
+    }
+    .SBP-Title
+    {
+        align-self: stretch;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 35px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: left;
+        color: #393939;
+    }
+    .SBP-Subtitle
+    {
+        align-self: stretch;
+        flex-grow: 0;
+        font-family: TTNormsPro;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.31;
+        letter-spacing: normal;
+        text-align: left;
+        color: #393939;
+    }
+    .HF-product-slider-header-mobile {
+        height: 156px;
+        align-self: stretch;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 20px;
+        padding: 0 30px;
+      }
+      #Shop-By-Recipient-Mobile
+      {
+          align-self: stretch;
+          flex-grow: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: stretch;
+          gap: 20px;
+          padding: 0 30px;
+      }
+    .Arrow-Button{width:44px;height:44px;flex-grow:0;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:10px;padding:10px;border:solid 1px #e4e4e4;background-color:#fff}
+    .Arrow-Button img{top:50%;left:50%}
+    .Arrow-Button{width:44px;height:44px;flex-grow:0;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:10px;padding:10px;border:solid 1px #e4e4e4;background-color:#fff}
+    .Arrow-Button img{top:50%;left:50%}
+    .Dropdown{width:100%;height:44px;align-self:stretch;flex-grow:0;display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:10px 20px;border:solid 1px #e4e4e4;background-color:#fff}
+  </style>
+{% schema %}
+  {
+    "name": "Recipient",
+    "settings": [
+      {
+        "id": "expecting-mothers",
+        "type": "collection",
+        "label": "Expecting Mothers Collection"
+      },
+      {
+        "id": "teens",
+        "type": "collection",
+        "label": "Teens Collection"
+      },
+      {
+        "id": "men",
+        "type": "collection",
+        "label": "Men Collection"
+      },
+      {
+        "id": "women",
+        "type": "collection",
+        "label": "Women Collection"
+      },
+      {
+        "id": "overFifty",
+        "type": "collection",
+        "label": "Over 50 Collection"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

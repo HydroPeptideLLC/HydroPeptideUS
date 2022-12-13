@@ -1,0 +1,108 @@
+<section id="Shop-By-Target-Treatment">
+        <div class="Target-Header HF-product-slider-header">
+            <div class="Title">
+                <span class="Skin-Title">Shop by Targeted Treatment</span>
+                <span class="From-blemishes-to-fine-lines-and-hyperpigmentation-youll-find-clinical-skincare-solutions-for-ever">Gifts created for specific areas: the delicate eye area, full body care, face-sculpting, and more.</span>
+            </div>
+            <div class="Target-product-slider-UI">
+              <div id="target-buttons">
+                <button class="Text-Button-Collection-Two active" id="bright-collection" name="#Bright-Eyes-Type-Collection" value="#bright-eyes-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">BRIGHT EYES</span>
+                </button>
+                <button class="Text-Button-Collection-Two" id="body-Collection" name="#Body-Care-Type-Collection" value="#body-care-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">BODY CARE</span>
+                </button>
+                <button class="Text-Button-Collection-Two" id="tools-collection" name="#Tools-Type-Collection" value="#tools-makeup-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">TOOLS & MAKEUP</span>
+                </button>
+                <button class="Text-Button-Collection-Two" id="neck-collection" name="#Neck-Type-Collection" value="#neck-collection-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">NECK</span>
+                </button>
+                <button class="Text-Button-Collection-Two" id="lips-Collection" name="#Lips-Type-Collection" value="#lips-collection-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">LIPS</span>
+                </button>
+              </div>
+                <div class="Slider-UI">
+                    <div class="Arrow-Button-Two-Prev Arrow-Button"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></div>
+                    <span class="slider-Two-count">1 / 2</span>
+                    <div class="Arrow-Button-Two-Next Arrow-Button"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></div>
+                </div>
+            </div>
+            
+        </div> 
+        {% include 'Bright-Eyes-Type-Collection' %}
+        {% include 'Body-Care-Type-Collection' %}
+        {% include 'Tools-Type-Collection' %}
+        {% include 'Neck-Type-Collection' %}
+        {% include 'Lips-Type-Collection' %}
+        
+        <script>if(screen.availWidth > 480){header=document.getElementById("HF-product-slider-UI");btns=document.getElementsByClassName('Text-Button-Collection-Two');for(let i=0;i<btns.length;i+=1){btns[i].addEventListener("click",function(){current=document.getElementsByClassName("Text-Button-Collection-Two active");$(current[0].name).addClass('hide');$(current[0].value).slick('unslick');if(current.length>0){current[0].className=current[0].className.replace(" active","")}this.className+=" active";$(this.name).removeClass('hide');$(this.value).slick({infinite:false,slidesToShow:4,slidesToScroll:4,centerPadding:'40px',nextArrow:$('.Arrow-Button-Two-Next'),prevArrow:$('.Arrow-Button-Two-Prev')});var currentSlick=$(this.value).slick('getSlick');var slickCount=Math.ceil(currentSlick.slideCount/4);var currentPage=1;$('.Arrow-Button-Two-Next').click(()=>{if(currentPage<slickCount){currentPage+=1}$('.slider-Two-count').text(currentPage+' / '+slickCount)});$('.Arrow-Button-Two-Prev').click(()=>{if(currentPage>1){currentPage-=1}$('.slider-Two-count').text(currentPage+' / '+slickCount)});$('.slider-Two-count').text(currentPage+' / '+slickCount)})}$(document).ready(()=>{var currentSlider=$(".Text-Button-Collection-Two.active");currentSlider=currentSlider[0].value;var currentSlick=$(currentSlider).slick('getSlick');currentSlick=currentSlick.slideCount;console.log(currentSlick);var slickCount=Math.ceil(currentSlick/4);console.log(slickCount);var currentPage=1;$('.Arrow-Button-Two-Next').click(()=>{if(currentPage<slickCount){currentPage+=1}$('.slider-Two-count').text(currentPage+' / '+slickCount)});$('.Arrow-Button-Two-Prev').click(()=>{if(currentPage>1){currentPage-=1}$('.slider-Two-count').text(currentPage+' / '+slickCount)});$('.slider-Two-count').text(currentPage+' / '+slickCount)})}</script>
+</section>
+<section id="Shop-By-Target-Treatment-Mobile" class="hide">
+    <div id="mobile-header HF-product-slider-header-mobile">
+        <div class="Title">
+            <span class="SBP-Title">Shop by Targeted Treatment</span>
+            <span class="SBP-Subtitle">Gifts created for specific areas: the delicate eye area, full body care, face-sculpting, and more.</span>
+        </div>
+        <div class="HF-product-slider-UI-Mobile">
+            <select name="Shop-By-Target-Dropdown" class="Dropdown" id="select-target" style="-webkit-appearance: auto !important;">
+              <option class="Shop-all" name="#Bright-Eyes-Type-Mobile-Collection" value="#bright-eyes-mobile-slider">BRIGHT EYES</option>
+              <option class="Shop-all" name="#Body-Care-Type-Mobile-Collection" value="#body-care-mobile-slider">BODY CARE</option> 
+              <option class="Shop-all" name="#Tools-Type-Mobile-Collection" value="#tools-makeup-mobile-slider">TOOLS & MAKEUP</option> 
+              <option class="Shop-all" name="#Neck-Type-Mobile-Collection" value="#neck-mobile-slider">NECK</option>
+              <option class="Shop-all" name="#Lips-Type-Mobile-Collection" value="#lips-mobile-slider">LIPS</option> 
+            </select>
+        </div>
+    </div> 
+        {% include 'Bright-Eyes-Type-Mobile-Collection' %}
+        {% include 'Body-Care-Type-Mobile-Collection' %}
+        {% include 'Tools-Type-Mobile-Collection' %}
+        {% include 'Neck-Type-Mobile-Collection' %}
+        {% include 'Lips-Type-Mobile-Collection' %}
+<!--     <div class="Slider-UI"> 
+        <div class="Mobile-Arrow-Button-Two-Prev Arrow-Button"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></div>
+        <span class="mobile-slider-Two-count">1 / 44</span>
+        <div class="Mobile-Arrow-Button-Two-Next Arrow-Button"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></div>
+    </div>    -->
+</section>
+<script>if(screen.availWidth <= 480){$(document).ready(()=>{var currentSlider=$('#select-target')[0].value;var currentSlick=$(currentSlider).slick('getSlick');var slickCount=currentSlick.slideCount;var currentPage=1;$('.Mobile-Arrow-Button-Two-Next').click(()=>{console.log('next');if(currentPage<slickCount){currentPage+=1}$('.mobile-slider-Two-count').text(currentPage+' / '+slickCount)});$('.Mobile-Arrow-Button-Two-Prev').click(()=>{if(currentPage>1){currentPage-=1}$('.mobile-slider-Two-count').text(currentPage+' / '+slickCount)});$('.mobile-slider-Two-count').text(currentPage+' / '+slickCount)});var selection="#bright-eyes-mobile-slider";var currentVal=$('#select-target').value;var currentName="";$('select#select-target').on('focus',function(){console.log('focusing');currentVal=this.value;console.log(currentVal);if(this.value=="#bright-eyes-mobile-slider"){currentName="#Bright-Eyes-Type-Mobile-Collection"}if(this.value=="#body-care-mobile-slider"){currentName="#Body-Care-Type-Mobile-Collection"}if(this.value=="#tools-makeup-mobile-slider"){currentName="#Tools-Type-Mobile-Collection"}if(this.value=="#neck-mobile-slider"){currentName="#Neck-Type-Mobile-Collection"}if(this.value=="#lips-mobile-slider"){currentName="#Lips-Type-Mobile-Collection"}console.log(currentName)}).change(()=>{console.log('starting change');var newVal=$('#select-target')[0];var newName;if(newVal.value=="#bright-eyes-mobile-slider"){newName="#Bright-Eyes-Type-Mobile-Collection"}if(newVal.value=="#body-care-mobile-slider"){newName="#Body-Care-Type-Mobile-Collection"}if(newVal.value=="#tools-makeup-mobile-slider"){newName="#Tools-Type-Mobile-Collection"}if(newVal.value=="#neck-mobile-slider"){newName="#Neck-Type-Mobile-Collection"}if(newVal.value=="#lips-mobile-slider"){newName="#Lips-Type-Mobile-Collection"}console.log('this is the newName');console.log(newName);console.log(currentName);$(currentName).addClass('hide');$(currentVal).slick('unslick');$(newName).removeClass('hide');$(newVal.value).not('.slick-initialized').slick({infinite:false,slidesToShow:1,slidesToScroll:1,arrows: false, dots: true});var currentSlick=$(newVal.value).slick('getSlick');var slickCount=currentSlick.slideCount;var currentPage=1;$('.Mobile-Arrow-Button-Two-Next').click(()=>{if(currentPage<slickCount){currentPage+=1}$('.mobile-slider-Two-count').text(currentPage+' / '+slickCount)});$('.Mobile-Arrow-Button-Two-Prev').click(()=>{if(currentPage>1){currentPage-=1;b}$('.mobile-slider-Two-count').text(currentPage+' / '+slickCount)});$('.mobile-slider-Two-count').text(currentPage+' / '+slickCount)});}</script>
+</section>
+  <style > .Target-product-slider-UI{height:44px;width:100%;align-self:stretch;flex-grow:0;display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end;padding:0}#target-buttons{align-self:stretch;flex-grow:0;display:flex;flex-direction:row}.Target-product-slider-UI .Text-Button-Collection-Two.active{width:195px;height:27px;flex-grow:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 0 10px;border-bottom:solid 2px #6d9dea;background-color:#fff}.Target-product-slider-UI .Text-Button-Collection-Two{width:195px !important;height:27px;flex-grow:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 0 10px;background-color:#fff;border-bottom:solid 1px #f1f1f1}.Target-product-slider-UI .Text-Button-Collection-Two.active .CTA-Copy{width:auto;height:auto;flex-grow:0;font-family:TT Norms1;font-size:14px;font-weight:bold;font-stretch:normal;font-style:normal;line-height:normal;letter-spacing:2px;text-align:center;color:#6d9dea;text-transform:uppercase}.Target-product-slider-UI .Text-Button-Collection-Two .CTA-Copy{width:auto;height:auto;flex-grow:0;font-family:TT Norms1;font-size:14px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:normal;letter-spacing:2px;text-align:center;color:#393939;text-transform:uppercase}.SBP-Title{align-self:stretch;flex-grow:0;font-family:ChronicleDisplay-Roman;font-size:35px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:1.29;letter-spacing:normal;text-align:left;color:#393939}.SBP-Subtitle{align-self:stretch;flex-grow:0;font-family:TTNormsPro;font-size:16px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:1.31;letter-spacing:normal;text-align:left;color:#393939}.HF-product-slider-header-mobile{height:156px;align-self:stretch;flex-grow:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:20px;padding:0 30px}#Shop-By-Target-Treatment-Mobile{align-self:stretch;flex-grow:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:20px;padding:0 30px}.Arrow-Button{width:44px;height:44px;flex-grow:0;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:10px;padding:10px;border:solid 1px #e4e4e4;background-color:#fff}.Arrow-Button img{top:50%;left:50%}.Arrow-Button{width:44px;height:44px;flex-grow:0;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:10px;padding:10px;border:solid 1px #e4e4e4;background-color:#fff}.Arrow-Button img{top:50%;left:50%}.Dropdown{width:100%;height:44px;align-self:stretch;flex-grow:0;display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:10px 20px;border:solid 1px #e4e4e4;background-color:#fff}</style>
+{% schema %}
+  {
+    "name": "Targeted Treatment",
+    "settings": [
+      {
+        "id": "bright-eyes",
+        "type": "collection",
+        "label": "Bright Eyes Collection"
+      },
+      {
+        "id": "body-care",
+        "type": "collection",
+        "label": "Body Care Collection"
+      },
+      {
+        "id": "tools-makeup",
+        "type": "collection",
+        "label": "Tools & Makeup Collection"
+      },
+      {
+        "id": "neck-collection",
+        "type": "collection",
+        "label": "Neck Collection"
+      },
+      {
+        "id": "lips-collection",
+        "type": "collection",
+        "label": "Lips Collection"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

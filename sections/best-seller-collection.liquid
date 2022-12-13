@@ -1,0 +1,295 @@
+<style type="text/css">
+.main_best {
+    padding: 0px 55px;
+}
+
+.main_best .row {
+    padding-top: 20px;
+    width: 100%;
+    column-count: 2;
+
+    display: flex;
+}
+
+.main_best .row .col-sm-6 {
+    float: left;
+    width: 100%;
+    flex: 1;
+}
+
+.col-sm-6.right {
+    background-image: url({{ section.settings.image | img_url : 'master'}});
+    background-size: cover;
+    background-position: center center;
+}
+
+.col-sm-6.left .product-row .product_list img {
+    width: 100%;
+}
+
+.left_content {
+    max-width: 65%;
+    margin: 0 auto;
+}
+
+.left_content h2 {
+    font-size: 42px;
+}
+
+.main_best .row .col-sm-6.left {
+    padding-top: 59px;
+    margin-right: 55px;
+}
+
+.main_best .row .col-sm-6.left .left_content {
+    text-align: center;
+}
+
+.left_content h3 {
+    text-transform: uppercase;
+}
+
+.product_detail {
+    display: inline-table;
+}
+
+.col-sm-6.right img {
+    width: 100%;
+    visibility: hidden;
+
+}
+
+.col-sm-6.left .product-row {
+    margin-top: 58px;
+    float: left;
+    box-sizing: border-box;
+    column-count: 2;
+    column-gap: 54px;
+}
+
+.product_list h3 {
+    text-align: center;
+    width: 80%;
+    margin: 21px auto 20px auto;
+    line-height: normal;
+}
+
+.product-row .product_list {
+    float: left;
+    text-align: center;
+}
+
+.mobile_left_image {
+    display: none;
+}
+
+@media only screen and (max-width: 1280px) and (min-width: 769px) {
+    .main_best .row .col-sm-6.left {
+        padding-left: 20px;
+        padding-top: 20px;
+    }
+
+    .product_list img {
+        width: 100%;
+    }
+
+    .col-sm-6.left .product-row {
+        margin-top: 20px;
+
+    }
+
+    .product-row .product_list:first-child {
+        padding-right: 10px;
+    }
+
+    .product-row .product_list:last-child {
+        padding-left: 10px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .col-sm-6.left .product-row {
+        margin-top: 33px;
+    }
+.main_best .row .col-sm-6.left{
+	padding-top: 0;
+}
+
+    .col-sm-6.left .product-row {
+        column-count: 2 !important;
+        column-gap: 11px;
+        display: inline-block !important;
+    }
+
+    .product_list h3 {
+        margin: 15px auto 15px auto;
+    }
+
+    .col-sm-6.left .product-row,
+    .main_best .row {
+        column-count: 1;
+        display: block;
+    }
+
+
+
+    .main_best .row .col-sm-6.left .left_content {
+        max-width: 100%
+    }
+
+    .main_best .row .col-sm-6.left {
+        margin-right: 0px;
+    }
+
+    .main_best {
+        padding: 0px 17px;
+    }
+
+    .mobile_left_image {
+        display: block;
+        width: 100%;
+        margin-top: 33px;
+    }
+
+    .main_best .row .col-sm-6.right {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .col-sm-6.left .product-row {
+        margin-top: 33px;
+    }
+
+    .col-sm-6.left .product-row {
+        column-count: 2 !important;
+        column-gap: 11px;
+        display: inline-block !important;
+    }
+
+    .p .product_list h3 {
+        margin: 15px auto 15px auto;
+    }
+
+    .main_best .row .col-sm-6.right {
+        display: none;
+    }
+
+    .mobile_left_image {
+        display: block;
+        width: 100%;
+        margin-top: 33px;
+    }
+
+    .main_best .row .col-sm-6 {
+        width: 100%;
+        text-align: center;
+    }
+
+    .main_best .row .col-sm-6.left {
+        padding: 30px;
+    }
+
+    .col-sm-6.right img {
+        max-width: 100%;
+        float: none;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+
+    .col-sm-6.left .product-row {
+        display: block;
+        column-count: 2;
+    }
+
+    .main_best .row {
+        column-count: 1;
+        display: block;
+    }
+
+    .main_best .row .col-sm-6.left {
+        margin-right: 0px;
+        padding: 30px 0px;
+    }
+
+    .product-row .product_list:last-child {
+        margin-bottom: 0px;
+    }
+}
+</style>
+{% assign collection1 = section.settings.collection | default: false %}
+<div id="{{ settings.id }}" class="main_best pad-sm">
+    <div class="row">
+        <div class="col-sm-6 left">
+            <div class="left_content">
+                <h3>{{ section.settings.preheading}}</h3>
+                <h2>{{ section.settings.heading}}</h2>
+                {{ section.settings.description}}
+                <a tabindex="0" href="{{ section.settings.url}}" class="button button--normal button--primary" aria-label="Shop Now" title="Shop Now" style="color: #ffffff; background-color: #e47d80; border-color: #e47d80;">{{ section.settings.btn_text}}</a>
+            </div>
+            <img class="mobile_left_image" src="{{ section.settings.image | img_url : 'master'}}">
+            <div class="product-row">
+                {% for product in collections[collection1].products limit:2 %}
+                <div class="product_list">
+                    <img src="{{ product.featured_image | product_img_url: 'master' }}" alt="{{ product.title | escape }}">
+                    <div class="product_detail">
+                        <h3><a href="{{ product.url }}">{{product.title}}</a></h3>
+                        <span>{{ product.price | money }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-sm-6 right">
+            <img src="{{ section.settings.image | img_url : 'master'}}">
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+"name": "Best Seller Collection",
+"settings": [
+{
+"type": "text",
+"id": "preheading",
+"label": "Title"
+}, {
+"type": "text",
+"id": "heading",
+"label": "Heading"
+},
+{
+"type": "richtext",
+"id": "description",
+"label": "description"
+},
+{
+"type": "text",
+"id": "btn_text",
+"label": "Button Text"
+},
+{
+"type": "url",
+"id": "url",
+"label": "Button URL"
+},
+{
+"type": "collection",
+"id": "collection",
+"label": "Product Collection"
+},
+{
+"type": "image_picker",
+"id": "image",
+"label": "Right image"
+}
+],
+"presets": [
+{
+"name": "Best Seller Collection",
+"category": "COLLECTION"
+}
+]
+}
+{% endschema %}

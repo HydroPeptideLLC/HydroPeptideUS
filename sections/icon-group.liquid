@@ -1,0 +1,146 @@
+{% comment %}  
+Icons Group
+{% endcomment %}
+
+{% assign background = section.settings.color_icons_bg %}
+{% assign color = section.settings.color_icons_text %}
+{% assign icon_color = section.settings.color_icons %}
+
+{% if section.blocks.size > 0 %}
+<div data-section-id="{{ section.id }}" data-section-type="icons-row">
+  <div class="icons-row--background {{ section.settings.icon_group_spacing }}" style="color: {{ color }}; background-color: {{ background }};">
+    <div class="container">
+      <div class="row row-lg">
+        <div class="icons-row-wrapper">
+          {% for block in section.blocks %}
+            {% assign title = block.settings.title %}
+            {% assign content = block.settings.content %}
+            {% assign icon_words = block.settings.icon | split: ' ' %}
+            {%- capture icon -%}{%- for word in icon_words -%}{%- unless forloop.index == 1 -%}-{%- endunless -%}{{ word | lowercase | capitalize }}{%- endfor -%}{%- endcapture -%}
+
+            <div class="block xs_s1 {{ section.settings.icons_group_column }}" style="padding: {{ section.settings.icons_gutter_spacing }}px">
+              {% if icon != blank %}
+              <span class="icons-row__icon iconsmind-{{ icon }}" style="color: {{ icon_color }}"></span>
+              {% endif %}
+
+              {% if title != blank %}
+              <h3 class="icons-row__title">{{ title }}</h3>
+              {% endif %}
+
+              {% if content != blank %}
+              <p class="icons-row__content">{{ content }}</p>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Icons Group",
+  "max_blocks": 6,
+  "class": "icons-group",
+  "settings": [
+    {
+      "type": "color",
+      "id": "color_icons_bg",
+      "label": "Background color",
+      "default": "#fafafa"
+    },
+    {
+      "type": "color",
+      "id": "color_icons_text",
+      "label": "Text color",
+      "default": "#333"
+    },
+    {
+      "type": "color",
+      "id": "color_icons",
+      "label": "Icon color",
+      "default": "#333"
+    },
+    {
+      "type": "select",
+      "id": "icon_group_spacing",
+      "label": "Icon Group Spacing",
+      "options": [
+        { "value": "", "label": "No Space" },
+        { "value": "pad-sm", "label": "Small" },
+        { "value": "pad-med", "label": "Medium" },
+        { "value": "pad-lg", "label": "Large" }
+      ],
+      "default": "pad-sm"
+    },
+    {
+      "type": "range",
+      "id": "icons_gutter_spacing",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Gutter space",
+      "default": 5
+    },
+    {
+      "type": "select",
+      "id": "icons_group_column",
+      "label": "Icon column",
+      "options": [
+        { "value": "s1", "label": "1 Column" },
+        { "value": "sm_s1 med_s12 lg_s12", "label": "2 Column" },
+        { "value": "sm_s1 med_s13 lg_s13", "label": "3 Column" },
+        { "value": "sm_s1 med_s14 lg_s14", "label": "4 Column" }
+      ],
+      "default": "sm_s1 med_s13 lg_s13"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon name",
+          "default": "Shop",
+          "info": "[Click here](https://iconsmind.com/view_icons/) to view the list of available icons. Example: Shop"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "Modular is a powerful Shopify theme that will set you apart from the rest with Mosaic, Gallery, and Slideshow sections."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icons Group",
+      "category": "HydroPeptide",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,41 @@
+<div id="BF-Header">
+    <div id="BF-Text-Copy">
+        <span id="BF-Title">{{ section.settings.title }}</span>
+        <span id="BF-Subtitle">{{ section.settings.subtitle }}</span>    
+    </div>
+    {% include 'BFCM-Header-Countdown' %}
+    <a id="Header-CTA" href="#Shop-By-Need-Link"><span id="Header-CTA-Text">{{ section.settings.header_cta }}</span></a>
+</div>
+<style > #BF-Header{background: url({{ section.settings.background_image_desktop | img_url: 'master' }}) no-repeat center; background-size: cover; height: 500px; position: relative;}#BF-Text-Copy{align-self:stretch;flex-grow:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:10px;padding-top:70px}#BF-Subtitle{max-width:550px;height:30px;flex-grow:0;font-family:TT Norms1;font-size: 20px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:1;letter-spacing:normal;text-align:center;color:#000;word-wrap:normal}#BF-Title{height:auto;flex-grow:0;font-family:ChronicleDisplay-Roman;font-size:60px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:1.13;letter-spacing:normal;text-align:center;color:#000}#Header-CTA{width:300px;height:44px;flex-grow:0;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:10px;padding:10px 20px;border:solid 1px #fff;background-color:#6d9dea;margin:0 auto}#Header-CTA-Text{width:auto;height:17px;flex-grow:0;font-family:TT Norms1;font-size:14px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:normal;letter-spacing:2px;text-align:center;text-transform:uppercase;color:#fff}@media screen and (max-width: 480px){#BF-Header{height:650px;background-image:url({{ section.settings.background_image_mobile | img_url: 'master' }})}#BF-Title{width:322px;height:auto;flex-grow:0;font-family:ChronicleDisplay-Roman;font-size:45px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:1.11;letter-spacing:normal;text-align:center;color:#393939;word-wrap:normal;margin:0 auto}#BF-Text-Copy{align-self:stretch;flex-grow:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:5px;padding-top:35px;}#BF-Subtitle{width:354px;height:60px;flex-grow:0;font-family:TT Norms1;font-size:20px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:1.5;letter-spacing:normal;text-align:center;color:#393939}}</style>
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "id": "background_image_desktop",
+        "type": "image_picker",
+        "label": "Desktop Header Image"
+      },
+      {
+        "id": "background_image_mobile",
+        "type": "image_picker",
+        "label": "Mobile Header Image"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Page Title"
+      },
+      {
+        "id": "subtitle",
+        "type": "text",
+        "label": "Page Subtitle"
+      },
+      {
+        "id": "header_cta",
+        "type": "text",
+        "label": "Header CTA"
+      }
+    ]
+  }
+{% endschema %}

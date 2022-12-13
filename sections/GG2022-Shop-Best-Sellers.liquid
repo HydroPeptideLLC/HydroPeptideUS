@@ -1,0 +1,235 @@
+<section id="Shop-Best-Sellers">
+        <div id="best-sellers">
+            <div id="best-sellers-image">
+                <div class="best-sellers-copy">
+                    <span class="Slider-Headline">Shop Best Sellers</span>
+                    <span class="Slider-Text">Tried and true skincare for real results.</span>
+                </div>
+                <div class="Best-Sellers-Text-Button">
+                    <span class="CTA-Copy">Shop Best Sellers</span>
+                </div>
+            </div>
+            <div id="best-sellers-products">
+                  {% include 'BestSellers-Type-Collection' %}
+                  {% include 'BestSellers-Type-Mobile-Collection' %}
+                   <div class="Slider-BS-UI Slider-UI"> 
+                      <button class="Arrow-Button-BS-Prev Arrow-Button"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></button>
+                      <span class="slider-BS-count">1 / 44</span>
+                      <button class="Arrow-Button-BS-Next Arrow-Button"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></button>
+                  </div> 
+            </div>
+        </div>
+        <style>
+          
+          #best-sellers
+          {
+              width: 100%;
+          }
+          #BestSellers-Type-Mobile-Collection
+          {
+              
+          }
+          #best-sellers-products
+          {
+              display: flex;
+              flex-direction: column;
+              flex-grow: 0;
+          }
+          .collectionGrid
+          {
+              margin: 0 !important;
+          }
+          .collection-wrap
+          { 
+              margin: 0 !important;
+          }
+          #BestSellers-Type-Collection
+          {
+              max-height: 484px;
+              padding: 0 20px !important;
+          }
+          #best-sellers-image 
+          { 
+            background-image:url({{ section.settings.desktop_bg | img_url: 'master' }}); 
+            background-position: center;
+          } 
+          @media screen and (min-width: 1000px) and (max-width: 1440px) 
+          {
+              #best-sellers-image
+              {
+                  min-width: 850px !important; 
+                  background-position: center !important;
+              }
+              .best-sellers-copy
+              {
+                  width: 350px !important;
+              }
+          }
+          @media screen and (min-width: 1441px)
+          {
+              .bf-slider
+              {
+                  height: 484px !important;
+              }
+              #best-sellers-image
+              {
+                  min-width: 1015px;
+              }
+          }
+          @media screen and (max-width: 540px) 
+            {
+              #Shop-Best-Sellers
+              {
+                  padding: 0 !important;
+              }
+              .collectionGrid
+              {
+                  margin: 0 !important;
+              }
+              .bf-slider
+              {
+                  height: 630px;
+              }
+              #best-sellers-products
+              {
+                  background-color: {{ section.settings.product_background_color }};
+              }
+              .best-sellers-copy
+              {
+                  height: auto !important;
+              }
+              .best-sellers-copy .Slider-Headline
+               {
+                  height: auto !important;
+              }
+              #best-sellers-image 
+              { 
+                background-image:url({{ section.settings.mobile_bg | img_url: 'master' }}) !important; 
+                width: 390px;
+                background-position: center;
+              } 
+              #best-sellers
+              {
+                  width: 100%;
+                  height: auto;
+                  flex-grow: 0;
+                  display: flex;
+                  flex-direction: column !important;
+                  justify-content: flex-start;
+                  padding: 0 !important;
+              }
+              .collection-slider .collectionBlock
+              {
+                  margin: 0 auto !important;
+              }
+          }
+        </style>
+        <script>
+          if (screen.availWidth < 540)
+          {
+              $('#BestSellers-Type-Collection').addClass('hide');
+              $('#BestSellers-Type-Mobile-Collection').removeClass('hide');
+              $('.Slider-BS-UI').addClass('hide');
+          }
+          else 
+          {
+              $('#BestSellers-Type-Collection').removeClass('hide');
+              $('#BestSellers-Type-Mobile-Collection').addClass('hide');
+              $('.Slider-BS-UI').removeClass('hide');
+          }
+            $(document).ready(() => {
+              var currentSlick;
+                if (screen.availWidth < 540)
+                {
+                    currentSlick = $('#bestSellers-mobile-slider').slick('getSlick');
+                }
+                else
+                {
+                    currentSlick = $('#bestSellers-slider').slick('getSlick');
+                }
+                console.log('Best Sellers');
+                console.log(currentSlick);
+                var slickCount = currentSlick.slideCount;
+                var currentPage = 1;
+                $('.Arrow-Button-BS-Next').click(() => {
+                  console.log('next');
+                    if(currentPage < slickCount)
+                    {
+                        currentPage++;
+                    }
+                  $('.slider-BS-count').text(currentPage + ' / ' + slickCount);
+                });
+                $('.Arrow-Button-BS-Prev').click(() => {
+                    if(currentPage > 1)
+                    {
+                        currentPage--;
+                    }
+                  $('.slider-BS-count').text(currentPage + ' / ' + slickCount);
+                });
+                $('.slider-BS-count').text(currentPage + ' / ' + slickCount);
+            });
+        </script>
+    </section>
+<!--   <section id="Shop-Best-Sellers-Mobile">
+        <div id="best-sellers" style="width: 100% !important">
+            <div id="best-sellers-image" style="background: cover; background-image: url({{ section.settings.mobile_bg | img_url: 'master' }}) !important; width: 100% !important">
+                <div class="best-sellers-copy">
+                    <span class="Slider-Headline">Shop Best Bellers</span>
+                    <span class="Lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-Pellentesque-amet-felis-mattis-eget-et-ultr">Tried and true skincare for real results.</span>
+                </div>
+                <div class="Best-Sellers-Text-Button">
+                    <span class="CTA-Copy">Shop Best Sellers</span>
+                </div>
+            </div>
+            <div id="best-sellers-products" style="float: left !important">
+                  <div id="Best-Sellers-Collection" class="mobile-collection collectionGrid container-wrap js-collection-grid js-collectionGrid" id="collection-module-{{ section.id }}" data-section-type="featured-collection" data-show-quickview="{{ settings.show_quick_view }}" data-show_reviews="{{ show_reviews }}" data-show_quantity="{{ settings.show_quantity }}" data-color_swatches="{{ color_swatches }}" data-carousel="{{ enable_carousel }}" data-slides-per-row="" data-grid-size="{{ settings.grid_size }}">
+                      <div class="collection-slider__wrapper" >
+                          <div class="bf-slider" id="best-sellers-slider">
+                            {% comment %}{% for product in section.settings.best-sellers.products  %}
+                                {% include 'collectionGrid-block' %} 
+                            {% endfor %}{% endcomment %}
+                          </div> 
+                      </div>
+                  </div>
+                  <div class="Slider-UI"> 
+                      <div class="Mobile-Arrow-Button-BS-Prev Arrow-Button"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></div>
+                      <span class="mobile-slider-BS-count">1 / 44</span>
+                      <div class="Mobile-Arrow-Button-BS-Next Arrow-Button"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></div>
+                  </div>
+            </div>
+        </div>
+    </section> -->
+{% schema %}
+  {
+    "name": "Best Sellers Section",
+    "settings": [
+      {
+        "id": "bestSellers",
+        "type": "collection",
+        "label": "Best Sellers Collection"
+      },
+      {
+        "id": "desktop_bg",
+        "type": "image_picker",
+        "label": "Best Sellers Desktop Collection"
+      },
+      {
+        "id": "mobile_bg",
+        "type": "image_picker",
+        "label": "Best Sellers Mobile Collection"
+      },
+      {
+        "id": "product_background_color",
+        "type": "color",
+        "label": "Product Background Color",
+        "default": "#fff"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

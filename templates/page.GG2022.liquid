@@ -1,0 +1,69 @@
+{% section 'gg-hero-banner' %}
+{% section 'GG2022-Nav' %}
+{% section 'GG2022-Shop-By-Skin-Type' %}
+{% section 'GG2022-Shop-Best-Sellers' %}
+{% section 'GG2022-Shop-Target-Treatment' %}
+{% section 'GG2022-Shop-Kits-Sets' %}
+{% section 'GG2022-Shop-Recipient' %}
+{% section 'GG2022-Shop-Expert-Picks' %}
+{% section 'GG2022-Shop-By-Price' %}
+{% section 'GG2022-Contact' %}
+
+<style>
+  .hide {
+    display: none !important;
+  }
+  .desktop-collection{padding: 0 120px;}
+  .mobile-collection{}.collectionGrid{margin:20px auto !important}
+  @media screen and (min-width: 540px)
+  {
+      .collectionGrid .collectionBlock{max-width:300px !important;margin:0 auto}
+    .collectionGrid{margin:0px auto !important}
+  }
+    .footer-top
+    {
+      margin: 0 !important;
+    }
+    .site-header
+    {
+        opacity: 1 !important;
+    }
+</style> 
+<script>
+  if(window.innerWidth > 500) {
+    $('.mobile-section-btns').addClass('hide');
+    $('.section-btns').removeClass('hide'); 
+    $('#Shop-By-Skin-Type-Mobile').addClass('hide');
+    $('#Shop-By-Skin-Type').removeClass('hide');
+    $('#Shop-Kits-Sets-Mobile').addClass('hide');
+    $('#Shop-Kits-Sets').removeClass('hide');
+    
+    $('#Shop-Best-Sellers').removeClass('hide');
+    $('#Shop-By-Target-Treatment-Mobile').addClass('hide');
+    $('#Shop-By-Target-Treatment').removeClass('hide');
+    $('#Shop-By-Recipient-Mobile').addClass('hide');
+    $('#Shop-By-Recipient').removeClass('hide');
+    $('#Shop-Expert-Picks-Mobile').addClass('hide');
+    $('#Shop-Expert-Picks').removeClass('hide');
+    $('#Shop-By-Price-Mobile').addClass('hide');
+    $('#Shop-By-Price').removeClass('hide');
+  }
+  else {
+    $('.section-btns').addClass('hide');
+    $('.mobile-section-btns').removeClass('hide');
+    $('#Shop-By-Skin-Type-Mobile').removeClass('hide');
+    $('#Shop-By-Skin-Type').addClass('hide');
+    $('#Shop-Kits-Sets-Mobile').removeClass('hide');
+    $('#Shop-Kits-Sets').addClass('hide');
+    $('#Shop-Best-Sellers-Mobile').removeClass('hide');
+    
+    $('#Shop-By-Target-Treatment-Mobile').removeClass('hide');
+    $('#Shop-By-Target-Treatment').addClass('hide');
+    $('#Shop-By-Recipient-Mobile').removeClass('hide');
+    $('#Shop-By-Recipient').addClass('hide');
+    $('#Shop-Expert-Picks-Mobile').removeClass('hide');
+    $('#Shop-Expert-Picks').addClass('hide');
+    $('#Shop-By-Price-Mobile').removeClass('hide');
+    $('#Shop-By-Price').addClass('hide');
+  }
+</script>

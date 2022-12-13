@@ -1,0 +1,299 @@
+{% include 'sca_freegift_price' with product %}
+
+{% comment %} Fill product rows if there is Featured image or product {% endcomment %}
+{% assign lastProduct = productLimit %}
+
+{% if featured == 'image' %}
+  {% if productsColumns == 2 or productsColumns == 3 %}
+    {% if forloop.index == lastProduct %}
+      {% assign lastElementClass = 'visually-hidden' %}
+    {% endif %}
+  {% endif %}
+{% elsif featured == 'products' %}
+  {% if productsColumns == 3 %}
+    {% if forloop.index == lastProduct %}
+      {% assign lastElementClass = 'visually-hidden' %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+{% comment %}
+{{ product.type }}
+{% endcomment %}
+{% if fallback %}
+  <div class="collectionBlock js-collectionBlock block s1 sm_s12 {% unless template == 'collection' %}lg_s1{{ columnsSize }} {% else %}{{ collectionBlock--size }}{% endunless %} {{ lastElementClass }} {% if settings.transition_grid_items %}will-animate{% endif %} {% if forloop.index == 1 %}is-visible{% endif %}" data-animation="fadeInUp">
+    <div class="collectionBlock-image {{ image_size_class }} svg-placeholder">
+      {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+      {{ 'product-' | append: current | placeholder_svg_tag }}
+      
+      {%- if settings.hover_image == true -%}
+        {% capture current_next %}{% cycle 5, 6, 1, 2, 3, 4 %}{% endcapture %}
+        <span class="collectionBlock-hover collectionBlock-hover--placeholder">{{ 'product-' | append: current_next | placeholder_svg_tag: 'svg-placeholder' }}</span>
+      {%- endif -%}
+
+      {% if settings.show_quick_view == true %}
+        <div class="collectionBlock-image-inner">
+          <div data-handle="{{ product.handle }}" class="quickView-button button">{{ 'collections.grid.quick_view' | t }}</div>
+        </div>
+      {% endif %}
+      <button name="add" data-product-title="{{ product.title | truncate: 25}}" data-product-img="{{ product.featured_image | img_url: '100x'  }}" data-product-price="{{ product.variants.first.price  | money_without_trailing_zeros}}" id="addToCartButton" data-product-id="{{ product.variants.first.id }}">ADD TO CART</button>
+      <form action="/cart/add" method="post" id="product-form-{{ product.id }}">   
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+        <div>
+        </div>  
+      </form>
+    </div>
+    <div class="collectionBlock-info">
+      <h4>{{ 'onboarding.product_title' | t }}</h4>
+      
+      <p class="{% if settings.price_hover %}price--hover{% endif %}"><span class="money">{{ '9900' | money}}</span></p>
+    </div>
+  </div>
+
+{% else %}
+  {% assign on_sale = false %}
+  {% if sca_compare_at_price > sca_price %}
+    {% assign on_sale = true %}
+    {% assign on_sale_class = ' is-sale' %}
+  {% endif %}
+
+  {% assign sold_out = true %}
+  {% if product.available %}
+    {% assign sold_out = false %}
+  {% endif %}
+  
+  {% unless product.featured_image.aspect_ratio == 0 %}
+    {% assign blockPadding = 1 | divided_by: product.featured_image.aspect_ratio | times: 100 %}
+    {% if blockPadding > 166 %}
+      {% assign blockPadding = 166 %}
+    {% endif %}
+  {% endunless %}
+
+  <div class="collectionBlock js-collectionBlock block s1 sm_s12 {% unless template == 'collection' %}lg_s1{{ columnsSize }}{% else %}{{ collectionBlock--size }}{% endunless %} {{ lastElementClass }} {% if settings.transition_grid_items %}will-animate{% endif %} {% if forloop.index == 1 %}is-visible{% endif %}" data-animation="fadeInUp">
+    <a aria-label="{{product.title}}" href="{{ product.url | within: collection }}" title="{% if product.object_type == 'product' %}{{ product.featured_image.alt }}{%elsif product.object_type == 'article' %}{{product.title | escape}}{% endif%}" class="collectionBlock-image {{ image_size_class }} lazyload fade-in {% if product.images[1] != blank and settings.hover_image == true %}has-second-image{% endif %}"
+      style="padding-top: {{ blockPadding | append: '%' }}"
+      data-bgset="{% include 'bgset', image: product.featured_image %}"
+      data-sizes="auto"
+      data-parent-fit="cover"
+      data-aspectratio="{{ product.featured_image.aspect_ratio }}">
+      {%- if product.images[1] != blank and settings.hover_image == true -%}
+        <div class="collectionBlock-hover">
+          <span class="collectionBlock-hover lazyload fade-in" data-bgset="{% include 'bgset', image: product.images[1] %}" data-sizes="auto"></span>
+        </div>
+      {%- endif -%}
+
+      {% if product.object_type == 'product' %}
+        {% if on_sale == true or sold_out == true %}
+          <span class="product-status-flag{%if sold_out == true %} is-sold-out{%endif%}{{on_sale_class}}">
+            {% if sold_out == true %}
+              {{ 'products.labels.sold_out' | t }}
+            {% else if on_sale == true %}
+              {{ 'products.labels.on_sale' | t }}
+            {% else if on_sale == true and sold_out == true %}
+              {{ 'products.labels.sold_out' | t }}
+            {% endif %}
+          </span>
+        {% endif %}
+      {% endif %}
+      
+      {% if product.object_type == 'product' and settings.show_quick_view == true %}
+        <div class="collectionBlock-image-inner">
+          <div data-handle="{{ product.handle }}" class="js-quickView quickView-button button">{{ 'collections.grid.quick_view' | t }}</div>
+          <div class="quickview-product-images" data-handle="{{ product.handle }}" style="display: none">
+            {% assign featured_image = product.featured_image %}
+            <div class="quickview-product-image quickView-variant-img--is-active lazyload fade-in" data-bgset="{% include 'bgset', image: featured_image %}" data-image="{{ featured_image | img_url: 'master' }}" data-sizes="auto" data-parent-fit="contain"></div>
+
+            {% for image in product.images %}
+              {% unless image == featured_image %}
+                <div class="quickview-product-image lazyload fade-in" data-bgset="{% include 'bgset', image: image %}" data-sizes="auto" data-parent-fit="contain" data-image="{{ image | img_url: 'master' }}"></div>
+              {% endunless %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    </a>
+    <button name="add" id="addToCartButton" data-product-title="{{ product.title | truncate: 25}}" data-product-img="{{ product.featured_image | img_url: '100x'  }}" data-product-price="{{ product.variants.first.price  | money_without_trailing_zeros }}" data-product-id="{{ product.variants.first.id }}" style="{% if product.available %} {% else %}opacity: 0; visibility: hidden;{% endif %}">ADD TO CART</button>
+    <form action="/cart/add" method="post" id="product-form-{{ product.id }}">   
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+      <div>
+      </div>  
+    </form>
+    <noscript>
+          <a aria-label="{{product.title}}" href="{{ product.url | within: collection }}" title="{% if product.object_type == 'product' %}{{ product.featured_image.alt }}{%elsif product.object_type == 'article' %}{{product.title | escape}}{% endif%}" class="collectionBlock-image" style="background-image:url('{{ product.featured_image | img_url: '1024x' }}') !important;"
+    >
+      {%- if product.images[1] != blank and settings.hover_image == true -%}
+        <div class="collectionBlock-hover">
+          <span class="collectionBlock-hover lazyload fade-in" data-bgset="{% include 'bgset', image: product.images[1] %}" data-sizes="auto"></span>
+        </div>
+      {%- endif -%}
+
+      {% if product.object_type == 'product' %}
+        {% if on_sale == true or sold_out == true %}
+          <span class="product-status-flag{%if sold_out == true %} is-sold-out{%endif%}{{on_sale_class}}">
+            {% if sold_out == true %}
+              {{ 'products.labels.sold_out' | t }}
+            {% else if on_sale == true %}
+              {{ 'products.labels.on_sale' | t }}
+            {% else if on_sale == true and sold_out == true %}
+              {{ 'products.labels.sold_out' | t }}
+            {% endif %}
+          </span>
+        {% endif %}
+      {% endif %}
+      
+      {% if product.object_type == 'product' and settings.show_quick_view == true %}
+        <div class="collectionBlock-image-inner">
+          <div data-handle="{{ product.handle }}" class="js-quickView quickView-button button">{{ 'collections.grid.quick_view' | t }}</div>
+        </div>
+      {% endif %}
+    </a>
+    </noscript>
+    <div class="collectionBlock-info">
+      <a tabindex="-1" href="{{ product.url | within: collection }}"><h4>{{ product.title }}</h4></a>
+      {% if product.metafields.product.subtitle != blank %}<p class="product_subtitle">{{product.metafields.product.subtitle}}</p>{% endif %}
+      {% if settings.show_reviews %}
+		  <div class="product__badge">
+<!-- 					                {%- if settings.enable_yotpo and settings.yotpo_ID != '' -%}
+					                	<div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
+					                {%- else -%}
+					                	<span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+					                {%- endif -%} -->
+            
+                        {% comment %}
+            /snippets/bv-inline-ratings.liquid Bazaarvoice Inline Rating
+            {% endcomment %}
+            {% render 'bv-inline-ratings', product: product %}
+            {% comment %}
+            End Bazaarvoice Inline Rating
+            {% endcomment %}
+			</div>
+	{% endif %}
+      
+      
+    
+      
+      {% comment %}
+      
+        {% if sca_price_varies %}
+          <p class="{% if settings.price_hover %}price--hover{% endif %}">{{ 'products.labels.price_from' | t }} {{ sca_price | money }}</p>
+        {% else %}
+          {% if on_sale == true %}
+            <p class= "price sale {% if settings.price_hover %}price--hover{% endif %}">
+              <strike>{{sca_compare_at_price  | money }}</strike>&nbsp;
+              {{ sca_price | money }}
+            </p>
+          {% else %}
+            <p class="price {% if settings.price_hover %}price--hover{% endif %}">{{ sca_price  | money }}</p>
+          {% endif %}
+        {% endif %}
+      
+      {% endcomment %}
+      
+      {% if sca_compare_at_price > sca_price %}
+        <p class="coll-prod-price on-sale accent-text">
+        {{ sca_price | money }}
+        <em class="compare-at-price">{{ sca_compare_at_price | money }}</em>
+        </p>
+        {% else %}
+        <p class="coll-prod-price accent-text">
+        {% if sca_price_varies %}From{% endif %}
+        {{ sca_price | money }}
+        </p>
+      	
+      {% endif %}
+      
+      <div class="swatches-fake">
+        {% if sca_product_variantCount > 1 and color_swatches == true %}
+          {% include 'swatch' with 'Color' %}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if show_reviews %}
+      <div class="reviews-fake">
+        <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+      </div>
+    {% endif %}
+    
+    <script type="application/json" class = "product-json">
+{% comment %}
+var freegifts_product_json = function(product){
+  if(product){
+    if(!String.prototype.endsWith) {
+      Object.defineProperty(String.prototype, 'endsWith', {
+        value: function(searchString, position) {
+          var subjectString = this.toString();
+          if (position === undefined || position > subjectString.length) {
+            position = subjectString.length;
+          }
+          position -= searchString.length;
+          var lastIndex = subjectString.indexOf(searchString, position);
+          return lastIndex !== -1 && lastIndex === position;
+        }
+      });
+    }
+    var sca_price = sca_price;
+    var sca_price_min = sca_price_max;
+    var sca_price_max = sca_price_min;
+    var sca_compare_at_price = sca_compare_at_price;
+    var sca_compare_at_price_min = sca_compare_at_price_max;
+    var sca_compare_at_price_max = sca_compare_at_price_min;
+
+    for(var id=0; id< product.variants.length; id++){
+      var variant = product.variants[id];
+      var option_name = (variant.option3!==null?variant.option3:(variant.option2!==null?variant.option2:variant.option1));
+      if(option_name.endsWith("(Freegifts)")||option_name.endsWith("% off)")){
+        product.variants.splice(id,1);
+        id = id - 1;
+      }else{
+        if (sca_price_min >= variant.price){
+          sca_price_min = variant.price;
+          sca_price = variant.price;
+        }
+        if (sca_price_max <= variant.price){
+          sca_price_max = variant.price;
+        }
+        if (variant.compare_at_price){
+          if (sca_compare_at_price_min >= variant.compare_at_price){
+            sca_compare_at_price_min = variant.compare_at_price;
+            sca_compare_at_price = variant.compare_at_price;
+          }
+          if (sca_compare_at_price_max <= variant.compare_at_price){
+            sca_compare_at_price_max = variant.compare_at_price;
+          }
+        }
+        if(variant.available == true){
+          product.available = true;
+        }
+      }
+    }
+    sca_price = sca_price;
+    sca_price_max = sca_price_max;
+    sca_price_min = sca_price_min;
+    sca_compare_at_price = sca_compare_at_price;
+    sca_compare_at_price_max = sca_compare_at_price_max;
+    sca_compare_at_price_min = sca_compare_at_price_min;
+    if(sca_price_min < sca_price_max){
+      sca_price_varies = true;
+    }else{
+      sca_price_varies = false;
+    }
+  }
+  return product;
+};
+
+var sca_product_info = freegifts_product_json ( {{product | json }} );
+new Shopify.OptionSelectors('product-select', {
+product: sca_product_info,
+onVariantSelected: selectCallback,
+enableHistoryState: true
+});
+
+if(sca_product_info.variants.length===1 && sca_product_info.variants[0].title.indexOf('Default')!==-1 ){
+  jQuery('.single-option-selector:eq(0)').css('display','none');
+}
+{% endcomment %}
+ {{ product | json }} 
+    </script>
+    <!-- .js-quickView is appended to .js-collectionBlock here -->
+  </div>
+{% endif %}

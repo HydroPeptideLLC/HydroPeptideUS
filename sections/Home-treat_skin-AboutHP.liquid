@@ -1,0 +1,57 @@
+<div class="home_treat_section">
+  <div class="container">
+    <h2>{{ section.settings.title }}</h2>
+    <p>{{ section.settings.short_text }}</p>
+    <div class="icons">
+      <ul>
+        <li>
+          <img class="lazy" data-src="https://cdn.shopify.com/s/files/1/0266/5142/6915/files/icon1.png?v=1601399405" alt="icon1">
+          <p>Geneticist<br>Developed</p>
+        </li>
+        <li>
+          <img class="lazy" data-src="https://cdn.shopify.com/s/files/1/0266/5142/6915/files/icon2.png?v=1601399405" alt="icon2">
+          <p>Clinical<br>Results</p>
+        </li>
+        
+        <li>
+          <img class="lazy" data-src="https://cdn.shopify.com/s/files/1/0266/5142/6915/files/icon4.png?v=1601399405" alt="icon4">
+          <p>Clean<br>Science</p>
+        </li>
+        <li>
+          <img class="lazy" data-src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/LotusIcon_142x163_White.png?v=1654848974" alt="icon5">
+          <p>Luxury<br>Experiences</p>
+        </li>
+          <li>
+          <img class="lazy" data-src="https://cdn.shopify.com/s/files/1/0266/5142/6915/files/icon3.png?v=1601399405" alt="icon3">
+          <p>Preferred By<br>Professionals</p>
+        </li>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+	"name": "Home Treat Section",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title",
+			"default": "Treat Your Skin Like A Pro"
+		},
+		{
+			"type": "textarea",
+			"id": "short_text",
+			"label": "Text",
+			"default": "Our team of geneticists and estheticians formulate using cutting edge skincare techniques and clinically proven ingredients tested in treatment rooms around the globe."
+		}
+	],
+	"presets": [
+		{
+			"category": "Banner",
+			"name": "Home Treat Section"
+		}
+	]
+}
+{% endschema %}

@@ -1,0 +1,438 @@
+{%- style -%}
+
+    .philyra__mouse-hover-popup {
+        position: relative;
+        height: 90vh;
+        max-height: 620px;
+        width: 95vw;
+        max-width: 450px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        background-color: white;
+        border-radius: 10px;
+      padding-bottom: 100px;
+        filter: drop-shadow(0 0 10px rgba(24, 40, 127, 0.2));
+        z-index: 10000;
+      }
+    
+    .philyra__carousel {
+        position: relative;
+        max-width: 100%;
+		    overflow-x: hidden;
+    }
+    
+    .philyra__carousel__track-container {
+        height: 60vh;
+        position: relative;
+      max-height: 400px;
+      background-color: lightgray;
+    }
+    
+    .philyra__carousel__track {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      position: relative;
+      height: 100%;
+      transition: transform 500ms ease-in-out;
+    }
+    
+    .philyra__carousel__image {
+        width: 95vw;
+        max-width: 450px;
+        height: 60vh;
+        max-height: 400px;
+        object-fit: cover;
+      position: absolute;
+    }
+    
+    .philyra__carousel__slide {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+    }
+    
+    .philyra__carousel__button {
+        padding: 5px;
+        border-radius: 50%;
+        border-color: transparent;
+        cursor: pointer;
+        position: absolute;
+        top: 30vh;
+        transform: translateY(-50%);
+        z-index: 10000;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 23px;
+    }
+    
+      .philyra__mouse-hover-close-button {
+        padding: 5px;
+        border-radius: 50%;
+        border-color: transparent;
+        cursor: pointer;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 100000;
+        background-color: rgba(255, 255, 255, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 23px;
+    }
+    
+    .philyra__mouse-hover-close-button img {
+        width: 14px;
+        height: 14px;
+        object-fit: contain;
+        opacity: 0.6;
+    }
+    
+    .philyra__carousel__button--left {
+        left: 15px;
+        padding-left: 3px;
+        padding-right: 6px;
+    }
+    
+    .philyra__carousel__button--right {
+        right: 15px;
+        padding-right: 3px;
+        padding-left: 6px;
+    }
+    
+    .philyra__carousel__button img {
+        width: 14px;
+        height: 14px;
+        object-fit: contain;
+    }
+    
+    .philyra__mouse-hover-popup-container {
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.45);
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: none;
+        opacity: 0;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 10000;
+      animation-name: fadeInOpacity;
+      animation-timing-function: ease-in;
+      animation-duration: 0.5s;
+    }
+    
+    @keyframes fadeInOpacity {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    } 
+    
+    .philyra__popup__variant-selector {
+        margin-right: 15px;
+        padding: 15px 20px;
+        border-width: 1px;
+        min-width: max-content;
+      border-color: {%if settings.button_bg_color%}{{ settings.button_bg_color }}{%else if settings.button_background%}{{ settings.button_background }}{%else if settings.color_button%}{{ settings.color_button }}{%else%}#B08A73{%endif%};
+        border-radius: 2px;
+        font-size: 12px;
+        cursor: pointer;
+      border-style: solid;
+      color: {%if settings.button_bg_color%}{{ settings.button_bg_color }}{%else if settings.button_background%}{{ settings.button_background }}{%else if settings.color_button%}{{ settings.color_button }}{%else%}#B08A73{%endif%};
+      background-color: lightgray;
+      line-height: 1em;
+    }
+    
+    .philyra__popup__variant-selector:hover {
+      background-color: {%if settings.button_bg_color%}{{ settings.button_bg_color }}{%else if settings.button_background%}{{ settings.button_background }}{%else if settings.color_button%}{{ settings.color_button }}{%else%}#B08A73{%endif%};
+      color: {%if settings.color_button_text%}{{ settings.color_button_text }}{%else if settings.button_text_color%}{{settings.button_text_color}}{%else%}white{%endif%};
+    }
+    
+    .philyra__popup__variant-selector-selected {
+        margin-right: 15px;
+        padding: 15px 20px;
+        border: 1px #6A6B6C solid;
+        border-radius: 2px;
+        min-width: max-content;
+        font-size: 12px;
+        cursor: pointer;
+        line-height: 1em;
+        background-color: {%if settings.button_bg_color%}{{ settings.button_bg_color }}{%else if settings.button_background%}{{ settings.button_background }}{%else if settings.color_button%}{{ settings.color_button }}{%else%}#B08A73{%endif%};
+      color: {%if settings.color_button_text%}{{ settings.color_button_text }}{%else if settings.button_text_color%}{{settings.button_text_color}}{%else%}white{%endif%};
+    }
+    
+    .philyra__add-to-cart-button-wrapper {
+        width: 100%;
+        max-width: 450px;
+        min-height: 50px;
+        border-radius: 5px;
+        border-color: transparent;
+        position: sticky;
+        display: flex;
+        justify-content: center;
+      bottom: 0;
+      transform: translateY(140%);
+    }
+    
+    .philyra__add-to-cart-button {
+        width: calc(100% - 40px);
+        max-width: 400px;
+        filter: drop-shadow(0 0 10px rgba(66, 44, 15, 0.25));
+        cursor: pointer;
+      background-color: {%if settings.button_bg_color%}{{ settings.button_bg_color }}{%else if settings.button_background%}{{ settings.button_background }}{%else if settings.color_button%}{{ settings.color_button }}{%else%}#B08A73{%endif%};
+      color: {%if settings.color_button_text%}{{ settings.color_button_text }}{%else if settings.button_text_color%}{{settings.button_text_color}}{%else%}white{%endif%};
+    }
+    
+    .philyra__popup-product-title {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+    
+    .philyra__product-price {
+        font-size: 1.5em;
+      margin-top: 10px;
+    }
+    
+    .philyra__section-title {
+      font-size: 1.2em;
+    }
+    
+    .philyra__adopt-heading-color {
+      color: {% if settings.heading_color %}{{ settings.heading_color }}{%else if settings.color_body_headings %}{{ settings.color_body_headings }}{%else if settings.color_text%}{{ settings.color_text }}{%else%}black{%endif%};
+    }
+    
+    .philyra__product-description {
+      font-size: 1em; 
+      padding-right: 30px;
+      color: {% if settings.text_color %} {{ settings.text_color }} {%else if settings.color_body_text %} {{ settings.color_body_text }} {%else if settings.color_primary_body_text%}{{ settings.color_primary_body_text }} {%else%}black{%endif%}; 
+    }
+
+    .philyra__product-description * {
+      max-width: 100% !important;
+    }
+    
+    .philyra__adopt-button-color-for-text {
+      color: {%if settings.button_bg_color%}{{ settings.button_bg_color }}{%else if settings.button_background%}{{ settings.button_background }}{%else if settings.color_button%}{{ settings.color_button }}{%else%}#B08A73{%endif%};
+    }
+    
+    .philyra__go-to-product {
+      text-decoration: none;
+    }
+    
+    .philyra__is-hidden {
+      display: none;
+    }
+    
+    .philyra__blog-keyword {
+      color: #000000 !important;
+      cursor: pointer;
+    }
+    
+    .philyra__blog-tag {
+      color: blue;
+    }
+    
+    .philyra__safari-fix {
+      height: 50px;
+    }
+    
+    .philyra__display-none {
+      display: none;
+    }
+    
+    .philyra__product-embed-wrapper {
+        position: relative;
+        margin-top: 30px;
+        width: 95%;
+        max-width: 400px;
+        padding: 0;
+    }
+    
+    .philyra__product-embed-image {
+      background-color: lightgray;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 4px;
+        object-fit: cover;
+        min-width: 200px;
+        max-height: 400px;
+        min-height: 200px;
+    }
+    
+    .philyra__product-embed-button {
+        position: absolute;
+        bottom: 20px;
+        right: 15px;
+        max-width: 80%;
+        filter: drop-shadow(0 0 10px rgba(66, 44, 15, 0.4));
+        cursor: pointer;
+      padding: 15px 15px !important;
+      background-color: {%if settings.button_bg_color%}{{ settings.button_bg_color }}{%else if settings.button_background%}{{ settings.button_background }}{%else if settings.color_button%}{{ settings.color_button }}{%else%}#B08A73{%endif%};
+      color: {%if settings.color_button_text%}{{ settings.color_button_text }}{%else if settings.button_text_color%}{{settings.button_text_color}}{%else%}white{%endif%};
+    }
+    
+    .philyra__sold-out-button {
+      background-color: lightgray !important;
+      color: white important;
+    }
+
+    
+    
+    
+    {%- endstyle -%}
+    
+    <div class="philyra__mouse-hover-popup-container">
+    <div class="philyra__mouse-hover-popup">
+      <button
+        class="philyra__mouse-hover-close-button"
+      >
+        <img
+          src="https://uploads-ssl.webflow.com/6044efa8ff1caf830c302fb3/60e203289df716b13bd5225a_cancel.png"
+          alt=""
+        />
+      </button>
+      <div class="philyra__carousel">
+          <button
+            class="philyra__carousel__button philyra__carousel__button--left"
+          >
+            <img
+              src="https://uploads-ssl.webflow.com/6044efa8ff1caf830c302fb3/60e2006b1e8c0816ddd0f1bf_left-arrow.png"
+              alt=""
+            />
+          </button>
+        <div class="philyra__carousel__track-container">
+          <ul class="philyra__carousel__track">
+            <li class="philyra__carousel__slide">
+              <img
+                class="philyra__carousel__image"
+                draggable="false"
+                src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1566&q=80"
+              />
+            </li>
+            <li class="philyra__carousel__slide">
+              <img
+                class="philyra__carousel__image"
+                draggable="false"
+                src="https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
+              />
+            </li>
+            <li class="philyra__carousel__slide">
+              <img
+                class="philyra__carousel__image"
+                draggable="false"
+                src="https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
+              />
+            </li>
+          </ul>
+        </div>
+          <button
+            class="philyra__carousel__button philyra__carousel__button--right"
+          >
+            <img
+              src="https://uploads-ssl.webflow.com/6044efa8ff1caf830c302fb3/60e20062c44479b3e7bc5cfd_right-arrow.png"
+              alt=""
+            />
+          </button>
+      </div>
+      <div
+        style="margin-left: 30px; max-width: 100%;">
+        <div
+          style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: flex-start; padding-right: 30px;"
+        >
+          <div style="max-width: 65%;">
+            <h2 class="philyra__adopt-heading-color philyra__popup-product-title">Product Title</h2>
+          </div>
+            <div style="cursor: pointer; margin-top: 25px;">
+              <a class="philyra__go-to-product philyra__adopt-button-color-for-text" href="">
+                {%if request.locale.iso_code == "en"%}Go to product{%elsif request.locale.iso_code == "de"%}Zum Produkt{%elsif request.locale.iso_code == "fr"%}Vers le produit{%elsif request.locale.iso_code == "pl"%}Do produktu{%elsif request.locale.iso_code == "nl"%}Naar product{%elsif request.locale.iso_code == "es"%}Ir al producto{%elsif request.locale.iso_code == "it"%}Vai al prodotto{%elsif request.locale.iso_code == "pt"%}Para o produto{%elsif request.locale.iso_code == "cz"%}K produktu{%elsif request.locale.iso_code == "dk"%}Til produkt{%elsif request.locale.iso_code == "fi"%}Tuotteeseen{%elsif request.locale.iso_code == "se"%}Till produkten{%elsif request.locale.iso_code == "ru"%}К продукту{%elsif request.locale.iso_code == "gr"%}Στο προϊόν{%elsif request.locale.iso_code == "tr"%}ürüne{%else%}Go to product{%endif%}
+              </a>
+            </div> 
+        </div>
+        <div>
+          <h3 class="philyra__adopt-heading-color philyra__product-price">€20.00</h3>
+        </div>
+        <div
+          style="height: 60px; border-top: 1px solid lightgray; margin-right: 30px; margin-top: 60px;"
+        ></div>
+        <div id="philyra__variants-section">
+        <div style="margin-bottom: 20px;">
+          <h4 class="philyra__section-title philyra__adopt-heading-color">Select variant</h4>
+        </div>
+        <div
+            style="display: flex; margin-bottom: 30px; max-width: 100%; flex-wrap: nowrap; overflow-x: scroll;"
+        >
+            <button
+              class="philyra__popup__variant-selector-selected btn"
+            >
+              White
+            </button>
+            <button
+              class="philyra__popup__variant-selector"
+            >
+              Beige
+            </button>
+            <button
+              class="philyra__popup__variant-selector"
+            >
+              Green
+            </button>
+        </div>
+        <div style="margin-bottom: 20px;">
+          <h4 class="philyra__section-title philyra__adopt-heading-color">Select size</h4>
+        </div>
+        <div
+            style="display: flex; margin-bottom: 30px; max-width: 100%; flex-wrap: nowrap; overflow-x: scroll"
+        >
+          <button
+              class="philyra__popup__variant-selector-selected btn"
+            >
+              S
+            </button>
+            <button
+              class="philyra__popup__variant-selector"
+            >
+              L
+            </button>
+            <button
+              class="philyra__popup__variant-selector"
+            >
+              XL
+            </button>
+        </div>
+        </div>
+        <div style="margin-bottom: 10px;">
+        <h4 id="philyra__product-description-header" class="philyra__section-title philyra__adopt-heading-color">{%if request.locale.iso_code == "en"%}Description{%elsif request.locale.iso_code == "de"%}Beschreibung{%elsif request.locale.iso_code == "fr"%}La description{%elsif request.locale.iso_code == "pl"%}Opis produktu{%elsif request.locale.iso_code == "nl"%}Beschrijving{%elsif request.locale.iso_code == "es"%}Descripción{%elsif request.locale.iso_code == "it"%}Descrizione{%elsif request.locale.iso_code == "pt"%}Descrição{%elsif request.locale.iso_code == "cz"%}Popis výrobku{%elsif request.locale.iso_code == "dk"%}Beskrivelse{%elsif request.locale.iso_code == "fi"%}Kuvaus{%elsif request.locale.iso_code == "se"%}Beskrivning{%elsif request.locale.iso_code == "ru"%}Описание{%elsif request.locale.iso_code == "gr"%}Περιγραφή{%elsif request.locale.iso_code == "tr"%}Tanım{%else%}Description{%endif%}</h4>
+        </div>
+        <p class="philyra__product-description">
+          This is the place where the product description will appear if a product has one.
+        </p>
+      </div>
+      <div
+        class="philyra__add-to-cart-button-wrapper"
+      >
+        <button
+          class="btn philyra__add-to-cart-button "
+        >
+          Add to cart
+        </button>
+      </div>
+      <div class="philyra__safari-fix"></div>
+    </div>
+    <input style="display: none;" value="{{request.locale.iso_code}}" id="philyra-iso-code"/>
+  </div>
+
+<script id="philyraRootUrl">{{ shop.url }}</script>
+<script id="philyraPageUrl">{{ canonical_url }}</script>
+<script id="philyraCurrency">{{ shop.currency }}</script>
+<script id="philyraPermanentDomain">{{ shop.permanent_domain }}</script>
+
+    

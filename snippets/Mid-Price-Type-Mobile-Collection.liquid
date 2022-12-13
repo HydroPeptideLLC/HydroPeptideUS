@@ -1,0 +1,9 @@
+<div id="Mid-Price-Type-Mobile-Collection" class="mobile-collection hide collectionGrid container-wrap js-collection-grid js-collectionGrid" id="collection-module-{{ section.id }}" data-show-quickview="{{ settings.show_quick_view }}" data-show_reviews="{{ show_reviews }}" data-show_quantity="{{ settings.show_quantity }}" data-color_swatches="{{ color_swatches }}" data-carousel="{{ enable_carousel }}" data-slides-per-row="{{ settings.products_columns }}" data-grid-size="{{ settings.grid_size }}">
+    <div class="collection-slider__wrapper">
+        <div class="bf-slider" id="mid-price-mobile-slider">
+            {% for product in section.settings.mid-price.products   %}
+                {% include 'collectionGrid-block' %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

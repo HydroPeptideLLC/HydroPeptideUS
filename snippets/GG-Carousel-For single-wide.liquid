@@ -1,0 +1,22 @@
+{{ productNum }}
+<div id="{{ coll }}-Collection" class="collectionGrid container-wrap js-collection-grid js-collectionGrid" id="collection-module-{{ section.id }}" data-section-type="featured-collection" data-show-quickview="{{ settings.show_quick_view }}" data-show_reviews="{{ show_reviews }}" data-show_quantity="{{ settings.show_quantity }}" data-color_swatches="{{ color_swatches }}" data-carousel="{{ enable_carousel }}" data-slides-per-row="1" data-grid-size="{{ settings.grid_size }}">
+      <div class="collection-slider__wrapper" >
+        <div class="collectionGrid-row row-lg inline collection-slider">
+              {% for product in coll.products   %}
+                  {% include 'gg-collection' %}
+              {% endfor %}
+          </div> 
+        {% for i in [productNum] %}
+          <div class="collectionGrid-row row-lg inline collection-slider hide">
+              {% for product in coll.products   %}
+                  {% include 'gg-collection' %}
+              {% endfor %}
+          </div> 
+        {% endfor %}
+    </div>
+</div>
+<div class="slider-UI">
+    <div class="Arrow-Button"><div class="Vector-1-Stroke"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243" class="Arrow"></div></div>
+    <span class="-\35 ">1 / 5</span>
+    <div class="Arrow-Button"><div class="Vector-2-Stroke"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243" class="Arrow"></div></div>
+</div>

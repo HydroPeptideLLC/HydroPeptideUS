@@ -1,0 +1,222 @@
+<section id="Shop-kits-sets">
+        <div id="kits-sets" style="width: 100% !important">
+            <div id="kits-sets-image">
+                <div class="best-sellers-copy">
+                    <span class="Slider-Headline">Shop by Skincare Set</span>
+                    <span class="Slider-Text">Say it with a set: Complete skincare routines, powerful duos, and giftable kits for every skin type.</span>
+                </div>
+                <div class="Best-Sellers-Text-Button">
+                    <span class="CTA-Copy">SHOP ALL KITS & SETS</span>
+                </div>
+            </div>
+            <div id="kits-sets-products">
+                  {% include 'KitsSets-Type-Collection' %}
+                  {% include 'KitsSets-Type-Mobile-Collection' %}
+                  <div class="Slider-KS-UI Slider-UI"> 
+                      <div class="Arrow-Button-KS-Prev Arrow-Button"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></div>
+                      <span class="slider-KS-count">1 / 44</span>
+                      <div class="Arrow-Button-KS-Next Arrow-Button"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></div>
+                  </div>
+            </div>
+        </div>
+        <style>
+          #kits-sets-products
+          {
+              display: flex;
+              flex-direction: column;
+              flex-grow: 0;
+          }
+          .collectionGrid
+          {
+              margin: 0 !important;
+          }
+          .collection-wrap
+          { 
+              margin: 0 !important;
+          }
+          #KitsSets-Type-Collection
+          {
+              max-height: 484px;
+              padding: 0 20px !important;
+          }
+          #kits-sets
+          {
+                height: auto;
+                flex-grow: 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                padding: 0 120px;
+          }
+          .best-sellers-copy
+          {
+                width: 480px;
+                height: 152px;
+                flex-grow: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: stretch;
+                gap: 10px;
+                padding: 0;
+          }
+          #kits-sets-image 
+          { 
+            background-image:url({{ section.settings.desktop_bg | img_url: 'master' }}); 
+            background-position: center;
+          } 
+          @media screen and (min-width: 1000px) and (max-width: 1440px) 
+          {
+              #kits-sets-image
+              {
+                  min-width: 850px !important; 
+                  background-position: center !important;
+              }
+              .best-sellers-copy
+              {
+                  width: 350px !important;
+              }
+          }
+          @media screen and (min-width: 1441px)
+          {
+              #kits-sets-image
+              {
+                  min-width: 1015px;
+              }
+          }
+          @media screen and (max-width: 540px)
+          {
+              #kits-sets-products
+              {
+                  background-color: {{ section.settings.product_background_color }};
+              }
+              .best-sellers-copy
+              {
+                  height: auto !important;
+              }
+              .best-sellers-copy .Slider-Headline
+               {
+                  height: auto !important;
+                  width: 320px;
+              }
+              #kits-sets-image 
+              { 
+                background-image:url({{ section.settings.mobile_bg | img_url: 'master' }}) !important; 
+                width: 390px;
+                background-position: center;
+              } 
+              #kits-sets
+              {
+                  width: 100%;
+                  height: auto;
+                  flex-grow: 0;
+                  display: flex;
+                  flex-direction: column !important;
+                  justify-content: flex-start;
+                  padding: 0 !important;
+              }
+              .collection-slider .collectionBlock
+              {
+                  margin: 0 auto !important;
+              }
+          }
+        </style>
+        <script>
+          if (screen.availWidth < 540)
+          {
+              $('#KitsSets-Type-Collection').addClass('hide');
+              $('#KitsSets-Type-Mobile-Collection').removeClass('hide');
+              $('.Slider-KS-UI').addClass('hide');
+          }
+          else 
+          {
+              $('#KitsSets-Type-Collection').removeClass('hide');
+              $('#KitsSets-Type-Mobile-Collection').addClass('hide');
+              $('.Slider-KS-UI').removeClass('hide');
+          }
+            $(document).ready(() => {
+                var currentSlick;
+                if (screen.availWidth < 540)
+                {
+                    currentSlick = $('#kitsSets-mobile-slider').slick('getSlick');
+                }
+                else
+                {
+                    currentSlick = $('#kitsSets-slider').slick('getSlick');
+                }
+                var slickCount = currentSlick.slideCount;
+                var currentPage = 1;
+                $('.Arrow-Button-KS-Next').click(() => {
+                  console.log('next');
+                    if(currentPage < slickCount)
+                    {
+                        currentPage++;
+                    }
+                  $('.slider-KS-count').text(currentPage + ' / ' + slickCount);
+                });
+                $('.Arrow-Button-KS-Prev').click(() => {
+                    if(currentPage > 1)
+                    {
+                        currentPage--;
+                    }
+                  $('.slider-KS-count').text(currentPage + ' / ' + slickCount);
+                });
+                $('.slider-KS-count').text(currentPage + ' / ' + slickCount);
+            });
+        </script>
+    </section>
+<!--   <section id="Shop-Kits-Sets-Mobile" class="hide">
+        <div id="kits-sets" style="width: 100% !important">
+            <div id="kits-sets-image" style="background-image: url({{ section.settings.mobile_bg | img_url: 'master' }});">
+                <div class="best-sellers-copy">
+                    <span class="Slider-Headline">Shop by Skincare Set </span>
+                    <span class="Lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-Pellentesque-amet-felis-mattis-eget-et-ultr">Say it with a set: Complete skincare routines, powerful duos, and giftable kits for every skin type.</span>
+                </div>
+                <div class="Best-Sellers-Text-Button"> 
+                    <span class="CTA-Copy">SHOP ALL KITS & SETS</span>
+                </div>
+            </div>
+            <div id="kits-sets-products" style="float: left !important">
+                  {% comment %}{% include 'KitsSets-Type-Collection' %}{% endcomment %}
+                  <div class="Slider-UI"> 
+                      <div class="Mobile-Arrow-Button-KS-Prev Arrow-Button"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></div>
+                      <span class="mobile-slider-KS-count">1 / 44</span>
+                      <div class="Mobile-Arrow-Button-KS-Next Arrow-Button"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></div>
+                  </div>
+            </div>
+        </div>
+    </section> -->
+{% schema %}
+  {
+    "name": "Kits & Sets",
+    "settings": [
+      {
+        "id": "kitsSets",
+        "type": "collection",
+        "label": "Kits & Sets Collection"
+      },
+      {
+        "id": "desktop_bg",
+        "type": "image_picker",
+        "label": "Kits & Sets Desktop Collection"
+      },
+      {
+        "id": "mobile_bg",
+        "type": "image_picker",
+        "label": "Kits & Sets Mobile Collection"
+      },
+      {
+        "id": "product_background_color",
+        "type": "color",
+        "label": "Product Background Color",
+        "default": "#fff"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

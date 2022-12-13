@@ -1,0 +1,1698 @@
+{%include 'sca_freegift_price' with product %}
+{% comment %} Settings {% endcomment %}
+{% assign image_gallery = section.settings.image_gallery %}
+{% assign image_size = section.settings.image_size %}
+{% assign add_cart_position = section.settings.add_cart_position %}
+{% assign zoom = false %}
+{%- if image_gallery == 'zoom' -%}
+	{% assign zoom = true %}
+{%- endif -%}
+{% assign arrows = section.settings.product_slideshow_arrows %}
+{% assign dots = section.settings.product_slideshow_dots %}
+{% assign layout = 4 %}
+{% assign tab_1 = section.settings.page_tab_1 %}
+{% assign tab_2 = section.settings.page_tab_2 %}
+{% assign tab_3 = section.settings.page_tab_3 %}
+{% assign tab_4 = section.settings.page_tab_4 %}
+{% assign product_layout = section.settings.product_layout %}
+{% assign color_swatches = settings.color_swatches %}
+{% assign show_reviews = settings.show_reviews %}
+
+{% assign sold_out = true %}
+{% if product.available %}
+	{% assign sold_out = false %}
+{% endif %}
+
+<!-- Mustache Templates for rendering variant popover -->
+<div data-section-id="{{ section.id }}" data-section-type="product-template">
+  
+{%- include 'bold-product' with product, hide_action: 'break', output: 'none' -%}
+	<section class="product container-wrap js-product-template clearfix js-product-template--{{section.id}} product-layout--{{ product_layout }}" data-show_reviews="{{ show_reviews }}">
+		<div class="container">
+			<div class="row row-lg">
+				<div class="breadcrumbs block">
+					{% if settings.show_breadcrumbs %}
+					{% include 'site-breadcrumbs' %}
+					{% endif %}
+				</div>
+			</div>
+
+			<div class="row row-lg row--{{ product_layout }} js-row--{{ product_layout }}">
+				<div class="product-layout-{{ layout }}--images product-layout-images product-layout-images--{{ image_size }} xxl_s12 xl_s12 lg_s12 s1">
+					{% comment %} Set the layout for the variant images {% endcomment %}
+					{% for image in product.images %}
+						{% if forloop.length <= 2 %}
+								{% assign thumbnail_width = 'product-image--100' %}
+						{% elsif forloop.length == 3 %}
+							{% assign thumbnail_width = 'product-image--50' %}
+						{% elsif forloop.length == 4 %}
+							{% assign thumbnail_width = 'product-image--33' %}
+						{% else %}
+							{% assign thumbnail_width = 'product-image--25' %}
+						{% endif %}
+						{% assign length = forloop.length %}
+					{% endfor %}
+
+					{% if product_layout == 'slideshow' %}
+                  		<div class="productImgSlider-wrapper"> 
+                          <div class="productImgSlider js-productImgSlider js-productImgContainer " data-gallery="{{ image_gallery }}" data-dots="{{ dots }}" data-arrows="{{ arrows }}" data-zoom="{{ zoom }}" id="js-productImgSlider--{{ section.id }}">
+                              {% for image in product.images %}
+
+                                  {% assign has_video = false %}
+                                  {% assign image_alt = image.alt | escape %}
+
+                                  {% if image_alt contains 'youtube' %}
+                                      {% assign has_video = true %}
+                                      {% assign video_type = 'youtube' %}
+                                  {% elsif image_alt contains 'vimeo' %}
+                                      {% assign has_video = true %}
+                                      {% assign video_type = 'vimeo' %}
+                                  {% endif %}
+
+                                  <div class="js-slide {{ thumbnail_width }} product-image product-image--fit {% if forloop.length == 1 %}product-image--single{% endif %} lazyload fade-in" data-image="{{ image | product_img_url: 'master'}}" data-zoom-image="{{ image | product_img_url: 'master'}}"  data-id="{{ image.id }}" data-bgset="{% include 'bgset', image: image %}" data-sizes="auto" data-parent-fit="contain" data-aspect-ratio="{{ image.aspect_ratio }}">
+                                      <noscript>
+                                          <div class="product-image--no-js" style="background: url({{ image | img_url: '2048x' }}) no-repeat center center; background-size: contain;"></div>
+                                      </noscript>
+
+                                      {%- if has_video -%}
+                                          <div class="product-image__video">
+                                              <a href="{{ image_alt }}" class="js-video"><span class="icon-play"></span></a>
+                                          </div>
+                                      {%- else -%}
+
+                                          {%- if image_gallery == 'lightbox' -%}
+                                              <a href="{{ image | product_img_url: 'master'}}" rel="lightbox" class="product-image-lightbox"></a>
+                                          {%- endif -%}
+
+                                          {%- if image_gallery == 'zoom' -%}
+                                              <div class="zoom-container"></div>
+                                          {%- endif -%}
+
+                                      {%- endif -%}
+                                  </div>
+                              {% endfor %}
+                          </div>
+
+                          {% if product.images.size > 1 %}
+                          <div class="productImgSlider-nav js-productImgSlider-nav {% if product.images.size < 6 %}inline_navitem{% endif %}">
+                              {% for image in product.images %}
+                          
+								{% assign has_video = false %}
+								{% assign image_alt = image.alt | escape %}
+
+								{% if image_alt contains 'youtube' %}
+									{% assign has_video = true %}
+									{% assign video_type = 'youtube' %}
+								{% elsif image_alt contains 'vimeo' %}
+									{% assign has_video = true %}
+									{% assign video_type = 'vimeo' %}
+								{% endif %} 
+                            
+                                  {% assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' %}
+                                  {% include 'theme-rias' %}
+                                  <div class="js-slide {{ thumbnail_width }} product-image-thumb {% if has_video %}has_video{% endif %}{% if forloop.index == 1 %}active{% endif %}" data-image="{{ image | product_img_url: 'master'}}">
+                                      <img
+                                           class="lazyload fade-in product-image-thumb {% if forloop.index == 1 %}active{% endif %}-img"
+                                           data-src="{{ image_url_pattern }}"
+                                           data-widths= "[{{ image_widths }}]"
+                                           data-aspectratio="{{image.aspect_ratio }}"
+                                           data-sizes="auto"
+                                           alt="{{ image.alt | escape }}"
+                                           itemprop="image"
+                                           >
+                                      {% if has_video %}
+                                          <div class="product-image__video">
+                                                  <a href="{{ image_alt }}" class="js-video"><span class="icon-play"></span></a>
+                                          </div>
+                                      {% endif %}
+                                      <noscript>
+                                          <img src="{{ image | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+                                      </noscript>
+                                  </div>
+                              {% endfor %}
+                          </div>                          
+                          {% endif %}
+                  		</div>
+					{% else %}
+						<div class="productImgScroller js-productImgScroller js-productImgContainer " data-gallery="{{ image_gallery }}" data-dots="{{ dots }}" data-arrows="{{ arrows }}" data-zoom="{{ zoom }}">
+							{% for image in product.images %}
+
+								{% assign has_video = false %}
+								{% assign image_alt = image.alt | escape %}
+
+								{% if image_alt contains 'youtube' %}
+									{% assign has_video = true %}
+									{% assign video_type = 'youtube' %}
+								{% elsif image_alt contains 'vimeo' %}
+									{% assign has_video = true %}
+									{% assign video_type = 'vimeo' %}
+								{% endif %}
+
+								<div class="js-slide {{ thumbnail_width }} product-image product-image--fit {% if forloop.length == 1 %}product-image--single{% endif %} lazyload fade-in {% if forloop.index == 1 %} active{% endif %}"
+									{% unless has_video %}data-zoom-image="{{ image | product_img_url: 'master'}}"{% endunless %}
+									data-image="{{ image | product_img_url: 'master'}}"
+									data-aspect-ratio="{{ image.aspect_ratio }}"
+									data-id="{{ image.id }}"
+									data-bgset="{% include 'bgset', image: image %}"
+									data-sizes="auto"
+									data-parent-fit="contain"
+									data-index="{{ forloop.index }}">
+									<noscript>
+										<div class="product-image--no-js" style="background: url({{ image | img_url: '2048x' }}) no-repeat center center; background-size: contain;"></div>
+									</noscript>
+
+									{%- if has_video -%}
+										<div class="product-image__video">
+											<a href="{{ image_alt }}" class="js-video"><span class="icon-play"></span></a>
+										</div>
+									{%- else -%}
+
+										{%- if image_gallery == 'lightbox' -%}
+											<a href="{{ image | product_img_url: 'master'}}" rel="lightbox" class="product-image-lightbox"></a>
+										{%- endif -%}
+
+									{%- endif -%}
+								</div>
+							{% endfor %}
+						</div>
+
+						{% if product.images.size > 1 %}
+						<div class="productImgScroller-nav js-productImgScroller-nav">
+							{% for image in product.images %}                         	
+                          
+								{% assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' %}
+								{% include 'theme-rias' %}
+									<div class="js-slide {{ thumbnail_width }} product-image-thumb {% if forloop.index == 1 %}active{% endif %}" data-index="{{ forloop.index }}" data-image="{{ image | product_img_url: 'master'}}" >
+										<img
+											 class="lazyload fade-in product-image-thumb-img"
+											 data-src="{{ image_url_pattern }}"
+											 data-widths= "[{{ image_widths }}]"
+											 data-aspectratio="{{image.aspect_ratio }}"
+											 data-sizes="auto"
+											 alt="{{ image.alt | escape }}"
+											 itemprop="image"
+											 >
+                                        {% if has_video %}
+                                          <div class="product-image__video">
+                                            <a href="{{ image_alt }}" class="js-video"><span class="icon-play"></span></a>
+                                          </div>
+                                        {% endif %}
+										 <noscript>
+											<img src="{{ image | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+										</noscript>
+									</div>
+							{% endfor %}
+						</div>
+						{% endif %}
+					{% endif %}
+                  
+				</div>
+				<!-- end product-images -->
+
+				<div class="product-info js-product-info product-layout-{{ layout }}--info xxl_s12 xl_s12 lg_s12 s1">
+					<div class="product-info__wrapper js-product-info__wrapper block">
+						<div class="s1 product-title__wrapper">
+							{%- if section.settings.show_vendor -%}
+								<p class="product-vendor">{{ product.vendor }}</p>
+							{%- endif -%}
+
+							<div style="position:relative;"><h1 itemprop="name" class="product-title">{{ product.title }}</h1><div id="secomapp-fg-image-{{ product.id }}" style="display: none;"> {{ "icon-freegift.png" | asset_url | img_tag: "", "sca-fg-img-collect" }} </div> </div>
+                            
+                          	<p class="product_subtitle">{{product.metafields.product.subtitle}}</p>
+                          
+                                  {% comment %} 
+                                  /snippets/bv-summary.liquid Bazaarvoice Summary Container
+                                  {% endcomment %}
+                                  {% render 'bv-summary' %}
+                                  {% comment %}
+                                  End Bazaarvoice Summary Container
+                                  {% endcomment %}
+                         
+                            
+                          {% comment %} <div id="extole-zone-product" style="margin-bottom: 10px;">{% render 'Extole-zone-product' %}</div> {% endcomment %}
+                          	{% include 'product-price' %}
+                          	{% if show_reviews %}
+								<div class="product__badge">
+<!-- 					                {%- if settings.enable_yotpo and settings.yotpo_ID != '' -%}
+					                	<div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
+					                {%- else -%}
+                                  <div class="reviews-badge-wrapper">
+                                    <a class="review-read" href="#review">
+					                	<span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+                                    </a>
+                                    <a class="review-write" href="#review">
+                                    <span class="spr-write-a-review">Write a review</span>
+                                    </a>
+                                  </div>
+					                {%- endif -%} -->
+				              	</div>
+							{% endif %}
+
+
+							
+
+							{% comment %}{% if add_cart_position == 'bottom' %}{% endif %}{% endcomment %}
+							<div class="product-container">
+								<div class="product-description" itemprop="description">
+									{{ product.description }}
+                                  	<a href="#product-details" class="view_details">View Product Details</a>
+								</div>
+							</div>
+							
+                          
+                          <p class="product_type">{{product.metafields.product.product_type}}</p>
+
+						</div>
+						<div class="product-form block s1">
+                          
+                          
+							 {% form 'product', product, class:'productForm', data-color_swatches: color_swatches %}
+								{% assign first_variant = product.selected_or_first_available_variant %}
+								{% if first_variant.available %}
+									{% assign sold_out = false %}
+								{% else %}
+									{% assign sold_out = true %}
+								{% endif %}
+                          
+                          		<div id="extole-zone-product" style="margin-bottom: 20px; text-decoration: underline">{% render 'Extole-zone-product' %}</div>
+									
+								<div class="productForm-block productForm-block--options-inline {% if color_swatches == true %}productForm-block--swatches is-loading{% endif %}">
+									{% if sca_product_variantCount > 1 and color_swatches == true %}
+									 {% include 'swatch' with 'Color' %}
+									{% endif %}
+
+									<select id="product-select" name="id">
+									{% for variant in product.variants %}
+                                      {% unless variant.metafields.secomapp.freegifts %}
+                                      {% unless variant.title contains '(Freegifts)' %}
+
+										{%unless variant.metafields.secomapp.freegifts %}
+											<option{% if variant == first_variant %} selected{% endif %} value="{{ variant.id }}" data-sku="{{variant.sku}}" data-qty="{{ variant.inventory_quantity }}">
+												{{ variant.title }} - {{ variant.price | money | strip_html }}
+											</option>
+                                     	{%endunless%}
+
+                                      {%endunless%}
+                                      {%endunless%}
+									{% endfor %}
+									</select>
+                                  
+                                  <!--div class="product-select-readio" id="size-readio"></div -->
+								</div>
+
+								<div class="productForm-block">
+									<div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+										<meta itemprop="priceCurrency" content="{{ shop.currency }}">
+                                      	<meta itemprop="price" content="{{ product.price | money_without_currency }}">
+                                      	<meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+                                      	<meta itemprop="priceValidUntil" content="">
+										<link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+                                      {% if section.settings.show_quantity %}
+                                      <div class="productForm-select">
+                                        <label for="quantity">{{ 'products.form.qty' | t }}</label>
+                                        <select name="quantity" id="quantity">
+                                          {% for i in (1..9) %}
+                                          <option value="{{ i }}">{{ i }}</option>
+                                          {% endfor %}
+                                        </select>
+                                        {% assign current_variant = product.selected_or_first_available_variant %}
+                                        {% if product.available %}
+
+                                        <a id="prod_add_to_cart" href="javascript:void(0);">ADD TO CART</a>
+
+                                        <p id="sold_out" style="border: 1px solid #aaa;
+                                                                padding: 13px 30px;
+                                                                margin-left: 30px;
+                                                                background: #aaa;
+                                                                font-weight: bold; display: none">SOLD OUT</p>
+
+                                        {% endif %}
+                                        {% endif %}
+
+										{% if template contains 'product' %}
+											{% if settings.enable_payment_button %}
+												{{ form | payment_button }}
+											{% endif %}
+										{% endif %}
+
+									</div>
+                              
+								</div>
+							{% endform %}
+                                  <style>
+                                    	.product-form {
+                                        	position: relative !important;
+                                           	height: 240px !important; 
+                                        }
+                                    	afterpay-placement {
+                                        	position: absolute; 
+                                          	bottom: 0 !important;
+                                        }
+                                  </style>
+                            <div class="dk-flat-static"></div>
+                          
+							<div class="sca-fg-cat-list" style="display:none;" name="secomapp-fg-data-{{ product.id }}"> </div>
+{% comment %}
+							{% if section.settings.show_newsletter %}
+								<div class="notification-form {% unless sold_out %}visually-hidden{% endunless %}">
+									{% form 'customer' %}
+										{% assign text_newsletter = section.settings.text_newsletter %}
+										{% if text_newsletter != blank %}
+											<label for="contact[email]">{{ text_newsletter }}</label>
+										{% endif %}
+										<div class="js-signUp-form signUp-form">
+											<input type="hidden" id="contact_tags" name="contact[tags]" value="newsletter"/>
+											<div class="inputGroup mc-field-group">
+												<input class="signUp-input required email" type="email" value="" name="contact[email]" id="contact[email]" placeholder="{{ 'general.newsletter_signup.email_placeholder' | t }}">
+												<input type="hidden" id="newsletter-first-name" name="contact[first_name]" value="Newsletter" />
+												<input type="hidden" id="newsletter-last-name" name="contact[last_name]" value="Subscriber" />
+												<span class="signUp-mailIcon icon-mail"></span>
+												<button type="submit" class="signUp-submit icon-arrow-right" name="subscribe" id="mc-embedded-subscribe"></button>
+											</div>
+										</div>
+										{% if form.posted_successfully? %}
+											<div class="signUp-confirmation p">{{ 'general.newsletter_signup.success_message' | t }}</div>
+										{% elsif form.errors %}
+											{{ form.errors | default_errors }}
+										{% endif %}
+									{% endform %}
+								</div>
+							{% endif %}
+{% endcomment %}
+							{% if settings.share_on_facebook or settings.share_on_twitter or settings.share_on_pinterest %}
+							<div class="product-share">
+								<span class="socialBar p">{% include 'site-shareLinks' %}</span>
+							</div>
+							{% endif %}
+							{% if tab_1 != blank or tab_2 != blank or tab_3 != blank %}
+								<div class="product-tabs js-product-tabs">
+									
+									{% if tab_1 != blank %}
+										<div class="product-tab">
+											<div class="product-tab-title" itemprop="title">{{ pages[tab_1].title }} <span class="icon-toggle"></span></div>
+											<div class="product-tab-content" itemprop="content">{{pages[tab_1].content}}</div>
+										</div>
+									{% endif %}
+									{% if tab_2 != blank %}
+										<div class="product-tab">
+											<div class="product-tab-title" itemprop="title">{{ pages[tab_2].title }} <span class="icon-toggle"></span></div>
+											<div class="product-tab-content" itemprop="content">{{pages[tab_2].content}}</div>
+										</div>
+									{% endif %}
+									{% if tab_3 != blank %}
+										<div class="product-tab">
+											<div class="product-tab-title" itemprop="title">{{ pages[tab_3].title }} <span class="icon-toggle"></span></div>
+											<div class="product-tab-content" itemprop="content">{{pages[tab_3].content}}</div>
+										</div>
+									{% endif %}
+                                    {% if tab_4 != blank %}
+										<div class="product-tab">
+											<div class="product-tab-title" itemprop="title">{{ pages[tab_3].title }} <span class="icon-toggle"></span></div>
+											<div class="product-tab-content" itemprop="content">{{pages[tab_3].content}}</div>
+										</div>
+									{% endif %}
+								</div>
+							{% endif %}
+						</div>
+					</div>
+                  <div class="brand_icons">
+                    <img class="desktop_only" style="padding-top: 0 !important;" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/HPWeb-PDP-Desktop-BrandIcons.gif?v=1601568732">
+                  </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+<!-- <style>
+                    @media screen and (width >= 768px) {
+                        .inner_results_image {
+                            float: right;
+                        }
+  
+                        .inner_results_content {
+                            float:left; 
+                            max-width: 50% !important; 
+                            word-wrap: normal;
+                        }
+                        .sustain_image {
+                            float: right;
+                        }
+                        .sustain_content {
+                            float:left; 
+                            max-width: 65% !important; 
+                            word-wrap: normal;
+                        }
+                        .image_center {
+                          margin-right: 17.165% !important; 
+                          margin-left: auto !important; 
+                          width: 100%;
+                          position: relative;
+                        }
+                    }
+                    @media screen and (width < 768px) {
+                        .inner_results_image {
+                            width: 100% !important;
+                        }
+  
+                        .inner_results_content {
+                            float: right;
+                            width: 100% !important; 
+                            word-wrap: normal;
+                        }
+                        .sustain_content {
+                            float: right;
+                            width: 100% !important; 
+                            word-wrap: normal;
+                        }
+                        .sustain_image {
+                          width: 100% !important;
+                        }
+                    }
+                      #dot_1 {
+                          margin-left: 43% !important; 
+                          margin-right: auto !important; 
+                          position: relative;
+                        }
+                    * {box-sizing:border-box}
+                      .slideshow-container {
+                        max-width: 1000px;
+                        position: relative;
+                        margin: auto;
+                      }
+                      .Containers {
+                        display: none;
+                      }
+                      .Back, .forward {
+                        cursor: pointer;
+                        position: absolute;
+                        top: 48%;
+                        width: auto;
+                        margin-top: -23px;
+                        padding: 17px;
+                        color: grey;
+                        font-weight: bold;
+                        font-size: 19px;
+                        transition: 0.4s ease;
+                        border-radius: 0 5px 5px 0;
+                        user-select: none;
+                      }
+                      .forward {
+                        right: 0;
+                        border-radius: 4px 0 0 4px;
+                      }
+                      .Back:hover, .forward:hover {
+                        background-color: rgba(0,0,0,0.8);
+                        opacity: 20%
+                      }
+                      .Info {
+                        color: #e3e3e3;
+                        font-size: 16px;
+                        padding: 10px 14px;
+                        position: absolute;
+                        bottom: 10px;
+                        width: 100%;
+                        text-align: center;
+                      }
+                      .MessageInfo {
+                        color: #f2f2f3;
+                        font-size: 14px;
+                        padding: 10px 14px;
+                        position: absolute;
+                        top: 0;
+                      }
+                      .dots {
+                        cursor: pointer;
+                        height: 10px;
+                        width: 10px;
+                        margin: 0 3px;
+                        background-color: #eeeeee;
+                        border-radius: 50%;
+                        display: inline-block;
+                        transition: background-color 0.5s ease;
+                      }
+                      .enable, .dots:hover {
+                        background-color: #8b8386;
+                      }
+                      .fade {
+                        -webkit-animation-name: fade;
+                        -webkit-animation-duration: 1.4s;
+                        animation-name: fade;
+                        animation-duration: 1.4s;
+                      }
+                      @-webkit-keyframes fade {
+                        from {opacity: .5}
+                        to {opacity: 2}
+                      }
+                      @keyframes fade {
+                        from {opacity: .5}
+                        to {opacity: 2}
+                      }
+                  </style> -->
+  <section id="product-details" class="product-desc-tabs">
+    <div class="container">
+      <div class="row row-lg" style="min-height: 37.5rem;"> 
+        <ul class="tabs">
+          <li><a href="#tab-1" class="tab_1">Results</a></li>
+          <li><a href="#tab-2" class="tab_2">Ingredients</a></li>
+          <li><a href="#tab-3" class="tab_3">How to Use</a></li>
+          {% if product.metafields['sustain']['title'] %}<li><a href="#tab-4" class="tab_4">Sustainability</a></li> {% endif %}
+        </ul>
+        <div id="tab-1" class="text each_tab">
+          <div class="row inline">
+            <div class="inner_results_image">
+              {% if product.metafields['results']['image'] %}
+              <div class="results_image_wrapper image_center">
+                <div class="slideshow-container fade">
+                    <div class="Containers">
+<!--                       <div class="MessageInfo">1 / 4</div> -->
+                      <img src="{{ product.metafields.results.image_one }}" style="width:100%">
+<!--                       <div class="Info">First caption</div> -->
+                    </div>
+                    <div class="Containers">
+<!--                       <div class="MessageInfo">2 / 4</div> -->
+                      <img src="{{ product.metafields.results.image_two }}" style="width:100%">
+<!--                       <div class="Info">Second Caption</div> -->
+                    </div>
+                    <div class="Containers">
+<!--                       <div class="MessageInfo">3 / 4</div> -->
+                      <img src="{{ product.metafields.results.image_three }}" style="width:100%">
+<!--                       <div class="Info">Third Caption</div> -->
+                    </div>
+                    <div class="Containers">
+<!--                       <div class="MessageInfo">4 / 4</div> -->
+                      <img src="{{ product.metafields.results.image_four }}" style="width:100%">
+<!--                       <div class="Info">Fourth Caption</div> -->
+                    </div>
+                    <a class="Back" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="forward" onclick="plusSlides(1)">&#10095;</a>
+                  </div>
+                  <div style="dots_center">
+                    <div class="dots" id="dot_1" onclick="currentSlide(1)"></div>
+                    <div class="dots" id="dot_2" onclick="currentSlide(2)"></div>
+                    <div class="dots" id="dot_3" onclick="currentSlide(3)"></div>
+                    <div class="dots" id="dot_4" onclick="currentSlide(4)"></div>
+                  </div> 
+                  <style>
+                    @media screen and (min-width: 768px) {
+                        .inner_results_image {
+                            float: right;
+                            max-width: 50% !important;
+                        }
+  
+                        .inner_results_content {
+                            float:left; 
+                            width: 50% !important; 
+                            word-wrap: normal;
+                        }
+                        .sustain_image {
+                            float: right;
+                            max-width: 35% !important;
+                        }
+                        .sustain_image > div > img {
+                            max-height: 375px !important;
+                        }
+                        .sustain_content {
+                            float:left; 
+                            width: 65% !important; 
+                            word-wrap: normal;
+                        }
+/*                         .image_center {
+                          margin-right: 17.165% !important; 
+                          margin-left: auto !important; 
+                          width: 100%;
+                          position: relative;
+                        } */
+                    }
+                    @media screen and (max-width: 767px) {
+                        .inner_results_image {
+                            width: 100% !important;
+                        }
+  
+                        .inner_results_content {
+                            float: right;
+                            width: 100% !important; 
+                            word-wrap: normal;
+                        }
+                        .sustain_image > div > img {
+                            max-height: 375px !important;
+                            display: block;
+                            margin-left: auto;
+                            margin-right: auto;
+                            width: 75%;
+                        }
+                        .sustain_content {
+                            float: right;
+                            width: 100% !important; 
+                            word-wrap: normal;
+                        }
+                        .sustain_image {
+                          width: 100% !important;
+                        }
+                    }
+                      #dot_1 {
+                          margin-left: 43% !important; 
+                          margin-right: auto !important; 
+                          position: relative;
+                        }
+                    * {box-sizing:border-box}
+                      .slideshow-container {
+                        max-width: 1000px;
+                        position: relative;
+                        margin: auto;
+                      }
+                      .Containers {
+                        display: none;
+                      }
+                      .Back, .forward {
+                        cursor: pointer;
+                        position: absolute;
+                        top: 48%;
+                        width: auto;
+                        margin-top: -23px;
+                        padding: 17px;
+                        color: grey;
+                        font-weight: bold;
+                        font-size: 19px;
+                        transition: 0.4s ease;
+                        border-radius: 0 5px 5px 0;
+                        user-select: none;
+                      }
+                      .forward {
+                        right: 0;
+                        border-radius: 4px 0 0 4px;
+                      }
+                      .Back:hover, .forward:hover {
+                        background-color: rgba(0,0,0,0.8);
+                        opacity: 20%
+                      }
+                      .Info {
+                        color: #e3e3e3;
+                        font-size: 16px;
+                        padding: 10px 14px;
+                        position: absolute;
+                        bottom: 10px;
+                        width: 100%;
+                        text-align: center;
+                      }
+                      .MessageInfo {
+                        color: #f2f2f3;
+                        font-size: 14px;
+                        padding: 10px 14px;
+                        position: absolute;
+                        top: 0;
+                      }
+                      .dots {
+                        cursor: pointer;
+                        height: 10px;
+                        width: 10px;
+                        margin: 0 3px;
+                        background-color: #eeeeee;
+                        border-radius: 50%;
+                        display: inline-block;
+                        transition: background-color 0.5s ease;
+                      }
+                      .enable, .dots:hover {
+                        background-color: #8b8386;
+                      }
+                      .fade {
+                        -webkit-animation-name: fade;
+                        -webkit-animation-duration: 1.4s;
+                        animation-name: fade;
+                        animation-duration: 1.4s;
+                      }
+                      @-webkit-keyframes fade {
+                        from {opacity: .5}
+                        to {opacity: 2}
+                      }
+                      @keyframes fade {
+                        from {opacity: .5}
+                        to {opacity: 2}
+                      }
+                  </style>
+                  <script>
+                    let slidePosition = 1;
+                    SlideShow(slidePosition);
+                    
+                    function plusSlides(n) {
+                      SlideShow(slidePosition += n);
+                    }
+                    
+                    function currentSlide(n) {
+                      SlideShow(slidePosition = n);
+                    }
+                    
+                    function SlideShow(n) {
+                      let i;
+                      let slides = document.getElementsByClassName("Containers");
+                      let circles = document.getElementsByClassName("dots");
+                      if (n > slides.length) {slidePosition = 1}
+                      if (n < 1) {slidePosition = slides.length}
+                      for (i = 0; i < slides.length; i++) {
+                          slides[i].style.display = "none";
+                      }
+                      for (i = 0; i < circles.length; i++) {
+                          circles[i].className = circles[i].className.replace(" enable", "");
+                      }
+                      slides[slidePosition-1].style.display = "block";
+                      circles[slidePosition-1].className += " enable";
+                    } 
+                    // let slidePosition = 0;
+                    // SlideShow();
+                    
+                    // function SlideShow() {
+                    //   let i;
+                    //   let slides = document.getElementsByClassName("Containers");
+                    //   for (i = 0; i < slides.length; i++) {
+                    //     slides[i].style.display = "none";
+                    //   }
+                    //   slidePosition++;
+                    //   if (slidePosition > slides.length) {slidePosition = 1}
+                    //   slides[slidePosition-1].style.display = "block";
+                    //   circles[slidePosition-1].className += " enable";
+                    //   setTimeout(SlideShow, 10000);
+                    // } 
+                  </script>
+                
+                {% if product.metafields.results.study_content %}
+                <div class="results_image_description">
+                  <h3>Clinical Study</h4>
+                  <hr>
+                  <div class="study_content">
+                    <h3>{{ product.metafields.results.percent }}</h3>
+                    <p>{{ product.metafields.results.study_content }}</p>
+                  </div>
+                </div>
+                <p>{{ product.metafields.results.in_study }}</p>
+                {% endif %}
+                
+              </div>
+              {% endif %}
+            </div>
+            <div class="inner_results_content">
+              <h3>{{ product.metafields['results']['title'] }}</h3>
+              <p>{{ product.metafields['results']['content'] }}</p>
+              <div class="results_subcontent_wrapper desktop_only">
+                <div class="result_each_subcontent sm_s12" style="width: 100% !important;">
+                  <h4>{{ product.metafields['results']['subtitle_1'] }}</h5>
+                  {{ product.metafields['results']['subcontent_1'] }}
+                </div>
+                <div class="result_each_subcontent sm_s12" style="width: 100% !important;">
+                  <h4>{{ product.metafields['results']['subtitle_2'] }}</h5>
+                  {{ product.metafields['results']['subcontent_2'] }}
+                </div>          
+              </div>
+               <p style="font-size: 0.75rem"><i>{{ product.metafields.results.caption }}</i></p>
+            </div>
+           
+            <div class="results_subcontent_wrapper mobile_only">
+              <div class="result_each_subcontent">
+                <h4>{{ product.metafields['results']['subtitle_1'] }}</h5>
+                {{ product.metafields['results']['subcontent_1'] }}
+              </div>
+              <div class="result_each_subcontent">
+                <h4>{{ product.metafields['results']['subtitle_2'] }}</h5>
+                {{ product.metafields['results']['subcontent_2'] }}
+              </div>          
+            </div>
+            
+          </div>
+        </div>
+
+        <div id="tab-2" class="text each_tab">
+          <div class="row inline">
+            <div class="ingredients_main">
+              <div class="ingredients_content sm_s35">
+                <p class="key_ingredients">Key Ingredients</p>
+                <div class="ingredients_subcontent_wrapper">
+                  <div class="ingredients_each_subcontent sm_s12">
+                    {{ product.metafields['ingredients']['subcontent_1'] }}
+                  </div>
+                  <div class="ingredients_each_subcontent sm_s12 desktop_only">
+                    {{ product.metafields['ingredients']['subcontent_2'] }}
+                  </div>          
+                </div>
+              </div>
+              {% if product.metafields['ingredients']['image'] %}
+              <div class="ingredients_image results_image sm_s25">
+                <img src="{{ product.metafields['ingredients']['image'] }}">
+              </div>
+              {% endif %}
+              <div class="ingredients_each_subcontent sm_s12 mobile_only">
+                {{ product.metafields['ingredients']['subcontent_2'] }}
+              </div>  
+            </div>
+            <div class="ingredients_list">
+              <div>{{ product.metafields['ingredients']['formulated'] }}</div>
+              <div class="full_ingredients">
+                <a>View Full Ingredient List</a>
+                <p>{{ product.metafields['ingredients']['list'] }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-3" class="text each_tab">
+          <div class="row inline">
+            <div class="how_content">
+              <h3>{{ product.metafields['how']['title'] }}</h3>
+              <br/>
+              <div class="how_subcontent_wrapper">
+                {{ product.metafields['how']['content'] }}
+              </div>
+            </div>
+            <div class="how_image">
+              {% if product.metafields.how.image != blank %}
+              	<img src="{{ product.metafields['how']['image'] }}">
+              {% elsif product.metafields.how.video != blank %}
+              	<iframe width="612" height="420" src="{{product.metafields.how.video}}"></iframe>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div id="tab-4" class="text each_tab">
+          <div class="sustain_content">
+              <h3>{{ product.metafields['sustain']['title'] }}</h3>
+              <p>{{ product.metafields['sustain']['content'] }}</p>
+              <div class="sustain_subcontent_wrapper desktop_only">
+                <div class="sustain_each_subcontent sm_s12" style="width: 100% !important;">
+                  <h4>{{ product.metafields['sustain']['subtitle_1'] }}</h5>
+                  {{ product.metafields['sustain']['subcontent_1'] }}
+                </div>
+                <div class="sustain_each_subcontent sm_s12" style="width: 100% !important;">
+                  <h4>{{ product.metafields['sustain']['subtitle_2'] }}</h5>
+                  {{ product.metafields['sustain']['subcontent_2'] }}
+                </div>          
+              </div>
+            </div>
+            <div class="sustain_subcontent_wrapper mobile_only">
+              <div class="sustain_each_subcontent">
+                <h4>{{ product.metafields['sustain']['subtitle_1'] }}</h5>
+                {{ product.metafields['sustain']['subcontent_1'] }}
+              </div>
+              <div class="sustain_each_subcontent">
+                <h4>{{ product.metafields['sustain']['subtitle_2'] }}</h5>
+                {{ product.metafields['sustain']['subcontent_2'] }}
+              </div>          
+            </div>
+            <div class="sustain_image">
+               <div class="image_center">
+                  {% if product.metafields.sustain.image != blank %}
+                  	<img src="{{ product.metafields.sustain.image }}">
+                  {% elsif product.metafields.sustain.video != blank %}
+                  	<iframe width="612" height="420" src="{{product.metafields.sustain.video}}"></iframe>
+                  {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="mobile_brands"> 
+        	<img class="mobile_only =" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/HPWeb-PDP-Desktop-BrandIcons.gif?v=1654885338">
+        </div>
+      </div>
+    </div>
+  </section>
+  {% if product.metafields['tip']['background_image'] %}
+  <section class="expert_tip_section inline" >
+    <div class="container">
+      <div class="row row-lg">
+        <div class="tip_content_wrapper">
+          <div class="tip_image">
+            <img id="desktop-tip-image" src="{{ product.metafields.tip.background_image }}">
+          </div>
+          <div class="tip_content">
+            <div class="tip_main_content">
+              <p class="expert_tip">{{ product.metafields['tip']['title'] }}</p>
+              <h3 class="tip_quote">{{ product.metafields['tip']['content'] }}</h3>
+              <p class="tip_author">{{ product.metafields['tip']['author'] }}</p>
+              {% if product.metafields['tip']['cta'] %}<button class="btn btn-med"><a href="{{ product.metafields.tip.link }}" target="_blank">{{ product.metafields.tip.cta }}</a></button>{% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% if product.metafields['tip']['mobile_background_image'] %}
+  <style>
+    @media (max-width: 767px) {
+      #desktop-tip-image {
+        float: none;
+      }
+/*       .expert_tip_section {
+        background-image: url({{ product.metafields['tip']['mobile_background_image'] }}) !important;
+        background-size: cover;
+        background-position: center;
+      } */
+    }
+  </style>
+  {% endif %}
+  {% endif %}
+  
+<script>
+  jQuery(document).ready(function($){
+    $(".subcontent_title").click(function(){
+    	$(this).parent().toggleClass("active");
+    });
+    $(".full_ingredients a").click(function(){
+    	$(this).parent().toggleClass("active");
+    });
+    $(".view_details").click(function(e){
+      	e.preventDefault();
+//     	var detail_position = $('#product-details').offset();
+//    		var position = detail_position.top - 200;
+//       	$(window).scrollTop(position);
+      $('html, body').animate({
+        scrollTop: $("#product-details").offset().top - 200
+      }, 1000);
+      setTimeout(function(){ 
+        $(".tab_1").trigger("click");
+      }, 1000);
+    });
+    $(".review-read").click(function(e){
+      	e.preventDefault();
+      $('html, body').animate({
+        scrollTop: $("#review").offset().top - 200
+      }, 1000);
+    });
+  });  
+</script>
+  <script>
+  $(document).ready(function() {
+    $('#product-select').change(function() {
+      var $optionSelected = $("option:selected", $(this));
+      var valueSelected = $optionSelected.attr('data-qty');
+      console.log(valueSelected);
+      if(valueSelected < 0) {
+        $('#prod_add_to_cart').css('display', 'none');
+        $('#sold_out').css('display', 'block');
+      }
+      else {
+        $('#prod_add_to_cart').css('display', 'block');
+        $('#sold_out').css('display', 'none');
+      }
+    });
+  });
+</script>
+	{% if section.blocks.size > 0 %}
+		{% for block in section.blocks %}
+			{% case block.type %}
+			{% when 'banner' %}
+				{% comment %} Banner Settings {% endcomment %}
+				{% assign image = block.settings.image %}
+				{% assign height = block.settings.height %}
+				{% assign subheading = block.settings.subheading %}
+				{% assign heading = block.settings.title %}
+				{% assign text = block.settings.text %}
+				{% assign text_position = block.settings.text_position %}
+				{% assign heading_size = block.settings.heading_size %}
+				{% assign text_size = block.settings.text_size %}
+				{% assign color_text = block.settings.color_text %}
+				{% assign color_overlay = block.settings.color_overlay %}
+				{% assign overlay_opacity = block.settings.overlay_opacity | times: 0.01 | round: 2 %}
+
+				<style>
+					.banner--{{ block.id }} .page-title { color: {{ color_text }}; }
+					.banner--{{ block.id }} .page-title h1 { color: {{ color_text }} !important; }
+					.banner--{{ block.id }} .page-title::before { background-color: {{ color_overlay }}; opacity: {{ overlay_opacity }}; }
+				</style>
+
+				<section class="banner banner--{{ block.id }}" data-block="banner" {{ block.shopify_attributes }}>
+					<div class="banner-inner banner-padded banner-padded--{{ height }} banner--text-{{ text_position }}">
+						{% unless height == 'original-height' %}
+							{% unless image == blank %}
+								<div class="banner-img lazyload fade-in" data-bgset="{% include 'bgset', image: image %}" data-sizes="auto" data-parent-fit="cover"></div>
+								<noscript>
+									<div class="banner-img" style="background-image:url('{{image | img_url: '1024x' }}'); background-size: cover; background-position: center center; background-repeat: no-repeat;"></div>
+								</noscript>
+							{% else %}
+								<div class="banner-img banner-img--placeholder svg-placeholder">
+									{{ 'image' | placeholder_svg_tag }}
+								</div>
+							{% endunless %}
+						{% else %}
+							{% assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' %}
+							{% include 'theme-rias' %}
+							<img class="banner-img--original lazyload fade-in"
+								 data-src="{{ image_url_pattern }}"
+								 data-widths="[{{ image_widths }}]"
+								 data-aspectratio="{{ image.aspect_ratio }}"
+								 data-sizes="auto"
+								 alt="{{ image.alt }}">
+							<noscript>
+								<img src="{{ image | img_url: '2048x' }}" alt="{{ image.alt | escape }}" class="banner-img--original no-js-image">
+							</noscript>
+						{% endunless %}
+
+						{% unless heading == blank and subheading == blank and text == blank %}
+							<div class="page-title">
+								<div class="container">
+									<div class="row row-lg">
+										{% if subheading != blank %}
+											<h4 class="page-title__subheading subheading-text">{{ subheading }}</h4>
+										{% endif %}
+										{% if heading != blank %}
+											<h1 class="page-title__heading size--{{ heading_size }}">{{ heading }}</h1>
+										{% endif %}
+									</div>
+									{% if text != blank %}
+										<div class="row row-lg">
+											<div class="page-title__text rte size--{{ text_size }}"><p>{{ text }}</p></div>
+										</div>
+									{% endif %}
+								</div>
+							</div>
+						{% endunless %}
+					</div>
+				</section>
+
+			{% when 'rich-text' %}
+				{% comment %} settings {% endcomment %}
+				{% assign id = block.id %}
+				{% assign layout = block.settings.layout %}
+				{% assign subheading = block.settings.subheading %}
+				{% assign title = block.settings.title %}
+				{% assign content = block.settings.content %}
+				{% assign cta = block.settings.cta %}
+				{% assign link = block.settings.link %}
+				{% assign button_position = block.settings.button_position %}
+				{% assign accent_line = block.settings.accent_line %}
+		        {% assign accent_line_color = block.settings.accent_line_color %}
+
+				{% comment %} Typography {% endcomment %}
+				{% assign heading_size = block.settings.heading_font_size %}
+				{% assign heading_align = block.settings.heading_align %}
+				{% assign text_size = block.settings.text_font_size %}
+
+				<div {{ block.shopify_attributes }}>
+					{%- if accent_line_color != blank -%}
+					<style>
+					  #text-module-{{ id }} .accent-line--straight { background-color: {{ accent_line_color }}; }
+					  #text-module-{{ id }} .accent-line--curved svg path { fill: {{ accent_line_color }}; }
+					</style>
+					{%- endif -%}
+
+					{% include 'rich-text' %}
+				</div>
+
+			{% when 'product-feature' %}
+				{% assign heading = block.settings.title %}
+				{% assign heading_size = block.settings.heading_font_size %}
+				{% assign text_size = block.settings.text_font_size %}
+				{% assign description = block.settings.description %}
+				{% assign image = block.settings.image %}
+				{% assign image_link = block.settings.image_link %}
+				{% assign button_text = block.settings.button_text %}
+				{% assign button_link = block.settings.button_link %}
+				{% assign blocks_alignment = block.settings.blocks_alignment %}
+				{% assign is_block_odd = block.settings.reverse_layout %}
+
+				<div class="product-features--container pad-sm" {{ block.shopify_attributes }}>
+					<div class="container">
+						<div class="row row-lg">
+							{% include 'product-features__item' %}
+						</div>
+					</div>
+				</div>
+
+			{% when 'icons-row' %}
+				<div {{ block.shopify_attributes }}>
+					{% include 'icons-row' %}
+				</div>
+
+			{% endcase %}
+		{% endfor %}
+	{% endif %}
+
+	{%- if section.settings.show_cart_bar -%}
+		{% include 'add-to-cart-bar' %}
+	{%- endif -%}
+</div> <!-- end itemscope -->
+
+
+{% schema %}
+{
+	"name": "Product page",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Layout"
+		},
+		{
+			"type": "select",
+			"id": "product_layout",
+			"label": "Image layout",
+			"options": [
+				{
+					"value": "slideshow",
+					"label": "Slideshow"
+				},
+				{
+					"value": "scrollable",
+					"label": "Scrollable"
+				}
+			],
+			"default": "slideshow"
+		},
+		{
+			"type": "select",
+			"id": "image_gallery",
+			"label": "Image gallery",
+			"options": [
+				{
+					"value": "none",
+					"label": "None"
+				},
+				{
+					"value": "zoom",
+					"label": "Hover to zoom"
+				},
+				{
+					"value": "lightbox",
+					"label": "Lightbox"
+				}
+			],
+			"default": "zoom"
+		},
+		{
+			"type": "select",
+			"id": "image_size",
+			"label": "Image size",
+			"options": [
+				{
+					"value": "small",
+					"label": "Small"
+				},
+				{
+					"value": "medium",
+					"label": "Medium"
+				},
+				{
+					"value": "large",
+					"label": "Large"
+				}
+			],
+			"default": "large"
+		},
+		{
+			"type": "select",
+			"id": "add_cart_position",
+			"label": "Add to Cart position",
+			"default": "top",
+			"options": [
+				{ "label": "Top", "value": "top" },
+				{ "label": "Bottom", "value": "bottom" }
+			]
+		},
+		{
+			"type": "checkbox",
+			"id": "show_vendor",
+			"label": "Show vendor",
+			"default": false
+		},
+		{
+			"type": "checkbox",
+			"id": "show_quantity",
+			"label": "Show quantity dropdown",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "show_cart_bar",
+			"label": "Show Add to Cart bar",
+			"default": true
+		},
+		{
+			"type": "header",
+			"content": "Newsletter"
+		},
+		{
+			"type": "checkbox",
+			"id": "show_newsletter",
+			"label": "Show newsletter if out of stock",
+			"default": true
+		},
+		{
+			"type": "richtext",
+			"id": "text_newsletter",
+			"label": "Text",
+			"default": "<p>Notify me when this product is available:</p>"
+		},
+		{
+			"type": "header",
+			"content": "Tabs",
+			"info": "You have the option to enable three extra tabs for more information on your product."
+		},
+		{
+			"type": "page",
+			"id": "page_tab_1",
+			"label": "Tab one"
+		},
+		{
+			"type": "page",
+			"id": "page_tab_2",
+			"label": "Tab two"
+		},
+		{
+			"type": "page",
+			"id": "page_tab_3",
+			"label": "Tab three"
+		},
+        {
+			"type": "page",
+			"id": "page_tab_4",
+			"label": "Tab four"
+		},
+		{
+			"type": "header",
+			"content": "Slideshow options",
+			"info": "On mobile, if there is more than one product image, the image grid will become a slideshow"
+		},
+		{
+			"type": "checkbox",
+			"id": "product_slideshow_dots",
+			"label": "Show slide navigation dots",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "product_slideshow_arrows",
+			"label": "Show slide navigation arrows",
+			"default": false
+		}
+	],
+	"blocks": [
+		{
+			"type": "banner",
+			"name": "Banner",
+			"limit": 3,
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "select",
+					"id": "height",
+					"label": "Height",
+					"options": [
+							{
+								"value": "one-hundred",
+								"label": "Full screen height"
+							},
+							{
+								"value": "original-height",
+								"label": "Image height"
+							},
+							{
+								"value": "big",
+								"label": "750px"
+							},
+							{
+								"value": "normal",
+								"label": "650px"
+							},
+							{
+								"value": "small",
+								"label": "550px"
+							}
+						],
+						"default": "normal"
+				},
+				{
+					"type": "text",
+					"id": "subheading",
+					"label": "Subheading"
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Heading",
+					"default": "Welcome to Modular"
+				},
+				{
+					"type": "text",
+					"id": "text",
+					"label": "Text",
+					"default": "<p>A unique layout with a striking design</p>"
+				},
+				{
+					"type": "select",
+					"id": "text_position",
+					"label": "Text position",
+					"default": "center",
+					"options": [
+						{ "label": "Left", "value": "left" },
+						{ "label": "Center", "value": "center" },
+						{ "label": "Right", "value": "right" },
+						{ "label": "Bottom left", "value": "bottom-left" },
+						{ "label": "Bottom right", "value": "bottom-right" }
+					]
+				},
+				{
+					"type": "header",
+					"content": "Typography"
+				},
+				{
+					"type": "select",
+					"id": "heading_size",
+					"label": "Heading size",
+					"default": "normal",
+					"options": [
+						{ "label": "Small", "value": "small" },
+						{ "label": "Normal", "value": "normal" },
+						{ "label": "Large", "value": "large" },
+						{ "label": "Extra large", "value": "xlarge" }
+					]
+				},
+				{
+					"type": "select",
+					"id": "text_size",
+					"label": "Text size",
+					"default": "normal",
+					"options": [
+						{ "label": "Small", "value": "small" },
+						{ "label": "Normal", "value": "normal" },
+						{ "label": "Large", "value": "large" },
+						{ "label": "Extra large", "value": "xlarge" }
+					]
+				},
+				{
+					"type": "header",
+					"content": "Colors"
+				},
+				{
+					"type": "color",
+					"id": "color_text",
+					"label": "Text",
+					"default": "#ffffff"
+				},
+				{
+					"type": "color",
+					"id": "color_overlay",
+					"label": "Overlay",
+					"default": "#222222"
+				},
+				{
+					"type": "range",
+					"id": "overlay_opacity",
+					"label": "Overlay opacity",
+					"step": 1,
+					"max": 100,
+					"min": 0,
+					"unit": "%",
+					"default": 10
+				}
+			]
+		},
+		{
+			"type": "rich-text",
+			"name": "Rich text",
+			"settings": [
+				{
+					"type": "header",
+					"content": "Layout"
+				},
+				{
+					"type": "select",
+					"id": "layout",
+					"label": "Text position",
+					"default": "default",
+					"options": [
+						{ "label": "Stacked", "value": "default" },
+						{ "label": "Split", "value": "split" }
+					]
+				},
+				{
+					"type": "select",
+					"id": "heading_align",
+					"label": "Heading alignment",
+					"default": "left",
+					"options": [
+						{ "label": "Left", "value": "left" },
+						{ "label": "Center", "value": "center" },
+						{ "label": "Right", "value": "right" }
+					]
+				},
+				{
+					"type": "header",
+					"content": "Typography"
+				},
+				{
+					"type": "range",
+					"id": "heading_font_size",
+					"label": "Heading size",
+					"unit": "px",
+					"step": 4,
+					"min": 24,
+					"max": 44,
+					"default": 28
+				},
+				{
+					"type": "range",
+					"id": "text_font_size",
+					"label": "Text size",
+					"unit": "px",
+					"step": 2,
+					"min": 12,
+					"max": 22,
+					"default": 16
+				},
+				{
+					"type": "header",
+					"content": "Content"
+				},
+				{
+					"type": "text",
+					"id": "subheading",
+					"label": "Subheading"
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Heading",
+					"default":"Describe your products or brand in detail here"
+				},
+				{
+					"type": "richtext",
+					"id": "content",
+					"label": "Text",
+					"default":"<p>Modular is a powerful Shopify theme that will set you apart from the rest. It features ample space to showcase your imagery with Mosaic, Gallery, and Slideshow sections.</p>"
+				},
+				{
+					"type": "text",
+					"id": "cta",
+					"label": "Button label"
+				},
+				{
+					"type": "url",
+					"id": "link",
+					"label": "Button link"
+				},
+				{
+					"type": "select",
+					"id": "button_position",
+					"label": "Button position",
+					"default": "left",
+					"options": [
+						{ "label": "Under heading", "value": "left" },
+						{ "label": "Under text", "value": "right" },
+						{ "label": "Bottom", "value": "center" }
+					]
+				},
+				{
+					"type": "select",
+					"id": "accent_line",
+					"label": "Accent line",
+					"default": "curved",
+					"options": [
+						{ "label": "Curved", "value": "curved" },
+						{ "label": "Straight", "value": "straight" },
+						{ "label": "None", "value": "none" }
+					]
+				},
+				{
+					"type": "color",
+					"id": "accent_line_color",
+					"label": "Color",
+					"default": "#333"
+				}
+			]
+		},
+		{
+			"type": "product-feature",
+			"name": "Product feature",
+			"settings": [
+				{
+					"type": "header",
+					"content": "Text"
+				},
+				{
+					"type": "textarea",
+					"id": "title",
+					"label": "Heading",
+					"default": "This is a heading for a Product feature block."
+				},
+				{
+					"type": "richtext",
+					"id": "description",
+					"label": "Description",
+					"default": "<p>Use this text to share information about the point put forth above. Describe a product, your brand, or what makes you special.</p>"
+				},
+				{
+					"type": "header",
+					"content": "Images"
+				},
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "url",
+					"id": "image_link",
+					"label": "Image link"
+				},
+				{
+					"type": "header",
+					"content": "Button"
+				},
+				{
+					"type": "text",
+					"id": "button_text",
+					"label": "Button text"
+				},
+				{
+					"type": "url",
+					"id": "button_link",
+					"label": "Button link"
+				},
+				{
+					"type": "header",
+					"content": "Blocks Alignment"
+				},
+				{
+					"type": "select",
+					"id": "blocks_alignment",
+					"label": "Text alignment",
+					"options": [
+						{
+							"value": "center",
+							"label": "Center"
+						},
+						{
+							"value": "top",
+							"label": "Top"
+						}
+					]
+				},
+				{
+					"type": "checkbox",
+					"id": "reverse_layout",
+					"label": "Reverse layout",
+					"default": false
+				},
+				{
+					"type": "header",
+					"content": "Typography"
+				},
+				{
+					"type": "range",
+					"id": "heading_font_size",
+					"label": "Heading size",
+					"unit": "px",
+					"step": 4,
+					"min": 24,
+					"max": 44,
+					"default": 28
+				},
+			    {
+					"type": "range",
+					"id": "text_font_size",
+					"label": "Text size",
+					"min": 12,
+					"max": 22,
+					"step": 2,
+					"unit": "px",
+					"default": 14
+			    }
+			]
+		},
+		{
+			"type": "icons-row",
+			"name": "Icons row",
+			"settings": [
+				{
+					"type": "color",
+					"id": "color_icons_bg",
+					"label": "Background color",
+					"default": "#fafafa"
+				},
+				{
+					"type": "color",
+					"id": "color_icons_text",
+					"label": "Text color",
+					"default": "#333"
+				},
+				{
+					"type": "text",
+					"id": "icon_1",
+					"label": "Icon name",
+					"default": "Shop",
+					"info": "[Click here](https://iconsmind.com/view_icons/) to view the list of available icons. Example: Shop"
+				},
+				{
+					"type": "text",
+					"id": "title_1",
+					"label": "Title",
+					"default": "Feature"
+				},
+				{
+					"type": "textarea",
+					"id": "content_1",
+					"label": "Content",
+					"default": "Modular is a powerful Shopify theme that will set you apart from the rest with Mosaic, Gallery, and Slideshow sections."
+				},
+				{
+					"type": "text",
+					"id": "icon_2",
+					"label": "Icon name",
+					"default": "Shop",
+					"info": "[Click here](https://iconsmind.com/view_icons/) to view the list of available icons. Example: Shop"
+				},
+				{
+					"type": "text",
+					"id": "title_2",
+					"label": "Title",
+					"default": "Feature"
+				},
+				{
+					"type": "textarea",
+					"id": "content_2",
+					"label": "Content",
+					"default": "Modular is a powerful Shopify theme that will set you apart from the rest with Mosaic, Gallery, and Slideshow sections."
+				},
+				{
+					"type": "text",
+					"id": "icon_3",
+					"label": "Icon name",
+					"default": "Shop",
+					"info": "[Click here](https://iconsmind.com/view_icons/) to view the list of available icons. Example: Shop"
+				},
+				{
+					"type": "text",
+					"id": "title_3",
+					"label": "Title",
+					"default": "Feature"
+				},
+				{
+					"type": "textarea",
+					"id": "content_3",
+					"label": "Content",
+					"default": "Modular is a powerful Shopify theme that will set you apart from the rest with Mosaic, Gallery, and Slideshow sections."
+				}
+			]
+		}
+	]
+}
+{% endschema %}

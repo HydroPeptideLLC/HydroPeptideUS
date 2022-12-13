@@ -1,0 +1,303 @@
+{% include 'Extole-drop-a-hint' %}
+{% include 'shogun-products', content: product %}
+{{product.metafields.shogun.above}}
+{% include 'product-variantPopover' %}
+{% include 'sca_freegift_price' with product %}
+{% assign on_sale = false %}
+{% if sca_compare_at_price > sca_price %}
+	{% assign on_sale = true %}
+	{% assign on_sale_class = 'is-sale' %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% if product.available %}
+	{% assign sold_out = false %}
+{% endif %}
+{%- assign product_collection = product.collections.first -%}
+{%- assign handle_name = product_collection.handle -%}
+
+<div >
+<!-- 	<meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+	<meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}"> -->
+	
+		{% section 'InnerDerm-Product-Template' %}
+        {% section 'related-products' %}
+		{% section 'InnerDerm-Product-FAQ' %}
+  <section>
+    {% unless product.tags contains 'SEARCHANISE_IGNORE' %}
+  <a id="review"></a>
+  {% if settings.show_reviews %}
+    <div class="container">
+          <div class="row row-lg">
+<!-- 							{%- if settings.enable_yotpo and settings.yotpo_ID != '' -%}
+								  {% include 'yotpo-reviews' %}
+							{%- else -%}
+								  <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+							{%- endif -%} -->
+                        {% comment %} 
+            /snippets/bv-ratings-reviews.liquid Bazaarvoice Ratings & Reviews
+            {% endcomment %}
+            {% render 'bv-ratings-reviews' %}
+            {% comment %}
+            End Bazaarvoice Ratings & Reviews
+            {% endcomment %}
+											
+      </div>
+    </div>
+									{% endif %}
+    {% endunless %}
+    </section>
+<!--   <script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": "{{ product.title }}",
+  "url": "{{ shop.url }}{{ product.url }}",
+  "image": "{{ shop.url }}/{{ product.featured_image }}",
+  "description": "{{ page_description }}",
+  "brand": "",
+  
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "{{ shop.currency }}",
+    "price": "{{ product.price | money_without_currency }}",
+    "url": "{{ shop.url }}{{ product.url }}",
+    "itemCondition": "http://schema.org/NewCondition",
+    "availability": "http://schema.org/InStock"
+  }
+}
+</script>
+	  -->
+<!-- 	<span id="product-json" hidden>{{ product | json }}</span> -->
+  <script type="application/ld+json" id="product-json">
+  	{{ product | json }}
+  </script>
+</div>
+
+{% comment%}
+{% section 'instagram' %}
+{% endcomment %}
+{% section 'product-bottom-gallary' %}
+
+
+      <script async src="{{ 'page-product.js' | asset_url }}"</script>
+<script>
+   $(function () {
+     if($('.spr-container').length){
+       $(".review-write").click(function(e) {
+         e.preventDefault();
+         $('.spr-form').show();
+         $('html, body').animate({
+                    scrollTop: $("#review").offset().top - 70
+         }, 2000);
+       });
+       $(".review-read").click(function(e) {
+         e.preventDefault();
+         $('.spr-form').hide();
+         $('html, body').animate({
+                    scrollTop: $("#review").offset().top - 70
+         }, 2000);
+       });
+     }
+   });
+</script>
+
+{{product.metafields.shogun.below}}
+
+<script type="text/javascript">
+  var _learnq = _learnq || [];
+
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>
+<script type="text/javascript">
+	var _learnq = _learnq || [];
+	document.getElementById("AddToCart").addEventListener('click',function (){
+ 		_learnq.push(['track', 'Added to Cart', item]);
+	});
+</script>
+
+<script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
+<script>
+    var klaviyo = klaviyo || [];
+    klaviyo.init({
+      account: "R2HKkf",
+	  list: 'SqVTPF',
+      platform: "shopify"
+    });
+    klaviyo.enable("backinstock",{ 
+    trigger: {
+      product_page_text: "Notify Me When Available",
+      product_page_class: "btn",
+      product_page_text_align: "center",
+      product_page_margin: "0px",
+      replace_anchor: false
+    },
+    modal: {
+     headline: "{product_name}",
+     body_content: "Register to receive a notification when this item comes back in stock.",
+     email_field_label: "Email",
+     button_label: "Notify me when available",
+     subscription_success_label: "You're in! We'll let you know when it's back.",
+     footer_content: '',
+     additional_styles: "@import url('https://fonts.googleapis.com/css?family=Helvetica+Neue');",
+     drop_background_color: "#000",
+     background_color: "#fff",
+     text_color: "#222",
+     button_text_color: "#fff",
+     button_background_color: "#439fdb",
+     close_button_color: "#ccc",
+     error_background_color: "#fcd6d7",
+     error_text_color: "#C72E2F",
+     success_background_color: "#d3efcd",
+     success_text_color: "#1B9500"
+    }
+  });
+</script>
+<script type="text/javascript">
+     $("a#prod_add_to_cart").on("click", function () {
+          var pid =  $( "select#product-select" ).val();
+          var pquantity = $( "select#quantity" ).val();
+            $.ajax({
+              type: "POST",
+              url: "/cart/add.js",
+              data: {
+                quantity: pquantity,
+                id: pid,
+              },
+              dataType: "json",
+              success: function (success) {
+                          cart_data();
+              },
+              error: function (error) {},
+            });           
+          });
+
+</script>
+
+<script type="application/ld+json">
+ {
+ "@context" : "https://schema.org",
+"@type": "Product",
+"@id" : "{{ shop.url }}{{ product.url }}",
+   "offers": [
+     {%- for variant in product.variants -%}
+       {
+         "@type": "Offer",
+         "name": {{ variant.title | json }},
+         "availability": {%- if variant.available -%}"https://schema.org/InStock"{%- else -%}"https://schema.org/OutOfStock"{%- endif -%},
+         "price": {{ variant.price | divided_by: 100.0 | json }},
+         "priceCurrency": {{ shop.currency | json }},
+         "priceValidUntil": "{{ 'now' | date: '%s' | plus: days_product_price_valid_until | date: '%Y-%m-%d'}}",
+         {%- if variant.sku != blank -%}
+           "sku": {{ variant.sku | json }},
+         {%- endif -%}
+         "url": "{{ request.path }}{{ variant.url }}"
+       }{% unless forloop.last %},{% endunless %}
+     {%- endfor -%}
+   ],
+   {%- if is_barcode_available and is_valid_gtin_length %}
+     "{{gtin_option}}": {{ product.selected_or_first_available_variant.barcode | json }},
+     "productId": {{ product.selected_or_first_available_variant.barcode | json }},
+   {%- elsif is_barcode_available %}
+     "mpn": {{ product.selected_or_first_available_variant.barcode | json }},
+     "productId": {{ product.selected_or_first_available_variant.barcode | json }},
+   {%- endif %}
+   "brand": {
+     "name": {{ product.vendor | json }}
+   },
+   "name": {{ product.title | json }},
+   "description": {{ product.description | strip_html | json }},
+   "category": {{ product.type | json }},
+   "url": "{{ request.path }}{{ product.url }}",
+   "sku": {{ product.selected_or_first_available_variant.sku | json }},
+   "image": {
+     "@type": "ImageObject",
+     "url": "https:{{ product.featured_media | img_url: '1024x' }}",
+     "image": "https:{{ product.featured_media | img_url: '1024x' }}",
+     "name": {{ product.featured_media.alt | json }},
+     "width": "1024",
+     "height": "1024"
+   }
+}
+</script>
+
+<script type="text/javascript">
+    (function () {
+        var languageCodes = new Set(['aa', 'ab', 'ae', 'af', 'ak', 'am', 'an', 'ar', 'as', 'av', 'ay', 'az', 'ba', 'be', 'bg',
+            'bh', 'bi', 'bm', 'bn', 'bo', 'br', 'bs', 'ca', 'ce', 'ch', 'co', 'cr', 'cs', 'cu', 'cv', 'cy', 'da', 'de',
+            'dv', 'dz', 'ee', 'el', 'en', 'eo', 'es', 'et', 'eu', 'fa', 'ff', 'fi', 'fj', 'fo', 'fr', 'fy', 'ga', 'gd',
+            'gl', 'gn', 'gu', 'gv', 'ha', 'he', 'hi', 'ho', 'hr', 'ht', 'hu', 'hy', 'hz', 'ia', 'id', 'ie', 'ig', 'ii',
+            'ik', 'io', 'is', 'it', 'iu', 'ja', 'jv', 'ka', 'kg', 'ki', 'kj', 'kk', 'kl', 'km', 'kn', 'ko', 'kr', 'ks',
+            'ku', 'kv', 'kw', 'ky', 'la', 'lb', 'lg', 'li', 'ln', 'lo', 'lt', 'lu', 'lv', 'mg', 'mh', 'mi', 'mk', 'ml',
+            'mn', 'mr', 'ms', 'mt', 'my', 'na', 'nb', 'nd', 'ne', 'ng', 'nl', 'nn', 'no', 'nr', 'nv', 'ny', 'oc', 'oj',
+            'om', 'or', 'os', 'pa', 'pi', 'pl', 'ps', 'pt', 'qu', 'rm', 'rn', 'ro', 'ru', 'rw', 'sa', 'sc', 'sd', 'se',
+            'sg', 'si', 'sk', 'sl', 'sm', 'sn', 'so', 'sq', 'sr', 'ss', 'st', 'su', 'sv', 'sw', 'ta', 'te', 'tg', 'th',
+            'ti', 'tk', 'tl', 'tn', 'to', 'tr', 'ts', 'tt', 'tw', 'ty', 'ug', 'uk', 'ur', 'uz', 've', 'vi', 'vo', 'wa',
+            'wo', 'xh', 'yi', 'yo', 'za', 'zh', 'zu']);
+
+        /* Disable tracking (like Facebook Pixel) to prevent duplicated tracking with bundle page */
+        window.trekkie = {
+            integrations: [],
+        };
+        window.trekkie.ready = function () {};
+        if (window.fbq) {
+            window.fbq.queue = [];
+        } else {
+            window.fbq = function () {};
+        }
+
+        var loader = document.querySelector('#bundle-builder-app--bundle-product-loader');
+        loader.style.display = 'block';
+
+        var content = document.querySelector('#bundle-builder-app--bundle-product-content');
+        content.style.visibility = 'hidden';
+
+        var link;
+        try {
+            link = /href="([^"]*)"/.exec(document.querySelector('#bundle-builder-app--bundle-product-content noscript').innerHTML)[1];
+        } catch (e) {
+            link = null;
+        }
+        if (link) {
+            // First part of the URL pathname, either 'apps' or a language code
+            var pathnameFirst = window.location.pathname.split('/')[1];
+
+            // If a language code is in current URL, add it to relative bundle link
+            if (languageCodes.has(pathnameFirst.split('-')[0])){
+                link = '/' + pathnameFirst + link;
+            }
+            window.location.replace(link + window.location.search);
+        } else {
+            var req = new XMLHttpRequest();
+            req.addEventListener('load', function () {
+                var data = JSON.parse(this.responseText);
+                window.location.replace(data.url + window.location.search);
+            });
+            req.open('GET', '/apps/bundles/product/{{ product.id }}/bundle');
+            req.send();
+        }
+    })();
+</script>

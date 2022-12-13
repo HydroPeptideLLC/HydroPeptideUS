@@ -1,0 +1,353 @@
+<div id="BF-More-Ways-To-Explore">
+    <span class="More-Ways-to-Explore">Explore Personalized Skincare</span>
+    <div class="Frame-1">
+        <div id="Explore-Left">
+            <span id="Holiday-Gift-Guide">Shop Holiday Kits</span>
+            <a class="Explore-CTA" href="{{ section.settings.left-link }}"><span class="text">shop kits</span></a>
+        </div>
+        <div id="Explore-Right">
+            <div id="right-top">
+                <span id="Perfect-Routine">Personalize Your Skincare Routine</span>
+                <a class="Explore-CTA" href="{{ section.settings.right-top-link }}"><span class="text">Take the quiz</span></a>
+            </div>
+            <div id="right-bottom">
+                <span id="Online-Consult">Free Virtual Skincare Consultations</span>
+                <a class="Explore-CTA" href="{{ section.settings.right-bottom-link }}"><span class="text">learn more</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="InstaFeed-Header">
+  <span class="Follow-Us-HydropPeptide"><span class="text-style-1">Follow Us</span> <a id="insta-link" href="https://www.instagram.com/hydropeptide/" target="_blank">@HydroPeptide</a></span>
+</div>
+<style > #InstaFeed-Header {
+    text-align: center;
+    padding: 50px 0 0;
+}
+#insta-link {
+    text-transform: none;
+}
+.Follow-Us-HydropPeptide {
+    width: 100%;
+    height: 50px;
+    flex-grow: 0;
+    font-family: ChronicleDisplay-Roman;
+    font-size: 45px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.11;
+    letter-spacing: normal;
+    text-align: left;
+    color: #6d9dea;
+}
+.Follow-Us-HydropPeptide .text-style-1 {
+    color: #000;
+}
+#BF-More-Ways-To-Explore {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 50px 0;
+}
+.More-Ways-to-Explore {
+    height: auto;
+    align-self: stretch;
+    flex-grow: 0;
+    font-family: ChronicleDisplay-Roman;
+    font-size: 45px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.11;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000;
+}
+.Frame-1 {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#Explore-Left {
+    width: 795px;
+    height: 762px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 0 10px 0 0;
+    padding: 50px;
+    background-color: #4c4c4c;
+    background-image: url({{ section.settings.left_image | img_url: 'master' }});
+}
+#Holiday-Gift-Guide 
+{
+    width: 393px;
+    height: auto;
+    flex-grow: 0;
+    font-family: ChronicleDisplay-Roman;
+    font-size: 35px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #393939;
+}
+#Perfect-Routine {
+    width: 255px;
+    height: auto;
+    flex-grow: 0;
+    font-family: ChronicleDisplay-Roman;
+    font-size: 35px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #393939;
+}
+#Online-Consult {
+    width: 361px;
+    height: auto;
+    flex-grow: 0;
+    font-family: ChronicleDisplay-Roman;
+    font-size: 35px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.1;
+    letter-spacing: normal;
+    text-align: left;
+    color: #393939;
+}
+.Explore-CTA {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border: solid 1px #e4e4e4;
+    background-color:#6d9dea;
+    margin: 0 !important;
+}
+.Explore-CTA .text {
+    flex-grow: 0;
+    font-family: TT Norms1;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+}
+#Explore-Right {
+    width: 795px;
+    height: 762px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 0 0 10px;
+    padding: 0;
+}
+#right-top {
+    width: 795px;
+    height: 376px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    margin: 0 0 10px;
+    padding: 50px;
+    background-color: #0003; 
+    background-image: url({{ section.settings.right_top_image | img_url: 'master' }});
+}
+#right-bottom {
+    width: 795px;
+    height: 376px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px; 
+    margin: 10px 0 0;
+    padding: 50px;
+    background-image: url({{ section.settings.right_bottom_image | img_url: 'master' }});
+}
+@media screen and (max-width: 768px)
+{
+    #Explore-Left
+    {
+        width: 100vw !important;
+    }
+    #Explore-Right
+    {
+        width: 100vw !important;
+    }
+    #right-top
+    {
+        width: 100vw !important;
+    }
+    #right-bottom
+    {
+        width: 100vw !important;
+    }
+}
+@media screen and (min-width: 769px) and (max-width: 1440px)
+{
+    #Explore-Left
+    {
+        width: 700px !important;
+    }
+    #Explore-Right
+    {
+        width: 700px !important;
+    }
+    #right-top
+    {
+        width: 700px !important;
+    }
+    #right-bottom
+    {
+        width: 700px !important;
+    }
+}
+@media screen and (max-width: 480px) {
+    #BF-More-Ways-To-Explore {
+        padding-top: 25px;
+        gap: 20px;
+    }
+    .More-Ways-to-Explore {
+        align-self: stretch;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 35px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: center;
+        color: #393939;
+    }
+    .Frame-1 {
+        align-self: flex-start;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 10px;
+        padding: 0;
+    }
+    #Explore-Left {
+        max-width: 100vw;
+        height: 414px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        margin: 0 0 10px;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.3);
+        background: url({{ section.settings.left_mobile_image | img_url: 'master' }}) no-repeat;
+    }
+    #Explore-Right {
+        margin: 0;
+        width: 100vw;
+    }
+    #right-top {
+          max-width: 100vw;
+        height: 414px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.2);
+        background: url({{ section.settings.right_top_mobile_image | img_url: 'master' }}) no-repeat;
+    }
+    #right-bottom {
+          max-width: 100vw;
+        height: 414px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.3);
+        background: url({{ section.settings.right_bottom_mobile_image | img_url: 'master' }}) no-repeat;
+    }
+}
+</style>
+{% schema %}
+  {
+    "name": "More Ways To Explore",
+    "settings": [
+      {
+          "id": "left_image",
+          "type": "image_picker",
+          "label": "Left Image"
+      },
+      {
+          "id": "left_mobile_image",
+          "type": "image_picker",
+          "label": "Left Image"
+      },
+      {
+          "id": "left-link",
+          "type": "url",
+          "label": "Left CTA Link"
+      },
+      {
+          "id": "right_top_image",
+          "type": "image_picker",
+          "label": "Right Top Image"
+      },
+      {
+          "id": "right_top_mobile_image",
+          "type": "image_picker",
+          "label": "Right Top Image"
+      },
+      {
+          "id": "right-top-link",
+          "type": "url",
+          "label": "Right Top CTA Link"
+      },
+      {
+          "id": "right_bottom_image",
+          "type": "image_picker",
+          "label": "Right Bottom Image"
+      },
+      {
+          "id": "right_bottom_mobile_image",
+          "type": "image_picker",
+          "label": "Right Bottom Image"
+      },
+      {
+          "id": "right-bottom-link",
+          "type": "url",
+          "label": "Right Bottom CTA Link"
+      }      
+    ]
+  }
+{% endschema %}

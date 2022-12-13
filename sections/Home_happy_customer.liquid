@@ -1,0 +1,98 @@
+<div class="happy_customer">
+  <div class="container">
+    <div class="top_testimonial">
+      <h4>{{ section.settings.sub_title }}</h4>
+      <h3>{{ section.settings.testimonial }}</h3>
+      <p>{{ section.settings.author }}</p>
+      <a class="u-center" href="{{ section.settings.cta_link }}">{{ section.settings.cta }}</a>
+    </div>
+    <div class="meet_team">
+      {% for block in section.blocks %}
+      <div>
+        <img src="{{ block.settings.image | img_url: 'master' }}" alt="" class="lazy">
+        <p>{{ block.settings.title }}</p>
+        <a href="{{ block.settings.link }}">{{ block.settings.button_text }}</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+	"name": "Home happy customer",
+	"settings": [
+		{
+			"type": "text",
+			"id": "sub_title",
+			"label": "sub title",
+			"default": "Skincare for happy cells"
+		},
+		{
+			"type": "textarea",
+			"id": "testimonial",
+			"label": "Customer Saying",
+			"default": "We take an epigenetic approach to aging, meaning we focus on ingredients that are going to signal positive cell health because happy cells mean more youthful acting skin."
+		},
+		{
+			"type": "text",
+			"id": "author",
+			"label": "Author",
+			"default": "- Dr. Neal Kitchen, Chief Geneticist"
+		},
+		{
+          "type": "text",
+          "id": "cta",
+          "label": "Button Text",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "cta_link",
+          "label": "Button Link"
+        }
+	],
+	"blocks": [
+		{
+			"type": "gallery_image",
+			"name": "Block",
+			"settings": [
+				{
+                  "type": "image_picker",
+                  "id": "image",
+                  "label": "Banner Image"
+                },
+				{
+                    "type": "text",
+                    "id": "title",
+                    "label": "title"
+                },
+				{
+                    "type": "text",
+                    "id": "button_text",
+                    "label": "Button text"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "link"
+                }
+			]
+		}
+	],
+	"presets": [
+		{
+			"category": "Banner",
+			"name": "Home happy customer",
+			"blocks": [
+				{
+					"type": "gallery_image"
+				},
+				{
+					"type": "gallery_image"
+				}
+			]
+		}
+	]
+}
+{% endschema %}
+

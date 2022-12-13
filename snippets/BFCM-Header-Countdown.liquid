@@ -1,0 +1,141 @@
+{% comment %} Ends 11/29 11:59pm PST {% endcomment %}
+<div id="BF-Header-Countdown">
+    <span id="Count-Title">time left to save</span>
+    <div id="Countdown-Timer">
+        <div class="countdown">
+            <span id="day" class="timeLeft"></span>
+            <span class="typeLeft">Days</span>
+        </div>
+        <div class="countdown">
+            <span id="hour" class="timeLeft"></span>
+            <span class="typeLeft">Hours</span>
+        </div>
+        <div class="countdown">
+            <span id="minute" class="timeLeft"></span>
+            <span class="typeLeft">Mins</span>
+        </div>
+    </div>
+    
+</div>
+<style>
+    #BF-Header-Countdown
+    {
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+        padding: 43px 0 33px 0; 
+    }
+    #Count-Title
+    {
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 18px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.17;
+        letter-spacing: normal;
+        text-align: center;
+        color: #393939;
+        text-transform: uppercase;
+    }
+    #Countdown-Timer
+    {
+        width: 300px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 0;
+    }
+    .countdown
+    {
+        height: 80px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; 
+        align-items: center;
+        padding: 10px;
+        border: solid 2px #f1f1f1;
+        background-color: #fff;
+    }
+    .timeLeft
+    {
+        width: 35px;
+        height: 30px;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 30px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        text-align: center;
+        color: #6d9dea;
+    }
+    .typeLeft
+    {
+        width: 54px;
+        height: 30px;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 20px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: center;
+        color: #393939;
+    }
+</style>
+<script>
+    countdownTimer();
+    setInterval(countdownTimer, 1000);
+    function countdownTimer()
+    {
+        var today = new Date();
+        var timeEnd = new Date("2022-11-29T23:59:59-08:00");
+      	
+        if (today > timeEnd)
+        {
+            timeEnd = new Date("2022-11-30T23:59:59-08:00");
+        }
+      	console.log(timeEnd);
+        var timeLeft = timeEnd - today;
+        timeLeft = (timeLeft / 3600000) / 24;
+        var days = timeLeft.toString().split('.');
+        var hourMin = Math.floor(Number("0."+days[1]) * 3600000) * 24;
+        hourMin = hourMin / 3600000; 
+        var hours = hourMin.toString().split('.');
+        var min = Math.floor(Number("0."+hours[1]) * 3600000);
+        min = min / 60000;
+        min = min.toString().split('.');
+        var dayDiff = Number(days[0]);  
+        var hourDiff = Number(hours[0]); 
+        var minDiff = Number(min[0]);
+
+        if(dayDiff.toString().length == 1)
+        {
+            dayDiff = "0"+dayDiff;
+        }
+        if(hourDiff.toString().length == 1)
+        {
+            hourDiff = "0"+hourDiff;
+        }
+        if(minDiff.toString().length == 1)
+        {
+            minDiff = "0"+minDiff;
+        }
+        $('#day').text(dayDiff);   
+        $('#hour').text(hourDiff);   
+        $('#minute').text(minDiff);   
+    }
+</script>

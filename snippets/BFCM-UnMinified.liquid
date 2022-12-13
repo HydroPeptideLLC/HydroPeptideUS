@@ -1,0 +1,1695 @@
+<script>
+  var header = document.getElementById("BF-product-slider-UI");
+  var btns = document.getElementsByClassName('Text-Button-Collection-One'); 
+  for (let i = 0; i < btns.length; i++) { 
+      btns[i].addEventListener("click", function() {
+          var current = document.getElementsByClassName("Text-Button-Collection-One active");
+          $(current[0].name).addClass('hide');
+          $(current[0].value).slick('unslick');
+          if(current[0].name == '#Aging-Skin-Type-Collection')
+          {
+              $('#FP-Aging').addClass('hide');
+          }
+          if(current[0].name == '#Dry-Skin-Type-Collection')
+          {
+              $('#FP-Dry-Skin').addClass('hide');
+          }
+          if(current[0].name == '#Brightening-Collection')
+          {
+              $('#FP-Brightening').addClass('hide');
+          }
+          if(current[0].name == '#Oily-Skin-Type-Collection')
+          {
+              $('#FP-Oily-Skin').addClass('hide');
+          }
+          if(current[0].name == '#Acne-Skin-Type-Collection')
+          {
+              $('#FP-Acne').addClass('hide');
+          }
+          if(current[0].name == '#Sensitive-Skin-Type-Collection')
+          {
+              $('#FP-Sensitive-Skin').addClass('hide');
+          }
+          if (current.length > 0) { 
+              current[0].className = current[0].className.replace(" active", "");
+          }
+          this.className += " active";
+          $(this.name).removeClass('hide');
+          var sliderText = "";
+          var sliderLink = "";
+          var sliderBG = "";
+          var sliderMBG = ""; 
+          var sliderDesc = "";
+          var sliderHeader = "";
+          var textColor = "#fff !important"
+          var featured = "#FP-Aging";
+          var fpLink = "";
+          switch(this.name) {
+              case '#Aging-Skin-Type-Collection':
+                    sliderText = "More Healthy Aging Favorites";
+                    sliderLink = "{{ section.settings.aging-collection-url }}";
+                    sliderBG = "{{ section.settings.aging-bg | img_url: 'master' }}";
+                    sliderDesc = "{{ section.settings.aging-product-description }}";
+                    sliderHeader = "{{ section.settings.aging-product-name }}";
+                    textColor = "#393939 !important";
+                    featured = '#FP-Aging';
+                    fpLink = "{{ section.settings.aging-url }}";
+                    break;
+              case '#Dry-Skin-Type-Collection':
+                    sliderText = "More Dry Skin Favorites";
+                    sliderLink = "{{ section.settings.drySkin-collection-url }}";
+                    sliderBG = "{{ section.settings.drySkin-bg | img_url: 'master' }}";
+                    sliderDesc = "{{ section.settings.drySkin-product-description }}";
+                    sliderHeader = "{{ section.settings.drySkin-product-name }}";
+                    textColor = "#393939 !important";
+                    featured = '#FP-Dry-Skin';
+                    fpLink = "{{ section.settings.drySkin-url }}";
+                    break;
+              case '#Brightening-Collection':
+                    sliderText = "More Brightening Favorites";
+                    sliderLink = "{{ section.settings.brightening-collection-url }}";
+                    sliderBG = "{{ section.settings.brightening-bg | img_url: 'master' }}";
+                    sliderDesc = "{{ section.settings.brightening-product-description }}";
+                    sliderHeader = "{{ section.settings.brightening-product-name }}";
+                    featured = '#FP-Brightening';
+                    fpLink = "{{ section.settings.brightening-url }}";
+                    break;
+              case '#Oily-Skin-Type-Collection':
+                    sliderText = "More Oily Skin Favorites";
+                    sliderLink = "{{ section.settings.oily-collection-url }}";
+                    sliderBG = "{{ section.settings.oily-bg | img_url: 'master' }}";
+                    sliderDesc = "{{ section.settings.oily-product-description }}";
+                    sliderHeader = "{{ section.settings.oily-product-name }}";
+                    textColor = "#393939 !important";
+                    featured = '#FP-Oily-Skin';
+                    fpLink = "{{ section.settings.oily-url }}";
+                    break;
+              case '#Acne-Skin-Type-Collection':
+                    sliderText = "More Acne Favorites";
+                    sliderLink = "{{ section.settings.acne-collection-url }}";
+                    sliderBG = "{{ section.settings.acne-bg | img_url: 'master' }}";
+                    sliderDesc = "{{ section.settings.acne-product-description }}";
+                    sliderHeader = "{{ section.settings.acne-product-name }}";
+                    textColor = "#393939 !important"; 
+                    featured = '#FP-Acne';
+                    fpLink = "{{ section.settings.acne-url }}";
+                    break;
+              case '#Sensitive-Skin-Type-Collection':
+                    sliderText = "More Sensitive Skin Favorites";
+                    sliderLink = "{{ section.settings.sensitive-collection-url }}";
+                    sliderBG = "{{ section.settings.sensitive-bg | img_url: 'master' }}";  
+                    sliderDesc = "{{ section.settings.sensitive-product-description }}";
+                    sliderHeader = "{{ section.settings.sensitive-product-name }}";
+                    featured = '#FP-Sensitive-Skin';
+                    fpLink = "{{ section.settings.sensitive-url }}";
+                    break;
+          }   
+          console.log('here is the featured');
+          console.log(featured);
+          $(featured).removeClass('hide');
+          $('.Shop-by-Skin-Type').text(sliderText); 
+          console.log(sliderLink);
+          $('.Slider-UI .Text-Button').attr("href", "https://hydropeptide.com"+sliderLink);
+          $('#Featured-Product-Link').attr("href", "https://hydropeptide.com"+fpLink)
+          $('.HF-editorial-slider-editorial').css("background-image", "url("+ sliderBG + ")");
+          $('.HF-editorial-slider-editorial span').css("color", textColor);
+          $('.Slider-Headline').text(sliderHeader);
+          $('.Slider-Desc').html(sliderDesc);
+          $('.Slider-Desc p').css("color", textColor);
+          $('.Slider-Desc p').first().css("max-width", "470px");
+          
+          $(this.value).not('.slick-initialized').slick({
+            infinite: false,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            centerPadding: '40px',
+            nextArrow: $('.Arrow-Button-Next'),
+            prevArrow: $('.Arrow-Button-Prev')
+          });
+          var currentSlick = $(this.value).slick('getSlick');
+          var slickCount = Math.ceil(currentSlick.slideCount / 4);
+        var currentPage = 1;
+        $('.Arrow-Button-Next').click(() => {
+          if(currentPage < slickCount)
+          {
+              currentPage++;
+          }
+        $('.slider-count').text(currentPage + ' / ' + slickCount);
+      });
+      $('.Arrow-Button-Prev').click(() => {
+          if(currentPage > 1)
+          {
+              currentPage--;
+          }
+        $('.slider-count').text(currentPage + ' / ' + slickCount);
+      });
+      $('.slider-count').text(currentPage + ' / ' + slickCount);
+        
+      });    
+  }
+  $(document).ready(() => {
+      var currentSlider = $(".Text-Button-Collection-One.active");
+      currentSlider = currentSlider[0].value;
+      var currentSlick = $(currentSlider).slick('getSlick');
+      currentSlick = currentSlick.slideCount;
+      console.log(currentSlick);
+      var slickCount = Math.ceil(currentSlick / 4);
+      console.log(slickCount);
+      var currentPage = 1;
+      $('.Arrow-Button-Next').click(() => {
+          if(currentPage < slickCount)
+          {
+              currentPage++;
+          }
+        $('.slider-count').text(currentPage + ' / ' + slickCount);
+      });
+      $('.Arrow-Button-Prev').click(() => {
+          if(currentPage > 1)
+          {
+              currentPage--;
+          }
+        $('.slider-count').text(currentPage + ' / ' + slickCount);
+      });
+      $('.slider-count').text(currentPage + ' / ' + slickCount);
+  })
+  
+</script>
+
+<style>
+    #BF-Why-HP
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        gap: 40px;
+        margin: 90px 0 50px;
+        padding: 0 64px;
+        max-height: 476px;
+    }
+    #Not-Sure-Why
+    {
+        align-self: stretch;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch;
+        gap: 10px;
+        padding: 0;
+        background-color: #fff;
+    }
+    #Why-HP-Left
+    {
+        max-width: 795px;
+        max-height: 476px;
+        align-self: stretch;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 50px;
+        background-color: #a7c4f3;
+    }
+    #Why-HP-Copy
+    {
+        height: auto;
+        align-self: stretch;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 20px;
+        padding: 0;
+    }
+    #Why-HP-Copy #Why-HydroPeptide
+    {
+        height: auto;
+        align-self: stretch;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 45px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.11;
+        letter-spacing: normal;
+        text-align: left;
+        color: #393939;
+    }
+    #Why-HP-Copy #Text
+    {
+        height: auto;
+        max-width: 695px;
+        align-self: flex-start;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.31;
+        letter-spacing: normal;
+        text-align: left;
+        color: #393939;
+        word-wrap: normal;
+    }
+    .HF-About-Icons 
+    {
+        height: auto;
+        align-self: stretch;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 100px;
+        padding: 0;
+    }
+    #Frame-70 
+    {
+        height: auto;
+        align-self: stretch;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 20px;
+        padding: 40px 0;
+    }
+    .column-icons
+    {
+        width: auto; /* 226px */
+        height: auto;/* 140px */
+        flex-grow: 0;
+        display: flex; 
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 0;
+    }
+    .icon-group
+    {
+        width: 226px;
+        height: 60px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        padding: 0;
+    }
+    .icon
+    {
+        width: 49.3px;
+        height: 57px;
+    }
+    .icon-label
+    {
+        width: 156px;
+        height: 21px;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.31;
+        letter-spacing: normal;
+        text-align: left;
+        color: #393939;
+    }
+    #Why-HP-CTA
+    {
+        height: 44px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        border: solid 1px #e4e4e4;
+        background-color: #fff;
+        margin: 0;
+    }
+    #Why-HP-CTA #CTA-Text
+    {
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #393939;
+        text-transform: uppercase;
+    }
+    #Why-HP-Right
+    {
+        min-width: 795px; 
+        height: 476px;
+        background-image: url({{ section.settings.image | img_url: 'master' }});
+        background-color: #a7c4f3;
+        
+    }
+    @media screen and (max-width: 480px)
+    {
+        #BF-Why-HP
+        {
+            padding: 0 !important;
+            margin: 40px 0 0;
+            max-height: 100% !important;
+        }
+        #Why-HP-Right
+        {
+            display: none;
+        }
+        #Why-HP-Left
+        {
+            max-width: 100%;
+            max-height: 100% !important;
+            align-self: stretch;
+            flex-grow: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            gap: 30px;
+            padding: 40px 20px;
+            background-color: #a7c4f3;
+        }
+        #Frame-70
+        {
+            padding: 0;
+        }
+        #Why-HP-Copy #Text
+        {
+            align-self: stretch;
+            flex-grow: 0;
+            font-family: TT Norms1;
+            font-size: 16px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.31;
+            letter-spacing: normal;
+            text-align: center;
+            color: #393939;
+        }
+        .HF-About-Icons 
+        {
+            width: 374px;
+            height: 182px;
+            flex-grow: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 0;
+        } 
+        .icon-group
+        {
+            height: auto !important;
+            width: auto !important;
+            align-self: stretch;
+            flex-grow: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+            padding: 0;
+        }
+        .icon
+        {
+            width: 40.7px;
+            height: 47px;
+        }
+        .icon-label
+        {
+            text-align: center;
+        }
+        .column-icons
+        {
+            min-width: 182px !important;
+        }
+    }
+</style>
+
+<style>
+  #Featured-Product-Link
+    {
+        height: 44px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        border: solid 1px #e4e4e4;
+        background-color: #fff;
+        margin: 0;
+    }
+    #Featured-Product-Link #CTA-Text
+    {
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #393939;
+        text-transform: uppercase;
+    }
+  button
+  {
+      border: 0!important;
+  }
+  .hide
+  {
+      display: none !important;
+  }
+  .special-blue
+  {
+      color: #6d9dea;
+  }
+  #BF-Shop-By-Need
+  {
+      flex-grow: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 30px;
+      padding: 0px 64px;
+  }
+  #desktop-header
+  {
+      width: 100%;
+  }
+  #SBN-Title
+  {
+      width: 100%;
+      align-self: stretch;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 50px 120px;
+  }
+  #SBN-Title .Text
+  {
+      flex-grow: 0;
+      font-family: ChronicleDisplay-Roman;
+      font-size: 45px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.11;
+      letter-spacing: normal;
+      text-align: center;
+      color: #393939;
+  }
+  .BF-product-slider-UI
+  {
+      width: 100%;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: row; 
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 64px;
+      
+  }
+  .Text-Button-Collection-One
+  {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 0 0 15px;
+      background-color: #fff;
+      border-bottom: 1px solid #e4e4e4 !important;
+      margin: 0;
+  }
+  .Text-Button-Collection-One.active
+  {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 0 0 15px;
+      border-bottom: 2px solid #6d9dea !important;
+      background-color: #fff;
+  }
+  .Text-Button-Collection-One .CTA-Copy
+  {
+      flex-grow: 0;
+      font-family: TT Norms1;
+      font-size: 18px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: 2px;
+      text-align: center;
+      color: #393939;
+  }
+  .Text-Button-Collection-One .CTA-Copy:hover
+  {
+      color: #6d9dea;
+  }
+  .Text-Button-Collection-One.active .CTA-Copy
+  {
+      flex-grow: 0;
+      font-family: TT Norms1;
+      font-size: 18px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: 2px;
+      text-align: center;
+      color: #6d9dea;
+  }
+  #featured-product
+  {
+      flex-grow: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 30px;
+      padding: 50px 64px;
+      
+  }
+  #featured-product .product-subtitle
+  {
+      flex-grow: 0;
+      font-family: TT Norms1;
+      font-size: 16px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.31;
+      letter-spacing: normal;
+      text-align: left;
+      color: #393939;
+  }
+  .this-is-the-featured-product
+  {
+      width: 325px;
+      height: 528px;
+  }
+  .Slider-Desc p
+  {
+      flex-grow: 0;
+      font-family: TT Norms1;
+      font-size: 16px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.31;
+      letter-spacing: normal;
+      text-align: left;
+      color: #393939;
+      word-wrap: normal;
+  }
+  .Slider-Desc:first-child
+  {
+    max-width: 480px !important;
+  }
+  .HF-editorial-slider-editorial 
+  {
+      height: 528px;
+      width: 1015px;
+      align-self: stretch;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 50px 0 50px 50px;
+  }
+  #SBN-Carousel
+  {
+      width: 100%;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 30px;
+      padding: 50px 64px;
+  }
+  .total-slider-UI
+  {
+      width: 100%;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0;
+  }
+  .Shop-by-Skin-Type
+  {
+      height: 45px;
+      align-self: stretch;
+      flex-grow: 0;
+      font-family: ChronicleDisplay-Roman;
+      font-size: 35px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.29;
+      letter-spacing: normal;
+      text-align: left;
+      color: #393939;
+  }
+  .Slider-Headline 
+  {
+      width: 480px;
+      flex-grow: 0;
+      font-family: ChronicleDisplay-Roman;
+      font-size: 35px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.29;
+      letter-spacing: normal;
+      text-align: left;
+      color: #393939;
+  }
+  .Slider-UI
+  {
+      width: 319px;
+      height: 44px;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 20px;
+      padding: 0;
+  }
+  
+  .Slider-UI .Text-Button 
+  {
+      width: 121px;
+      height: 44px;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      border: solid 1px #e4e4e4 !important;
+      background-color: #fff;
+  }
+  .Slider-UI .Text-Button .CTA-Copy
+  {
+      width: 81px;
+      height: 17px;
+      flex-grow: 0;
+      font-family: TT Norms1;
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: normal;
+      letter-spacing: 2px;
+      text-align: center;
+      color: #393939;
+  }
+  .Arrow-Button-Next
+  {
+      width: 44px;
+      height: 44px;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border: solid 1px #e4e4e4;
+      background-color: #fff;
+  }
+  .Arrow-Button-Next img
+  {
+      top: 50%;
+      left: 50%;
+/*       transform: translate(50%, 50%); */
+  }
+  .Arrow-Button-Prev
+  {
+      width: 44px;
+      height: 44px;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border: solid 1px #e4e4e4;
+      background-color: #fff;
+  }
+  .Arrow-Button-Prev img
+  {
+      top: 50%;
+      left: 50%;
+  }
+  .Mobile-Arrow-Button-Next
+  {
+      width: 44px;
+      height: 44px;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border: solid 1px #e4e4e4;
+      background-color: #fff;
+  }
+  .Mobile-Arrow-Button-Next img
+  {
+      top: 50%;
+      left: 50%;
+/*       transform: translate(50%, 50%); */
+  }
+  .Mobile-Arrow-Button-Prev
+  {
+      width: 44px;
+      height: 44px;
+      flex-grow: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 10px; 
+      border: solid 1px #e4e4e4;
+      background-color: #fff;
+  }
+  .Mobile-Arrow-Button-Prev img
+  {
+      top: 50%;
+      left: 50%;
+  }
+  .bf-slider
+  {
+      width: 100%;
+      height: auto;
+      flex-grow: 0;
+      gap: 10px;
+  }
+  @media screen and (max-width: 480px)
+  {
+      #BF-Shop-By-Need-Mobile
+      {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 20px;
+          margin: 50px 0;
+          padding: 0;
+          background-color: #fff;
+      }
+      #mobile-header
+      {
+          align-self: stretch;
+          flex-grow: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: stretch;
+          gap: 20px;
+          padding: 0 30px;
+      }
+      #SBN-Mobile-Title
+      {
+          width: 354px;
+          text-align: center;
+      }
+      #SBN-Mobile-Title .Text
+      {
+          align-self: stretch;
+          flex-grow: 0;
+          font-family: ChronicleDisplay-Roman;
+          font-size: 35px;
+          font-weight: normal;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.29;
+          letter-spacing: normal;
+          text-align: center;
+          color: #393939;
+      }
+      .Dropdown 
+      {
+          width: 100%;
+          height: 44px;
+          align-self: stretch;
+          flex-grow: 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 20px;
+          border: solid 1px #e4e4e4;
+          background-color: #fff;
+      }
+      .Slider-UI
+      {
+          width: 100%;
+          height: 44px;
+          flex-grow: 0;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+          padding: 0;
+      }
+      .mobile-collection
+      {
+          max-height: 550px !important;
+          width: 85% !important;
+          
+      }
+      .collectionGrid
+      {
+          margin: 20px auto !important;
+      }
+      .collectionGrid .collectionBlock 
+      {
+        max-width: 480px !important;
+        margin: 0 auto;
+      }
+      #featured-product
+      {
+          width: 100%;
+          padding: 50px 0;
+      }
+      .HF-editorial-slider-editorial 
+      {
+          height: 414px;
+          width: 100%;
+          align-self: stretch;
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 40px 30px 0;
+      }
+      .Slider-Desc p 
+      {
+          width: 222px;
+      }
+  }
+</style>
+
+<script> 
+   $(document).ready(() => {
+      var currentSlider = $('#select-skin-type')[0].value;
+      var currentSlick = $(currentSlider).slick('getSlick');
+      var slickCount = currentSlick.slideCount;
+      var currentPage = 1;
+      $('.Mobile-Arrow-Button-Next').click(() => {
+        console.log('next');
+          if(currentPage < slickCount)
+          {
+              currentPage++;
+          }
+        $('.mobile-slider-count').text(currentPage + ' / ' + slickCount);
+      });
+      $('.Mobile-Arrow-Button-Prev').click(() => {
+          if(currentPage > 1)
+          {
+              currentPage--;
+          }
+        $('.mobile-slider-count').text(currentPage + ' / ' + slickCount);
+      });
+      $('.mobile-slider-count').text(currentPage + ' / ' + slickCount);
+  });
+        
+  
+        var selection = "#aging-mobile-slider";
+        var currentVal = $('#select-skin-type').value;
+        var currentName ="";
+        $('select#select-skin-type').on('focus', function() {
+            currentVal = this.value;
+            if(this.value == "#aging-mobile-slider")
+            {
+                currentName = "#Aging-Skin-Type-Mobile-Collection";
+            }
+            if(this.value == "#dry-mobile-slider")
+            {
+                currentName = "#Dry-Skin-Type-Mobile-Collection";
+            }
+            if(this.value == "#brightening-mobile-slider")
+            {
+                currentName = "#Brightening-Mobile-Collection";
+            }
+            if(this.value == "#oily-mobile-slider")
+            {
+                currentName = "#Oily-Skin-Type-Mobile-Collection";
+            }
+            if(this.value == "#acne-mobile-slider")
+            {
+                currentName = "#Acne-Skin-Type-Mobile-Collection";
+            }
+            if(this.value == "#sensitive-mobile-slider")
+            {
+                currentName = "#Sensitive-Skin-Type-Mobile-Collection";
+            }
+          
+        })
+        .change(() => {
+            var newVal = $('#select-skin-type')[0];
+            var newName;
+              if(newVal.value == "#aging-mobile-slider")
+            {
+                newName = "#Aging-Skin-Type-Mobile-Collection";
+            }
+            if(newVal.value == "#dry-mobile-slider")
+            {
+                newName = "#Dry-Skin-Type-Mobile-Collection";
+                console.log(newName);
+            }
+            if(newVal.value == "#brightening-mobile-slider")
+            { 
+                newName = "#Brightening-Mobile-Collection";
+            }
+            if(newVal.value == "#oily-mobile-slider")
+            {
+                newName = "#Oily-Skin-Type-Mobile-Collection";
+            }
+            if(newVal.value == "#acne-mobile-slider")
+            {
+                newName = "#Acne-Skin-Type-Mobile-Collection";
+            }
+            if(newVal.value == "#sensitive-mobile-slider")
+            {
+                newName = "#Sensitive-Skin-Type-Mobile-Collection";
+            }
+            console.log('this is the newName')
+            console.log(newName);
+            console.log(currentName);
+            $(currentName).addClass('hide');
+            $(currentVal).slick('unslick');
+            $(newName).removeClass('hide');
+            var sliderText = ""; 
+            var sliderLink = "";
+            var sliderBG = "";
+            var sliderMBG = ""; 
+            var sliderDesc = "";
+            var sliderHeader = "";
+            var textColor = "#fff !important"
+            var fpLink = ""; 
+            switch(newName) {
+                case '#Aging-Skin-Type-Mobile-Collection': 
+                      sliderText = "More Healthy Aging Favorites";
+                      sliderLink = "{{ section.settings.aging-collection-url }}";
+                      sliderBG = "{{ section.settings.aging-mobile-bg | img_url: 'master' }}";
+                      sliderDesc = "{{ section.settings.aging-product-description }}";
+                      sliderHeader = "{{ section.settings.aging-product-name }}";
+                      textColor = "#393939 !important";
+                      fpLink = "{{ section.settings.aging-url }}";
+                      break;
+                case '#Dry-Skin-Type-Mobile-Collection':
+                      sliderText = "More Dry Skin Favorites";
+                      sliderLink = "{{ section.settings.drySkin-collection-url }}";
+                      sliderBG = "{{ section.settings.drySkin-mobile-bg | img_url: 'master' }}";
+                      sliderDesc = "{{ section.settings.drySkin-product-description }}";
+                      sliderHeader = "{{ section.settings.drySkin-product-name }}";
+                      textColor = "#393939 !important";
+                      fpLink = "{{ section.settings.drySkin-url }}";
+                      break;
+                case '#Brightening-Mobile-Collection': 
+                      sliderText = "More Brightening Favorites";
+                      sliderLink = "{{ section.settings.brightening-collection-url }}";
+                      sliderBG = "{{ section.settings.brightening-mobile-bg | img_url: 'master' }}";
+                      sliderDesc = "{{ section.settings.brightening-product-description }}";
+                      sliderHeader = "{{ section.settings.brightening-product-name }}";
+                      fpLink = "{{ section.settings.brightening-url }}";
+                      break;
+                case '#Oily-Skin-Type-Mobile-Collection':
+                      sliderText = "More Oily Skin Favorites";
+                      sliderLink = "{{ section.settings.oily-collection-url }}";
+                      sliderBG = "{{ section.settings.oily-mobile-bg | img_url: 'master' }}";
+                      sliderDesc = "{{ section.settings.oily-product-description }}";
+                      sliderHeader = "{{ section.settings.oily-product-name }}";
+                      textColor = "#393939 !important";
+                      fpLink = "{{ section.settings.oily-url }}";
+                      break;
+                case '#Acne-Skin-Type-Mobile-Collection':
+                      sliderText = "More Acne Favorites";
+                      sliderLink = "{{ section.settings.acne-collection-url }}";
+                      sliderBG = "{{ section.settings.acne-mobile-bg | img_url: 'master' }}";
+                      sliderDesc = "{{ section.settings.acne-product-description }}";
+                      sliderHeader = "{{ section.settings.acne-product-name }}";
+                      textColor = "#393939 !important"; 
+                      fpLink = "{{ section.settings.acne-url }}";
+                      break;
+                case '#Sensitive-Skin-Type-Mobile-Collection':
+                      sliderText = "More Sensitive Skin Favorites";
+                      sliderLink = "{{ section.settings.sensitive-collection-url }}";
+                      sliderBG = "{{ section.settings.sensitive-mobile-bg | img_url: 'master' }}";  
+                      sliderDesc = "{{ section.settings.sensitive-product-description }}";
+                      sliderHeader = "{{ section.settings.sensitive-product-name }}";
+                      fpLink = "{{ section.settings.sensitive-url }}";
+                      break;
+            } 
+            $('#Featured-Product-Link').attr("href", "https://hydropeptide.com"+fpLink)
+            $('.HF-editorial-slider-editorial').css("background-image", "url("+ sliderBG + ")");
+            $('.HF-editorial-slider-editorial span').css("color", textColor);
+            $('.Slider-Headline').text(sliderHeader);
+            $('.Slider-Desc').html(sliderDesc);
+            $('.Slider-Desc p').css("color", textColor);
+            var slider-first-description = $('.Slider-Desc p').first();
+              console.log(slider-first-description);
+            $(newVal.value).not('.slick-initialized').slick({
+              infinite: false,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              nextArrow: $('.Mobile-Arrow-Button-Next'), 
+              prevArrow: $('.Mobile-Arrow-Button-Prev')
+            }); 
+            var currentSlick = $(newVal.value).slick('getSlick'); 
+            var slickCount = currentSlick.slideCount;
+          var currentPage = 1;
+          $('.Mobile-Arrow-Button-Next').click(() => {
+            if(currentPage < slickCount)
+            {
+                currentPage++;
+            }
+          $('.mobile-slider-count').text(currentPage + ' / ' + slickCount);
+        });
+        $('.Mobile-Arrow-Button-Prev').click(() => {
+            if(currentPage > 1)
+            {
+                currentPage--;
+            }
+          $('.mobile-slider-count').text(currentPage + ' / ' + slickCount);
+        });
+        $('.mobile-slider-count').text(currentPage + ' / ' + slickCount);
+        })
+</script>
+
+<style>
+    #InstaFeed-Header
+    {
+        text-align: center;
+        padding: 50px 0 0; 
+    }
+    #insta-link
+    {
+        text-transform: none;
+    }
+    .Follow-Us-HydropPeptide 
+    {
+        width: 100%;
+        height: 50px;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 45px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.11;
+        letter-spacing: normal;
+        text-align: left;
+        color: #6d9dea;
+    }
+    .Follow-Us-HydropPeptide .text-style-1 
+    {
+      color: #000;
+    }
+    #BF-More-Ways-To-Explore
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        padding: 50px 0;
+    }
+    .More-Ways-to-Explore 
+    {
+        height: auto;
+        align-self: stretch;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 45px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.11;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000;
+    }
+    .Frame-1
+    {
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    #Explore-Left
+    {
+        width: 795px;
+        height: 762px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        gap: 20px;
+        margin: 0 10px 0 0;
+        padding: 50px;
+        background-color: #4c4c4c;
+        background-image: url({{ section.settings.left_image | img_url: 'master' }});
+    }
+    #Holiday-Gift-Guide
+    {
+        width: 393px;
+        height: auto;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 35px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: left;
+        color: #fff;
+    }
+    #Perfect-Routine
+    {
+        width: 255px;
+        height: auto;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 35px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: left;
+        color: #fff;
+    }
+    #Online-Consult
+    {
+        width: 361px;
+        height: auto;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 35px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: left;
+        color: #fff;
+    }
+    .Explore-CTA
+    {
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        border: solid 1px #e4e4e4;
+        background-color: #fff;
+        margin: 0 !important;
+    }
+    .Explore-CTA .text
+    {
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 2px;
+        text-align: center;
+        color: #393939;
+        text-transform: uppercase;
+    }
+    #Explore-Right
+    {
+        width: 795px;
+        height: 762px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        margin: 0 0 0 10px;
+        padding: 0;
+    }
+    #right-top
+    {
+        width: 795px;
+        height: 376px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        margin: 0 0 10px;
+        padding: 50px;
+        background-color: #0003;
+        background-image: url({{ section.settings.right_top_image | img_url: 'master' }});
+    }
+    #right-bottom
+    {
+        width: 795px;
+        height: 376px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        margin: 10px 0 0;
+        padding: 50px;
+        background-color: bisque;
+        background-image: url({{ section.settings.right_bottom_image | img_url: 'master' }});
+    }
+    @media screen and (max-width: 480px)
+    {
+        #BF-More-Ways-To-Explore
+        {
+            padding: 0;
+            gap: 20px;
+        }
+        .More-Ways-to-Explore 
+        {
+            align-self: stretch;
+            flex-grow: 0;
+            font-family: ChronicleDisplay-Roman;
+            font-size: 35px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.29;
+            letter-spacing: normal;
+            text-align: center;
+            color: #393939;
+        }
+        .Frame-1 
+        {
+            align-self: stretch;
+            flex-grow: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: stretch;
+            gap: 10px;
+            padding: 0;
+        }
+        #Explore-Left
+        {
+            width: 414px;
+            height: 414px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 20px;
+            margin: 0 0 10px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            background-image: url({{ section.settings.left_mobile_image | img_url: 'master' }});
+        }
+        #Explore-Right
+        {
+            margin: 0;
+        }
+        #right-top
+        {
+            width: 414px;
+            height: 414px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; 
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            background-image: url({{ section.settings.right_top_mobile_image | img_url: 'master' }});
+        }
+        #right-bottom
+        {
+            width: 414px;
+            height: 414px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.3);
+            background-image: url({{ section.settings.right_bottom_mobile_image | img_url: 'master' }});
+        }
+    }
+</style>
+
+<style>
+    #BF-Header 
+    {
+        width: 100%;
+        height: 500px;
+        background-image: url({{ section.settings.background_image_desktop | img_url: 'master' }});
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    } 
+    #BF-Text-Copy
+    {
+        align-self: stretch;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        padding-top: 70px;
+    }
+    #BF-Subtitle
+    {
+        max-width: 732px;
+        height: 30px;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 24px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000;
+        word-wrap: normal;
+    }
+    #BF-Title 
+    {
+        height: auto;
+/*         align-self: stretch; */
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 80px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.13;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000;
+          
+    }
+    #Header-CTA
+    {
+        width: 300px;
+        height: 44px;
+        flex-grow: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        border: solid 1px #fff;
+        background-color: #6d9dea;
+        margin: 0 auto;
+    }
+    #Header-CTA-Text
+    {
+        width: auto;
+        height: 17px;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: 2px;
+        text-align: center;
+        text-transform: uppercase;
+        color: #fff;  
+    }
+    @media screen and (max-width: 480px)
+    {
+        #BF-Header
+        {
+            width: 100%;
+            height: 650px;
+            background-image: url({{ section.settings.background_image_mobile | img_url: 'master' }});
+        }
+        #BF-Title
+        {
+            width: 322px;
+            height: auto;
+            flex-grow: 0;
+            font-family: ChronicleDisplay-Roman;
+            font-size: 45px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.11;
+            letter-spacing: normal;
+            text-align: center;
+            color: #393939;
+            word-wrap: normal;
+            margin: 0 auto;
+        }
+        #BF-Text-Copy
+        {
+            align-self: stretch;
+            flex-grow: 0; 
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 5px;
+            padding: 0;
+            margin-top: 35px;
+        }
+        #BF-Subtitle
+        {
+            width: 354px;
+            height: 60px;
+            flex-grow: 0;
+            font-family: TT Norms1;
+            font-size: 20px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.5;
+            letter-spacing: normal;
+            text-align: center;
+            color: #393939;
+        }
+    }
+</style>
+
+<style>
+    #BF-Promos
+    {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+        padding: 10px 64px;
+        position: relative;
+    }
+    #promo-left
+    {
+        align-self: stretch;
+        flex-grow: 1;
+        padding: 35px 147px 35px 148px;
+        background-color: #f1f1f1;
+        z-index: 1;
+    }
+    #promo-right 
+    {
+        height: 230px;
+        flex-grow: 1;
+        padding: 35px 147px 35px 148px;
+        background-color: #f1f1f1;
+        z-index: 1;
+    }
+    .Promo-Text-Box
+    {
+        width: 500px;
+        height: 160px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+        padding: 20px;
+        margin: 0 auto;
+    }
+    .Promo-Text-Box .Title
+    {
+        max-width: 100%;
+        height: auto;
+        flex-grow: 0;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 45px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.11;
+        letter-spacing: normal;
+        text-align: center;
+        color: #5d8fec;
+    }
+    .Promo-Text-Box .Subtitle
+    {
+        width: 338px;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 20px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: center;
+        color: #393939;
+    }
+    .Promo-Text-Box .Subtitle .special-blue
+    {
+        font-weight: bold;
+        color: #5d8fec;
+        text-transform: uppercase;
+    }
+    #Promo-And
+    {
+        height: 90px;
+        position: absolute;
+/*           70px 762.5px 70px 761.5px; */
+        z-index: 10;
+        font-family: ChronicleDisplay-Roman;
+        font-size: 100px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 0.9;
+        letter-spacing: normal;
+        text-align: center;
+        color: #5d8fec;
+    }
+    @media screen and (max-width: 480px)
+    {
+        #BF-Promos
+        {
+            width: 100%;
+            height: 470px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+        }
+        .Promo-Box
+        {
+            align-self: stretch;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+            padding: 0px !important; 
+            gap: 10px;
+            background-color: #f1f1f1;
+        }
+        .Promo-Text-Box
+        {
+            width: auto !important;
+        }
+        #promo-right
+        {
+            height: auto !important;
+            flex-grow: 1;
+            padding: 35px 147px 35px 148px;
+            background-color: #f1f1f1;
+            z-index: 1;
+        }
+        .Promo-Text-Box .Title
+        {
+            height: auto;
+            align-self: stretch;
+            flex-grow: 0;
+            font-family: ChronicleDisplay-Roman;
+            font-size: 35px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.29;
+            letter-spacing: normal;
+            text-align: center;
+            color: #6d9dea;
+        }
+        .Promo-Text-Box .Subtitle
+        {
+            width: 334px;
+            height: auto;
+            align-self: stretch;
+            flex-grow: 0;
+            font-family: TTNormsPro;
+            font-size: 20px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.5;
+            letter-spacing: normal;
+            text-align: center;
+            color: #393939;
+            word-wrap: normal;
+        }
+    }
+</style>

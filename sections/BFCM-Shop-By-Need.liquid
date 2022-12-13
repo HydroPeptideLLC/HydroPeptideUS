@@ -1,0 +1,1103 @@
+<section id="Shop-By-Need-Link">
+<div id="BF-Shop-By-Need" class="">
+    <div id="desktop-header">
+        <div id="SBN-Title">
+            <span class="Text">Shop Bestsellers: <span class="special-blue">20% Off</span> Everything</span>
+        </div>
+        <div class="BF-product-slider-UI">
+            <button class="Text-Button-Collection-One active" id="aging-collection" name="#Aging-Skin-Type-Collection" value="#aging-slider" style="margin: 0 !important;">
+                <span class="CTA-Copy">Eye Care</span>
+            </button>
+            <button class="Text-Button-Collection-One" id="dry-skin-collection" name="#Dry-Skin-Type-Collection" value="#dry-slider" style="margin: 0 !important;">
+                <span class="CTA-Copy">SPF</span>
+            </button>
+            <button class="Text-Button-Collection-One" id="brightening-collection" name="#Brightening-Collection" value="#brightening-slider" style="margin: 0 !important;">
+                <span class="CTA-Copy">Serums</span>
+            </button>
+            <button class="Text-Button-Collection-One" id="oily-skin-collection" name="#Oily-Skin-Type-Collection" value="#oily-slider" style="margin: 0 !important;">
+                <span class="CTA-Copy">Masks</span>
+            </button>
+            <button class="Text-Button-Collection-One" id="acne-collection" name="#Acne-Skin-Type-Collection" value="#acne-slider" style="margin: 0 !important;">
+                <span class="CTA-Copy">Cleansers</span>
+            </button>
+            <button class="Text-Button-Collection-One" id="sensitive-collection" name="#Sensitive-Skin-Type-Collection" value="#sensitive-slider" style="margin: 0 !important;">
+                <span class="CTA-Copy">Moisturizers</span>
+            </button>
+        </div>
+    </div>
+    <div id="featured-product">
+        <div class="HF-editorial-slider-editorial" style="background-image: url({{ section.settings.aging-bg | img_url: 'master' }})">
+            <span class="product-subtitle">Product Spotlight</span> 
+            <span class="Slider-Headline">Eye Authority</span> 
+            <span class="Slider-Desc">
+              <p style="max-width: 470px;">Crushed pearl powder, peptides, and plankton extract instantly brighten the eye area.</p> 
+              <br/>
+              <p><b>Why we</b> <i>love</i> <b>it</b></p>
+              <p>&#11041; Relaxes the look of crow's feet</p>
+              <p>&#11041; Visibly brightens under eye circles</p> 
+              <p>&#11041; Reduces the look of puffiness</p>
+            </span>
+            <a id="Featured-Product-Link" href="https://hydropeptide.com/products/eye-authority-eye-cream"><span id="CTA-Text">Learn More</span></a>
+        </div>
+        <div class="this-is-the-featured-product">
+            {% include 'BFCM-Featured-Product-Aging' %}
+            {% include 'BFCM-Featured-Product-Dry-Skin' %}
+            {% include 'BFCM-Featured-Product-Acne' %}
+            {% include 'BFCM-Featured-Product-Brightening' %}
+            {% include 'BFCM-Featured-Product-Oily-Skin' %}
+            {% include 'BFCM-Featured-Product-Sensitive-Skin' %}
+        </div>
+    </div>
+    <div id="SBN-Carousel">  
+        <div class="total-slider-UI"> 
+            <span class="Shop-by-Skin-Type" id="More-Collection-Title">More Lip & Eye Care Favorites</span>
+            <div class="Slider-UI">
+                <a class="Text-Button" href="https://hydropeptide.com/collections/eye-lip-treatments"><span class="CTA-Copy">Shop all</span></a>
+                <div class="Arrow-Button-Prev"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></div>
+                <span class="slider-count">1 / 2</span>
+                <div class="Arrow-Button-Next"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></div>
+            </div>
+        </div> 
+        {% include 'Aging-Skin-Type-Collection' %}
+        {% include 'Dry-Skin-Type-Collection' %}
+        {% include 'Acne-Skin-Type-Collection' %}
+        {% include 'Brightening-Collection' %} 
+        {% include 'Oily-Skin-Type-Collection' %}
+        {% include 'Sensitive-Skin-Type-Collection' %} 
+    </div>
+</div>
+<script>var header=document.getElementById("BF-product-slider-UI");var btns=document.getElementsByClassName('Text-Button-Collection-One');for(let i=0;i<btns.length;i+=1){btns[i].addEventListener("click",function(){var current=document.getElementsByClassName("Text-Button-Collection-One active");$(current[0].name).addClass('hide');$(current[0].value).slick('unslick');if(current[0].name=='#Aging-Skin-Type-Collection'){$('#FP-Aging').addClass('hide')}if(current[0].name=='#Dry-Skin-Type-Collection'){$('#FP-Dry-Skin').addClass('hide')}if(current[0].name=='#Brightening-Collection'){$('#FP-Brightening').addClass('hide')}if(current[0].name=='#Oily-Skin-Type-Collection'){$('#FP-Oily-Skin').addClass('hide')}if(current[0].name=='#Acne-Skin-Type-Collection'){$('#FP-Acne').addClass('hide')}if(current[0].name=='#Sensitive-Skin-Type-Collection'){$('#FP-Sensitive-Skin').addClass('hide')}if(current.length>0){current[0].className=current[0].className.replace(" active","")}this.className+=" active";$(this.name).removeClass('hide');var sliderText="";var sliderLink="";var sliderBG="";var sliderMBG="";var sliderDesc="";var sliderHeader="";var textColor="#fff !important";var featured="#FP-Aging";var fpLink="";switch(this.name){case '#Aging-Skin-Type-Collection':sliderText="More {{ section.settings.aging.title }} Favorites";sliderLink="{{ section.settings.aging-collection-url }}";sliderBG="{{ section.settings.aging-bg | img_url: 'master' }}";sliderDesc="{{ section.settings.aging-product-description }}";sliderHeader="{{ section.settings.aging-product-name }}";textColor="#393939 !important";featured='#FP-Aging';fpLink="{{ section.settings.aging-url }}";break;case '#Dry-Skin-Type-Collection':sliderText="More {{ section.settings.drySkin.title }} Favorites";sliderLink="{{ section.settings.drySkin-collection-url }}";sliderBG="{{ section.settings.drySkin-bg | img_url: 'master' }}";sliderDesc="{{ section.settings.drySkin-product-description }}";sliderHeader="{{ section.settings.drySkin-product-name }}";textColor="#393939 !important";featured='#FP-Dry-Skin';fpLink="{{ section.settings.drySkin-url }}";break;case '#Brightening-Collection':sliderText="More {{ section.settings.brightening.title }}";sliderLink="{{ section.settings.brightening-collection-url }}";sliderBG="{{ section.settings.brightening-bg | img_url: 'master' }}";sliderDesc="{{ section.settings.brightening-product-description }}";sliderHeader="{{ section.settings.brightening-product-name }}";featured='#FP-Brightening';fpLink="{{ section.settings.brightening-url }}";break;case '#Oily-Skin-Type-Collection':sliderText="More {{ section.settings.oily.title }}";sliderLink="{{ section.settings.oily-collection-url }}";sliderBG="{{ section.settings.oily-bg | img_url: 'master' }}";sliderDesc="{{ section.settings.oily-product-description }}";sliderHeader="{{ section.settings.oily-product-name }}";textColor="#393939 !important";featured='#FP-Oily-Skin';fpLink="{{ section.settings.oily-url }}";break;case '#Acne-Skin-Type-Collection':sliderText="More {{ section.settings.acne.title }}";sliderLink="{{ section.settings.acne-collection-url }}";sliderBG="{{ section.settings.acne-bg | img_url: 'master' }}";sliderDesc="{{ section.settings.acne-product-description }}";sliderHeader="{{ section.settings.acne-product-name }}";textColor="#393939 !important";featured='#FP-Acne';fpLink="{{ section.settings.acne-url }}";break;case '#Sensitive-Skin-Type-Collection':sliderText="More {{ section.settings.sensitive.title }}";sliderLink="{{ section.settings.sensitive-collection-url }}";sliderBG="{{ section.settings.sensitive-bg | img_url: 'master' }}";sliderDesc="{{ section.settings.sensitive-product-description }}";sliderHeader="{{ section.settings.sensitive-product-name }}";featured='#FP-Sensitive-Skin';fpLink="{{ section.settings.sensitive-url }}";break}console.log('here is the featured');console.log(featured);$(featured).removeClass('hide');$('#More-Collection-Title').text(sliderText);console.log(sliderLink);$('.Slider-UI .Text-Button').attr("href","https://hydropeptide.com"+sliderLink);$('#Featured-Product-Link').attr("href","https://hydropeptide.com"+fpLink);$('.HF-editorial-slider-editorial').css("background-image","url("+sliderBG+")");$('.HF-editorial-slider-editorial span').css("color",textColor);$('.Slider-Headline').text(sliderHeader);$('.Slider-Desc').html(sliderDesc);$('.Slider-Desc p').css("color",textColor);$('.Slider-Desc p').first().css("max-width","470px");$(this.value).not('.slick-initialized').slick({infinite:false,slidesToShow:4,slidesToScroll:4,centerPadding:'40px',nextArrow:$('.Arrow-Button-Next'),prevArrow:$('.Arrow-Button-Prev')});var currentSlick=$(this.value).slick('getSlick');var slickCount=Math.ceil(currentSlick.slideCount/4);var currentPage=1;$('.Arrow-Button-Next').click(()=>{if(currentPage<slickCount){currentPage+=1}$('.slider-count').text(currentPage+' / '+slickCount)});$('.Arrow-Button-Prev').click(()=>{if(currentPage>1){currentPage-=1}$('.slider-count').text(currentPage+' / '+slickCount)});$('.slider-count').text(currentPage+' / '+slickCount)})}$(document).ready(()=>{var currentSlider=$(".Text-Button-Collection-One.active");currentSlider=currentSlider[0].value;var currentSlick=$(currentSlider).slick('getSlick');currentSlick=currentSlick.slideCount;console.log(currentSlick);var slickCount=Math.ceil(currentSlick/4);console.log(slickCount);var currentPage=1;$('.Arrow-Button-Next').click(()=>{if(currentPage<slickCount){currentPage+=1}$('.slider-count').text(currentPage+' / '+slickCount)});$('.Arrow-Button-Prev').click(()=>{if(currentPage>1){currentPage-=1}$('.slider-count').text(currentPage+' / '+slickCount)});$('.slider-count').text(currentPage+' / '+slickCount)})</script>
+<div id="BF-Shop-By-Need-Mobile" class="hide">
+    <div id="mobile-header">
+        <div id="SBN-Mobile-Title"> 
+            <span class="Text">Shop Bestsellers: <br/><span class="special-blue">20% Off</span> Everything</span>
+        </div>
+        <div class="HF-product-slider-UI-Mobile">
+            <select name="Shop-By-Skin-Type-Dropdown" class="Dropdown" id="select-skin-type" style="appereance: auto;">
+              <option class="Shop-all" name="#Aging-Skin-Type-Mobile-Collection" value="#aging-mobile-slider"><span>Eye Care</span><i class="fa fa-angle-down" aria-hidden="true"></i></option>
+              <option class="Shop-all" name="#Dry-Skin-Type-Mobile-Collection" value="#dry-mobile-slider">SPF</option> 
+              <option class="Shop-all" name="#Brightening-Mobile-Collection" value="#brightening-mobile-slider">Serums</option> 
+              <option class="Shop-all" name="#Oily-Skin-Type-Mobile-Collection" value="#oily-mobile-slider">Masks</option> 
+              <option class="Shop-all" name="#Acne-Skin-Type-Mobile-Collection" value="#acne-mobile-slider">Cleansers</option>
+              <option class="Shop-all" name="#Sensitive-Skin-Type-Mobile-Collection" value="#sensitive-mobile-slider">Moisturizers</option>
+            </select>
+        </div>
+    </div> 
+        {% include 'Aging-Skin-Type-Mobile-Collection' %}
+        {% include 'Dry-Skin-Type-Mobile-Collection' %}
+        {% include 'Acne-Skin-Type-Mobile-Collection' %}
+        {% include 'Brightening-Mobile-Collection' %}
+        {% include 'Oily-Skin-Type-Mobile-Collection' %}
+        {% include 'Sensitive-Skin-Type-Mobile-Collection' %}
+{% comment %}     <div class="Slider-UI"> 
+        <div class="Mobile-Arrow-Button-Prev"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></div>
+        <span class="mobile-slider-count">1 / 14</span>
+        <div class="Mobile-Arrow-Button-Next"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></div>
+    </div>  {% endcomment %}
+     <div id="featured-product">
+        <div class="HF-editorial-slider-editorial" style="background-image: url({{ section.settings.aging-mobile-bg | img_url: 'master' }})">
+            <span class="product-subtitle">Product Spotlight</span>
+            <span class="Slider-Headline" style="">Eye Authority</span>
+            <span class="Slider-Desc">
+              <p>&#11041; Relaxes the look of crow's feet</p>
+              <p>&#11041; Visibly brightens under eye circles</p> 
+              <p>&#11041; Reduces the look of puffiness</p>
+            </span>
+            <a id="Featured-Product-Link" href="https://hydropeptide.com/products/eye-authority-eye-cream"><span id="CTA-Text">Learn More</span></a>
+        </div> 
+    </div>     
+</div>
+<script> 
+   $(document).ready(() => {
+      var currentSlider = $('#select-skin-type')[0].value;
+      var currentSlick = $(currentSlider).slick('getSlick');
+      var slickCount = currentSlick.slideCount;
+      var currentPage = 1;
+      $('.Mobile-Arrow-Button-Next').click(() => {
+        console.log('next');
+          if(currentPage < slickCount)
+          {
+              currentPage++;
+          }
+        $('.mobile-slider-count').text(currentPage + ' / ' + slickCount);
+      });
+      $('.Mobile-Arrow-Button-Prev').click(() => {
+          if(currentPage > 1)
+          {
+              currentPage--;
+          }
+        $('.mobile-slider-count').text(currentPage + ' / ' + slickCount);
+      });
+      $('.mobile-slider-count').text(currentPage + ' / ' + slickCount);
+  });
+        
+        var selection = "#aging-mobile-slider";
+        var currentVal = $('#select-skin-type').value;
+        var currentName ="";
+        $('select#select-skin-type').on('focus', function() {
+            console.log('focusing');
+            currentVal = this.value;
+            if(this.value == "#aging-mobile-slider")
+            {
+                currentName = "#Aging-Skin-Type-Mobile-Collection";
+            }
+            if(this.value == "#dry-mobile-slider")
+            {
+                currentName = "#Dry-Skin-Type-Mobile-Collection";
+            }
+            if(this.value == "#brightening-mobile-slider")
+            {
+                currentName = "#Brightening-Mobile-Collection";
+            }
+            if(this.value == "#oily-mobile-slider")
+            {
+                currentName = "#Oily-Skin-Type-Mobile-Collection";
+            }
+            if(this.value == "#acne-mobile-slider")
+            {
+                currentName = "#Acne-Skin-Type-Mobile-Collection";
+            }
+            if(this.value == "#sensitive-mobile-slider")
+            {
+                currentName = "#Sensitive-Skin-Type-Mobile-Collection";
+            }
+        })
+        .change(() => {
+            console.log('starting change');
+            var newVal = $('#select-skin-type')[0];
+            var newName;
+              if(newVal.value == "#aging-mobile-slider")
+            {
+                newName = "#Aging-Skin-Type-Mobile-Collection";
+            }
+            if(newVal.value == "#dry-mobile-slider")
+            {
+                newName = "#Dry-Skin-Type-Mobile-Collection";
+                console.log(newName);
+            }
+            if(newVal.value == "#brightening-mobile-slider")
+            { 
+                newName = "#Brightening-Mobile-Collection";
+            }
+            if(newVal.value == "#oily-mobile-slider")
+            {
+                newName = "#Oily-Skin-Type-Mobile-Collection";
+            }
+            if(newVal.value == "#acne-mobile-slider")
+            {
+                newName = "#Acne-Skin-Type-Mobile-Collection";
+            }
+            if(newVal.value == "#sensitive-mobile-slider")
+            {
+                newName = "#Sensitive-Skin-Type-Mobile-Collection";
+            }
+            $(currentName).addClass('hide');
+            $(currentVal).slick('unslick');
+            $(newName).removeClass('hide');
+            var sliderText = "";  
+            var sliderLink = ""; 
+            var sliderBG = "";
+            var sliderMBG = ""; 
+            var sliderDesc = "";
+            var sliderHeader = ""; 
+            var textColor = "#fff !important"
+            var fpLink = ""; 
+            switch(newName) {
+                case '#Aging-Skin-Type-Mobile-Collection': 
+                      sliderText = "More {{ section.settings.aging.title }} Favorites";
+                      sliderLink = "{{ section.settings.aging-collection-url }}";
+                      sliderBG = "{{ section.settings.aging-mobile-bg | img_url: 'master' }}";
+                      sliderDesc = "{{ section.settings.aging-product-description }}";
+                      sliderHeader = "{{ section.settings.aging-product-name }}";
+                      textColor = "#393939 !important";
+                      fpLink = "{{ section.settings.aging-url }}";
+                      break;
+                case '#Dry-Skin-Type-Mobile-Collection':
+                      sliderText = "More {{ section.settings.drySkin.title }} Favorites";
+                      sliderLink = "{{ section.settings.drySkin-collection-url }}";
+                      sliderBG = "{{ section.settings.drySkin-mobile-bg | img_url: 'master' }}";
+                      sliderDesc = "{{ section.settings.drySkin-product-description }}";
+                      sliderHeader = "{{ section.settings.drySkin-product-name }}";
+                      textColor = "#393939 !important";
+                      fpLink = "{{ section.settings.drySkin-url }}";
+                      break;
+                case '#Brightening-Mobile-Collection': 
+                      sliderText = "More {{ section.settings.brightening.title }} Favorites";
+                      sliderLink = "{{ section.settings.brightening-collection-url }}";
+                      sliderBG = "{{ section.settings.brightening-mobile-bg | img_url: 'master' }}";
+                      sliderDesc = "{{ section.settings.brightening-product-description }}";
+                      sliderHeader = "{{ section.settings.brightening-product-name }}";
+                      fpLink = "{{ section.settings.brightening-url }}";
+                      break;
+                case '#Oily-Skin-Type-Mobile-Collection':
+                      sliderText = "More {{ section.settings.oily.title }} Favorites";
+                      sliderLink = "{{ section.settings.oily-collection-url }}";
+                      sliderBG = "{{ section.settings.oily-mobile-bg | img_url: 'master' }}";
+                      sliderDesc = "{{ section.settings.oily-product-description }}";
+                      sliderHeader = "{{ section.settings.oily-product-name }}";
+                      textColor = "#393939 !important";
+                      fpLink = "{{ section.settings.oily-url }}";
+                      break;
+                case '#Acne-Skin-Type-Mobile-Collection':
+                      sliderText = "More {{ section.settings.acne.title }} Favorites"; 
+                      sliderLink = "{{ section.settings.acne-collection-url }}";
+                      sliderBG = "{{ section.settings.acne-mobile-bg | img_url: 'master' }}";
+                      sliderDesc = "{{ section.settings.acne-product-description }}";
+                      sliderHeader = "{{ section.settings.acne-product-name }}";
+                      textColor = "#393939 !important"; 
+                      fpLink = "{{ section.settings.acne-url }}";
+                      break;
+                case '#Sensitive-Skin-Type-Mobile-Collection':
+                      sliderText = "More {{ section.settings.sensitive.title }} Favorites";
+                      sliderLink = "{{ section.settings.sensitive-collection-url }}";
+                      sliderBG = "{{ section.settings.sensitive-mobile-bg | img_url: 'master' }}";  
+                      sliderDesc = "{{ section.settings.sensitive-product-description }}";
+                      sliderHeader = "{{ section.settings.sensitive-product-name }}";
+                      fpLink = "{{ section.settings.sensitive-url }}";
+                      break;
+            }
+            $('#Featured-Product-Link[href]').attr("href", fpLink);
+            $('.HF-editorial-slider-editorial').css("background-image", "url("+ sliderBG + ")");
+            $('.HF-editorial-slider-editorial span').css("color", textColor); 
+            $('.Slider-Headline').text(sliderHeader);
+            $('.Slider-Desc').html(sliderDesc); 
+            $('.Slider-Desc p').css("color", textColor);
+            $('.Slider-Desc p:first-child').remove();
+            
+            $(newVal.value).not('.slick-initialized').slick({
+              infinite: false,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              dots: true,
+              arrows: false
+            }); 
+            var currentSlick = $(newVal.value).slick('getSlick'); 
+            var slickCount = currentSlick.slideCount;
+          var currentPage = 1;
+          $('.Mobile-Arrow-Button-Next').click(() => {
+            if(currentPage < slickCount)
+            {
+                currentPage++;
+            }
+          $('.mobile-slider-count').text(currentPage + ' / ' + slickCount);
+        });
+        $('.Mobile-Arrow-Button-Prev').click(() => {
+            if(currentPage > 1)
+            {
+                currentPage--;
+            }
+          $('.mobile-slider-count').text(currentPage + ' / ' + slickCount);
+        });
+        $('.mobile-slider-count').text(currentPage + ' / ' + slickCount);
+        });
+</script>
+<style>.collection-slider {
+	margin: 0 !important
+}
+#Featured-Product-Link {
+	height: 44px;
+	flex-grow: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 20px;
+	border: solid 1px #e4e4e4;
+	background-color: #fff;
+	margin: 0
+}
+
+#Featured-Product-Link #CTA-Text {
+	flex-grow: 0;
+	font-family: TT Norms1;
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: 2px;
+	text-align: center;
+	color: #393939;
+	text-transform: uppercase
+}
+
+button {
+	border: 0!important
+}
+
+.hide {
+	display: none !important
+}
+
+.special-blue {
+	color: #6d9dea
+}
+
+#BF-Shop-By-Need {
+	flex-grow: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start; 
+	align-items: center;
+	gap: 30px;
+	padding: 60px 64px
+}
+  #BF-Shop-By-Need-Mobile
+  {
+    padding-top: 60px;
+  }
+
+#desktop-header {
+	width: 100%
+}
+
+#SBN-Title {
+	width: 100%;
+	align-self: stretch;
+	flex-grow: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 50px 120px
+}
+
+#SBN-Title .Text {
+	flex-grow: 0;
+	font-family: ChronicleDisplay-Roman;
+	font-size: 45px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.11;
+	letter-spacing: normal;
+	text-align: center;
+	color: #393939
+}
+
+.BF-product-slider-UI {
+	width: 100%;
+	flex-grow: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0 64px
+}
+
+.Text-Button-Collection-One {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 0 0 15px;
+	background-color: #fff;
+	border-bottom: 1px solid #e4e4e4 !important;
+	margin: 0
+}
+
+.Text-Button-Collection-One.active {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 0 0 15px;
+	border-bottom: 2px solid #6d9dea !important;
+	background-color: #fff
+}
+
+.Text-Button-Collection-One .CTA-Copy {
+	flex-grow: 0;
+	font-family: TT Norms1;
+	font-size: 18px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: 2px;
+	text-align: center;
+	color: #393939
+}
+
+.Text-Button-Collection-One .CTA-Copy:hover {
+	color: #6d9dea
+}
+
+.Text-Button-Collection-One.active .CTA-Copy {
+	flex-grow: 0;
+	font-family: TT Norms1;
+	font-size: 18px;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: 2px;
+	text-align: center;
+	color: #6d9dea
+}
+
+#featured-product {
+	flex-grow: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 30px;
+	padding: 50px 64px
+}
+
+#featured-product .product-subtitle {
+	flex-grow: 0;
+	font-family: TT Norms1;
+	font-size: 16px;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.31;
+	letter-spacing: normal;
+	text-align: left;
+	color: #393939
+}
+
+.this-is-the-featured-product {
+	width: 325px;
+	height: 528px
+}
+
+.Slider-Desc p {
+	flex-grow: 0;
+	font-family: TT Norms1;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.31;
+	letter-spacing: normal;
+	text-align: left;
+	color: #393939;
+	word-wrap: normal
+}
+
+.Slider-Desc:first-child {
+	max-width: 480px !important
+}
+
+.HF-editorial-slider-editorial {
+	height: 528px;
+	width: 1015px;
+	align-self: stretch;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 50px 0 50px 50px
+}
+
+#SBN-Carousel {
+	width: 100%;
+	flex-grow: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 30px;
+	padding: 50px 64px
+}
+
+.total-slider-UI {
+	width: 100%;
+	flex-grow: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-end;
+	padding: 0
+}
+
+.Shop-by-Skin-Type {
+	height: 45px;
+	align-self: stretch;
+	flex-grow: 0;
+	font-family: ChronicleDisplay-Roman;
+	font-size: 35px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.29;
+	letter-spacing: normal;
+	text-align: left;
+	color: #393939
+}
+
+.Slider-Headline {
+	width: 273px;
+	flex-grow: 0;
+	font-family: ChronicleDisplay-Roman;
+	font-size: 35px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.29;
+	letter-spacing: normal;
+	text-align: left;
+	color: #393939
+}
+
+.Slider-UI {
+	width: 319px;
+	height: 44px;
+	flex-grow: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 20px;
+	padding: 0
+}
+
+.Slider-UI .Text-Button {
+	width: 121px;
+	height: 44px;
+	flex-grow: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 20px;
+	border: solid 1px #e4e4e4 !important;
+	background-color: #fff
+}
+
+.Slider-UI .Text-Button .CTA-Copy {
+	width: 81px;
+	height: 17px;
+	flex-grow: 0;
+	font-family: TT Norms1;
+	font-size: 14px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: 2px;
+	text-align: center;
+	color: #393939
+}
+
+.Arrow-Button-Next {
+	width: 44px;
+	height: 44px;
+	flex-grow: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	padding: 10px;
+	border: solid 1px #e4e4e4;
+	background-color: #fff
+}
+
+.Arrow-Button-Next img {
+	top: 50%;
+	left: 50%
+}
+
+.Arrow-Button-Prev {
+	width: 44px;
+	height: 44px;
+	flex-grow: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	padding: 10px;
+	border: solid 1px #e4e4e4;
+	background-color: #fff
+}
+
+.Arrow-Button-Prev img {
+	top: 50%;
+	left: 50%
+}
+
+.Mobile-Arrow-Button-Next {
+	width: 44px;
+	height: 44px;
+	flex-grow: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	padding: 10px;
+	border: solid 1px #e4e4e4;
+	background-color: #fff
+}
+
+.Mobile-Arrow-Button-Next img {
+	top: 50%;
+	left: 50%
+}
+
+.Mobile-Arrow-Button-Prev {
+	width: 44px;
+	height: 44px;
+	flex-grow: 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	padding: 10px;
+	border: solid 1px #e4e4e4;
+	background-color: #fff
+}
+
+.Mobile-Arrow-Button-Prev img {
+	top: 50%;
+	left: 50%
+}
+
+.bf-slider {
+	width: 100%;
+	flex-grow: 0;
+	gap: 10px
+}
+.slick-dots
+{
+    bottom: 0px !important;
+}
+@media screen and (min-width: 769px) and (max-width: 1440px)
+{
+    .bf-slider
+    {
+        height: 525px;
+    }
+}
+@media screen and (max-width: 768px)
+{
+    .bf-slider
+    {
+        height: 550px;
+    }
+
+@media screen and (min-width: 1440px)
+{
+    .bf-slider
+    {
+        height: 560px;
+    }
+}
+@media screen and (min-width: 1680px)
+{
+    .bf-slider
+    {
+        height: 600px;
+    }
+}
+@media screen and (min-width: 1921px)
+{
+    .bf-slider
+    {
+        height: 720px;
+    }
+}
+@media screen and (max-width: 480px) {
+	#BF-Shop-By-Need-Mobile {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		gap: 20px;
+		padding-top: 60px;
+		background-color: #fff
+	}
+
+	#mobile-header {
+		align-self: stretch;
+		flex-grow: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: stretch;
+		gap: 20px;
+		padding: 0 30px
+	}
+
+	#SBN-Mobile-Title {
+		width: 354px;
+		text-align: center
+	}
+
+	#SBN-Mobile-Title .Text {
+		align-self: stretch;
+		flex-grow: 0;
+		font-family: ChronicleDisplay-Roman;
+		font-size: 35px;
+		font-weight: normal;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.29;
+		letter-spacing: normal;
+		text-align: center;
+		color: #393939
+	}
+
+	.Dropdown {
+		width: 100%;
+		height: 44px;
+		align-self: stretch; 
+		flex-grow: 0;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		padding: 10px 20px;
+		border: solid 1px #e4e4e4;
+		background-color: #fff;
+        -webkit-appereance: menulist !important;
+	}
+    .Shop-all {
+        width: auto;
+        height: auto;
+        flex-grow: 0;
+        font-family: TT Norms1;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal; 
+        letter-spacing: 2px;
+        text-align: left;
+        color: #393939;
+        flex-justify: space-between;
+        text-transform: uppercase;
+        border: solid 1px #e4e4e4;
+    }
+	.Slider-UI {
+		width: 100%;
+		height: 44px;
+		flex-grow: 0;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: 20px;
+		padding: 0
+	}
+
+	.mobile-collection {
+		max-height: 550px !important;
+		width: 85% !important
+	}
+
+	.collectionGrid {
+		margin: 0 auto !important
+	}
+
+	.collectionGrid .collectionBlock {
+		max-width: 480px !important;
+		margin: 0 auto
+	}
+
+	#featured-product {
+		width: 100%;
+		padding: 0px 0
+	}
+
+	.HF-editorial-slider-editorial {
+		height: 414px;
+		width: 100%;
+		align-self: stretch;
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		gap: 10px;
+		padding: 40px 30px 0
+	}
+
+	.Slider-Desc p {
+		width: 222px
+	}
+}
+</style>
+<script>
+    if(screen.availWidth > 568)
+    {
+        $('#BF-Shop-By-Need-Mobile').addClass('hide');
+        $('#BF-Shop-By-Need').removeClass('hide');
+    }
+    else
+    {
+        $('#BF-Shop-By-Need').addClass('hide');
+        $('#BF-Shop-By-Need-Mobile').removeClass('hide');
+    }
+</script>
+  </section>
+{% schema %}
+  {
+    "name": "Shop By Need",
+    "settings": [
+      {
+          "id": "aging-product-name",
+          "type": "text",
+          "label": "Aging Product Spotlight Name"
+      },
+      {
+          "id": "aging-product-description",
+          "type": "richtext",
+          "label": "Product Spotlight Description"
+      },
+      {
+          "id": "aging-url",
+          "type": "url",
+          "label": "Product Spotlight Link"
+      },
+      {
+          "id": "aging-bg",
+          "type": "image_picker",
+          "label": "Aging Highlight Background Image"
+      },
+      {
+          "id": "aging-mobile-bg",
+          "type": "image_picker",
+          "label": "Aging Highlight Mobile Background Image"
+      },
+      {
+          "id": "aging-product",
+          "type": "product",
+          "label": "Product to Spotlight"
+      },
+      {
+          "id": "aging",
+          "type": "collection",
+          "label": "Healthy Aging Collection"
+      },
+      {
+          "id": "aging-collection-url",
+          "type": "url",
+          "label": "Healthy Aging Collection URL"
+      },
+
+      
+      {
+          "id": "drySkin-product-name",
+          "type": "text",
+          "label": "Dry Skin Product Spotlight Name"
+      },
+      {
+          "id": "drySkin-product-description",
+          "type": "richtext",
+          "label": "Dry Skin Product Spotlight Description"
+      },
+      {
+          "id": "drySkin-url",
+          "type": "url",
+          "label": "Dry Skin Product Spotlight Link"
+      },
+      {
+          "id": "drySkin-bg",
+          "type": "image_picker",
+          "label": "Dry Skin Highlight Background Image"
+      },
+      {
+          "id": "drySkin-mobile-bg",
+          "type": "image_picker",
+          "label": "Dry Skin Highlight Mobile Background Image"
+      },
+      {
+          "id": "drySkin-product",
+          "type": "product",
+          "label": "Dry Skin Product to Spotlight"
+      },
+      {
+          "id": "drySkin-collection-url",
+          "type": "url",
+          "label": "Dry Skin Collection URL"
+      },
+      {
+          "id": "drySkin",
+          "type": "collection",
+          "label": "Dry Skin Collection"
+      },
+
+
+      {
+          "id": "acne-product-name",
+          "type": "text",
+          "label": "Acne Product Spotlight Name"
+      },
+      {
+          "id": "acne-product-description",
+          "type": "richtext",
+          "label": "Acne Product Spotlight Description"
+      },
+      {
+          "id": "acne-url",
+          "type": "url",
+          "label": "Acne Product Spotlight Link"
+      },
+      {
+          "id": "acne-bg",
+          "type": "image_picker",
+          "label": "Acne Highlight Background Image"
+      },
+      {
+          "id": "acne-mobile-bg",
+          "type": "image_picker",
+          "label": "Acne Highlight Mobile Background Image"
+      },
+      {
+          "id": "acne-product",
+          "type": "product",
+          "label": "Acne Product to Spotlight"
+      },
+      {
+          "id": "acne-collection-url",
+          "type": "url",
+          "label": "Acne Collection URL"
+      },
+      {
+          "id": "acne",
+          "type": "collection",
+          "label": "Acne Collection"
+      },
+
+
+      {
+          "id": "brightening-product-name",
+          "type": "text",
+          "label": "Brightening Product Spotlight Name"
+      },
+      {
+          "id": "brightening-product-description",
+          "type": "richtext",
+          "label": "Brightening Product Spotlight Description"
+      },
+      {
+          "id": "brightening-url",
+          "type": "url",
+          "label": "Brightening Product Spotlight Link"
+      },
+      {
+          "id": "brightening-bg",
+          "type": "image_picker",
+          "label": "Brightening Highlight Background Image"
+      },
+      {
+          "id": "brightening-mobile-bg",
+          "type": "image_picker",
+          "label": "Brightening Highlight Mobile Background Image"
+      },
+      {
+          "id": "brightening-product",
+          "type": "product",
+          "label": "Brightening Product to Spotlight"
+      },
+      {
+          "id": "brightening-collection-url",
+          "type": "url",
+          "label": "Brightening Collection URL"
+      },
+      {
+          "id": "brightening",
+          "type": "collection",
+          "label": "Brightening Collection"
+      },
+
+
+      {
+          "id": "oily-product-name",
+          "type": "text",
+          "label": "Oily Skin Product Spotlight Name"
+      },
+      {
+          "id": "oily-product-description",
+          "type": "richtext",
+          "label": "Oily Skin Product Spotlight Description"
+      },
+      {
+          "id": "oily-url",
+          "type": "url",
+          "label": "Oily Skin Product Spotlight Link"
+      },
+      {
+          "id": "oily-bg",
+          "type": "image_picker",
+          "label": "Oily Skin Highlight Background Image"
+      },
+      {
+          "id": "oily-mobile-bg",
+          "type": "image_picker",
+          "label": "Oily Skin Highlight Mobile Background Image"
+      },
+      {
+          "id": "oily-product",
+          "type": "product",
+          "label": "Oily Skin Product to Spotlight"
+      },
+      {
+          "id": "oily-collection-url",
+          "type": "url",
+          "label": "Oily Skin Collection URL"
+      },
+      {
+          "id": "oily",
+          "type": "collection",
+          "label": "Oily Skin Collection"
+      },
+
+
+      {
+          "id": "sensitive-product-name",
+          "type": "text",
+          "label": "Sensitive Skin Product Spotlight Name"
+      },
+      {
+          "id": "sensitive-product-description",
+          "type": "richtext",
+          "label": "Sensitive Skin Product Spotlight Description"
+      },
+      {
+          "id": "sensitive-url",
+          "type": "url",
+          "label": "Sensitive Skin Product Spotlight Link"
+      },
+      {
+          "id": "sensitive-bg",
+          "type": "image_picker",
+          "label": "Sensitive Skin Highlight Background Image"
+      },
+      {
+          "id": "sensitive-mobile-bg",
+          "type": "image_picker",
+          "label": "Sensitive Skin Highlight Mobile Background Image"
+      },
+      {
+          "id": "sensitive-product",
+          "type": "product",
+          "label": "Sensitive Skin Product to Spotlight"
+      },
+      {
+          "id": "sensitive-collection-url",
+          "type": "url",
+          "label": "Sensitive Skin Collection URL"
+      },
+      {
+          "id": "sensitive",
+          "type": "collection",
+          "label": "Sensitive Collection"
+      }
+    ]
+  }
+{% endschema %}

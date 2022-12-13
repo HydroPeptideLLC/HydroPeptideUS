@@ -1,0 +1,16 @@
+<span id='extole_zone_mobile_menu'></span>
+<script type="text/javascript">
+    (function(c,b,f,k,a){c[b]=c[b]||{};for(c[b].q=c[b].q||[];a<k.length;)f(k[a++],c[b])})(window,"extole",function (c,b){b[c]=b[c]||function (){b.q.push([c,arguments])}},["createZone"],0);
+    extole.createZone({
+        name: "mobile_menu",
+        element_id: 'extole_zone_mobile_menu',
+        data: {
+            {% if customer %}
+            "email": {{ customer.email | json }},
+            "first_name": {{ customer.first_name | json }},
+            "last_name": {{ customer.last_name | json }},
+          {% endif %}
+            "partner_user_id":
+        }
+    });
+</script>

@@ -1,0 +1,142 @@
+{% if section.settings.image != blank %}
+<div class="askdesktop desktop_promise spa_header_img medium-down--hide" style="background-image:url('{{ section.settings.image | img_url: '2048x'}}')">
+<div class="blog-container"><div class="page-width hero_content one-half medium--one-whole" style="{% if section.settings.alignment == 'left' %}float:left; {% endif %} {% if section.settings.alignment == 'right' %}float:right; {% endif %} {% if section.settings.alignment == 'center' %}margin:0 auto;text-align:center; {% endif %}">
+  
+  {% if section.settings.headingtitle != blank %}
+        <h2 style="line-height:{{section.settings.line_height}}; font-family: 'TT Norms Bold';color:{{section.settings.headingcolor}}; font-size:{{section.settings.heading_size}}" class="h1 mega-title">{{ section.settings.headingtitle | escape }}</h2>
+      {% endif %}
+   {% if section.settings.subtitle != blank %}
+  <div class="rte-setting mega-subtitle" style="font-family: "TT Norms"; color:{{section.settings.subheadingcolor}}; font-size:{{section.settings.sub_heading_size}};line-height:{{section.settings.sub_line_height}};"><p>{{section.settings.subtitle}}</p></div>
+      {% endif %}
+  </div>
+  </div>
+
+</div>
+
+{% endif %}
+{% if section.settings.mobile_image != blank %}
+<div class="spa_header_img medium--down-show large--hide mobileview">
+   {% if section.settings.mobile_image != blank %}
+  <img src="{{ section.settings.mobile_image | img_url: 'master'}}">
+    
+  {% if section.settings.showcontent == 'yes' %}
+  {% if section.settings.headingtitle != blank %}
+        <h2 style="line-height:{{section.settings.line_height}}; font-family: 'TT Norms Bold';color:{{section.settings.headingcolor}}; font-size:{{section.settings.heading_size}}" class="h1 mega-title">{{ section.settings.headingtitle | escape }}</h2>
+      {% endif %}
+   {% if section.settings.subtitle != blank %}
+  <div class="rte-setting mega-subtitle" style="font-family: "TT Norms"; color:{{section.settings.subheadingcolor}}; font-size:{{section.settings.sub_heading_size}};line-height:{{section.settings.sub_line_height}};"><p>{{section.settings.subtitle}}</p></div>
+      {% endif %}
+       
+  {% endif %}
+  {% endif %}
+  
+</div>
+ {% endif %}
+{% schema %}
+  {
+    "name": " Banner",
+    "class": "blogtbanner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+ 
+      {
+        "type": "text",
+        "id": "headingtitle",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+     {
+        "type": "color",
+        "id": "headingcolor",
+        "label": "Heading Color",
+        "default": "#fff"
+      },
+       {
+        "type": "text",
+        "id": "heading_size",
+        "label": "Heading size",
+        "default": "24px"
+       
+      },
+      {
+        "type": "text",
+        "id": "line_height",
+        "label": "Line Height",
+        "default": "24px"
+       
+      },
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Sub Heading",
+        "default": "Image with text"
+      },
+     {
+        "type": "color",
+        "id": "subheadingcolor",
+        "label": "Sub Heading Color",
+        "default": "#fff"
+      },
+       {
+        "type": "text",
+        "id": "sub_heading_size",
+        "label": "Sub Heading size",
+        "default": "24px"
+       
+      },
+ {
+        "type": "text",
+        "id": "sub_line_height",
+        "label": "Sub Line Height",
+        "default": "24px"
+       
+      },
+    {
+        "type": "select",
+        "id": "alignment",
+        "label": "Text alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile Image"
+      },
+{
+   "type":      "radio",
+   "id":        "showcontent",
+   "label":     "Show content on mobile",
+   "options": [
+     { "value": "yes", "label": "Yes" },
+     { "value": "no", "label": "No" }
+   ],
+   "default":   "no",
+   "info":      "Show content on mobile"
+}
+    ],
+    "presets": [
+      {
+        "name": "Banner",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}

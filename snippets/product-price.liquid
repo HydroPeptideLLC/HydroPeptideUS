@@ -1,0 +1,28 @@
+{% comment %}
+<div class="product-price" data-price="{{ sca_price }}">
+	<div class="sale" {% unless on_sale %}style="display: none;"{% endunless %}>
+	    <strike class="product-compare-price">{{ sca_compare_at_price | money }}</strike>&nbsp;
+	    <span class="product-sale-price" itemprop="price">{{ sca_price | money }}</span>
+  	</div>
+	<div class="product-normal-price" itemprop="price" {% if on_sale %}style="display: none;"{% endif %}>{{ sca_price | money }}</div>
+</div>
+
+{% endcomment %}
+{% include 'sca_freegift_price' with product %}
+<div class="product-price" data-price="{{ sca_price }}">
+	<div class="sale" {% unless on_sale %}style="display: none;"{% endunless %}>
+	    <strike class="product-compare-price">{{ sca_compare_at_price | money }}</strike>&nbsp;
+	    <span class="product-sale-price" itemprop="price">{{ sca_price | money }}</span>
+  	</div>
+  {% assign current_variant = product.selected_or_first_available_variant %}
+  {% assign productTags = product.tags | join: ', ' %}
+	<div class="product-normal-price" itemprop="price" style="{% if on_sale %}display: none;{% endif %} {% if productTags contains 'gift_card' %}display: none;{% endif %}" >{{ current_variant.price | money }}</div>
+  
+</div>
+<style>
+  {% if productTags contains 'gift_card' %}
+  .product-info .product-price .product-normal-price {
+    display: none !important;
+  }
+  {% endif %}
+</style>

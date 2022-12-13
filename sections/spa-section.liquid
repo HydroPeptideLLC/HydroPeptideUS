@@ -1,0 +1,147 @@
+      <div class="spa_header_img medium-down--hide spa-banner" style="background-image:url('{{ section.settings.image | img_url: 'master'}}')">
+
+        <div class="storepage large--one-half medium-down--one-whole">
+
+  {%  comment %} {% if section.settings.alignment == 'left' %}float:left; {% endif %} {% if section.settings.alignment == 'right' %}float:right; {% endif %} {% if section.settings.alignment == 'center' %} {% endif %}{% endcomment %}
+          <div class="spa_header_content"  style="margin:0 auto;text-align:center;">
+            {% if section.settings.headingitle != blank %}
+            <h4 style="color:{{section.settings.headingcolor}};">{{section.settings.headingitle}}</h4>
+            {% endif %}
+            
+             {% if section.settings.subheading != blank %}
+            <h2 class="h3" style="color:{{section.settings.subheadingcolor}};">{{section.settings.subheading}}</h2>
+            {% endif %}
+            <div class="normal_text"><p>{{section.settings.paragraphtext}}</p></div>
+
+          </div>
+ 
+        </div>
+      </div>    
+      <div class="spa_header_img medium--down-show large--hide  mobilespadata" style="{% if section.settings.mobilealignment == 'left' %}float:left; {% endif %} {% if section.settings.mobilealignment == 'right' %}float:right; {% endif %} {% if section.settings.mobilealignment == 'center' %}margin:0 auto;text-align:center; {% endif %}">
+        <img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/SpaPool.png?v=1658869945">
+        <!--     {{section.settings.mobile_image | img_url: 'master'}}     -->
+        <div class="spa_header_content">
+            {% if section.settings.headingitle != blank %}
+            <h4 style="color:#393939;">{{section.settings.headingitle}}</h4>
+            {% endif %}
+
+            {% if section.settings.subheading != blank %}
+            <h2 class="h3" style="color:{{section.settings.mobsubheadingcolor}};">{{section.settings.subheading}}</h2>
+            {% endif %}
+            <div class="normal_text"><p style="color:#393939;" >{{section.settings.paragraphtext}}</p></div>
+
+
+          </div>
+      </div>
+
+{% schema %}
+  {
+    "name": "Store Locator",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+	  {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile Image"
+      },
+      {
+        "type": "text",
+        "id": "headingitle",
+        "label": "Heading",
+        "default": "Hello Beautiful"
+      },
+      {
+        "type": "color",
+        "id": "headingcolor",
+        "label": "Heading Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "mobileheadingcolor",
+        "label": "Mobile Heading Color",
+        "default": "#000000"
+      },
+      {
+        "type": "text",
+        "id": "subheading",
+        "label": "Sub Heading",
+        "default": "Go Ahead, Say Spa"
+      },
+     {
+        "type": "color",
+        "id": "subheadingcolor",
+        "label": "Sub Heading Color",
+        "default": "#000000"
+      },
+{
+        "type": "color",
+        "id": "mobsubheadingcolor",
+        "label": "Mobile Sub Heading Color",
+        "default": "#000000"
+      },
+     {
+        "type": "html",
+        "id": "paragraphtext",
+        "label": "Paragrapg Text",
+        "default": "Find a spa near you and treat yourself to a luxe HydroPeptide facial or body treatment for instant and long term results without downtime."
+      },
+      {
+        "type": "color",
+        "id": "mobtextcolor",
+        "label": "Mobile Text Color",
+        "default": "#000000"
+      },
+    {
+        "type": "select",
+        "id": "alignment",
+        "label": "Text alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "mobilealignment",
+        "label": "Mobile Text alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Store Locator",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

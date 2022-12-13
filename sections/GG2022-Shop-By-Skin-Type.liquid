@@ -1,0 +1,107 @@
+<section id="Shop-By-Skin-Type">
+        <div class="Skin-Type-Header HF-product-slider-header">
+            <div class="Title">
+                <span class="Skin-Title">Shop by Skin Type</span>
+                <span class="From-blemishes-to-fine-lines-and-hyperpigmentation-youll-find-clinical-skincare-solutions-for-ever">From blemishes to fine lines and hyperpigmentation, you’ll find clinical skincare solutions for everyone on your list.</span>
+            </div>
+            <div class="Skin-Type-product-slider-UI">
+              <div id="skin-type-buttons">
+                <button class="Text-Button-Collection-One active" id="acne-collection" name="#Acne-Skin-Type-Collection" value="#acne-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">Acne-Prone skin</span>
+                </button>
+                <button class="Text-Button-Collection-One" id="drySkin-Collection" name="#Dry-Skin-Type-Collection" value="#dry-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">Dry Skin</span>
+                </button>
+                <button class="Text-Button-Collection-One" id="sensitive-collection" name="#Sensitive-Skin-Type-Collection" value="#sensitive-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">Sensitive Skin</span>
+                </button>
+                <button class="Text-Button-Collection-One" id="dullUneven-collection" name="#DullUneven-Type-Collection" value="#dullUneven-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">dull/uneven skin</span>
+                </button>
+                <button class="Text-Button-Collection-One" id="aging-Collection" name="#Aging-Skin-Type-Collection" value="#gg-aging-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">aging skin</span>
+                </button>
+              </div>
+                <div class="Slider-UI">
+                    <div class="Arrow-Button-One-Prev Arrow-Button"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></div>
+                    <span class="slider-one-count">1 / 2</span>
+                    <div class="Arrow-Button-One-Next Arrow-Button"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></div>
+                </div>
+            </div>
+        </div> 
+        {% include 'GG-Acne-Skin-Type-Collection' %}
+        {% include 'Dry-Skin-Type-Collection' %}
+        {% include 'Sensitive-Skin-Type-Collection' %}
+        {% include 'DullUneven-Type-Collection' %}
+        {% include 'GG-Aging-Skin-Type-Collection' %}
+        
+<script>if(screen.availWidth > 480){header=document.getElementById("HF-product-slider-UI");btns=document.getElementsByClassName('Text-Button-Collection-One');for(let i=0;i<btns.length;i+=1){btns[i].addEventListener("click",function(){current=document.getElementsByClassName("Text-Button-Collection-One active");$(current[0].name).addClass('hide');$(current[0].value).slick('unslick');if(current.length>0){current[0].className=current[0].className.replace(" active","")}this.className+=" active";$(this.name).removeClass('hide');$(this.value).slick({infinite:false,slidesToShow:4,slidesToScroll:4,centerPadding:'40px',nextArrow:$('.Arrow-Button-One-Next'),prevArrow:$('.Arrow-Button-One-Prev')});var currentSlick=$(this.value).slick('getSlick');var slickCount=Math.ceil(currentSlick.slideCount/4);var currentPage=1;$('.Arrow-Button-One-Next').click(()=>{if(currentPage<slickCount){currentPage+=1}$('.slider-one-count').text(currentPage+' / '+slickCount)});$('.Arrow-Button-One-Prev').click(()=>{if(currentPage>1){currentPage-=1}$('.slider-one-count').text(currentPage+' / '+slickCount)});$('.slider-one-count').text(currentPage+' / '+slickCount)})}$(document).ready(()=>{var currentSlider=$(".Text-Button-Collection-One.active");currentSlider=currentSlider[0].value;var currentSlick=$(currentSlider).slick('getSlick');currentSlick=currentSlick.slideCount;console.log(currentSlick);var slickCount=Math.ceil(currentSlick/4);console.log(slickCount);var currentPage=1;$('.Arrow-Button-One-Next').click(()=>{if(currentPage<slickCount){currentPage+=1}$('.slider-one-count').text(currentPage+' / '+slickCount)});$('.Arrow-Button-One-Prev').click(()=>{if(currentPage>1){currentPage-=1}$('.slider-one-count').text(currentPage+' / '+slickCount)});$('.slider-one-count').text(currentPage+' / '+slickCount)})}</script>
+</section>
+<section id="Shop-By-Skin-Type-Mobile" class="hide">
+    <div id="mobile-header HF-product-slider-header-mobile">
+        <div class="Title">
+            <span class="SBP-Title">Shop by Skin Type</span>
+            <span class="SBP-Subtitle">From blemishes to fine lines and hyperpigmentation, you’ll find clinical skincare solutions for everyone on your list.</span>
+        </div>
+        <div class="HF-product-slider-UI-Mobile">
+            <select name="Shop-By-Skin-Type-Dropdown" class="Dropdown" id="select-skin-type" style="-webkit-appearance: auto !important;">
+              <option class="Shop-all" name="#Acne-Skin-Type-Mobile-Collection" value="#acne-mobile-slider">ACNE-PRONE SKIN</option>
+              <option class="Shop-all" name="#Dry-Skin-Type-Mobile-Collection" value="#dry-mobile-slider">DRY SKIN</option> 
+              <option class="Shop-all" name="#Sensitive-Skin-Type-Mobile-Collection" value="#sensitive-mobile-slider">SENSITIVE SKIN</option> 
+              <option class="Shop-all" name="#DullUneven-Type-Mobile-Collection" value="#dullUneven-mobile-slider">DULL/UNEVEN SKIN</option>
+              <option class="Shop-all" name="#Aging-Skin-Type-Mobile-Collection" value="#gg-aging-mobile-slider">AGING SKIN</option> 
+            </select>
+        </div>
+    </div> 
+        {% include 'GG-Acne-Skin-Type-Mobile-Collection' %}
+        {% include 'Dry-Skin-Type-Mobile-Collection' %}
+        {% include 'Sensitive-Skin-Type-Mobile-Collection' %}
+        {% include 'DullUneven-Type-Mobile-Collection' %}
+        {% include 'GG-Aging-Skin-Type-Mobile-Collection' %}
+<!--     <div class="Slider-UI"> 
+        <div class="Mobile-Arrow-Button-One-Prev Arrow-Button"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></div>
+        <span class="mobile-slider-one-count">1 / 44</span>
+        <div class="Mobile-Arrow-Button-One-Next Arrow-Button"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></div>
+    </div>    -->
+</section>
+<script>if(screen.availWidth <= 480){$(document).ready(()=>{var currentSlider=$('#select-skin-type')[0].value; console.log(currentSlider);var currentSlick=$(currentSlider).slick('getSlick');var slickCount=currentSlick.slideCount;var currentPage=1;$('.Mobile-Arrow-Button-One-Next').click(()=>{console.log('next');if(currentPage<slickCount){currentPage+=1}$('.mobile-slider-one-count').text(currentPage+' / '+slickCount)});$('.Mobile-Arrow-Button-One-Prev').click(()=>{if(currentPage>1){currentPage-=1}$('.mobile-slider-one-count').text(currentPage+' / '+slickCount)});$('.mobile-slider-one-count').text(currentPage+' / '+slickCount)});var selection="#acne-mobile-slider";var currentVal=$('#select-skin-type').value;var currentName="";$('select#select-skin-type').on('focus',function(){console.log('focusing');currentVal=this.value;console.log(currentVal);if(this.value=="#acne-mobile-slider"){currentName="#Acne-Skin-Type-Mobile-Collection"}if(this.value=="#dry-mobile-slider"){currentName="#Dry-Skin-Type-Mobile-Collection"}if(this.value=="#sensitive-mobile-slider"){currentName="#Sensitive-Skin-Type-Mobile-Collection"}if(this.value=="#dullUneven-mobile-slider"){currentName="#DullUneven-Type-Mobile-Collection"}if(this.value=="#aging-mobile-slider"){currentName="#Aging-Skin-Type-Mobile-Collection"}console.log(currentName)}).change(()=>{console.log('starting change');var newVal=$('#select-skin-type')[0];var newName;if(newVal.value=="#acne-mobile-slider"){newName="#Acne-Skin-Type-Mobile-Collection"}if(newVal.value=="#dry-mobile-slider"){newName="#Dry-Skin-Type-Mobile-Collection"}if(newVal.value=="#sensitive-mobile-slider"){newName="#Sensitive-Skin-Type-Mobile-Collection"}if(newVal.value=="#dullUneven-mobile-slider"){newName="#DullUneven-Type-Mobile-Collection"}if(newVal.value=="#aging-mobile-slider"){newName="#Aging-Skin-Type-Mobile-Collection"}console.log('this is the newName');console.log(newName);console.log(currentName);$(currentName).addClass('hide');$(currentVal).slick('unslick');$(newName).removeClass('hide');$(newVal.value).not('.slick-initialized').slick({infinite:false,slidesToShow:1,slidesToScroll:1,arrows: false, dots: true});var currentSlick=$(newVal.value).slick('getSlick');var slickCount=currentSlick.slideCount;var currentPage=1;$('.Mobile-Arrow-Button-One-Next').click(()=>{if(currentPage<slickCount){currentPage+=1}$('.mobile-slider-one-count').text(currentPage+' / '+slickCount)});$('.Mobile-Arrow-Button-One-Prev').click(()=>{if(currentPage>1){currentPage-=1;b}$('.mobile-slider-one-count').text(currentPage+' / '+slickCount)});$('.mobile-slider-one-count').text(currentPage+' / '+slickCount)});}</script>
+</section>
+<style >.Skin-Type-product-slider-UI{height:44px;width:100%;align-self:stretch;flex-grow:0;display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end;padding:0}#skin-type-buttons{align-self:stretch;flex-grow:0;display:flex;flex-direction:row}.Skin-Type-product-slider-UI .Text-Button-Collection-One.active{width:195px;height:27px;flex-grow:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 0 10px;border-bottom:solid 2px #6d9dea;background-color:#fff}.Skin-Type-product-slider-UI .Text-Button-Collection-One{width:195px !important;height:27px;flex-grow:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 0 10px;background-color:#fff;border-bottom:solid 1px #f1f1f1}.Skin-Type-product-slider-UI .Text-Button-Collection-One.active .CTA-Copy{width:auto;height:auto;flex-grow:0;font-family:TT Norms1;font-size:14px;font-weight:bold;font-stretch:normal;font-style:normal;line-height:normal;letter-spacing:2px;text-align:center;color:#6d9dea;text-transform:uppercase}.Skin-Type-product-slider-UI .Text-Button-Collection-One .CTA-Copy{width:auto;height:auto;flex-grow:0;font-family:TT Norms1;font-size:14px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:normal;letter-spacing:2px;text-align:center;color:#393939;text-transform:uppercase}.SBP-Title{align-self:stretch;flex-grow:0;font-family:ChronicleDisplay-Roman;font-size:35px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:1.29;letter-spacing:normal;text-align:left;color:#393939}.SBP-Subtitle{align-self:stretch;flex-grow:0;font-family:TTNormsPro;font-size:16px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:1.31;letter-spacing:normal;text-align:left;color:#393939}.HF-product-slider-header-mobile{height:156px;align-self:stretch;flex-grow:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:20px;padding:0 30px}#Shop-By-Skin-Type-Mobile{align-self:stretch;flex-grow:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:20px;padding:0 30px}.Arrow-Button{width:44px;height:44px;flex-grow:0;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:10px;padding:10px;border:solid 1px #e4e4e4;background-color:#fff}.Arrow-Button img{top:50%;left:50%}.Arrow-Button{width:44px;height:44px;flex-grow:0;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:10px;padding:10px;border:solid 1px #e4e4e4;background-color:#fff}.Arrow-Button img{top:50%;left:50%}.Dropdown{width:100%;height:44px;align-self:stretch;flex-grow:0;display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:10px 20px;border:solid 1px #e4e4e4;background-color:#fff}</style>
+{% schema %}
+  {
+    "name": "Skin Type",
+    "settings": [
+      {
+        "id": "acne",
+        "type": "collection",
+        "label": "Acne Collection"
+      },
+      {
+        "id": "drySkin",
+        "type": "collection",
+        "label": "Dry Skin Collection"
+      },
+      {
+        "id": "dullUneven",
+        "type": "collection",
+        "label": "Dull & Uneven Collection"
+      },
+      {
+        "id": "sensitive",
+        "type": "collection",
+        "label": "Sensitive Collection"
+      },
+      {
+        "id": "aging",
+        "type": "collection",
+        "label": "Aging Collection"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

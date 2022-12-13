@@ -1,0 +1,40 @@
+{% if section.settings.image != blank %}
+<div class="askdesktop spa_header_img medium-down--hide" style="background-image:url('{{ section.settings.image | img_url: 'master'}}')">
+  <div class="page-width hero_content one-half medium--one-whole" style="{% if section.settings.alignment == 'left' %}float:left; {% endif %} {% if section.settings.alignment == 'right' %}float:right; {% endif %} {% if section.settings.alignment == 'center' %}margin:0 auto;text-align:center; {% endif %}">
+  {% if section.settings.headingtitle != blank %}
+    <h2 style="line-height:{{section.settings.line_height}}; font-family: 'TT Norms Bold';color:{{section.settings.headingcolor}}; font-size:{{section.settings.heading_size}}" class="h1 mega-title">{{ section.settings.headingtitle | escape }}</h2> {% endif %} {% if section.settings.subtitle != blank %}
+    <div class="rte-setting mega-subtitle" style="font-family: " TT Norms
+    "; color:{{section.settings.subheadingcolor}}; font-size:{{section.settings.sub_heading_size}};line-height:{{section.settings.sub_line_height}};">
+      <p>{{section.settings.subtitle}}</p>
+    </div> {% endif %} </div>
+</div> {% endif %}
+<div class="spa_header_img medium--down-show large--hide mobileview"> {% if section.settings.mobile_image != blank %}
+  <img src="{{section.settings.mobile_image | img_url: 'master'}}"> {% endif %} </div>
+<div class="custom_wrapper padding_120">
+  <div class="grid">
+    <div class="grid__item large--one-whole">
+      <header class="section-header text-center">
+        <h1>{{ page.title }}</h1> {% comment %}
+        <hr class="hr--small">{% endcomment %} </header>
+      <div class="two-col-main">
+        <div class="grid__item large--three-fifths small--one-whole">
+          <div class="rte rte--nomargin rte--indented-images form_content"> {{section.settings.content}} </div>
+        </div>
+        <div class="grid__item large--two-fifths small--one-whole">
+          <div class="form-vertical">
+            <h3>Send Us A Message</h3>
+            
+  {% form 'contact', action: "https://vital-forms-api.c1.humanpresence.app/api/form/vfob/5a56e06f-a104-4da6-bb48-b803e3fea411$5c6657fcf8541200b8178eaa", data-vfib: "0", action: "https://vital-forms-api.ellipsis.cloud/api/form/vfob/5a56e06f-a104-4da6-bb48-b803e3fea411$5c66af56714a5300b9b45915", data-vfib: "0" %}
+ {% comment %} Successful message {% endcomment %} {% if form.posted_successfully? %} <p class="note form-success"> {{ 'contact.form.post_success' | t }} </p> {% endif %} {{ form.errors | default_errors }} <div class="grid grid--small form_right"> <label for="ContactFormName" class="hidden-label">First Name <span class="asterisk">*</span> </label> <input type="text" id="ContactFormName" class="input-full firstname" name="contact[first-name]" autocapitalize="words" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"> <label for="ContactFormName" class="hidden-label">Last Name</label> <input type="text" id="ContactFormLastName" class="input-full lastname" name="contact[last-name]" autocapitalize="words" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"> <label for="ContactFormEmail" class="hidden-label">{{ 'contact.form.email' | t }} <span class="asterisk">*</span> </label> <input type="email" id="ContactFormEmail" class="input-full" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" required> <label for="ContactFormPhone" class="hidden-label">Phone</label> <input type="tel" id="ContactFormPhone" class="input-full phonenum" name="contact[phone]" pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"> <label for="ContactFormZip" class="hidden-label">Zip Code</label> <input type="number" id="ContactFormZip" class="input-full" name="contact[zipcode]" pattern="[0-9\-]*" value=""> <label for="ContactFormSubject" class="hidden-label">Subject <span class="asterisk">*</span> </label> <input required type="text" id="ContactFormSubject" class="input-full" name="contact[subject]" autocapitalize="words" value=""> <label for="ContactFormMessage" class="hidden-label">{{ 'contact.form.message' | t }} <span class="asterisk">*</span> </label> <textarea required rows="10" id="ContactFormMessage" class="input-full" name="contact[body]">{% if form.body %}{{ form.body }}{% endif %}</textarea> <div style="display:none;" id="validatedata"> <div class="questionval"> How much is: <input type="text" disabled="disabled" id="question" /> </div> <div class="answerval"> Answer:<span class="asterisk">*</span> <input type="text" id="answer" /><span style="color:red;" id="incorrectanswer"></span> </div> </div> <div id="recaptcha" class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6Le0-IsUAAAAADIv3Ch7yyBzg0_kgtICL8EeINpa"></div> <span class="msg-error1"></span> <input id="contactsubmit" type="submit" class="btn contact_submit" value="SUBMIT"> </div> {% endform %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> {% schema %} { "name": "Banner", "class": "contactbanner", "settings": [ { "type": "image_picker", "id": "image", "label": "Image" }, { "type": "text", "id": "headingtitle", "label": "Heading", "default": "Image with text" }, { "type": "color", "id":
+"headingcolor", "label": "Heading Color", "default": "#fff" }, { "type": "text", "id": "heading_size", "label": "Heading size", "default": "24px" }, { "type": "text", "id": "line_height", "label": "Line Height", "default": "24px" }, { "type": "text",
+"id": "subtitle", "label": "Sub Heading", "default": "Image with text" }, { "type": "color", "id": "subheadingcolor", "label": "Sub Heading Color", "default": "#fff" }, { "type": "text", "id": "sub_heading_size", "label": "Sub Heading size", "default":
+"24px" }, { "type": "text", "id": "sub_line_height", "label": "Sub Line Height", "default": "24px" }, { "type": "select", "id": "alignment", "label": "Text alignment", "default": "center", "options": [ { "value": "left", "label": "Left" }, { "value":
+"center", "label": "Center" }, { "value": "right", "label": "Right" } ] }, { "type": "image_picker", "id": "mobile_image", "label": "Mobile Image" }, { "type": "html", "id": "content", "label": "Page Content" } ], "presets": [ { "name": "Banner", "category":
+"Custom" } ] } {% endschema %}

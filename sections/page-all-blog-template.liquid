@@ -1,0 +1,150 @@
+
+<div class="blog_breadcrumbs">
+  <div class="container">
+    <p>
+      <a href="/">Home</a> / <a href="/pages/blogs/">Blogs</a>
+    </p>
+  </div>
+</div>
+<div id="blog-new-template">
+  <div class="container">
+    <div class="main_listing">
+      <h1>{{ section.settings.headline }}</h1>
+      {% assign blog_handles = "sun-protection,anti-aging,skin-hydration,skincare-routines" | split: "," %}
+      {% assign newestArticles = false %}
+      {% for blog in blog_handles %}
+        {% if blogs[blog].articles %}
+          {% if newestArticles %}
+            {% assign newestArticles = newestArticles | concat:blogs[blog].articles %}
+          {% else %}
+            {% assign newestArticles = blogs[blog].articles %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      {% if newestArticles %}
+        {% assign newestArticles = newestArticles | sort:'published_at' | reverse %}
+      {% endif %}
+      <div class="blog_listing">
+        {% for article in newestArticles %}
+        <div class="blog_block moreBox">
+          <div class="top_img" style="background-image:url('{{ article.image | img_url: '2048x' }}'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+            {% for blog in blog_handles %}
+            {% for article1 in blogs[blog].articles %}
+            {% if article1.id == article.id %}
+            <p class="post-tags">{{ blogs[blog].title }}</p>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+            
+          </div>
+          <div class="bottom_info">
+            <h2>
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </h2>
+            <p>
+              {{article.excerpt_or_content | strip_html | strip | truncate: 80 }} <a href="{{ article.url }}">Read More ></a>
+            </p>
+            <span>
+              <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%B %d, %Y' }}</time>
+               {{ 'blog.article.by_author' | t: author: article.author }}
+            </span>
+          </div>
+        </div>
+        {% endfor %}
+        
+        <div id="loadMore" style="">
+          <a href="#">Load More</a>
+        </div>
+      </div>
+    </div>
+    <div class="side_bar">
+      {% assign article = newestArticles[0] %}
+      <div class="featured_blog">
+        <div class="top_img" style="background-image:url('{{ section.settings.featured_blog_img | img_url: '2048x' }}'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+<!--           <p class="post-tags">{{ article.tags | join: ', ' | downcase }}</p> -->
+        </div>
+        <div class="bottom_info">
+          <h2>
+            <a href="{{ section.settings.article_url }}">{{ section.settings.featured_article_title }}</a>
+          </h2>
+          <p>
+            {{section.settings.featured_article_excerpt }} <a href="{{ section.settings.article_url }}">Read More ></a>
+          </p>
+          <span>
+            {{ section.settings.date_author }}
+          </span>
+        </div>
+        
+        <p class="share"><span>FOLLOW US:</span> {% include 'site-shareLinksBlog' %}</p>
+      </div>
+      {% assign blog_handles = "sun-protection,anti-aging,skin-hydration,skincare-routines" | split: "," %}
+      {% for handle in blog_handles %}
+      {% unless handle == blog.handle %}
+      <div class="tag_list">
+        <h2>{{ blogs[handle].title }}</h2>
+        {% for article in blogs[handle].articles limit:3 %}
+        <a href="{{ article.url }}">
+          <div class="blog_item">
+            <div class="right_img">
+              <img src="{{ article.image | img_url: 'master' }}">
+            </div>
+            <div class="left_img">
+              <h4>{{ article.title }}</h4>
+              <p>{{article.excerpt_or_content | strip_html | strip | truncate: 60 }}</p>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+        
+        
+        <a href="{{ blogs[handle].url }}">SEE MORE ON {{ blogs[handle].title }} > </a>
+        
+      </div>
+      {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+  
+ 
+
+  
+</div>
+
+{% schema %}
+  {
+    "name": "Blog pages",
+    "settings": [
+		{
+          "type": "text",
+          "id": "headline",
+          "label": "Headline"
+        },
+		{
+          "type": "image_picker",
+          "id": "featured_blog_img",
+          "label": "Featured Article Image"
+        },
+		{
+          "type": "text",
+          "id": "featured_article_title",
+          "label": "Featured Article title"
+        },
+			{
+            "type": "url",
+            "id": "article_url",
+            "label": "Featured Article Link"
+            },
+		{
+          "type": "text",
+          "id": "featured_article_excerpt",
+          "label": "Featured Article Excerpt"
+        },
+		{
+          "type": "text",
+          "id": "date_author",
+          "label": "Featured Article Date and Author"
+        }
+
+    ]
+  }
+{% endschema %}

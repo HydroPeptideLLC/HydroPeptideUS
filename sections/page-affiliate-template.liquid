@@ -1,0 +1,131 @@
+<section class="page-af-title hide-title container-wrap">
+    <div class="container title-container">
+        <div class="row row-lg inline title-row">
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <h1 id="af-page-title">{{ page.title }}</h1>
+          <br/>
+            <button class="btn btn-med p93" id="header-af-btn"><a href="https://www.ascendpartner.com/affiliate/registration?refid=165981" target="_blank">Become an Affiliate!</a></button>
+        </div>
+    </div>
+</section>
+<section class="mobile-page-af-title hide-title container-wrap">
+    <div class="container title-container">
+        <div class="row row-lg inline title-row">
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <h1 class="p43" id="mobile-af-page-title">HydroPeptide Affiliate Partner Program</h1>
+          <br/>
+            <button class="btn btn-med p93" id="header-af-btn"><a href="https://www.ascendpartner.com/affiliate/registration?refid=165981" target="_blank">Become an Affiliate!</a></button>
+        </div>
+    </div>
+</section>
+<section class="page-content" style="padding-top: 2%">
+    <div class="container-wrap">
+        <div class="container text-content rte">
+            <div class="row row-med">
+                {{ page.content }}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <section>
+    <div class="af-highlights">
+        <div class="row row-med u-center inline">
+              <h3>Highlights of our program include:</h3>
+              <div class="row row-lg af-grid">
+                  <div class="left-af s14"></div><div class="right-af s14"></div>
+              </div>
+        </div>
+    </div>
+</section> --> 
+<section class="after-content">
+    <div class="container-wrap">
+        <div class="container text-content rte">
+            <div class="row row-med">
+              <button class="btn btn-med med_p33 sm_p14 xs_p33 p14 join-btn "><a class="join-now" href="https://www.ascendpartner.com/affiliate/registration?refid=165981" target="_blank">Join Now!</a></button>
+<!--               <button class="btn btn-med p33 join-btn-mobile hide-titlehide-title"><a class="join-now-mobile" href="https://www.ascendpartner.com/affiliate/registration?refid=165981" target="_blank">Join Now!</a></button> -->
+              <p>Our affiliate partnerships team will be happy to answer any of your questions about joining or being part of our program. 
+                Please note that if you did not receive a confirmation e-mail from Pepperjam when you applied for the program, your application may not have been completed properly and/or the email might be in your spam email folder. 
+                Please email our affiliate team at <span><a class="link" href="mailto:hydropeptide@accelerationpartners.com">hydropeptide@accelerationpartners.com</a></span> with any questions.</p>
+              <p>If you are unfamiliar with how partner marketing works, reference <span><a class="link" href="https://partners.accelerationpartners.com/faqs/" target="_blank">these FAQs</a></span> for more information.</p>
+              <p>We are looking forward to working together!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+  .af-grid {
+    display: inline-block; 
+  }
+  .link {
+    color: #0000ff !important;
+  }
+  .join-now {
+    color: #ffffff !important;
+  }
+  .join-now-mobile {
+    color: #ffffff !important;
+  }
+  .page-af-title {
+    background-color: #d69999;
+    background-image: url('https://cdn.shopify.com/s/files/1/0027/5179/1157/files/HeroBanner_FriendsFamilySale_Desktop_f3ae705a-fff3-4b2d-84d3-fe4901df80c2.jpg?v=1655870491');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+  }
+  .mobile-af-page-title {
+    word-wrap: normal;
+    text-align: center;
+  }
+  .mobile-page-af-title {
+    background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/files/HeroBanner_FriendsFamilySale_Mobile_d0ad3cda-be6c-478c-be9f-1babca720bd8.jpg?v=1655870495");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+  }
+  .title-container {
+/*     background-image: url('https://cdn.shopify.com/s/files/1/0027/5179/1157/files/HeroBanner_FriendsFamilySale_Desktop_f3ae705a-fff3-4b2d-84d3-fe4901df80c2.jpg?v=1655870491');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px; */
+    width: 100%
+  }
+  #af-page-title {
+    margin-left: 3%;
+  }
+  h3 {
+    text-transform: uppercase;
+  }
+  .af-highlights {
+    background-color: #a7c4f3;
+    width: 100%
+  }
+/*   #header-af-btn {
+    margin-left: 175px !important;
+    
+  } */
+  .left-af {
+    background-color: #ffffff;
+    height: 150px;
+  }
+  .right-af {
+    background-color: #000000;
+    height: 150px;
+  }
+  .hide-title {
+    display: none;
+  }
+</style>
+
+<script>
+  if(window.innerWidth >= 600)
+  {
+    $(".page-af-title").removeClass("hide-title");
+    // $(".join-btn").removeClass("hide-title");
+  }
+  else if(window.innerWidth < 600)
+  {
+    $(".mobile-page-af-title").removeClass("hide-title");
+    // $(".join-btn-mobile").removeClass("hide-title");
+  }
+</script>

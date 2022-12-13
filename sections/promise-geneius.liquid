@@ -1,0 +1,100 @@
+<div class="bg_wrapper geneius" id="intro_section">
+  <div class="image_bg">
+   
+    
+    <div class="right_content container">
+      
+
+      <div class="feature-row__text feature-row__text text-center">
+        {% if section.settings.title != blank %}
+          <h2 class="h3">{{ section.settings.title | escape }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="rte-setting featured-row__subtext">{{ section.settings.text }}</div>
+        {% endif %}
+        <div class="extra_blocks gene-ius-kincare">
+          
+          {% for block in section.blocks %}
+          <div class="block s13 sm_s13 lg_s13">
+            <div class="grid text-center">
+          		<img src="{{block.settings.image | img_url : 'master'}}">
+            </div> 
+             <div class="grid text-center geneius-block-heading">
+          		<span>{{block.settings.block_subheading}}</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <div class="intro_btn">  <!--a onclick="getdata(this.getAttribute('data-link'))" data-link="{{ section.settings.button_link }}" href="javascript:void(0)" class="btn myvideoBtn">
+            {{ section.settings.button_label | escape }} <i class="fa fa-caret-right"></i>
+          </a -->
+          <a target="_blank" href="{{ section.settings.button_link }}" class="btn myvideoBtn">
+            {{ section.settings.button_label | escape }} <i class="fa fa-caret-right"></i>
+          </a>
+        </div>
+        {% endif %}
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Gene-ius Skincare",
+    "settings": [
+      
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "text",
+        "id": "button_link",
+        "label": "Button link"
+      }
+    ],
+
+"blocks" : [
+      {
+        "type": "cblock",
+        "name": "Conetnt",
+		"settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+			{
+            "type": "text",
+            "id": "block_subheading",
+            "label": "Subheading text",
+            "default": "Subheading text"
+          }
+		]
+	}],
+    "presets": [
+      {
+        "name": "Gene-ius Skincare",
+        "category": "custom"
+      }
+    ]
+  }
+{% endschema %}
+
+

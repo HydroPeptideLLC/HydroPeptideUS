@@ -1,0 +1,116 @@
+<section class="innerderm-faq">
+    <div class="container">
+        <div class="row row-lg">
+            <h1>FAQs</h1>
+            <br/>
+            <ul class="faq-list" style="max-width: 100% !important;">
+              <li class="faq-list__item">
+                <h2 class="faq-list__item-question">{{ product.metafields.faq.question_one }}</h2>
+                  <div class="faq-list__item-answer">{{ product.metafields.faq.answer_one }}</div>
+              </li>
+              <li class="faq-list__item">
+                <h2 class="faq-list__item-question">{{ product.metafields.faq.question_two }}</h2>
+                  <div class="faq-list__item-answer">{{ product.metafields.faq.answer_two }}</div>
+              </li>
+              <li class="faq-list__item">
+                <h2 class="faq-list__item-question">{{ product.metafields.faq.question_three }}</h2>
+                  <div class="faq-list__item-answer">{{ product.metafields.faq.answer_three }}</div>
+              </li>
+            </ul>
+            <p>If you would like to see more FAQs click <a href="{{ product.metafields.faq.link }}" target="_blank">here</a></p>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}
+
+{% stylesheet %}
+  .faq_dots {
+    cursor: pointer;
+    height: 5px;
+    width: 5px;
+    background-color: #000000;
+    border-radius: 50%;
+  }
+  .faq-q {
+    width: 100%;
+  }
+  .btn {
+    background-color: #e4e4e4 !important;
+    color: #000000 !important;
+  }
+  .btn-two {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  .innerderm-faq {
+    margin-bottom: 2%;
+  }
+  .fa-plus{
+  transform: rotate(0deg);
+  transition: transform 0.25s linear;
+}
+
+.fa-plus.open{
+  transform: rotate(135deg);
+  transition: transform 0.25s linear;
+}
+  .hide {
+    display: none;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function(document){
+  var divOne = document.getElementById('btn-contain-one');
+  var divTwo = document.getElementById('btn-contain-two');
+  var divThree = document.getElementById('btn-contain-three');
+  var iconOne = document.getElementById('icon-one');
+  var iconTwo = document.getElementById('icon-two');
+  var iconThree = document.getElementById('icon-three');
+  var openOne = false;
+  var openTwo = false;
+  var openThree = false;
+  
+  divOne.addEventListener('click', function(){
+    if(openOne){
+      iconOne.className = 'fa fa-plus';
+      document.getElementById('collapseOne').className = 'hide';
+    } else{
+      iconOne.className = 'fa fa-plus open';
+      document.getElementById('collapseOne').classList.remove('hide');
+    }
+    
+    openOne = !openOne;
+  });
+
+    divTwo.addEventListener('click', function(){
+    if(openTwo){
+      iconTwo.className = 'fa fa-plus';
+      document.getElementById('collapseTwo').className = 'hide';
+    } else{
+      iconTwo.className = 'fa fa-plus open';
+      document.getElementById('collapseTwo').classList.remove('hide');
+    }
+    
+    openTwo = !openTwo;
+  });
+
+    divThree.addEventListener('click', function(){
+    if(openThree){
+      iconThree.className = 'fa fa-plus';
+      document.getElementById('collapseThree').className = 'hide';
+    } else{
+      iconThree.className = 'fa fa-plus open';
+      document.getElementById('collapseThree').classList.remove('hide');
+    }
+    
+    openThree = !openThree;
+  });
+})(document);
+{% endjavascript %}

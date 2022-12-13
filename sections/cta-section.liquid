@@ -1,0 +1,104 @@
+<style>
+  .cta_wrapper .block {
+    padding: 0px 1rem;
+  }
+  .cta_wrapper .block .cta_block_wrapper {
+    padding: 1rem 0;
+    float: left;
+  }
+  .cta_wrapper .block .cta_block_wrapper .cta_block_wrapper_info {
+    margin-bottom: 2rem;
+  }
+</style>
+<section class="pad-sm">
+  <div class="row row-lg carousel-title">
+    <h2 class="h1">{{ section.settings.heading }}</h2>
+  </div>
+  
+  <div class="row row-lg">
+    <div class="container cta_wrapper">
+      {% for block in section.blocks  %}
+        {% assign cta_image = block.settings.cta_image %}
+        <div class="block xs_s1 sm_s12 med_s12 lg_s12 top-img">
+          <a href="{{ block.settings.cta_button_link }}" style="display:block !important">
+            <img src="{{ cta_image | img_url: 'large' }}">
+          </a>
+          <div class="cta_block_wrapper">
+            {% if block.settings.cta_heading != blank %}
+              <h2 class="h2">{{ block.settings.cta_heading | escape }}</h2>
+            {% endif %}
+            {% if block.settings.cta_description != blank %}
+              <div class="cta_block_wrapper_info">{{ block.settings.cta_description }}</div>
+            {% endif %}
+            {% if block.settings.cta_button_label != blank and block.settings.cta_button_link != blank %}
+              <a href="{{ block.settings.cta_button_link }}" class="button button--normal button--primary">
+                {{ block.settings.cta_button_label | escape }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+  {
+    "name": "CTA Section",
+    "max_blocks": 2,
+    "settings": [
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "cta_section",
+        "name": "CTA Section",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "cta_image",
+            "label": "CTA Image"
+          },
+          {
+            "type": "text",
+            "id": "cta_heading",
+            "label": "Heading",
+            "default": "CTA Heading"
+          },
+          {
+            "type": "textarea",
+            "id": "cta_description",
+            "label": "Description",
+            "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit assumenda sunt nostrum excepturi soluta necessitatibus suscipit provident minus, pariatur dolore beatae voluptates impedit, vitae, laudantium voluptatem neque mollitia quas praesentium."
+          },
+          {
+            "type": "text",
+            "id": "cta_button_label",
+            "label": "Button Label",
+            "default": "Read More"
+          },
+          {
+            "type": "url",
+            "id": "cta_button_link",
+            "label": "Button Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "CTA Section",
+        "category": "HydroPeptide"
+      }
+    ]
+  }
+{% endschema %}

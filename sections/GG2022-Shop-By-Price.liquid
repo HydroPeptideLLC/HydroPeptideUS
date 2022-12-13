@@ -1,0 +1,81 @@
+<section id="Shop-By-Price">
+        <div class="Price-Header HF-product-slider-header">
+            <div class="Title">
+                <span class="Skin-Title">Shop by Price</span>
+                <span class="From-blemishes-to-fine-lines-and-hyperpigmentation-youll-find-clinical-skincare-solutions-for-ever">Professional-grade skincare to treat every skin type at any price point.</span>
+            </div>
+            <div class="Price-product-slider-UI">
+              <div id="price-buttons">
+                <button class="Text-Button-Collection-Four active" id="low-price-collection" name="#Low-Price-Type-Collection" value="#low-price-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">UNDER $50</span>
+                </button>
+                <button class="Text-Button-Collection-Four" id="mid-price-Collection" name="#Mid-Price-Type-Collection" value="#mid-price-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">$50 - $100</span>
+                </button>
+                <button class="Text-Button-Collection-Four" id="high-price-collection" name="#High-Price-Type-Collection" value="#high-price-slider" style="margin: 0 !important;">
+                    <span class="CTA-Copy">$100 - $200</span>
+                </button>
+              </div>
+                <div class="Slider-UI">
+                    <div class="Arrow-Button-Four-Prev Arrow-Button"><img style="transform: rotate(180deg);" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Prev"></div>
+                    <span class="slider-four-count">1 / 2</span>
+                    <div class="Arrow-Button-Four-Next Arrow-Button"><img src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243" srcset="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_2x_33b46094-ea29-410b-88eb-3816129c5dfc.webp?v=1666137243 2x, https://cdn.shopify.com/s/files/1/0027/5179/1157/files/Arrow_3x_b0d31184-afff-4a23-ba4d-3281abecc3a3.webp?v=1666137243 3x" class="Arrow-Next"></div>
+                </div>
+            </div>
+            
+        </div> 
+        {% include 'Low-Price-Type-Collection' %}
+        {% include 'Mid-Price-Type-Collection' %}
+        {% include 'High-Price-Type-Collection' %}
+        
+        <script>if(screen.availWidth > 480){header=document.getElementById("HF-product-slider-UI");btns=document.getElementsByClassName('Text-Button-Collection-Four');for(let i=0;i<btns.length;i+=1){btns[i].addEventListener("click",function(){current=document.getElementsByClassName("Text-Button-Collection-Four active");$(current[0].name).addClass('hide');$(current[0].value).slick('unslick');if(current.length>0){current[0].className=current[0].className.replace(" active","")}this.className+=" active";$(this.name).removeClass('hide');$(this.value).slick({infinite:false,slidesToShow:4,slidesToScroll:4,centerPadding:'40px',nextArrow:$('.Arrow-Button-Four-Next'),prevArrow:$('.Arrow-Button-Four-Prev')});var currentSlick=$(this.value).slick('getSlick');var slickCount=Math.ceil(currentSlick.slideCount/4);var currentPage=1;$('.Arrow-Button-Four-Next').click(()=>{if(currentPage<slickCount){currentPage+=1}$('.slider-four-count').text(currentPage+' / '+slickCount)});$('.Arrow-Button-Four-Prev').click(()=>{if(currentPage>1){currentPage-=1}$('.slider-four-count').text(currentPage+' / '+slickCount)});$('.slider-four-count').text(currentPage+' / '+slickCount)})}$(document).ready(()=>{var currentSlider=$(".Text-Button-Collection-Four.active");currentSlider=currentSlider[0].value;var currentSlick=$(currentSlider).slick('getSlick');currentSlick=currentSlick.slideCount;console.log(currentSlick);var slickCount=Math.ceil(currentSlick/4);console.log(slickCount);var currentPage=1;$('.Arrow-Button-Four-Next').click(()=>{if(currentPage<slickCount){currentPage+=1}$('.slider-four-count').text(currentPage+' / '+slickCount)});$('.Arrow-Button-Four-Prev').click(()=>{if(currentPage>1){currentPage-=1}$('.slider-four-count').text(currentPage+' / '+slickCount)});$('.slider-four-count').text(currentPage+' / '+slickCount)})}</script>
+</section>
+<section id="Shop-By-Price-Mobile" class="hide">
+    <div id="mobile-header HF-product-slider-header-mobile">
+        <div class="Title">
+            <span class="SBP-Title">Shop by Price</span>
+            <span class="SBP-Subtitle">Professional-grade skincare to treat every skin type at any price point.</span>
+        </div>
+        <div class="HF-product-slider-UI-Mobile">
+            <select name="Shop-By-Price-Dropdown" class="Dropdown" id="select-price" style="-webkit-appearance: auto !important;">
+              <option class="Shop-all" name="#Low-Price-Type-Mobile-Collection" value="#low-price-mobile-slider">UNDER $50</option>
+              <option class="Shop-all" name="#Mid-Price-Type-Mobile-Collection" value="#mid-price-mobile-slider">$50 - $100</option> 
+              <option class="Shop-all" name="#High-Price-Type-Mobile-Collection" value="#high-price-mobile-slider">$100 - $200</option> 
+            </select>
+        </div>
+    </div> 
+        {% include 'Low-Price-Type-Mobile-Collection' %}
+        {% include 'Mid-Price-Type-Mobile-Collection' %}
+        {% include 'High-Price-Type-Mobile-Collection' %}   
+</section>
+<script>if(screen.availWidth <= 480){$(document).ready(()=>{var currentSlider=$('#select-price')[0].value;var currentSlick=$(currentSlider).slick('getSlick');var slickCount=currentSlick.slideCount;var currentPage=1;$('.Mobile-Arrow-Button-Four-Next').click(()=>{console.log('next');if(currentPage<slickCount){currentPage+=1}$('.mobile-slider-four-count').text(currentPage+' / '+slickCount)});$('.Mobile-Arrow-Button-Four-Prev').click(()=>{if(currentPage>1){currentPage-=1}$('.mobile-slider-four-count').text(currentPage+' / '+slickCount)});$('.mobile-slider-four-count').text(currentPage+' / '+slickCount)});var selection="#low-price-mobile-slider";var currentVal=$('#select-price').value;var currentName="";$('select#select-price').on('focus',function(){console.log('focusing');currentVal=this.value;console.log(currentVal);if(this.value=="#low-price-mobile-slider"){currentName="#Low-Price-Type-Mobile-Collection"}if(this.value=="#mid-price-mobile-slider"){currentName="#Mid-Price-Type-Mobile-Collection"}if(this.value=="#high-price-mobile-slider"){currentName="#High-Price-Type-Mobile-Collection"}console.log(currentName)}).change(()=>{console.log('starting change');var newVal=$('#select-price')[0];var newName;if(newVal.value=="#low-price-mobile-slider"){newName="#Low-Price-Type-Mobile-Collection"}if(newVal.value=="#mid-price-mobile-slider"){newName="#Mid-Price-Type-Mobile-Collection"}if(newVal.value=="#high-price-mobile-slider"){newName="#High-Price-Type-Mobile-Collection"}console.log('this is the newName');console.log(newName);console.log(currentName);$(currentName).addClass('hide');$(currentVal).slick('unslick');$(newName).removeClass('hide');$(newVal.value).not('.slick-initialized').slick({infinite:false,slidesToShow:1,slidesToScroll:1,nextArrow:$('.Mobile-Arrow-Button-Four-Next'),prevArrow:$('.Mobile-Arrow-Button-Four-Prev')});var currentSlick=$(newVal.value).slick('getSlick');var slickCount=currentSlick.slideCount;var currentPage=1;$('.Mobile-Arrow-Button-Four-Next').click(()=>{if(currentPage<slickCount){currentPage+=1}$('.mobile-slider-four-count').text(currentPage+' / '+slickCount)});$('.Mobile-Arrow-Button-Four-Prev').click(()=>{if(currentPage>1){currentPage-=1}$('.mobile-slider-four-count').text(currentPage+' / '+slickCount)});$('.mobile-slider-four-count').text(currentPage+' / '+slickCount)});}</script>
+</section>
+<style > #Shop-By-Price{padding-top: 50px}.Price-product-slider-UI{height:44px;width:100%;align-self:stretch;flex-grow:0;display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end;padding:0}#price-buttons{align-self:stretch;flex-grow:0;display:flex;flex-direction:row}.Price-product-slider-UI .Text-Button-Collection-Four.active{width:200px;height:27px;flex-grow:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 0 10px;border-bottom:solid 2px #6d9dea;background-color:#fff}.Price-product-slider-UI .Text-Button-Collection-Four{width:200px !important;height:27px;flex-grow:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 0 10px;background-color:#fff;border-bottom:solid 1px #f1f1f1}.Price-product-slider-UI .Text-Button-Collection-Four.active .CTA-Copy{width:auto;height:auto;flex-grow:0;font-family:TT Norms1;font-size:14px;font-weight:bold;font-stretch:normal;font-style:normal;line-height:normal;letter-spacing:2px;text-align:center;color:#6d9dea;text-transform:uppercase}.Price-product-slider-UI .Text-Button-Collection-Four .CTA-Copy{width:auto;height:auto;flex-grow:0;font-family:TT Norms1;font-size:14px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:normal;letter-spacing:2px;text-align:center;color:#393939;text-transform:uppercase}.SBP-Title{align-self:stretch;flex-grow:0;font-family:ChronicleDisplay-Roman;font-size:35px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:1.29;letter-spacing:normal;text-align:left;color:#393939}.SBP-Subtitle{align-self:stretch;flex-grow:0;font-family:TTNormsPro;font-size:16px;font-weight:normal;font-stretch:normal;font-style:normal;line-height:1.31;letter-spacing:normal;text-align:left;color:#393939}.HF-product-slider-header-mobile{height:156px;align-self:stretch;flex-grow:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:20px;padding:0 30px}#Shop-By-Price-Mobile{align-self:stretch;flex-grow:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:20px;padding:0 30px}.Arrow-Button{width:44px;height:44px;flex-grow:0;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:10px;padding:10px;border:solid 1px #e4e4e4;background-color:#fff}.Arrow-Button img{top:50%;left:50%}.Arrow-Button{width:44px;height:44px;flex-grow:0;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:10px;padding:10px;border:solid 1px #e4e4e4;background-color:#fff}.Arrow-Button img{top:50%;left:50%}.Dropdown{width:100%;height:44px;align-self:stretch;flex-grow:0;display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:10px 20px;border:solid 1px #e4e4e4;background-color:#fff}</style>
+{% schema %}
+  {
+    "name": "Price",
+    "settings": [
+      {
+        "id": "low-price",
+        "type": "collection",
+        "label": "Under $50 Collection"
+      },
+      {
+        "id": "mid-price",
+        "type": "collection",
+        "label": "$50 - $100 Collection"
+      },
+      {
+        "id": "high-price",
+        "type": "collection",
+        "label": "$100 - $200 Collection"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

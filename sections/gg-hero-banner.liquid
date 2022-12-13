@@ -1,0 +1,143 @@
+<div class="hero_slider_content">
+  {% for block in section.blocks %}
+  <div class="home_hero_banner banner_{{ forloop.index }}">
+    <div class="container">
+      <div class="content">
+        <h1 style="color: {{ block.settings.text_color }} !important; max-width: 550px !important">{{ block.settings.title }}</h1>
+        <p style="color: {{ block.settings.text_color }} !important;  max-width: 480px !important; margin-left: 0px !important">{{ block.settings.short_text }}</p>
+      </div>
+          <style>
+              .content {
+                  max-width: 550px;
+                  word-wrap: normal;
+              }
+              .home_hero_banner.banner_{{ forloop.index }} {
+                  background-image: url({{ block.settings.background_image | img_url: 'master' }});
+                  height: 500px !important;
+              }
+              @media (min-width: 768px) {
+                  .content {
+                      {{ block.settings.desktop_banner_content_position }}
+                      height: 250px !important;
+                      margin: 125px 0 !imporatnt;
+                  }
+                }
+              @media screen and (max-width: 767px) {
+/*                     .home_hero_banner > .container {
+                      margin-top: 60% !important;
+                    } */
+                  .home_hero_banner.banner_{{ forloop.index }} {
+                      background-image: url({{ block.settings.background_image_mobile | img_url: 'master' }});
+                      height: 500px !important;
+                  }
+                  .content {
+/*                       {{ block.settings.banner_content_position }} */
+                      width: 100%;
+                      height: 198px;
+                      margin: 35px 0 534px;
+                  }
+          </style>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% schema %}
+{
+	"name": "GG hero section",
+	"settings": [
+		
+	],
+	"blocks": [
+		{
+			"type": "gallery_image",
+			"name": "Banner Slide",
+			"settings": [
+				{
+                  "type": "image_picker",
+                  "id": "background_image",
+                  "label": "Background Image"
+                },
+                {
+                  "type": "image_picker",
+                  "id": "background_image_mobile",
+                  "label": "Background Mobile Image"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title",
+                    "default": "Revamp Your Regimen Kit"
+                },
+                {
+                    "type": "textarea",
+                    "id": "short_text",
+                    "label": "Text",
+                    "default": "Give your skincare routine a makeover"
+                },
+                {
+                  "type": "color",
+                  "id": "text_color",
+                  "label": "Text Color",
+                  "default": "#000000"
+                },
+                {
+                    "type": "text",
+                    "id": "cta",
+                    "label": "Button label"
+                },
+                {
+                    "type": "color",
+                    "label": "CTA color",
+                    "id": "banner_cta_color",
+                    "default": "#000000"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Button link"
+                },
+                {
+                   "type": "select",
+                   "id": "desktop_banner_content_position",
+                   "options": [
+                      { "value": "float: left !important;", "label": "Left"},
+                      { "value": "margin-left: 48.4% !important;", "label": "Center"},
+                      { "value": "float: right !important;", "label": "Right"}
+                   ],
+                   "label": "Content Position on Desktop",
+				   "default": "float: right !important;"
+                },
+				{
+                   "type": "select",
+                   "id": "banner_content_position",
+                   "options": [
+                      { "value": "padding: 40px 0 400px !important;", "label": "Top"},
+                      { "value": "padding: 190px 0 190px !important;", "label": "Center"},
+                      { "value": "padding: 322px 0 55px !important;", "label": "Bottom"}
+                   ],
+                   "label": "Content Position on Mobile",
+				   "default":   "padding: 322px 0 55px !important;"
+                }
+			]
+		}
+	],
+	"presets": [
+		{
+            "category": "Banner",
+            "name": "Home Hero banner",
+			"blocks": [
+				{
+					"type": "gallery_image"
+				},
+				{
+					"type": "gallery_image"
+				},
+				{
+					"type": "gallery_image"
+				}
+			]
+		}
+	]
+
+}
+{% endschema %}

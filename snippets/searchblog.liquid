@@ -1,0 +1,25 @@
+ <div class="ui-widget">
+                <input id="tags" placeholder="Search Blog...">            
+</div>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+var jsonData = [{% for article in blog.articles %}{"label":"{{ article.title }}","the_link":"{{ article.url }}"}{% unless forloop.last %},{% endunless %}{% endfor %}];
+
+$("#tags").autocomplete({
+source: jsonData,
+ response: function(event, ui) {
+            if (!ui.content.length) {
+                var noResult = { value:"",label:"Sorry, no result found" };
+                ui.content.push(noResult);              
+            } else {
+                $("#message").empty();
+            }
+        },
+select: function(event,ui) { 
+                                
+    window.location.href = ui.item.the_link;
+}
+});
+  
+</script>

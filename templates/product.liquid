@@ -1,0 +1,170 @@
+{% render 'shogun-products', content: product %}
+{% include 'shogun-products', content: product %}
+{{product.metafields.shogun.above}}
+{% include 'product-variantPopover' %}
+{% include 'sca_freegift_price' with product %}
+{% assign on_sale = false %}
+{% if sca_compare_at_price > sca_price %}
+	{% assign on_sale = true %}
+	{% assign on_sale_class = ' is-sale' %}
+{% endif %}
+
+{% assign sold_out = true %}
+{% if product.available %}
+	{% assign sold_out = false %}
+{% endif %}
+{%- assign product_collection = product.collections.first -%}
+{%- assign handle_name = product_collection.handle -%}
+
+<div itemscope itemtype="http://schema.org/Product">
+	<meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+	<meta itemprop="image" content="{{ product.featured_image.src | img_url: 'grande' }}">
+	
+		{% section 'product-template' %}
+		{% section 'faq-section__product' %}
+		{% section 'related-products' %}
+  <section>
+    {% unless product.tags contains 'SEARCHANISE_IGNORE' %}
+  <a id="review"></a>
+  {% if settings.show_reviews %}
+    <div class="container">
+          <div class="row row-lg">
+							{%- if settings.enable_yotpo and settings.yotpo_ID != '' -%}
+								  {% include 'yotpo-reviews' %}
+							{%- else -%}
+								 
+							{%- endif -%}
+											
+      </div>
+    </div>
+									{% endif %}
+    {% endunless %}
+    </section>
+  <script type="application/ld+json" id="product-json">
+  	{{ product | json }}
+  </script>
+<!-- 	<span id="product-json" hidden>{{ product | json }}</span> -->
+</div>
+
+{% section 'instagram' %}
+{% section 'product-bottom-gallary' %}
+
+
+
+{{ 'page-product.js'  | asset_url | script_tag }}
+<script>
+   $(function () {
+     if($('.spr-container').length){
+       $(".review-write").click(function(e) {
+         e.preventDefault();
+         $('.spr-form').show();
+         $('html, body').animate({
+                    scrollTop: $("#review").offset().top - 70
+         }, 2000);
+       });
+       $(".review-read").click(function(e) {
+         e.preventDefault();
+         $('.spr-form').hide();
+         $('html, body').animate({
+                    scrollTop: $("#review").offset().top - 70
+         }, 2000);
+       });
+     }
+   });
+</script>
+
+{{product.metafields.shogun.below}}
+
+<script type="text/javascript">
+  var _learnq = _learnq || [];
+
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>
+<script type="text/javascript">
+	var _learnq = _learnq || [];
+	document.getElementById("AddToCart").addEventListener('click',function (){
+ 		_learnq.push(['track', 'Added to Cart', item]);
+	});
+</script>
+
+<script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
+<script>
+    var klaviyo = klaviyo || [];
+    klaviyo.init({
+      account: "R2HKkf",
+	  list: 'SqVTPF',
+      platform: "shopify"
+    });
+    klaviyo.enable("backinstock",{ 
+    trigger: {
+      product_page_text: "Notify Me When Available",
+      product_page_class: "btn",
+      product_page_text_align: "center",
+      product_page_margin: "0px",
+      replace_anchor: false
+    },
+    modal: {
+     headline: "{product_name}",
+     body_content: "Register to receive a notification when this item comes back in stock.",
+     email_field_label: "Email",
+     button_label: "Notify me when available",
+     subscription_success_label: "You're in! We'll let you know when it's back.",
+     footer_content: '',
+     additional_styles: "@import url('https://fonts.googleapis.com/css?family=Helvetica+Neue');",
+     drop_background_color: "#000",
+     background_color: "#fff",
+     text_color: "#222",
+     button_text_color: "#fff",
+     button_background_color: "#439fdb",
+     close_button_color: "#ccc",
+     error_background_color: "#fcd6d7",
+     error_text_color: "#C72E2F",
+     success_background_color: "#d3efcd",
+     success_text_color: "#1B9500"
+    }
+  });
+</script>
+
+<script type="text/javascript">
+     $("a#prod_add_to_cart").on("click", function () {
+          var pid =  $( "select#product-select" ).val();
+          var pquantity = $( "select#quantity" ).val();
+            $.ajax({
+              type: "POST",
+              url: "/cart/add.js",
+              data: {
+                quantity: pquantity,
+                id: pid,
+              },
+              dataType: "json",
+              success: function (success) {
+                          cart_data();
+              },
+              error: function (error) {},
+            });           
+          });
+
+</script>{% include 'wiser_related' %}{% include 'wiser_recommended' %}{% include 'wiser_alsobought' %}{% include 'wiser_recentview' %}{% include 'wiser_topselling' %}{% include 'wiser_trending' %}{% include 'wiser_newarrivals' %}{% include 'wiser_featured' %}{% include 'wiser_recent_related' %}

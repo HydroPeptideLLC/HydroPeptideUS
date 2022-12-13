@@ -1,0 +1,1276 @@
+/* PageFly Element Styles */
+						.kuwSuz { display: inline-block; line-height: 1; padding: 12px 20px; text-align: center; text-decoration: none; outline: 0px; }
+.kuwSuz i { margin-right: 0.3em; }
+.kuwSuz:hover, .kuwSuz:active, .kuwSuz:focus, .kuwSuz span { color: inherit; }
+.kuwSuz span { display: initial; }
+.lcHmGL { word-break: break-word; }
+.lcHmGL span { font-weight: inherit; text-decoration: inherit; }
+.lcHmGL i { margin-right: 0.3em; }
+.jrwOpx { font-family: FontAwesome !important; }
+.jakOsZ { display: inline-block; vertical-align: middle; }
+.jakOsZ img { width: 100%; border-radius: inherit; }
+.bgMQOP { position: relative; }
+.jklmHY { padding: var(--pf-s-lg); }
+@media (max-width: 1199px) and (min-width: 992px) {
+  .jklmHY { padding: var(--pf-s-md); }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .jklmHY { padding: var(--pf-s-sm); }
+}
+@media (max-width: 767px) {
+  .jklmHY { padding: var(--pf-s-xs); }
+}
+.fTyjzF { position: relative; }
+.eYzxUD { margin: 0 calc(-1 * var(--pf-s-lg)); }
+@media (max-width: 1199px) and (min-width: 992px) {
+  .eYzxUD { margin: 0 calc(-1 * var(--pf-s-md)); }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .eYzxUD { margin: 0 calc(-1 * var(--pf-s-sm)); }
+}
+@media (max-width: 767px) {
+  .eYzxUD { margin: 0 calc(-1 * var(--pf-s-xs)); }
+}
+.bjKdkd__parallax { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; }
+.bjKdkd { padding: 15px 0px; position: relative; }
+.cbrLgP > span:last-child { line-height: inherit; display: block; margin-right: 0px !important; }
+#editor-dnd-wrapper .cbrLgP span + span[contenteditable] { display: block; }
+#editor-dnd-wrapper .cbrLgP span + span[contenteditable]:empty::after { display: inline; }
+.cbrLgP ol, .cbrLgP ul { list-style-position: inside; }
+.cbrLgP blockquote { font-size: inherit; }
+.kpEQWN.pfs--topLeft { display: flex; align-items: flex-start; justify-content: flex-start; }
+.kpEQWN.pfs--topCenter { display: flex; align-items: flex-start; justify-content: center; }
+.kpEQWN.pfs--topRight { display: flex; align-items: flex-start; justify-content: flex-end; }
+.kpEQWN.pfs--middleLeft { display: flex; align-items: center; justify-content: flex-start; }
+.kpEQWN.pfs--center { display: flex; align-items: center; justify-content: center; }
+.kpEQWN.pfs--middleRight { display: flex; align-items: center; justify-content: flex-end; }
+.kpEQWN.pfs--bottomLeft { display: flex; align-items: flex-end; justify-content: flex-start; }
+.kpEQWN.pfs--bottomCenter { display: flex; align-items: flex-end; justify-content: center; }
+.kpEQWN.pfs--bottomRight { display: flex; align-items: flex-end; justify-content: flex-end; }
+.kCAYOZ { visibility: hidden; }
+.kCAYOZ.pf-slider-wrapper { overflow: hidden; position: relative; }
+.kCAYOZ.pf-slider-wrapper:hover .nav-style-2, .kCAYOZ.pf-slider-wrapper:hover .nav-style-4 { opacity: 1; }
+.kCAYOZ.pf-slider-wrapper:hover .nav-style-2.pf-prev-nav, .kCAYOZ.pf-slider-wrapper:hover .nav-style-4.pf-prev-nav { left: 20px; }
+.kCAYOZ.pf-slider-wrapper:hover .nav-style-2.pf-next-nav, .kCAYOZ.pf-slider-wrapper:hover .nav-style-4.pf-next-nav { right: 20px; }
+.kCAYOZ.pf-slider-wrapper:hover .nav-style-3 { opacity: 1; }
+.kCAYOZ.pf-slider-wrapper:hover .nav-style-3.pf-prev-nav { left: 0px; }
+.kCAYOZ.pf-slider-wrapper:hover .nav-style-3.pf-next-nav { right: 0px; }
+.kCAYOZ.pf-slider-mouse-event-off > * { pointer-events: none; }
+.kCAYOZ .pf-slider-inner { overflow: hidden; }
+.kCAYOZ .pf-slider-slide { will-change: contents; position: absolute; transform: translate3d(100%, 0px, 0px); overflow: hidden; top: 0px; }
+.kCAYOZ .pf-slider-nav { position: absolute; z-index: 999; cursor: pointer; border: 0px; background: transparent; top: 50%; transform: translateY(-50%); padding: 0px; transition: all 0.3s ease 0s; }
+.kCAYOZ .pf-slider-nav:focus { outline: 0px; }
+.kCAYOZ .pf-slider-nav::before { font-size: 14px; color: rgb(255, 255, 255); font-family: FontAwesome; }
+.kCAYOZ .pf-slider-nav.nav-style-1 { width: 40px; height: 40px; line-height: 40px; justify-content: center; background: rgba(0, 0, 0, 0.4); border-radius: 100%; }
+.kCAYOZ .pf-slider-nav.nav-style-1:hover { background: rgb(0, 0, 0); }
+.kCAYOZ .pf-slider-nav.nav-style-1.pf-prev-nav { left: 20px; }
+.kCAYOZ .pf-slider-nav.nav-style-1.pf-next-nav { right: 20px; }
+.kCAYOZ .pf-slider-nav.nav-style-2, .kCAYOZ .pf-slider-nav.nav-style-4, .kCAYOZ .pf-slider-nav.nav-style-5 { width: 40px; height: 40px; line-height: 40px; justify-content: center; background: rgb(3, 3, 3); border-radius: 3px; opacity: 0; }
+.kCAYOZ .pf-slider-nav.nav-style-2:hover, .kCAYOZ .pf-slider-nav.nav-style-4:hover, .kCAYOZ .pf-slider-nav.nav-style-5:hover { background: rgb(23, 23, 23); }
+.kCAYOZ .pf-slider-nav.nav-style-2.pf-prev-nav, .kCAYOZ .pf-slider-nav.nav-style-4.pf-prev-nav, .kCAYOZ .pf-slider-nav.nav-style-5.pf-prev-nav { left: 40px; }
+.kCAYOZ .pf-slider-nav.nav-style-2.pf-next-nav, .kCAYOZ .pf-slider-nav.nav-style-4.pf-next-nav, .kCAYOZ .pf-slider-nav.nav-style-5.pf-next-nav { right: 40px; }
+.kCAYOZ .pf-slider-nav.nav-style-3 { padding: 20px; text-shadow: rgb(0, 0, 0) 0px 0px 1px; opacity: 0; }
+.kCAYOZ .pf-slider-nav.nav-style-3::before { font-size: 24px; }
+.kCAYOZ .pf-slider-nav.nav-style-3.pf-prev-nav { left: 40px; }
+.kCAYOZ .pf-slider-nav.nav-style-3.pf-next-nav { right: 40px; }
+.kCAYOZ .pf-slider-nav.nav-style-5 { top: auto; bottom: 5%; opacity: 1; }
+.kCAYOZ .pf-slider-nav.nav-style-5.pf-prev-nav { right: 62px; border-radius: 3px 0px 0px 3px; }
+.kCAYOZ .pf-slider-nav.nav-style-5.pf-next-nav { right: 20px; border-radius: 0px 3px 3px 0px; }
+.kCAYOZ .pf-slider-nav-disabled { pointer-events: none; }
+.kCAYOZ .pf-slider-pagination { position: absolute; bottom: 15px; left: 0px; width: 100%; padding: 0px; margin: 0px; text-align: center; z-index: 1; }
+.kCAYOZ .pf-slider-pagination li { display: inline-block; margin: 0px 5px; background: rgb(187, 187, 187); opacity: 1; transition: all 0.3s ease 0s; cursor: pointer; }
+.kCAYOZ .pf-slider-pagination li.active, .kCAYOZ .pf-slider-pagination li:hover { background: rgb(33, 33, 33); }
+.kCAYOZ .pf-slider-pagination.pagination-style-1 li { width: 20px; height: 5px; }
+.kCAYOZ .pf-slider-pagination.pagination-style-2 li { position: relative; width: 8px; height: 8px; background: transparent; }
+.kCAYOZ .pf-slider-pagination.pagination-style-2 li::after { position: absolute; content: ""; left: -2px; top: -2px; width: 12px; height: 12px; border: 1px solid rgb(33, 33, 33); border-radius: 50%; }
+.kCAYOZ .pf-slider-pagination.pagination-style-2 li.active { background: rgb(33, 33, 33); border-radius: 50%; }
+.kCAYOZ .pf-slider-pagination.pagination-style-3 li { position: relative; width: 16px; height: 16px; border: 2px solid rgb(255, 255, 255); background: transparent; border-radius: 50%; }
+.kCAYOZ .pf-slider-pagination.pagination-style-3 li.active::after { position: absolute; content: ""; top: 3px; left: 3px; right: 3px; bottom: 3px; width: 6px; border: 2px solid rgb(255, 255, 255); border-radius: 100%; }
+.fhcpFs { display: flex; flex-direction: column; }
+.fhcpFs > div:first-child { display: flex; flex-wrap: wrap; position: relative; justify-content: center; }
+.fhcpFs > div:first-child .sc-qYsMX { padding: 1.5rem 0px; }
+.kidlpw { cursor: pointer; line-height: 1; border: none; color: rgb(23, 43, 77); padding: 12px 20px; text-align: center; text-decoration: none; -webkit-appearance: none; outline: 0px; background: rgb(240, 242, 243); display: inline-block; flex: 1 1 auto; }
+.kidlpw i { margin-right: 0.3em; }
+@media (max-width: 768px) {
+  .kidlpw i { margin-top: 5px !important; margin-bottom: 5px !important; }
+}
+@media (max-width: 767px) {
+}
+.kidlpw:hover, .kidlpw:active, .kidlpw:focus, .kidlpw span { color: inherit; text-decoration: inherit; }
+.eXHXkH { padding: 20px; background: rgb(250, 251, 251); border: 2px solid rgb(209, 213, 219); }
+.fnmilh { display: inline-block; }
+.fnmilh[contenteditable="true"] { user-select: text; }
+.fnmilh { vertical-align: baseline; word-break: break-word; }
+.fnmilh:focus { outline: none; }
+.fnmilh::after { display: inline; }
+.gYNRye { border: none; outline: none; line-height: 1; padding: 12px 20px; cursor: pointer; background: rgb(235, 235, 235); position: relative; display: inline-flex; align-items: center; justify-content: center; }
+.gYNRye[disabled] { opacity: 0.7; }
+.gYNRye.is-loading, .gYNRye.is-added { pointer-events: none; }
+.gYNRye > span { vertical-align: middle; line-height: inherit; display: inline-block; max-width: 100%; }
+.gYNRye.pf-i--left i { margin-right: 0.3em; }
+.gYNRye + .sc-oTOtL, .gYNRye.pf-i--right i { margin-left: 0.3em; }
+.uJAsR form { margin: 0px; height: 100%; }
+.jTAHHU { position: absolute; z-index: 1; width: 32px; height: 32px; line-height: 34px; text-align: center; cursor: pointer; background: rgba(255, 255, 255, 0.35); border-radius: 2px; opacity: 0; }
+.jTAHHU.prev-arrow { left: 16px; top: calc(50% - 16px); }
+.jTAHHU.next-arrow { right: 16px; top: calc(50% - 16px); }
+.jTAHHU i.fa { font-size: 20px; color: rgb(93, 107, 130); }
+.jTAHHU.pf-show-nav { opacity: 1; }
+@media (min-width: 992px) {
+  .dRtXDN .sc-psbuI { display: none; }
+}
+.dRtXDN .sc-psbuI { transition: all 0.3s ease 0s; opacity: 1; }
+.dRtXDN .sc-psbuI.prev-arrow { left: 16px; top: calc(50% - 16px); }
+.dRtXDN .sc-psbuI.next-arrow { right: 16px; top: calc(50% - 16px); }
+.dRtXDN .sc-psbuI i.fa { color: rgb(93, 107, 130); transform: none; }
+.dRtXDN .sc-psbuI { transition: all 0.3s ease 0s; opacity: 0; }
+.dRtXDN .sc-psbuI.prev-arrow { left: -100%; top: calc(50% - 16px); }
+.dRtXDN .sc-psbuI.next-arrow { right: -100%; top: calc(50% - 16px); }
+.dRtXDN .sc-psbuI i.fa { transform: none; }
+.dRtXDN:hover .sc-psbuI { opacity: 1; }
+.dRtXDN:hover .sc-psbuI.prev-arrow { left: 16px; }
+.dRtXDN:hover .sc-psbuI.next-arrow { right: 16px; }
+.fNDgSL { position: relative; display: inline-flex; width: 100%; flex-direction: column; overflow: hidden; }
+.fNDgSL .sc-qQZrP { position: relative; display: flex; flex: 1 1 auto; }
+.fNDgSL.pf-show-arrow .sc-psbuI { opacity: 1; }
+.fNDgSL.pf-show-arrow .sc-psbuI.prev-arrow { left: 16px; }
+.fNDgSL.pf-show-arrow .sc-psbuI.next-arrow { right: 16px; }
+@media (max-width: 767px) {
+}
+@media (max-width: 991px) and (min-width: 768px) {
+}
+@media (max-width: 1199px) and (min-width: 992px) {
+  .fNDgSL .sc-pzLIQ { display: none; }
+}
+@media (min-width: 1200px) {
+  .fNDgSL .sc-pzLIQ { display: none; }
+}
+.dqIZuK { position: relative; display: flex; margin-top: 10px; }
+.dqIZuK .icon-left { transform: rotate(180deg); }
+.dqIZuK .icon-right { right: 0px; }
+.dqIZuK .icon-left:hover, .dqIZuK .icon-right:hover { opacity: 0.5; }
+.dqIZuK .pf-p-image-small-container { width: 100%; overflow: hidden; position: relative; }
+.dqIZuK .pf-p-image-small-container .pf-small-img-roll { transition: all 0.5s ease 0s; min-width: 424px; }
+.dqIZuK .pf-p-image-small-container .pf-small-img-roll::after { display: block; content: ""; clear: both; }
+.dqIZuK .pf-p-image-small-container .pf-small-img-roll .sc-pjGtN { width: 66.8px; height: 74.8px; float: left; }
+.dqIZuK .pf-p-image-small-container .pf-small-img-roll .sc-pjGtN img { width: 100%; height: 100%; object-fit: cover; cursor: pointer; border-radius: 2px; border: 1px solid rgb(209, 213, 219); }
+.dqIZuK .pf-p-image-small-container div { position: relative; }
+@media (max-width: 991px) {
+  .dqIZuK { display: none; }
+}
+.bhYosX { position: relative; vertical-align: middle; width: 100%; height: 200px; display: var(--pf-d-lg); }
+@media (max-width: 1199px) and (min-width: 992px) {
+  .bhYosX { display: var(--pf-d-md); }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .bhYosX { display: var(--pf-d-sm); }
+}
+@media (max-width: 767px) {
+  .bhYosX { display: var(--pf-d-xs); }
+}
+.bhYosX img { border-radius: 4px; width: 100%; }
+.bhYosX a { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; }
+@media (max-width: 991px) {
+  .bhYosX { margin: 0px; }
+}
+.ggSnCK[data-pf-type="ProductText"].no-product { text-decoration: none; }
+.kpuSv[data-pf-type="ProductText"].no-product { text-decoration: none; }
+.bbpodW { grid-gap: var(--pf-s-lg); }
+@media (max-width: 1199px) and (min-width: 992px) {
+  .bbpodW { grid-gap: var(--pf-s-md); }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .bbpodW { grid-gap: var(--pf-s-sm); }
+}
+@media (max-width: 767px) {
+  .bbpodW { grid-gap: var(--pf-s-xs); }
+}
+.bbpodW.pf-loading::before { content: ""; position: absolute; border-width: 3px; border-style: solid; border-color: rgb(95, 103, 255) rgb(243, 243, 243) rgb(243, 243, 243); border-image: initial; border-radius: 50%; width: 32px; height: 32px; animation: 2s linear 0s infinite normal none running pf-spin; z-index: 1; top: calc(50% - 46px); left: calc(50% - 16px); }
+.bbpodW.pf-loading > div:not(:last-child) { opacity: 0.6; }
+@keyframes pf-spin { 
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+						/* PageFly Styles */
+						
+@media all {
+	.__pf .pf-866833bf {
+		margin-top: 0px;
+		 margin-bottom: 5px;
+		 color: rgb(74, 144, 226);
+		 font-size: 52px;
+		 letter-spacing: 4px;
+	}
+	.__pf .pf-4a032b44 {
+		font-family: "PT Serif";
+		 font-size: 28px;
+		 font-weight: 700;
+		 margin-top: 0px;
+		 margin-bottom: 0px;
+		 color: rgb(51, 51, 51);
+	}
+	.__pf .pf-2b44c877 {
+		text-align: center;
+	}
+	.__pf .pf-e63ddd17 {
+		padding-left: 120px;
+	}
+	.__pf .pf-612086bb {
+		padding-top: 75px;
+		 padding-bottom: 75px;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-c71246b2--Image-1Spa-FlatlayInternationalSummit.jpg?v=1586544065");
+		 background-position: 50% 100%;
+		 background-size: cover;
+		 background-attachment: scroll;
+	}
+	.__pf .pf-a6cf7378 {
+		font-size: 30px;
+	}
+	.__pf .pf-73784f27 {
+		text-align: left;
+		 font-size: 19px;
+		 padding-bottom: 20px;
+	}
+	.__pf .pf-4f276f7b {
+		background-color: rgb(23, 142, 209);
+		 color: rgb(255, 255, 255);
+	}
+	.__pf .pf-6f7b13af {
+		padding-top: 20px;
+		 padding-bottom: 20px;
+		 font-size: 19px;
+	}
+	.__pf .pf-6cf363c8 {
+		width: 450px;
+		 height: auto;
+	}
+	.__pf .pf-016c78ed {
+		padding-left: 60px;
+	}
+	.__pf .pf-5aa6a6cf {
+		width: auto;
+		 height: auto;
+	}
+	.__pf .pf-13af016c {
+		text-align: center;
+		 padding-top: 50px;
+	}
+	.__pf .pf-78ed1a7a {
+		margin-top: 50px;
+	}
+	.__pf .pf-14dc3f24 {
+		width: 450px;
+		 height: auto;
+	}
+	.__pf .pf-539d4411 {
+		text-align: center;
+		 padding-top: 50px;
+	}
+	.__pf .pf-44117e49 {
+		font-size: 30px;
+	}
+	.__pf .pf-7e49c2f9 {
+		text-align: left;
+		 font-size: 19px;
+		 padding-bottom: 20px;
+	}
+	.__pf .pf-c2f91e08 {
+		background-color: rgb(23, 142, 209);
+		 color: rgb(255, 255, 255);
+	}
+	.__pf .pf-1e08e051 {
+		padding-top: 20px;
+		 padding-bottom: 20px;
+		 font-size: 19px;
+	}
+	.__pf .pf-e0512daa {
+		padding-left: 60px;
+	}
+	.__pf .pf-2daa9658 {
+		margin-top: 50px;
+	}
+	.__pf .pf-53bec490 {
+		text-align: center;
+	}
+	.__pf .pf-720cc5bc {
+		background-color: rgb(145, 157, 169);
+		 color: rgb(255, 255, 255);
+		 font-size: 25px;
+		 margin-top: 15px;
+	}
+	.__pf .pf-c490d903 {
+		padding-top: 15px;
+	}
+	.__pf .pf-07e58c03 {
+		font-size: 30px;
+	}
+	.__pf .pf-8c033e31 {
+		text-align: left;
+		 font-size: 19px;
+		 padding-bottom: 20px;
+	}
+	.__pf .pf-3e31b5cf {
+		background-color: rgb(23, 142, 209);
+		 color: rgb(255, 255, 255);
+	}
+	.__pf .pf-b5cf580b {
+		padding-top: 20px;
+		 padding-bottom: 20px;
+		 font-size: 19px;
+	}
+	.__pf .pf-e353406a {
+		width: auto;
+		 height: auto;
+	}
+	.__pf .pf-406a3def {
+		width: 300px;
+		 height: auto;
+	}
+	.__pf .pf-07c27577 {
+		background-color: rgb(23, 142, 209);
+		 color: rgb(255, 255, 255);
+		 font-weight: 700;
+		 padding: 20px 30px;
+	}
+	.__pf .pf-9d08f0ca {
+		padding-left: 60px;
+	}
+	.__pf .pf-7bd307e5 {
+		width: 800px;
+		 height: auto;
+	}
+	.__pf .pf-fb9e4e1c {
+		text-align: center;
+		 padding-top: 50px;
+	}
+	.__pf .pf-f5367530 {
+		text-align: center;
+		 font-size: 38px;
+	}
+	.__pf .pf-1c550b7c {
+		border-radius: 0px;
+		 border: 3px none rgb(145, 157, 169);
+		 padding-right: 0px;
+		 padding-bottom: 0px;
+		 padding-left: 80px;
+	}
+	.__pf .pf-8369e01c {
+		font-size: 30px;
+	}
+	.__pf .pf-e01c091c {
+		text-align: left;
+		 font-size: 19px;
+		 padding-bottom: 20px;
+	}
+	.__pf .pf-091c939a {
+		background-color: rgb(23, 142, 209);
+		 color: rgb(255, 255, 255);
+	}
+	.__pf .pf-939ac7cb {
+		padding-top: 20px;
+		 padding-bottom: 20px;
+		 font-size: 19px;
+	}
+	.__pf .pf-c7cb371a[data-pf-tab-active="true"] {
+		background: rgb(209, 213, 219);
+	}
+	.__pf .pf-c7cb371a {
+		background-color: rgb(255, 255, 255);
+	}
+	.__pf .pf-371ad523[data-pf-tab-active="true"] {
+		background: rgb(209, 213, 219);
+	}
+	.__pf .pf-371ad523 {
+		background-color: rgb(255, 255, 255);
+	}
+	.__pf .pf-d523a3e7[data-pf-tab-active="true"] {
+		background: rgb(209, 213, 219);
+	}
+	.__pf .pf-d523a3e7 {
+		background-color: rgb(255, 255, 255);
+	}
+	.__pf .pf-eedd8d02 {
+		width: 450px;
+		 height: auto;
+	}
+	.__pf .pf-a3e7fbbc {
+		border-style: solid;
+		 border-width: 2px;
+		 border-color: rgb(209, 213, 219);
+		 text-align: center;
+	}
+	.__pf .pf-fbbc5363 {
+		border-style: solid;
+		 border-width: 2px;
+		 border-color: rgb(209, 213, 219);
+	}
+	.__pf .pf-4e91801c {
+		background-size: contain;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-d8a441e3--Firmafix-nectar.jpg?v=1586800093");
+		 background-position: 50% 50%;
+	}
+	.__pf .pf-801c3f6b {
+		background-size: contain;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-a441e34e--Hydropeptide.jpg?v=1586800099");
+		 background-position: 50% 50%;
+	}
+	.__pf .pf-3f6b87b1 {
+		background-size: contain;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-41e34eea--Lumaproc.jpg?v=1586800104");
+		 background-position: 50% 50%;
+	}
+	.__pf .pf-87b18369 {
+		background-size: contain;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-e34eea46--1.jpg?v=1586800119");
+		 background-position: 50% 50%;
+	}
+	.__pf .pf-5363bc21 {
+		height: 500px;
+	}
+	.__pf .pf-1a9baba4 {
+		border-style: solid;
+		 border-width: 2px;
+		 border-color: rgb(209, 213, 219);
+	}
+	.__pf .pf-aba4a276 {
+		width: 100%;
+	}
+	.__pf .pf-a276840a > div:first-child > div {
+		color: rgb(0, 0, 0);
+		 display: inline-block;
+		 padding: 0.5em 1em;
+		 font-weight: bold;
+		 border-width: 0px 0px 2px;
+		 text-decoration: none;
+		 border-style: solid;
+		 border-color: rgba(0, 0, 0, 0);
+	}
+	.__pf .pf-a276840a > div:last-child > div {
+		display: none;
+	}
+	.__pf .pf-a276840aTabs {
+		display: inline-block;
+		 text-align: justify;
+		 text-decoration: line-through;
+	}
+	.__pf .pf-840afa32 {
+		padding-left: 60px;
+	}
+	.__pf .pf-d937771f {
+		margin-top: 50px;
+	}
+	.__pf .pf-84bbfdb6 {
+		font-family: "PT Serif";
+		 font-size: 30px;
+		 font-weight: 700;
+		 margin-top: 0px;
+		 margin-bottom: 0px;
+		 color: rgb(51, 51, 51);
+	}
+	.__pf .pf-3e08d79e {
+		font-size: 19px;
+		 font-family: Poppins;
+	}
+	.__pf .pf-b1f33b85 {
+		background-color: rgb(23, 142, 209);
+		 color: rgb(255, 255, 255);
+		 padding-top: 12px;
+		 padding-bottom: 12px;
+	}
+	.__pf .pf-c3ef425d {
+		padding-top: 15px;
+		 padding-bottom: 15px;
+	}
+	.__pf .pf-bd459b61 {
+		width: 450px;
+		 height: auto;
+		 padding-top: 10px;
+		 padding-bottom: 10px;
+	}
+	.__pf .pf-d79ed8dd {
+		padding-left: 10%;
+		 padding-right: 10%;
+	}
+	.__pf .pf-fa3237ee {
+		margin-bottom: 80px;
+		 text-align: left;
+	}
+	.__pf .pf-8bf03d53 {
+		font-size: 30px;
+	}
+	.__pf .pf-3d53713a {
+		text-align: left;
+		 font-size: 19px;
+		 padding-bottom: 20px;
+	}
+	.__pf .pf-713a4e92 {
+		background-color: rgb(23, 142, 209);
+		 color: rgb(255, 255, 255);
+	}
+	.__pf .pf-4e9228ef {
+		padding-top: 20px;
+		 padding-bottom: 20px;
+		 font-size: 19px;
+	}
+	.__pf .pf-28ef5983[data-pf-tab-active="true"] {
+		background: rgb(209, 213, 219);
+	}
+	.__pf .pf-5983754f[data-pf-tab-active="true"] {
+		background: rgb(209, 213, 219);
+	}
+	.__pf .pf-754f3e01[data-pf-tab-active="true"] {
+		background: rgb(209, 213, 219);
+	}
+	.__pf .pf-fe208aad {
+		width: 450px;
+		 height: auto;
+	}
+	.__pf .pf-3e018635 {
+		border-style: solid;
+		 border-width: 2px;
+		 border-color: rgb(209, 213, 219);
+		 text-align: center;
+	}
+	.__pf .pf-86352730 {
+		border-style: solid;
+		 border-width: 2px;
+		 border-color: rgb(209, 213, 219);
+		 text-align: center;
+	}
+	.__pf .pf-23ce7311 {
+		background-size: contain;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-61c7b938--Now-Offering.png?v=1586541981");
+		 background-position: 50% 50%;
+	}
+	.__pf .pf-73113c37 {
+		background-size: contain;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-ee61c7b9--Prebook.png?v=1586541913");
+		 background-position: 50% 50%;
+	}
+	.__pf .pf-3c373510 {
+		background-size: contain;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-46ee61c7--Curb-side.png?v=1586541835");
+		 background-position: 50% 50%;
+	}
+	.__pf .pf-273098bd {
+		height: 350px;
+	}
+	.__pf .pf-7b8c4e3b {
+		border-style: solid;
+		 border-width: 2px;
+		 border-color: rgb(209, 213, 219);
+	}
+	.__pf .pf-4e3be1a7 {
+		width: 100%;
+	}
+	.__pf .pf-e1a793e8 > div:first-child > div {
+		color: rgb(0, 0, 0);
+		 display: inline-block;
+		 padding: 0.5em 1em;
+		 font-weight: bold;
+		 border-width: 0px 0px 2px;
+		 text-decoration: none;
+		 border-style: solid;
+		 border-color: rgba(0, 0, 0, 0);
+	}
+	.__pf .pf-e1a793e8 > div:last-child > div {
+		display: none;
+	}
+	.__pf .pf-93e8903e {
+		padding-left: 60px;
+	}
+	.__pf .pf-bbf0dbde {
+		width: 800px;
+		 height: auto;
+	}
+	.__pf .pf-65db0a39 {
+		text-align: center;
+		 padding-top: 175px;
+	}
+	.__pf .pf-34caf7ba {
+		margin-bottom: 80px;
+		 text-align: left;
+	}
+	.__pf .pf-86bbecef {
+		width: 800px;
+		 height: auto;
+	}
+	.__pf .pf-ecefc773 {
+		text-align: center;
+	}
+	.__pf .pf-fafe4a03 {
+		font-family: "PT Serif";
+		 font-size: 30px;
+		 font-weight: 700;
+		 margin-top: 0px;
+		 margin-bottom: 20px;
+		 color: rgb(51, 51, 51);
+		 text-align: left;
+	}
+	.__pf .pf-f954c12c {
+		font-size: 19px;
+		 padding-bottom: 20px;
+		 text-align: left;
+	}
+	.__pf .pf-9d34c96a {
+		color: rgb(255, 255, 255);
+		 background-color: rgb(23, 142, 209);
+		 padding-top: 12px;
+	}
+	.__pf .pf-7d12d392 {
+		padding-top: 20px;
+		 padding-bottom: 20px;
+		 text-align: left;
+	}
+	.__pf .pf-fe06e363[data-pf-tab-active="true"] {
+		background: rgb(209, 213, 219);
+	}
+	.__pf .pf-fe06e363 {
+		background-color: rgb(255, 255, 255);
+		 padding-left: 0px;
+		 padding-right: 0px;
+	}
+	.__pf .pf-e3638d07[data-pf-tab-active="true"] {
+		background: rgb(209, 213, 219);
+	}
+	.__pf .pf-e3638d07 {
+		background-color: rgb(255, 255, 255);
+	}
+	.__pf .pf-8d072637[data-pf-tab-active="true"] {
+		background: rgb(209, 213, 219);
+	}
+	.__pf .pf-8d072637 {
+		padding-left: 10%;
+		 padding-right: 10%;
+	}
+	.__pf .pf-8163c939 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-343646ee--Retreat-Yourself-athome-Facial.png?v=1586541701");
+	}
+	.__pf .pf-c939c980 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-06e827d2--Radiant-Retreat-Social-3.jpg?v=1586542265");
+	}
+	.__pf .pf-1389a789 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-fa06e827--Radiant-Retreat-Social-2.jpg?v=1586542260");
+	}
+	.__pf .pf-1b271389 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-46ee61c7--Curb-side.png?v=1586541835");
+	}
+	.__pf .pf-c9801b27 {
+		height: 500px;
+	}
+	.__pf .pf-f1b36929 {
+		border-style: solid;
+		 border-width: 2px;
+		 border-color: rgb(209, 213, 219);
+		 padding: 0px;
+	}
+	.__pf .pf-2a38fa06 {
+		width: 300px;
+		 height: auto;
+	}
+	.__pf .pf-69292030 {
+		border-style: solid;
+		 border-width: 2px;
+		 border-color: rgb(209, 213, 219);
+		 text-align: center;
+	}
+	.__pf .pf-27d292c7 {
+		width: 300px;
+		 height: auto;
+	}
+	.__pf .pf-2030fe06 {
+		border-style: solid;
+		 border-width: 2px;
+		 border-color: rgb(209, 213, 219);
+		 text-align: center;
+	}
+	.__pf .pf-26375780 {
+		width: 100%;
+	}
+	.__pf .pf-6891da6e > nav > .nav-item {
+		color: black;
+		 display: inline-block;
+		 padding: 0.5em 1em;
+		 font-weight: bold;
+		 border-width: 1px 1px 2px;
+		 text-decoration: none;
+		 border-bottom-style: solid;
+		 border-bottom-color: transparent;
+	}
+	.__pf .pf-6891da6e > div:last-child > div {
+		display: none;
+	}
+	.__pf .pf-6891da6eTabs {
+		display: inline-block;
+		 text-align: justify;
+		 text-decoration: line-through;
+	}
+	.__pf .pf-4b1d75eb {
+		padding-left: 50px;
+	}
+	.__pf .pf-75eb4dc9 {
+		margin-bottom: 80px;
+	}
+	.__pf .pf-5d16d1a1 {
+		background-color: rgba(201, 232, 236, 0.63);
+		 padding-top: 80px;
+		 padding-bottom: 80px;
+	}
+	.__pf .pf-7760eb3d {
+		text-align: center;
+		 font-size: 55px;
+	}
+	.__pf .pf-50f8abe9 {
+		font-size: 20px;
+		 text-align: center;
+	}
+	.__pf .pf-f6603568 {
+		font-size: 6.3em;
+		 color: rgb(33, 43, 53);
+	}
+	.__pf .pf-f223c597 {
+		margin-top: 0px;
+		 font-weight: 500;
+		 color: rgb(45, 45, 45);
+	}
+	.__pf .pf-d8975e42 {
+		padding: 15px;
+		 text-align: center;
+	}
+	.__pf .pf-eed0b013 {
+		margin-top: 0px;
+		 font-weight: 500;
+		 color: rgb(45, 45, 45);
+	}
+	.__pf .pf-5e422bb5 {
+		padding: 15px;
+		 text-align: center;
+	}
+	.__pf .pf-8b3f1c63 {
+		margin-top: 0px;
+		 font-weight: 500;
+		 color: rgb(45, 45, 45);
+	}
+	.__pf .pf-2bb5dac2 {
+		padding: 15px;
+		 text-align: center;
+	}
+	.__pf .pf-8e18e922 {
+		font-family: "PT Serif";
+		 font-size: 37px;
+		 font-weight: 700;
+		 margin-top: 0px;
+		 margin-bottom: 10px;
+		 color: rgb(252, 252, 252);
+		 line-height: 1em;
+	}
+	.__pf .pf-8853856d {
+		font-size: 23px;
+		 font-family: Poppins;
+		 margin-top: 0px;
+		 margin-bottom: 40px;
+		 color: rgb(250, 250, 250);
+	}
+	.__pf .pf-d929f937 {
+		padding-left: 270px;
+		 padding-right: 270px;
+	}
+	.__pf .pf-f9375ccb {
+		text-align: center;
+	}
+	.__pf .pf-5ccb4cfd {
+		padding-top: 75px;
+		 padding-bottom: 75px;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-c71246b2--Image-1Spa-FlatlayInternationalSummit.jpg?v=1586544065");
+		 background-position: 50% 100%;
+		 background-size: cover;
+		 background-attachment: fixed;
+	}
+	.__pf .pf-6eb4231a {
+		margin-bottom: 15px;
+	}
+	.__pf .pf-231ab34b {
+		font-size: 18px;
+		 margin-top: 0px;
+		 margin-bottom: 15px;
+	}
+	.__pf .pf-b34bd08c {
+		margin-bottom: 15px;
+		 font-size: 16px;
+		 flex: 1 1 0%;
+	}
+	.__pf .pf-2db6b9cb {
+		background-color: rgb(93, 107, 130);
+		 color: rgb(255, 255, 255);
+		 width: 100%;
+		 font-size: 14px;
+		 border-radius: 2px;
+		 padding-top: 12px;
+		 padding-bottom: 12px;
+	}
+	.__pf .pf-b9cb6e5a {
+		display: flex;
+		 flex-direction: column;
+	}
+	.__pf .pf-6e5a484e {
+		height: 100%;
+	}
+	.__pf .pf-484ecabe {
+		text-align: center;
+		 height: 100%;
+	}
+	.__pf .pf-d7a1de04 {
+		background-color: rgb(145, 157, 169);
+		 color: rgb(255, 255, 255);
+		 font-size: 22px;
+	}
+}
+@media only screen and (max-width: 767px) {
+	.__pf .pf-866833bf {
+		font-size: 16px;
+	}
+	.__pf .pf-4a032b44 {
+		font-size: 40px;
+	}
+	.__pf .pf-e63ddd17 {
+		padding-left: 0px;
+	}
+	.__pf .pf-612086bb {
+		padding-top: 30px;
+		 padding-bottom: 30px;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-c71246b2--Image-1Spa-FlatlayInternationalSummit.jpg?v=1586544065");
+	}
+	.__pf .pf-016c78ed {
+		padding-left: 0px;
+	}
+	.__pf .pf-13af016c {
+		padding-top: 0px;
+	}
+	.__pf .pf-78ed1a7a {
+		margin-left: 0px;
+		 margin-right: 0px;
+		 padding-left: 0px;
+	}
+	.__pf .pf-539d4411 {
+		padding-top: 0px;
+	}
+	.__pf .pf-e0512daa {
+		padding-left: 0px;
+	}
+	.__pf .pf-2daa9658 {
+		margin-left: 0px;
+		 margin-right: 0px;
+		 padding-left: 0px;
+	}
+	.__pf .pf-406a3def {
+		width: 450px;
+		 height: auto;
+	}
+	.__pf .pf-9d08f0ca {
+		padding-left: 0px;
+	}
+	.__pf .pf-fb9e4e1c {
+		padding-top: 0px;
+	}
+	.__pf .pf-f0cad913 {
+		margin-left: 0px;
+		 margin-right: 0px;
+		 padding-left: 0px;
+	}
+	.__pf .pf-1c550b7c {
+		padding-left: 0px;
+	}
+	.__pf .pf-4e91801c {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-d8a441e3--Firmafix-nectar.jpg?v=1586800093");
+		 display: inline-block;
+	}
+	.__pf .pf-801c3f6b {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-a441e34e--Hydropeptide.jpg?v=1586800099");
+	}
+	.__pf .pf-3f6b87b1 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-41e34eea--Lumaproc.jpg?v=1586800104");
+	}
+	.__pf .pf-87b18369 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-e34eea46--1.jpg?v=1586800119");
+	}
+	.__pf .pf-5363bc21 {
+		height: 500px;
+	}
+	.__pf .pf-840afa32 {
+		padding-left: 0px;
+	}
+	.__pf .pf-84bbfdb6 {
+		font-size: 26px;
+	}
+	.__pf .pf-d79ed8dd {
+		padding-left: 15px;
+		 padding-right: 15px;
+	}
+	.__pf .pf-fa3237ee {
+		display: flex;
+		 flex-flow: column-reverse nowrap;
+		 align-items: stretch;
+		 margin-bottom: 30px;
+	}
+	.__pf .pf-28ef5983 {
+		padding-left: 0px;
+		 padding-right: 0px;
+		 background-color: rgb(255, 255, 255);
+	}
+	.__pf .pf-23ce7311 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-61c7b938--Now-Offering.png?v=1586541981");
+	}
+	.__pf .pf-73113c37 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-ee61c7b9--Prebook.png?v=1586541913");
+	}
+	.__pf .pf-3c373510 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-46ee61c7--Curb-side.png?v=1586541835");
+	}
+	.__pf .pf-273098bd {
+		height: 300px;
+		 padding-left: 0px;
+	}
+	.__pf .pf-93e8903e {
+		padding-left: 0px;
+	}
+	.__pf .pf-65db0a39 {
+		padding-top: 0px;
+	}
+	.__pf .pf-0a39bbf0 {
+		margin-left: 0px;
+		 margin-right: 0px;
+		 padding-left: 0px;
+	}
+	.__pf .pf-34caf7ba {
+		display: flex;
+		 flex-flow: column-reverse nowrap;
+		 align-items: stretch;
+		 margin-bottom: 30px;
+	}
+	.__pf .pf-fafe4a03 {
+		font-size: 26px;
+	}
+	.__pf .pf-fe06e363 {
+		padding-left: 20px;
+		 padding-right: 20px;
+	}
+	.__pf .pf-e3638d07 {
+		padding-left: 20px;
+		 padding-right: 20px;
+	}
+	.__pf .pf-8d072637 {
+		padding-left: 20px;
+		 padding-right: 20px;
+	}
+	.__pf .pf-8163c939 {
+		background-size: contain;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-343646ee--Retreat-Yourself-athome-Facial.png?v=1586541701");
+		 background-position: 50% 50%;
+		 background-repeat: no-repeat;
+	}
+	.__pf .pf-c939c980 {
+		background-size: contain;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-06e827d2--Radiant-Retreat-Social-3.jpg?v=1586542265");
+		 background-position: 50% 50%;
+	}
+	.__pf .pf-1389a789 {
+		background-size: contain;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-fa06e827--Radiant-Retreat-Social-2.jpg?v=1586542260");
+		 background-position: 50% 50%;
+	}
+	.__pf .pf-1b271389 {
+		background-size: contain;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-46ee61c7--Curb-side.png?v=1586541835");
+		 background-position: 50% 50%;
+	}
+	.__pf .pf-c9801b27 {
+		height: 500px;
+	}
+	.__pf .pf-6891da6eTabs {
+		text-align: center;
+	}
+	.__pf .pf-4b1d75eb {
+		padding-left: 15px;
+		 padding-right: 15px;
+	}
+	.__pf .pf-75eb4dc9 {
+		margin-bottom: 30px;
+	}
+	.__pf .pf-5d16d1a1 {
+		padding-top: 30px;
+		 padding-bottom: 30px;
+	}
+	.__pf .pf-8e18e922 {
+		font-size: 26px;
+	}
+	.__pf .pf-d929f937 {
+		padding-left: 0px;
+		 padding-right: 0px;
+	}
+	.__pf .pf-5ccb4cfd {
+		background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-c71246b2--Image-1Spa-FlatlayInternationalSummit.jpg?v=1586544065");
+		 padding-top: 30px;
+		 padding-bottom: 30px;
+	}
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+	.__pf .pf-e63ddd17 {
+		padding-left: 175px;
+	}
+	.__pf .pf-612086bb {
+		background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-c71246b2--Image-1Spa-FlatlayInternationalSummit.jpg?v=1586544065");
+	}
+	.__pf .pf-78ed1a7a {
+		margin-left: 28.3px;
+	}
+	.__pf .pf-2daa9658 {
+		margin-left: 28.3px;
+	}
+	.__pf .pf-f0cad913 {
+		margin-left: 28.3px;
+	}
+	.__pf .pf-4e91801c {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-d8a441e3--Firmafix-nectar.jpg?v=1586800093");
+	}
+	.__pf .pf-801c3f6b {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-a441e34e--Hydropeptide.jpg?v=1586800099");
+	}
+	.__pf .pf-3f6b87b1 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-41e34eea--Lumaproc.jpg?v=1586800104");
+	}
+	.__pf .pf-87b18369 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-e34eea46--1.jpg?v=1586800119");
+	}
+	.__pf .pf-5363bc21 {
+		height: 500px;
+	}
+	.__pf .pf-28ef5983 {
+		margin-left: 0px;
+		 margin-right: 0px;
+		 margin-top: 0px;
+	}
+	.__pf .pf-5983754f {
+		padding-right: 20px;
+		 padding-left: 20px;
+		 margin-left: 0px;
+		 margin-right: 0px;
+	}
+	.__pf .pf-754f3e01 {
+		margin-right: 0px;
+		 margin-left: 0px;
+	}
+	.__pf .pf-23ce7311 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-61c7b938--Now-Offering.png?v=1586541981");
+	}
+	.__pf .pf-73113c37 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-ee61c7b9--Prebook.png?v=1586541913");
+	}
+	.__pf .pf-3c373510 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-46ee61c7--Curb-side.png?v=1586541835");
+	}
+	.__pf .pf-273098bd {
+		height: 300px;
+	}
+	.__pf .pf-e1a793e8Tabs {
+		margin-left: 23.8px;
+		 font-size: 8px;
+	}
+	.__pf .pf-0a39bbf0 {
+		margin-left: 28.3px;
+	}
+	.__pf .pf-fe06e363 {
+		padding-left: 20px;
+		 padding-right: 20px;
+	}
+	.__pf .pf-8d072637 {
+		padding-left: 20px;
+		 padding-right: 20px;
+	}
+	.__pf .pf-8163c939 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-343646ee--Retreat-Yourself-athome-Facial.png?v=1586541701&selected");
+	}
+	.__pf .pf-c939c980 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-fa06e827--Radiant-Retreat-Social-2.jpg?v=1586542260&selected");
+	}
+	.__pf .pf-1389a789 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-06e827d2--Radiant-Retreat-Social-3.jpg?v=1586542265&selected");
+	}
+	.__pf .pf-1b271389 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-46ee61c7--Curb-side.png?v=1586541835&selected");
+	}
+	.__pf .pf-c9801b27 {
+		height: 248px;
+	}
+	.__pf .pf-5ccb4cfd {
+		background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-c71246b2--Image-1Spa-FlatlayInternationalSummit.jpg?v=1586544065");
+	}
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.__pf .pf-612086bb {
+		background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-c71246b2--Image-1Spa-FlatlayInternationalSummit.jpg?v=1586544065");
+	}
+	.__pf .pf-5aa6a6cf {
+		margin-left: 200px;
+	}
+	.__pf .pf-78ed1a7a {
+		margin-left: 0px;
+		 margin-right: 0px;
+	}
+	.__pf .pf-14dc3f24 {
+		margin-left: 200px;
+	}
+	.__pf .pf-2daa9658 {
+		margin-left: 0px;
+		 margin-right: 0px;
+	}
+	.__pf .pf-7bd307e5 {
+		margin-left: 200px;
+	}
+	.__pf .pf-f0cad913 {
+		margin-left: 0px;
+		 margin-right: 0px;
+	}
+	.__pf .pf-1c550b7c {
+		margin-left: 100px;
+	}
+	.__pf .pf-4e91801c {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-d8a441e3--Firmafix-nectar.jpg?v=1586800093");
+	}
+	.__pf .pf-801c3f6b {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-a441e34e--Hydropeptide.jpg?v=1586800099");
+	}
+	.__pf .pf-3f6b87b1 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-41e34eea--Lumaproc.jpg?v=1586800104");
+	}
+	.__pf .pf-87b18369 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-e34eea46--1.jpg?v=1586800119");
+	}
+	.__pf .pf-5363bc21 {
+		height: 500px;
+	}
+	.__pf .pf-23ce7311 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-61c7b938--Now-Offering.png?v=1586541981");
+	}
+	.__pf .pf-73113c37 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-ee61c7b9--Prebook.png?v=1586541913");
+	}
+	.__pf .pf-3c373510 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-46ee61c7--Curb-side.png?v=1586541835");
+	}
+	.__pf .pf-273098bd {
+		height: 500px;
+	}
+	.__pf .pf-bbf0dbde {
+		margin-left: 200px;
+	}
+	.__pf .pf-0a39bbf0 {
+		margin-left: 0px;
+		 margin-right: 0px;
+	}
+	.__pf .pf-fe06e363 {
+		padding-left: 20px;
+		 padding-right: 20px;
+	}
+	.__pf .pf-8d072637 {
+		padding-left: 20px;
+		 padding-right: 2px;
+	}
+	.__pf .pf-8163c939 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-343646ee--Retreat-Yourself-athome-Facial.png?v=1586541701");
+	}
+	.__pf .pf-c939c980 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-06e827d2--Radiant-Retreat-Social-3.jpg?v=1586542265");
+	}
+	.__pf .pf-1389a789 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-fa06e827--Radiant-Retreat-Social-2.jpg?v=1586542260");
+	}
+	.__pf .pf-1b271389 {
+		background-size: cover;
+		 background-repeat: no-repeat;
+		 background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-46ee61c7--Curb-side.png?v=1586541835");
+	}
+	.__pf .pf-c9801b27 {
+		height: 500px;
+	}
+	.__pf .pf-d929f937 {
+		padding-left: 100px;
+		 padding-right: 100px;
+	}
+	.__pf .pf-5ccb4cfd {
+		background-image: url("https://cdn.shopify.com/s/files/1/0027/5179/1157/t/15/assets/pf-c71246b2--Image-1Spa-FlatlayInternationalSummit.jpg?v=1586544065");
+	}
+}
+						

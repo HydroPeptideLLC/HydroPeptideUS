@@ -1,0 +1,57 @@
+<div class="science_main" id="promise-science">
+  <div class="container">
+    <div class="grid">
+      
+      <div class="block s1 sm_s12 lg_s12">
+        {% if section.settings.title != blank %}
+          <h2 class="h3">{{ section.settings.title | escape }}</h2>
+        {% endif %}
+        
+        {% if section.settings.text != blank %}
+          <p>{{ section.settings.text }}</p>
+        {% endif %}
+        
+      </div>
+      
+      <div class="block s1 sm_s12 lg_s12">
+         {% if section.settings.image != blank %}
+          <img src="{{section.settings.image | img_url : 'master'}}">
+        {% endif %}
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Promise Science",
+    "settings": [
+      
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+      {
+        "type": "html",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+      },
+	{
+	"type": "image_picker",
+            "id": "image",
+            "label": "Image"
+	}
+    ],
+    "presets": [
+      {
+        "name": "Promise Science",
+        "category": "custom"
+      }
+    ]
+  }
+{% endschema %}
