@@ -126,21 +126,21 @@
     cursor: pointer;
   }
   @media only screen and (max-width: 600px) {
-    .cart_list_main .cart_list img{
+    .cart_list_main .cart_list img {
       width: 49%;
-      height:auto;
+      height: auto;
     }
-    .side-menu{
+    .side-menu {
       width: 80%;
       right: -80%;
     }
-    .side-menu .footer{
+    .side-menu .footer {
       width: 94%;
     }
   }
 </style>
 
-<div  class="sicart side-menu">
+<div class="sicart side-menu">
   <div class="header sicart">
     <i class="fa fa-close close-side"></i>
 
@@ -150,190 +150,215 @@
 
   <div class="footer sicart">
     <div class="cart_total sicart">
-      <span class="left sicart"><b class="sicart">Cart Total</b></span
-        ><span class="right sicart">{{ cart.total_price | money }}</span>
+      <span class="left sicart">
+        <b class="sicart">Cart Total</b>
+      </span>
+      <span class="right sicart">{{ cart.total_price | money }}</span>
     </div>
 
     <a class="checkout_button btn" href="/checkout">Checkout</a>
-    
+
   </div>
 </div>
 
 
 <script type="text/javascript">
-if ((typeof Shopify) === 'undefined') { window.Shopify = {}; }
+  if ((typeof Shopify) === 'undefined') { window.Shopify = {}; }
   // Get from cart.js returns the cart in JSON
-  if ((typeof Shopify.getCart) === 'undefined') {
-  Shopify.getCart = function(callback, cart) {
-    if(!cart){
-    return jQuery.getJSON('/cart.js', function (cart, textStatus, xhr) {
+    if ((typeof Shopify.getCart) === 'undefined') {
+    Shopify.getCart = function(callback, cart) {
+      if(!cart){
+      return jQuery.getJSON('/cart.js', function (cart, textStatus, xhr) {
+          if ((typeof callback) === 'function') {
+          callback(cart,textStatus, xhr);
+        }
+        else {
+          Shopify.onCartUpdate(cart);
+            }
+        });
+      }else{
         if ((typeof callback) === 'function') {
-        callback(cart,textStatus, xhr);
-      }
-      else {
+        callback(cart);
+      }else if(typeof Shopify.onCartUpdate ==='function') {
         Shopify.onCartUpdate(cart);
           }
-      });
-    }else{
-      if ((typeof callback) === 'function') {
-      callback(cart);
-    }else if(typeof Shopify.onCartUpdate ==='function') {
-      Shopify.onCartUpdate(cart);
-        }
-    }
-  };
-}
-  // $('button#pf_AddToCart').click(() => {
-  //     console.log('pagefly button clicked');
-  //       $(".pageWrap").toggleClass("backopc");
-  //       setTimeout(function () {
-  //         $(".side-menu").toggleClass("show");
-  //     }, 800);
-  //     console.log('pulling cart data');
-  //     cart_data();
-  //     console.log('done pulling cart data');
-  //   });
-   $('body').delegate('button#addToCartButton, a#cartTotal, a#prod_add_to_cart, button#pf_AddToCart', 'click', function () {
-    $(".pageWrap").toggleClass("backopc");
-    setTimeout(function () {
-      $(".side-menu").toggleClass("show");
-    }, 800);
-  });
-
-  $(".close-side").click(function () {
-    
-    $(".side-menu").toggleClass("show");
-    $(".pageWrap").toggleClass("backopc");
-  });
-  function cart_data() {
-    $(".cart_list_main").empty();
-    console.log('sidecart is empty');
-    Shopify.getCart(function (cart) {
-      console.log(cart);
-      $.each(cart.items, function (key, value) {
-        $(".cart_list_main").append(
-          $(
-            '<div class="cart_list sicart" data-pro-id="' +
-            value.variant_id +
-            '"><img class="sicart" src="' +
-            value.featured_image.url +
-            '" alt="">  <div class="cart_item_details sicart"><h4 class="sicart">' +
-            value.title +
-            '</h4>    <p class="sicart"><b class="sicart">Price:</b> <span class="side_cart_p_price sicart">' +
-            Shopify.formatMoney(value.line_price, "{{ shop.money }}") +
-                                '</span></p>    <p class="sicart"><b class="sicart">Quantity:</b> <span class="side_cart_p_quant sicart"><i class="fa fa-minus sicart" id="quantity_update" onclick="c_update_min('+value.variant_id+', '+value.quantity+')" aria-hidden="true"></i>' +
-                                value.quantity +
-                                '<i class="fa fa-plus sicart" id="quantity_update" onclick="c_update_plus('+value.variant_id+', '+value.quantity+')" aria-hidden="true"></i></span></p> <p class="sicart"> <a onclick="c_remove('+value.variant_id+')" class="CartRemovePro sicart" href="javascript:void(0)" >Remove</a> </p>  </div></div>'
-                               )
-          );
-          });
-        $(".footer .cart_total span.right").html(
-          Shopify.formatMoney(cart.total_price, "{{ shop.money }}")
-                             );
-          $("div#CartToggleItemCount").text(cart.item_count);
-      });
-    }
-
-              function c_remove(prodID) {
-      $.ajax({
-        type: "POST",
-        url: "/cart/change.js",
-        dataType: "json",
-        data: {
-          quantity: 0,
-          id: prodID,
-        },
-        success: function (data) {
-          $("div#CartPopoverCont").addClass("is-visible");
-          var cart_cot = $("div#CartToggleItemCount").text();
-          var sum = Number(cart_cot) + Number(1);
-          cart_data();
-        },
-      });
-    }
-
-
-    $( document ).ready(function() {
-      cart_data();
+      }
+    };
+  }
+    // $('button#pf_AddToCart').click(() => {
+    //     console.log('pagefly button clicked');
+    //       $(".pageWrap").toggleClass("backopc");
+    //       setTimeout(function () {
+    //         $(".side-menu").toggleClass("show");
+    //     }, 800);
+    //     console.log('pulling cart data');
+    //     cart_data();
+    //     console.log('done pulling cart data');
+    //   });
+     $('body').delegate('button#addToCartButton, a#cartTotal, a#prod_add_to_cart, button#pf_AddToCart', 'click', function () {
+      $(".pageWrap").toggleClass("backopc");
+      setTimeout(function () {
+        $(".side-menu").toggleClass("show");
+      }, 800);
     });
-
-    function c_update_min(prodID, prodQTY) {
+  
+    $(".close-side").click(function () {
       
-      var prodQTY = prodQTY - 1;
-
-      console.log(prodQTY);
-      console.log(prodID);
-
-      $.ajax({
-        type: "POST",
-        url: "/cart/change.js",
-        data: {
-          quantity: prodQTY,
-          id: prodID,
-        },
-        dataType: "json",
-        success: function (success) {
-          $("div#CartPopoverCont").addClass("is-visible");
-          var cart_cot = $("div#CartToggleItemCount").text();
-          var sum = Number(cart_cot) + Number(1);
-
-          cart_data();
-        },
-        error: function (error) {},
+      $(".side-menu").toggleClass("show");
+      $(".pageWrap").toggleClass("backopc");
+    });
+    function cart_data() {
+      $(".cart_list_main").empty();
+      console.log('sidecart is empty');
+      Shopify.getCart(function (cart) {
+        $.each(cart.items, function (key, value) {
+          $(".cart_list_main").append(
+            $(
+              '<div class="cart_list sicart" data-pro-id="' +
+                value.variant_id +
+                '"><img
+      class="sicart"
+      src="' +
+                    value.featured_image.url +
+                    '"
+      alt="">
+    <div class="cart_item_details sicart">
+      <h4 class="sicart">' +
+        value.title +
+                    '</h4>
+      <p class="sicart">
+        <b class="sicart">Price:</b>
+        <span class="side_cart_p_price sicart">' +
+          Shopify.formatMoney(value.line_price, "{{ shop.money }}") +
+          '</span>
+      </p>
+      <p class="sicart">
+        <b class="sicart">Quantity:</b>
+        <span class="side_cart_p_quant sicart">
+          <i
+            class="fa fa-minus sicart"
+            id="quantity_update"
+            onclick="c_update_min('+value.variant_id+', '+value.quantity+')"
+            aria-hidden="true"></i>' +
+          value.quantity +
+                                          '<i
+            class="fa fa-plus sicart"
+            id="quantity_update"
+            onclick="c_update_plus('+value.variant_id+', '+value.quantity+')"
+            aria-hidden="true"></i>
+        </span>
+      </p>
+      <p class="sicart">
+        <a
+          onclick="c_remove('+value.variant_id+')"
+          class="CartRemovePro sicart"
+          href="javascript:void(0)">Remove</a>
+      </p>
+    </div>
+  </div>'
+  )
+            );
+            });
+          $(".footer .cart_total span.right").html(
+            Shopify.formatMoney(cart.total_price, "{{ shop.money }}")
+  );
+            $("div#CartToggleItemCount").text(cart.item_count);
+        });
+      }
+  
+                function c_remove(prodID) {
+        $.ajax({
+          type: "POST",
+          url: "/cart/change.js",
+          dataType: "json",
+          data: {
+            quantity: 0,
+            id: prodID,
+          },
+          success: function (data) {
+            $("div#CartPopoverCont").addClass("is-visible");
+            var cart_cot = $("div#CartToggleItemCount").text();
+            var sum = Number(cart_cot) + Number(1);
+            cart_data();
+          },
+        });
+      }
+  
+  
+      $( document ).ready(function() {
+        cart_data();
       });
-    }
-
-
-
-
-    function c_update_plus(prodID, prodQTY) {
-      
-      var prodQTY = prodQTY + 1;
-      $.ajax({
-        type: "POST",
-        url: "/cart/change.js",
-        data: {
-          quantity: prodQTY,
-          id: prodID,
-        },
-        dataType: "json",
-        success: function (success) {
-          $("div#CartPopoverCont").addClass("is-visible");
-          var cart_cot = $("div#CartToggleItemCount").text();
-          var sum = Number(cart_cot) + Number(1);
-
-          cart_data();
-        },
-        error: function (error) {},
-      });
-    }
-
-
-</script>
+  
+      function c_update_min(prodID, prodQTY) {
+        
+        var prodQTY = prodQTY - 1;
+  
+        console.log(prodQTY);
+        console.log(prodID);
+  
+        $.ajax({
+          type: "POST",
+          url: "/cart/change.js",
+          data: {
+            quantity: prodQTY,
+            id: prodID,
+          },
+          dataType: "json",
+          success: function (success) {
+            $("div#CartPopoverCont").addClass("is-visible");
+            var cart_cot = $("div#CartToggleItemCount").text();
+            var sum = Number(cart_cot) + Number(1);
+  
+            cart_data();
+          },
+          error: function (error) {},
+        });
+      }
+  
+  
+  
+  
+      function c_update_plus(prodID, prodQTY) {
+        
+        var prodQTY = prodQTY + 1;
+        $.ajax({
+          type: "POST",
+          url: "/cart/change.js",
+          data: {
+            quantity: prodQTY,
+            id: prodID,
+          },
+          dataType: "json",
+          success: function (success) {
+            $("div#CartPopoverCont").addClass("is-visible");
+            var cart_cot = $("div#CartToggleItemCount").text();
+            var sum = Number(cart_cot) + Number(1);
+  
+            cart_data();
+          },
+          error: function (error) {},
+        });
+      }</script>
 
 <script>
-// Close the menu on click outside of the container  
-$(document).click(function (e)
-{
-    
-  var hasClass = Array.from(event.target.classList).indexOf('sicart') > -1;
-  
-  if(hasClass){
-     
-   return;  
-     
-   }
-    
-  else{
-     
-  if ($(".side-menu").hasClass("show")){
-          
-    $(".side-menu").toggleClass("show");
-    $(".pageWrap").toggleClass("backopc");
-  }
-  
-}
-                  
-});
-  
+  // Close the menu on click outside of the container
+  $(document).click(function(e) {
+
+    var hasClass = Array.from(event.target.classList).indexOf('sicart') > -1;
+
+    if (hasClass) {
+
+      return;
+
+    } else {
+
+      if ($(".side-menu").hasClass("show")) {
+
+        $(".side-menu").toggleClass("show");
+        $(".pageWrap").toggleClass("backopc");
+      }
+
+    }
+
+  });
 </script>
