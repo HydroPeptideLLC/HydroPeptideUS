@@ -1,7 +1,30 @@
+<section id="insta-try">
+    <div id="insta-feed-title">
+        {{ section.settings.title }}
+    </div> 
+    <div id="insta-feed-try">
+
+    </div>
+    <script>
+        $('document').ready(() => {
+            fetch('https://www.instagram.com/hydropeptide/channel/?__a=1')
+            .then((res) => {
+                console.log(res);
+            })
+        })
+    </script>
+</section>
 {% schema %}
   {
     "name": "Section name",
-    "settings": []
+    "settings": [
+        {
+            "id" : "title",
+            "type": "text",
+            "label": "Insta Feed Title",
+            "default": "Follow us @HydroPeptide"
+        }
+    ]
   }
 {% endschema %}
 
