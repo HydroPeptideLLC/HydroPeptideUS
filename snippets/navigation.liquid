@@ -153,7 +153,7 @@
                               loading="lazy"
                               width="{{ image.width }}"
                               height="{{ image.height }}"
-                              src="{{ image | image_url }}"
+                              src="{{ image }}"
                               alt="{{ image.alt }}">
                           </noscript>
                         {%- endcapture -%}
@@ -261,14 +261,14 @@
                             loading="lazy"
                             height="{{ image_two.height }}"
                             width="{{ image_two.width }}"
-                            data-src="{{ image_two | image_url }}"
+                            data-src="{{ image_two }}"
                             data-widths="[{{ image_widths }}]"
                             data-aspectratio="{{ image_two.aspect_ratio }}"
                             data-sizes="auto"
                             alt="{{ image_two.alt }}">
                           <noscript>
                             <img
-                              src="{{ image.alt | image_url: '1024x' }}"
+                              src="{{ image }}"
                               loading="lazy"
                               height="{{ image.height }}"
                               width="{{ image.width }}"
