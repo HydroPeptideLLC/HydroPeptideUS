@@ -1,535 +1,498 @@
 {% comment %} Settings Slide Out Navigation {% endcomment %}
-{% assign menuPrimary = section.settings.menu_1_list %}
-{% assign menuSecondary = section.settings.menu_2_list %}
-
-
-
+{% liquid 
+    assign menuPrimary = section.settings.menu_1_list
+    assign menuSecondary = section.settings.menu_2_list
+%}
 {% if section.settings.show_top_img %}
-
-{% if section.settings.hide_top_img_homepage %}
-	{% if template == 'index' %}
-		<style> .top-img { display: none !important; } </style>
-	{% endif %}
-{% endif %}
-
-{% assign startdate =  section.settings.img_start_date | date: '%s' %}
-{% assign secondstartdate =  section.settings.img_start_date2 | date: '%s' %}
-
-      {% assign enddate =  section.settings.img_end_date | date: '%s' %}
-		{% assign secondenddate =  section.settings.img_end_date2 | date: '%s' %}
-     {% assign now =  'now' | date: "%Y-%m-%d  %H:%M %p" %}
-     {% assign currenttime =  now | date: '%s' %}
-     {% if currenttime >= startdate and currenttime <= enddate %}
+    {% if section.settings.hide_top_img_homepage %}
+        {% if template == 'index' %}
+            <style>
+                .top-img { 
+                    display: none !important
+       {         };
+            </style>
+        {% endif %}
+    {% endif %}
+    {% liquid 
+        assign startdate = section.settings.img_start_date | date: '%s'
+        assign secondstartdate = section.settings.img_start_date2 | date: '%s'
+        assign enddate = section.settings.img_end_date | date: '%s'
+        assign secondenddate = section.settings.img_end_date2 | date: '%s'
+        assign now = 'now' | date: "%Y-%m-%d  %H:%M %p"
+        assign currenttime = now | date: '%s'
+    %}
+    {% if currenttime >= startdate and currenttime <= enddate %}
         <div class="top-img">
-          <a href="{{ section.settings.top_link }}" style="background-color: {{ section.settings.top_image_color }}"><img src="{{ section.settings.top_image | img_url: 'master' }}" alt=""></a>
-
+            <a href="{{ section.settings.top_link }}" style="background-color: {{ section.settings.top_image_color }}"><img loading="lazy" width="{{ section.settings.top_image.width }}" height="{{ section.settings.top_image.height }}" src="{{ section.settings.top_image | image_url: 'master' }}" alt=""></a>
         </div>
         {% if section.settings.top_image_mobile %}
-        <div class="top-img-mobile">
-
-            <a href="{{ section.settings.top_link }}" style="background-color: {{ section.settings.top_image_color }}"><img src="{{ section.settings.top_image_mobile | img_url: 'master' }}" alt=""></a>
-
-
-        </div>
+            <div class="top-img-mobile">
+                <a href="{{ section.settings.top_link }}" style="background-color: {{ section.settings.top_image_color }}"><img loading="lazy" width="{{ section.settings.top_image_mobile.width }}" height="{{ section.settings.top_image_mobile.height }}" src="{{ section.settings.top_image_mobile | image_url: 'master' }}" alt=""></a>
+            </div>
         {% else %}
-        <div class="top-img-mobile">
-          <a href="{{ section.settings.top_link }}" style="background-color: {{ section.settings.top_image_color }}"><img src="{{ section.settings.top_image | img_url: 'master' }}" alt=""></a>
-        </div>
+            <div class="top-img-mobile">
+                <a href="{{ section.settings.top_link }}" style="background-color: {{ section.settings.top_image_color }}"><img loading="lazy" width="{{ section.settings.top_image.width }}" height="{{ section.settings.top_image.height }}" src="{{ section.settings.top_image | image_url: 'master' }}" alt=""></a>
+            </div>
         {% endif %}
-
-
-	{% elsif currenttime > secondstartdate and currenttime <= secondenddate %}
-      <div class="top-img">
-        <a href="{{ section.settings.top_link2 }}" style="background-color: {{ section.settings.top_image_color1 }}"><img src="{{ section.settings.top_image2 | img_url: 'master' }}" alt=""></a>
-      </div>
-      {% if section.settings.top_image_mobile2 %}
-      <div class="top-img-mobile">
-          <a href="{{ section.settings.top_link2 }}" style="background-color: {{ section.settings.top_image_color1 }}"><img src="{{ section.settings.top_image_mobile2 | img_url: 'master' }}" alt=""></a>
-      </div>
-      {% else %}
-	  <div class="top-img-mobile">
-        <a href="{{ section.settings.top_link2 }}" style="background-color: {{ section.settings.top_image_color1 }}"><img src="{{ section.settings.top_image2 | img_url: 'master' }}" alt=""></a>
-      </div>
-      {% endif %}
-	{% endif %}
-
-
+    {% elsif currenttime > secondstartdate and currenttime <= secondenddate %}
+        <div class="top-img">
+            <a href="{{ section.settings.top_link2 }}" style="background-color: {{ section.settings.top_image_color1 }}"><img loading="lazy" width="{{ section.settings.top_image2.width }}" height="{{ section.settings.top_image2.height }}" src="{{ section.settings.top_image2 | image_url: 'master' }}" alt=""></a>
+        </div>
+        {% if section.settings.top_image_mobile2 %}
+            <div class="top-img-mobile">
+                <a href="{{ section.settings.top_link2 }}" style="background-color: {{ section.settings.top_image_color1 }}"><img loading="lazy" width="{{ section.settings.top_image_mobile2.width }}" height="{{ section.settings.top_image_mobile2.height }}" src="{{ section.settings.top_image_mobile2 | image_url: 'master' }}" alt=""></a>
+            </div>
+        {% else %}
+            <div class="top-img-mobile">
+                <a href="{{ section.settings.top_link2 }}" style="background-color: {{ section.settings.top_image_color1 }}"><img loading="lazy" width="{{ section.settings.top_image2.width }}" height="{{ section.settings.top_image2.height }}" src="{{ section.settings.top_image2 | image_url: 'master' }}" alt=""></a>
+            </div>
+        {% endif %}
+    {% endif %}
 {% endif %}
-
 
 {% if section.settings.show_announcement %}
-<!-- {% include 'announcement-bar' %} -->
-
-
-	<div class="js-siteAlert siteAlert container-wrap" data-status="{{ section.settings.show_announcement }}" data-status-mobile="{{ section.settings.show_announcement_on_mobile }}">
-      <div class="container u-center top_ano">
-        <span class="for_profesnal"><a href="http://pro-club.hydropeptide.com/" target="_blank">For Professionals</a></span>
-          <div class="row row-lg u-center">
-            <div class="block u-center announcement-bar desktop_bar">
-               {% for block in section.blocks %}
-         {% assign startdate =  block.settings.start_date | date: '%s' %}
-
-      {% assign enddate =  block.settings.end_date | date: '%s' %}
-     {% assign now =  'now' | date: "%Y-%m-%d  %H:%M %p" %}
-     {% assign currenttime =  now | date: '%s' %}
-               {% if currenttime >= startdate and currenttime <= enddate %}
-              {% if block.settings.text1 != blank %}
-              <a href = "{{ block.settings.link1 }}" class="announcement-bar announcement-bar--link">
-                <p class="alert-title h4 announcement-bar__message" style="color: {{block.settings.color_text}}">{{ block.settings.text1 | escape }}</p>
-              </a>
-              {% endif %}
-              {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-<!--         <span class="for_rewards"><a href="https://hydropeptidedev.myshopify.com/pages/loyalty-sign-up" target="_blank">Sign Up For Rewards</a></span> -->
-      </div>
+    {% comment %} {% render 'announcement-bar' %} {% endcomment %}
+    <div class="js-siteAlert siteAlert container-wrap" data-status="{{ section.settings.show_announcement }}" data-status-mobile="{{ section.settings.show_announcement_on_mobile }}">
+        <div class="container u-center top_ano">
+            <span class="for_profesnal">
+                <a href="http://pro-club.hydropeptide.com/" target="_blank">For Professionals</a>
+            </span>
+            <div class="row row-lg u-center">
+                <div class="block u-center announcement-bar desktop_bar">
+                    {% for block in section.blocks %}
+                        {% liquid 
+                            assign startdate = block.settings.start_date | date: '%s'
+                            assign enddate = block.settings.end_date | date: '%s'
+                            assign now = 'now' | date: "%Y-%m-%d  %H:%M %p"
+                            assign currenttime = now | date: '%s'
+                        %}
+                        {% if currenttime >= startdate and currenttime <= enddate %}
+                            {% if block.settings.text1 != blank %}
+                                <a href="{{ block.settings.link1 }}" class="announcement-bar announcement-bar--link">
+                                    <p class="alert-title h4 announcement-bar__message" style="color: {{block.settings.color_text}}">{{ block.settings.text1 | escape }}</p>
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            /div>
+            <!-- <span class="for_rewards"><a href="https://hydropeptidedev.myshopify.com/pages/loyalty-sign-up" target="_blank">Sign Up For Rewards</a></span> -->
+        </div>
     </div>
-
-
 {% endif %}
 
-
-
-{% assign position = 'is-hamburger' %}
-{% if section.settings.nav_layout == 'standard' %}
-{% assign position = 'is-standard' %}
-{% endif %}
-
-{% assign logo_position = section.settings.logo_position %}
-{% assign links_position = section.settings.links_position %}
-
-{% assign logo_width = section.settings.logo_max_width | append: 'px' %}
-
-{% assign logo = section.settings.logo %}
-{% assign logo_other = section.settings.logo_other %}
-{% assign shop_name = shop.name | escape %}
-{% assign show_shop_name = section.settings.show_site_name %}
-
+{% liquid 
+    assign position = 'is-hamburger'
+    if section.settings.nav_layout == 'standard'
+        assign position = 'is-standard'
+    endif
+    assign logo_position = section.settings.logo_position
+    assign links_position = section.settings.links_position
+    assign logo_width = section.settings.logo_max_width | append: 'px'
+    assign logo = section.settings.logo
+    assign logo_other = section.settings.logo_other
+    assign shop_name = shop.name | escape
+    assign show_shop_name = section.settings.show_site_name
+%}
 <style>
-  .main-logo__image { width: {{ logo_width }}; }
+  .main-logo__image {
+    width: {{ logo_width }}
+    ;
+  }
 
   @media screen and (min-width: 768px) {
-  	.site-header:not(.has-scrolled) .main-logo__image { width: {{ logo_width }}; }
-  	.main-logo__image { max-width: {{ logo_width }}; }
+    .site-header:not(.has-scrolled) .main-logo__image {
+      width: {{ logo_width }}
+      ;
+    }
+    .main-logo__image {
+      max-width: {{ logo_width }}
+      ;
+    }
   }
 </style>
 
-{% assign cart_count = 0 %}
-{% for item in cart.items %}
-{% if item.vendor == 'DailyKarma' %}
-	{% assign cart_count = cart_count | plus: 1 %}
-{% else %}
-	{% assign cart_count = cart_count | plus: item.quantity %}
-{% endif %}
-{% endfor %}
+{%  liquid 
+    assign cart_count = 0
+    for item in cart.items
+        if item.vendor == 'DailyKarma'
+            assign cart_count = cart_count | plus: 1
+        else
+            assign cart_count = cart_count | plus: item.quantity
+        endif
+    endfor
+%}
 <header class="{% if section.settings.show_top_img %}has-topimage{% endif %} site-header header--no-bg {{ position }} header--{{ logo_position }}_{{ links_position }} header--{{ section.settings.nav_layout }} {% if section.settings.show_announcement %}has-announcement-bar{% endif %} {% if section.settings.show_announcement_on_mobile %}has-announcement-bar--mobile{% endif %} template-{{ template }} {% unless logo or logo_other or show_shop_name %}header--no-logo{% endunless %}" data-section-type="header" data-layout="{{ section.settings.nav_layout }}" id="header">
-	<div class="container">
-		<div class="row row-lg">
-			<div class="header-fix-cont">
-				<div class="header-fix-cont-inner" id="sca_fg_cart_target">
-					<a href="#menu" class="js-menuToggle menuToggle nav-item-fixed nav-item" data-target="nav" aria-expanded="false">
-						<div id="hamburger-menu" class="icon-menu">
-							<div class="diamond-bar"></div>
-							<div id="hamburger-bar" class="icon-bar"></div>
-						</div>
-					</a>
-
-                  <a id="cartTotal" href="#" aria-label="{{ 'cart.labels.items_added' | t }}" class="js-cartToggle-js cartToggle nav-item-fixed nav-item diamond-outline" tabindex="2" aria-expanded="false">
-                    {% include 'icon-cart' %}
-                    <div id="CartToggleItemCount" class="cartToggle-items">{{cart_count}}</div>
-                  </a>
-
-					{% if shop.customer_accounts_enabled and section.settings.show_account_icon %}
-					  <a href="/account" class="nav-item nav-item-fixed nav-account-link {% unless section.settings.show_search %}nav-account-link--no-search{% endunless %}" tabindex="2">{% include 'icon-user' %}</a>
-					{% endif %}
-
-					{% if section.settings.nav_layout == 'standard' %}
-					  <nav role="navigation" class="nav-standard nav-main">
-						{% assign is_hamburger_nav = false %}
-						{% include 'navigation' %}
-					  </nav>
-					{% endif %}
-				</div>
-			</div>
-			{%- if logo or logo_other or show_shop_name -%}
-				<h1 class="visible-nav-link nav-item main-logo {% unless logo or logo_other %}main-logo--text-only{% endunless %}" itemscope itemtype="http://schema.org/Organization">
-					{%- if logo or logo_other -%}
-						<a tabindex= "1" href="/" class="main-logo__image" data-width="{{ section.settings.logo_max_width }}">
-							{%- if template == 'index' or template == 'collection' -%}
-								{% comment %} Show home logo first if home page {% endcomment %}
-
-								{%- if logo -%}
-									<img src="{{ logo | img_url: '500x' }}" class="logo logo-home" data-aspectratio="{{ logo.aspect_ratio }}" alt="{{ logo.alt | escape }}">
-
-									{%- if logo_other -%}
-										<img src="{{ logo_other | img_url: '500x' }}" class="logo logo-other" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
-									{%- endif -%}
-
-								{%- elsif logo_other -%}
-									<img src="{{ logo_other | img_url: '500x' }}" class="logo" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
-								{%- endif -%}
-
-							{%- else -%}
-								{% comment %} Show other logo first if other than home page {% endcomment %}
-
-								{%- if logo_other -%}
-									<img src="{{ logo_other | img_url: '500x' }}" class="logo" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
-								{%- elsif logo -%}
-									<img src="{{ logo | img_url: '500x' }}" class="logo" data-aspectratio="{{ logo.aspect_ratio }}" alt="{{ logo.alt | escape }}">
-								{%- endif -%}
-
-							{%- endif -%}
-						</a>
-					{%- endif -%}
-
-					{%- if show_shop_name -%}
-						<a id="shopName" class="main-logo__text" href="/" itemprop="url">{{ shop_name }}</a>
-					{%- endif -%}
-				</h1>
-			{%- endif -%}
-
-		</div>
-	</div>
+    <div class="container">
+        <div class="row row-lg">
+            <div class="header-fix-cont">
+                <div class="header-fix-cont-inner" id="sca_fg_cart_target">
+                    <a href="#menu" class="js-menuToggle menuToggle nav-item-fixed nav-item" data-target="nav" aria-expanded="false">
+                        <div id="hamburger-menu" class="icon-menu">
+                            <div class="diamond-bar"></div>
+                            <div id="hamburger-bar" class="icon-bar"></div>
+                        </div>
+                    </a>
+                    <a id="cartTotal" href="#" aria-label="{{ 'cart.labels.items_added' | t }}" class="js-cartToggle-js cartToggle nav-item-fixed nav-item diamond-outline" tabindex="2" aria-expanded="false">
+                        {% render 'icon-cart' %}
+                        <div id="CartToggleItemCount" class="cartToggle-items">{{ cart_count }}</div>
+                    </a>
+                    {% if shop.customer_accounts_enabled and section.settings.show_account_icon %}
+                        <a href="/account" class="nav-item nav-item-fixed nav-account-link {% unless section.settings.show_search %}nav-account-link--no-search{% endunless %}" tabindex="2">{% render 'icon-user' %}</a>
+                    {% endif %}
+                    {% if section.settings.nav_layout == 'standard' %}
+                        <nav role="navigation" class="nav-standard nav-main">
+                            {% assign is_hamburger_nav = false %}
+                            {% render 'navigation' %}
+                        </nav>
+                    {% endif %}
+                </div>
+            </div>
+            {%- if logo or logo_other or show_shop_name -%}
+                <h1 class="visible-nav-link nav-item main-logo {% unless logo or logo_other %}main-logo--text-only{% endunless %}" itemscope itemtype="http://schema.org/Organization">
+                    {%- if logo or logo_other -%}
+                        <a tabindex="1" href="/" class="main-logo__image" data-width="{{ section.settings.logo_max_width }}">
+                            {%- if template == 'index' or template == 'collection' -%}
+                            {% comment %} Show home logo first if home page {% endcomment %}
+                                {%- if logo -%}
+                                    <img src="{{ logo | image_url: '500x' }}" loading="lazy" width="{{ logo.width }}" height="{{ logo.height }}" class="logo logo-home" data-aspectratio="{{ logo.aspect_ratio }}" alt="{{ logo.alt | escape }}">
+                                    {%- if logo_other -%}
+                                        <img src="{{ logo_other | image_url: '500x' }}" loading="lazy" width="{{ logo_other.width }}" height="{{ logo_other.height }}" class="logo logo-other" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
+                                    {%- endif -%}
+                                {%- elsif logo_other -%}
+                                    <img src="{{ logo_other | image_url: '500x' }}" loading="lazy" width="{{ logo_other.width }}" height="{{ logo_other.height }}" class="logo" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
+                                {%- endif -%}
+                            {%- else -%}
+                                {% comment %} Show other logo first if other than home page {% endcomment %}
+                                {%- if logo_other -%}
+                                    <img src="{{ logo_other | image_url: '500x' }}" loading="lazy" width="{{ logo_other.width }}" height="{{ logo_other.height }}" class="logo" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
+                                {%- elsif logo -%}
+                                    <img src="{{ logo | image_url: '500x' }}" loading="lazy" width="{{ logo.width }}" height="{{ logo.height }}" class="logo" data-aspectratio="{{ logo.aspect_ratio }}" alt="{{ logo.alt | escape }}">
+                                {%- endif -%}
+                            {%- endif -%}
+                        </a>
+                    {%- endif -%}
+                    {%- if show_shop_name -%}
+                        <a id="shopName" class="main-logo__text" href="/" itemprop="url">{{ shop_name }}</a>
+                    {%- endif -%}
+                </h1>
+            {%- endif -%}
+        </div>
+    </div>
 </header>
-
 {% comment %} Site Navigation {% endcomment %}
 <nav role="navigation" class="nav-container nav-main style-default">
-  <div class="nav-inner">
-	<div class="nav-mobile-close js-menuToggle" aria-expanded="false">
-	  <i class="icon-close"></i>
-	</div>
-	{% assign is_hamburger_nav = true %}
-	{% include 'navigation' %}
-    
-  </div>
+    <div class="nav-inner">
+        <div class="nav-mobile-close js-menuToggle" aria-expanded="false">
+            <i class="icon-close"></i>
+        </div>
+        {% assign is_hamburger_nav = true %}
+        {% render 'navigation' %}
+    </div>
 </nav>
 <div id="extole-get-mobile" style="background-color: #6c9dea; color: white; text-align: center;">
-	{% render 'Extole-mobile-header' %}
+    {% render 'Extole-mobile-header' %}
 </div>
 <script>
-  if(screen.availWidth > 768)
-  {
-    console.log('current width is above 768');
-    document.querySelector('#extole-get-mobile').style.display = 'none';
-  }
-  else if(screen.availWidth < 768 )
-  {
-    console.log('current width is below 768');
-    document.querySelector('#extole-get-mobile').style.display = 'block';
-  }
+    if (screen.availWidth > 768) 
+    {
+        console.log('current width is above 768');
+        document.querySelector('#extole-get-mobile').style.display = 'none';
+    } 
+    else if (screen.availWidth < 768) 
+    {
+        console.log('current width is below 768');
+        document.querySelector('#extole-get-mobile').style.display = 'block';
+    }
 </script>
-
 {% unless template == 'cart' %}
-  <div class="cartContainer">
-	{% include 'site-cart' %}
-  </div>
+    <div class="cartContainer">
+        {% render 'site-cart' %}
+    </div>
 {% endunless %}
-
 {% comment %} Adds room to the top of the page under the fixed header. {% endcomment %}
 {% unless template contains 'index' %}
-	  <div class="bodyWrap-spacer"></div>
+    <div class="bodyWrap-spacer"></div>
 {% endunless %}
-<script>var _0xba97=["\x73\x74\x61\x72\x74\x61\x73\x79\x6E\x63\x6C\x6F\x61\x64\x69\x6E\x67","\x73\x63\x72\x69\x70\x74","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x73\x42\x79\x54\x61\x67\x4E\x61\x6D\x65","\x6C\x65\x6E\x67\x74\x68","\x64\x61\x74\x61\x2D\x73\x72\x63","\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65","\x73\x72\x63","\x73\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65","\x64\x61\x74\x61\x73\x65\x74","\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72"];document[_0xba97[9]](_0xba97[0],function(){var _0xe7ffx1=document[_0xba97[2]](_0xba97[1]);for(var _0xe7ffx2=0;_0xe7ffx2< _0xe7ffx1[_0xba97[3]];_0xe7ffx2++){if(_0xe7ffx1[_0xe7ffx2][_0xba97[5]](_0xba97[4])!== null){_0xe7ffx1[_0xe7ffx2][_0xba97[7]](_0xba97[6],_0xe7ffx1[_0xe7ffx2][_0xba97[5]](_0xba97[4]));delete _0xe7ffx1[_0xe7ffx2][_0xba97[8]][_0xba97[6]]}}})</script>
-
-
-{% schema %}
-{
-  "name": "Header",
-  "settings": [
-	{
-	  "type": "image_picker",
-	  "id": "logo",
-	  "label": "Custom logo (Home page)",
-	  "info": "440px width recommended"
-	},
-	{
-	  "type": "image_picker",
-	  "id": "logo_other",
-	  "label": "Custom logo (All other pages)",
-	  "info": "440px width recommended"
-	},
-	{
-	  "type": "range",
-	  "id": "logo_max_width",
-	  "label": "Custom logo width (in pixels)",
-	  "info": "Max logo height is 100px",
-	  "min": 50,
-	  "max": 400,
-	  "default": 100,
-	  "step": 5,
-	  "unit": "px"
-	},
-	{
-	  "type": "checkbox",
-	  "id": "show_site_name",
-	  "label": "Show site name",
-	  "default": true
-	},
-	{
-	  "type": "checkbox",
-	  "id": "show_account_icon",
-	  "label": "Show account icon",
-	  "default": true
-	},
-	{
-	  "type": "header",
-	  "content": "Search"
-	},
-	{
-	  "type": "checkbox",
-	  "id": "show_search",
-	  "label": "Show search",
-	  "default": true
-	},
-	{
-	  "type": "link_list",
-	  "id": "menu_searches_list",
-	  "label": "Search menu",
-	  "info": "This menu won't show dropdown items"
-	},
-	{
-	  "type": "header",
-	  "content": "Menus"
-	},
-	{
-	  "type": "link_list",
-	  "id": "menu_1_list",
-	  "label": "Primary menu"
-	},
-	{
-	  "type": "link_list",
-	  "id": "menu_2_list",
-	  "label": "Secondary menu",
-	  "info": "For Hamburger layout only"
-	},
-	{
-	  "type":"header",
-	  "content":"Navigation settings"
-	},
-	{
-	  "type": "select",
-	  "id": "nav_layout",
-	  "label": "Navigation layout",
-	  "default": "standard",
-	  "options": [
-		{
-		  "value": "hamburger",
-		  "label": "Hamburger"
-		},
-		{
-		  "value": "standard",
-		  "label": "Standard"
-		}
-	  ]
-	},
-	{
-	  "type":"header",
-	  "content":"Standard navigation",
-	  "info":"These options are only applicable if you have enabled Standard navigation above"
-	},
-	{
-	  "type": "select",
-	  "id": "logo_position",
-	  "label": "Logo position",
-	  "default": "logo_left",
-	  "options": [
-		{
-		  "value": "logo_left",
-		  "label": "Left"
-		},
-		{
-		  "value": "logo_center",
-		  "label": "Center"
-		}
-	  ]
-	},
-	{
-	  "type": "select",
-	  "id": "links_position",
-	  "label": "Links position",
-	  "default": "links_right",
-	  "options": [
-		{
-		  "value": "links_left",
-		  "label": "Left"
-		},
-		{
-		  "value": "links_right",
-		  "label": "Right"
-		},
-		{
-		  "value": "links_center",
-		  "label": "Center"
-		}
-	  ]
-	},
-	{
-	  "type":"header",
-	  "content":"Mega menu"
-	},
-	{
-	  "type": "image_picker",
-	  "id": "meganav_image",
-	  "label": "Image",
-	  "info": "Recommended size: 500 x 800 px"
-	},
-	{
-	  "type": "text",
-	  "id": "meganav_image_heading",
-	  "label": "Heading"
-	},
-	{
-	  "type": "url",
-	  "id": "meganav_image_link",
-	  "label": "Link"
-	},
-{
-	  "type": "image_picker",
-	  "id": "meganav_image_two",
-	  "label": "Image",
-	  "info": "Recommended size: 500 x 800 px"
-	},
-	{
-	  "type": "text",
-	  "id": "meganav_image_heading_two",
-	  "label": "Heading"
-	},
-	{
-	  "type": "url",
-	  "id": "meganav_image_link_two",
-	  "label": "Link"
-	},
-	{
-	  "type":"header",
-	  "content":"Top image bar"
-	},
-	{
-	  "type":"checkbox",
-	  "id":"show_top_img",
-	  "label":"Show Image",
-	  "default": true
-	},
-	{
-	  "type":"checkbox",
-	  "id":"hide_top_img_homepage",
-	  "label":"Hide on Homepage",
-	  "default": false
-	},
+<script>
+    var _0xba97 = [
+        "\x73\x74\x61\x72\x74\x61\x73\x79\x6E\x63\x6C\x6F\x61\x64\x69\x6E\x67",
+        "\x73\x63\x72\x69\x70\x74",
+        "\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x73\x42\x79\x54\x61\x67\x4E\x61\x6D\x65",
+        "\x6C\x65\x6E\x67\x74\x68",
+        "\x64\x61\x74\x61\x2D\x73\x72\x63",
+        "\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65",
+        "\x73\x72\x63",
+        "\x73\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65",
+        "\x64\x61\x74\x61\x73\x65\x74",
+        "\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72"
+    ];
+    document[_0xba97[9]](_0xba97[0], function() 
     {
-      "type": "image_picker",
-      "id": "top_image",
-      "label": "Top Image"
-    },
-	{
-      "type": "image_picker",
-      "id": "top_image_mobile",
-      "label": "Top Image Mobile"
-    },
-	{
-		"type": "color",
-		"id": "top_image_color",
-		"label": "background color of image"
-	},
-	{
-	  "type": "url",
-	  "id": "top_link",
-	  "label": "Top Image Link"
-	},
-	{
+        var _0xe7ffx1 = document[_0xba97[2]](_0xba97[1]);
+        for (var _0xe7ffx2 = 0; _0xe7ffx2 < _0xe7ffx1[_0xba97[3]]; _0xe7ffx2++) 
+        {
+            if (_0xe7ffx1[_0xe7ffx2][_0xba97[5]](_0xba97[4]) !== null) 
+            {
+                _0xe7ffx1[_0xe7ffx2][_0xba97[7]](_0xba97[6], _0xe7ffx1[_0xe7ffx2][_0xba97[5]](_0xba97[4]));
+                delete _0xe7ffx1[_0xe7ffx2][_0xba97[8]][_0xba97[6]]
+            }
+        }
+    });
+</script>
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Custom logo (Home page)",
+        "info": "440px width recommended"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_other",
+        "label": "Custom logo (All other pages)",
+        "info": "440px width recommended"
+      },
+      {
+        "type": "range",
+        "id": "logo_max_width",
+        "label": "Custom logo width (in pixels)",
+        "info": "Max logo height is 100px",
+        "min": 50,
+        "max": 400,
+        "default": 100,
+        "step": 5,
+        "unit": "px"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_site_name",
+        "label": "Show site name",
+        "default": true
+      }, {
+        "type": "checkbox",
+        "id": "show_account_icon",
+        "label": "Show account icon",
+        "default": true
+      }, {
+        "type": "header",
+        "content": "Search"
+      }, {
+        "type": "checkbox",
+        "id": "show_search",
+        "label": "Show search",
+        "default": true
+      }, {
+        "type": "link_list",
+        "id": "menu_searches_list",
+        "label": "Search menu",
+        "info": "This menu won't show dropdown items"
+      }, {
+        "type": "header",
+        "content": "Menus"
+      }, {
+        "type": "link_list",
+        "id": "menu_1_list",
+        "label": "Primary menu"
+      }, {
+        "type": "link_list",
+        "id": "menu_2_list",
+        "label": "Secondary menu",
+        "info": "For Hamburger layout only"
+      }, {
+        "type": "header",
+        "content": "Navigation settings"
+      }, {
+        "type": "select",
+        "id": "nav_layout",
+        "label": "Navigation layout",
+        "default": "standard",
+        "options": [
+          {
+            "value": "hamburger",
+            "label": "Hamburger"
+          }, {
+            "value": "standard",
+            "label": "Standard"
+          }
+        ]
+      }, {
+        "type": "header",
+        "content": "Standard navigation",
+        "info": "These options are only applicable if you have enabled Standard navigation above"
+      }, {
+        "type": "select",
+        "id": "logo_position",
+        "label": "Logo position",
+        "default": "logo_left",
+        "options": [
+          {
+            "value": "logo_left",
+            "label": "Left"
+          }, {
+            "value": "logo_center",
+            "label": "Center"
+          }
+        ]
+      }, {
+        "type": "select",
+        "id": "links_position",
+        "label": "Links position",
+        "default": "links_right",
+        "options": [
+          {
+            "value": "links_left",
+            "label": "Left"
+          }, {
+            "value": "links_right",
+            "label": "Right"
+          }, {
+            "value": "links_center",
+            "label": "Center"
+          }
+        ]
+      }, {
+        "type": "header",
+        "content": "Mega menu"
+      }, {
+        "type": "image_picker",
+        "id": "meganav_image",
+        "label": "Image",
+        "info": "Recommended size: 500 x 800 px"
+      }, {
+        "type": "text",
+        "id": "meganav_image_heading",
+        "label": "Heading"
+      }, {
+        "type": "url",
+        "id": "meganav_image_link",
+        "label": "Link"
+      }, {
+        "type": "image_picker",
+        "id": "meganav_image_two",
+        "label": "Image",
+        "info": "Recommended size: 500 x 800 px"
+      }, {
+        "type": "text",
+        "id": "meganav_image_heading_two",
+        "label": "Heading"
+      }, {
+        "type": "url",
+        "id": "meganav_image_link_two",
+        "label": "Link"
+      }, {
+        "type": "header",
+        "content": "Top image bar"
+      }, {
+        "type": "checkbox",
+        "id": "show_top_img",
+        "label": "Show Image",
+        "default": true
+      }, {
+        "type": "checkbox",
+        "id": "hide_top_img_homepage",
+        "label": "Hide on Homepage",
+        "default": false
+      }, {
+        "type": "image_picker",
+        "id": "top_image",
+        "label": "Top Image"
+      }, {
+        "type": "image_picker",
+        "id": "top_image_mobile",
+        "label": "Top Image Mobile"
+      }, {
+        "type": "color",
+        "id": "top_image_color",
+        "label": "background color of image"
+      }, {
+        "type": "url",
+        "id": "top_link",
+        "label": "Top Image Link"
+      }, {
         "type": "text",
         "id": "img_start_date",
         "label": "Start Date"
-       },
-      {
+      }, {
         "type": "text",
         "id": "img_end_date",
         "label": "End Date"
-       },
-
-	{
-      "type": "image_picker",
-      "id": "top_image2",
-      "label": "Top Image 2"
-    },
-	{
-      "type": "image_picker",
-      "id": "top_image_mobile2",
-      "label": "Top Image Mobile2"
-    },
-	{
-		"type": "color",
-		"id": "top_image_color1",
-		"label": "background color of image2"
-	},
-	{
-	  "type": "url",
-	  "id": "top_link2",
-	  "label": "Top Link2"
-	},
-	{
+      }, {
+        "type": "image_picker",
+        "id": "top_image2",
+        "label": "Top Image 2"
+      }, {
+        "type": "image_picker",
+        "id": "top_image_mobile2",
+        "label": "Top Image Mobile2"
+      }, {
+        "type": "color",
+        "id": "top_image_color1",
+        "label": "background color of image2"
+      }, {
+        "type": "url",
+        "id": "top_link2",
+        "label": "Top Link2"
+      }, {
         "type": "text",
         "id": "img_start_date2",
         "label": "Start Date"
-       },
-	{
+      }, {
         "type": "text",
         "id": "img_end_date2",
         "label": "End Date"
-       },
-
-	{
-	  "type":"header",
-	  "content":"Announcement bar"
-	},
-	{
-	  "type":"checkbox",
-	  "id":"show_announcement",
-	  "label":"Show announcement",
-	  "default": true
-	},
-	{
-	  "type":"checkbox",
-	  "id":"show_announcement_on_mobile",
-	  "label":"Show on mobile",
-	  "default": true
-	}
-  ],
-	"blocks": [
-        {
-          "type": "select",
-          "name": "Add Announcement Row",
-          "settings": [
-           {
-    "type": "text",
-    "id": "text1",
-    "label": "Text2",
-    "default": "Announce something here"
-    },
-     {
-    "type": "text",
-    "id": "link1",
-    "label": "Link2",
-    "default": "#"
-    },
-    {
-    "type": "color",
-    "id": "color_text",
-    "label": "Text",
-    "default": "#fff"
-    },
-     {
-        "type": "text",
-        "id": "start_date",
-        "label": "Start Date"
-       },
+      }, {
+        "type": "header",
+        "content": "Announcement bar"
+      }, {
+        "type": "checkbox",
+        "id": "show_announcement",
+        "label": "Show announcement",
+        "default": true
+      }, {
+        "type": "checkbox",
+        "id": "show_announcement_on_mobile",
+        "label": "Show on mobile",
+        "default": true
+      }
+    ],
+    "blocks": [
       {
-        "type": "text",
-        "id": "end_date",
-        "label": "End Date"
-       }
-          ]
-        }
-      ]
-}
+        "type": "select",
+        "name": "Add Announcement Row",
+        "settings": [
+          {
+            "type": "text",
+            "id": "text1",
+            "label": "Text2",
+            "default": "Announce something here"
+          },
+          {
+            "type": "text",
+            "id": "link1",
+            "label": "Link2",
+            "default": "#"
+          },
+          {
+            "type": "color",
+            "id": "color_text",
+            "label": "Text",
+            "default": "#fff"
+          },
+          {
+            "type": "text",
+            "id": "start_date",
+            "label": "Start Date"
+          }, {
+            "type": "text",
+            "id": "end_date",
+            "label": "End Date"
+          }
+        ]
+      }
+    ]
+  }
 {% endschema %}
