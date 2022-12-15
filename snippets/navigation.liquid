@@ -139,7 +139,7 @@
                       {%- if image -%}
                         {%- capture meganav_image -%}
                           {%- assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' -%}
-                          {%- include 'theme-rias' -%}
+                          {% include 'theme-rias' %}
                           <img
                             class="fade-in"
                             loading="lazy"
