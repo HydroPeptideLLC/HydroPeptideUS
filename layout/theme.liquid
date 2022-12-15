@@ -2,529 +2,439 @@
 <!--[if IE 9 ]><html class="ie9 no-js" lang="en"><![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <!--[if IE]><!--><html class="ie" lang="en"><!--<![endif]-->
- 
 <head>
-  {% render 'elevar-head' %}{% render 'pagefly-head' %}<script
-        id="script_tag_id"
-        data-last-check-status-key="_prevCheckIsOk"
-        data-last-check-timestamp-key="_prevCheckTimestamp"
-        data-refresh-interval-ms="120000"
-        data-script-src="https://d2fj3s7h83rb61.cloudfront.net/k5QAM35Mbv/bin"
-        data-app-info="1-1--1.1.11"
-        data-app-platform="1"
-        data-app-type="1"
-        data-app-version="1.1.11">
-    (function () {
-        var currentScript = document.currentScript;
-        var currentScriptDataset = currentScript.dataset;
-        var lastCheckStatusKey = currentScriptDataset.lastCheckStatusKey;
-        var lastCheckTimestampKey = currentScriptDataset.lastCheckTimestampKey;
-        var refreshIntervalMs = parseInt(currentScriptDataset.refreshIntervalMs, 10);
-        var scriptSrc = currentScriptDataset.scriptSrc;
+    {% render 'elevar-head' %}
+    {% render 'pagefly-head' %}
+    <script id="script_tag_id" data-last-check-status-key="_prevCheckIsOk" data-last-check-timestamp-key="_prevCheckTimestamp" data-refresh-interval-ms="120000" data-script-src="https://d2fj3s7h83rb61.cloudfront.net/k5QAM35Mbv/bin" data-app-info="1-1--1.1.11" data-app-platform="1" data-app-type="1" data-app-version="1.1.11">
+        (function () 
+        {
+            var currentScript = document.currentScript;
+            var currentScriptDataset = currentScript.dataset;
+            var lastCheckStatusKey = currentScriptDataset.lastCheckStatusKey;
+            var lastCheckTimestampKey = currentScriptDataset.lastCheckTimestampKey;
+            var refreshIntervalMs = parseInt(currentScriptDataset.refreshIntervalMs, 10);
+            var scriptSrc = currentScriptDataset.scriptSrc;
 
-        if (lastCheckStatusKey && lastCheckTimestampKey && refreshIntervalMs && scriptSrc && !isNaN(refreshIntervalMs)) {
-            if (localStorage.getItem(lastCheckStatusKey) === null) {
-                localStorage.setItem(lastCheckStatusKey, String(false));
-            }
-            
-            if (localStorage.getItem(lastCheckTimestampKey) === null){
-                localStorage.setItem(lastCheckTimestampKey, String(0));
-            }
-
-            var locationHref = document.location.href;
-            var now = Date.now();
-            var lastCheckStatus = String(localStorage.getItem(lastCheckStatusKey)).toLowerCase() === 'true';
-            var lastCheckTimestamp = parseInt(localStorage.getItem(lastCheckTimestampKey), 10);
-
-            if (!isNaN(lastCheckTimestamp)) {
-                var needRefreshByInterval = now - lastCheckTimestamp > refreshIntervalMs;
-
-                if (needRefreshByInterval || lastCheckStatus) {
-                    var LOAD = 'load';
-                    var ERROR = 'error';
-                    var script = document.createElement('script');
-
-                    function scriptEventHandler(evt) {
-                        var target = evt.target;
-                        var evtType = evt.type;
-
-                        var currentCheckStatus = false;
-                        var currentCheckTimestamp = Date.now();
-
-                        if (evtType === LOAD) {
-                            currentCheckStatus = true;
-                        }
-
-                        localStorage.setItem(lastCheckStatusKey, String(currentCheckStatus));
-                        localStorage.setItem(lastCheckTimestampKey, String(currentCheckTimestamp));
-
-                        target.removeEventListener(LOAD, scriptEventHandler);
-                        target.removeEventListener(ERROR, scriptEventHandler);
-                    }
-
-                    if (!locationHref.match(/(\/checkouts\/|\/thank_you)/gi)) {
-                        script.defer = true;
-                    }
-
-                    script.addEventListener(LOAD, scriptEventHandler);
-                    script.addEventListener(ERROR, scriptEventHandler);
-
-                    script.src = scriptSrc;
-
-                    document.head.insertBefore(script, currentScript);
+            if (lastCheckStatusKey && lastCheckTimestampKey && refreshIntervalMs && scriptSrc && !isNaN(refreshIntervalMs)) 
+            {
+                if (localStorage.getItem(lastCheckStatusKey) === null) 
+                {
+                    localStorage.setItem(lastCheckStatusKey, String(false));
                 }
+                if (localStorage.getItem(lastCheckTimestampKey) === null){
+                    localStorage.setItem(lastCheckTimestampKey, String(0));
+                }
+                var locationHref = document.location.href;
+                var now = Date.now();
+                var lastCheckStatus = String(localStorage.getItem(lastCheckStatusKey)).toLowerCase() === 'true';
+                var lastCheckTimestamp = parseInt(localStorage.getItem(lastCheckTimestampKey), 10);
+                if (!isNaN(lastCheckTimestamp)) 
+                {
+                    var needRefreshByInterval = now - lastCheckTimestamp > refreshIntervalMs;
+                    if (needRefreshByInterval || lastCheckStatus) 
+                    {
+                        var LOAD = 'load';
+                        var ERROR = 'error';
+                        var script = document.createElement('script');
+                        function scriptEventHandler(evt) 
+                        {
+                            var target = evt.target;
+                            var evtType = evt.type;
+                            var currentCheckStatus = false;
+                            var currentCheckTimestamp = Date.now();
+                            if (evtType === LOAD) 
+                            {
+                                currentCheckStatus = true;
+                            }
+                            localStorage.setItem(lastCheckStatusKey, String(currentCheckStatus));
+                            localStorage.setItem(lastCheckTimestampKey, String(currentCheckTimestamp));
+                            target.removeEventListener(LOAD, scriptEventHandler);
+                            target.removeEventListener(ERROR, scriptEventHandler);
+                        }
+                        if (!locationHref.match(/(\/checkouts\/|\/thank_you)/gi)) 
+                        {
+                            script.defer = true;
+                        }
+                        script.addEventListener(LOAD, scriptEventHandler);
+                        script.addEventListener(ERROR, scriptEventHandler);
+                        script.src = scriptSrc;
+                        document.head.insertBefore(script, currentScript);
+                    }
+                }
+            } 
+            else 
+            {
+                console.error('wrapper is not right configured');
             }
-        } else {
-            console.error('wrapper is not right configured');
+        })();
+    </script>
+    {% render 'elevar-head-listener' %}
+    <link rel="shortcut icon" href="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/HP-Retail-Site-Icon-32x32.png?v=1592640770" type="image/png">
+    <meta charset="utf-8" />
+    {% comment %}<title>
+    {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+    </title>{% endcomment %}
+    {% if settings.favicon != blank %}
+        <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 32, height: 32 }}" type="image/png">
+    {% endif %}
+    {% comment %}{% if page_description %}
+        <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}{% endcomment %}
+    <link rel="stylesheet" data-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' /><![endif]-->
+    <link rel="canonical" href="{{ canonical_url }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    {% render 'site-social-meta' %}
+    <style>
+        .template-index .bodyWrap 
+        {
+            margin-top: 0;
         }
-    })();
-</script>
-  {% render 'elevar-head-listener' %}
-	 {%- if dropinblog == 1 -%}{{ dropinblog_head_top }}{%- endif -%}
-  {% comment %}
-  {% endcomment %} 
-  <link rel="shortcut icon" href="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/HP-Retail-Site-Icon-32x32.png?v=1592640770" type="image/png">
-  <meta charset="utf-8" />
-  {% comment %}<title>
-  {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
-  </title>{% endcomment %}
- 
-
-  {% if settings.favicon != blank %}
-  <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
-  {% endif %}
-
-  {% if page_description %}
-  {% comment %}<meta name="description" content="{{ page_description | escape }}">{% endcomment %}
-  {% endif %}
-  <link rel="stylesheet" data-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' /><![endif]-->
-  <link rel="canonical" href="{{ canonical_url }}" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  {% include 'site-social-meta' %}
-   
-  <style>
-    .template-index .bodyWrap {
-      margin-top: 0;
-    }
-    .hc-psz-item-img-wrap{
-      background: #E4E4E4;
-    }
-    .home_image_text .image_text_block{
-      background: #FFF1DF;
-    }
-  </style>
- {% include 'theme-style' %}{% include 'theme-style1' %} {{ 'style.scss.css' | asset_url | stylesheet_tag | replace: ' href=', ' data-href='}}
-  {{ 'custom.css' | asset_url | stylesheet_tag | replace: ' href=', ' data-href='}}
-
-
-  <!-- SCRIPTS -->
-  <script src="{{ 'modernizr.min.js'  | asset_url }}"></script>
-  <script src="{{ 'respond.min.js'  | asset_url }}"></script>
-  {% if template contains 'customers' %}
-  <script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script>
-  <script src="{{ 'customer_area.js'  | shopify_asset_url }}"></script>
-  
-
-  {% endif %}
-
-  <!-- JQUERY -->
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  {% comment %}
-  <script async src="{{ 'custom.js'  | asset_url }}"></script>
-  {% endcomment %}
-  
-  <script>
-    
-      if (window.addEventListener) {
-        window.addEventListener('load', function(){
-
-          setTimeout(function() {  var oScript = document.createElement("script");
-                                 oScript.src = "{{ 'custom.js' | asset_url }}";
-                                 document.body.appendChild(oScript);
-                                }, 300);
-        }, false);
-
-      }
-      else {
-
-        window.attachEvent('onload', function() {
-          setTimeout(function() {
-            var oScript = document.createElement("script");
-            oScript.src = "{{ 'custom.js' | asset_url }}";
-            document.body.appendChild(oScript);
-          }, 300);
-        });
-
-      }
-    
-  </script>
-  
-  <!-- jQuery Dependent -->
-  <script src="{{ 'api.jquery.js' | shopify_asset_url }}"></script>
-  <script>window.lazySizesConfig = window.lazySizesConfig || {};</script>
-  <script src="{{ 'lazysizes.js' | asset_url }}"></script>
-  
-  {% comment %}
-  {{ 'instafeed.js'  | asset_url | script_tag }}
-  {% endcomment %}
-  
-  
+        .hc-psz-item-img-wrap
+        {
+            background: #E4E4E4;
+        }
+        .home_image_text .image_text_block
+        {
+            background: #FFF1DF;
+        }
+    </style>
+    {% render 'theme-style' %}
+    {% render 'theme-style1' %}
+    {{ 'style.scss.css' | asset_url | stylesheet_tag | replace: ' href=', ' data-href='}}
+    {{ 'custom.css' | asset_url | stylesheet_tag | replace: ' href=', ' data-href='}}
+    <!-- SCRIPTS -->
+    <script async src="{{ 'modernizr.min.js' | asset_url }}"></script>
+    <script async src="{{ 'respond.min.js' | asset_url }}"></script>
+    {% if template contains 'customers' %}
+        <script async src="{{ 'shopify_common.js' | shopify_asset_url }}"></script>
+        <script async src="{{ 'customer_area.js' | shopify_asset_url }}"></script>
+    {% endif %}
+    <!-- JQUERY -->
+    <script async src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    {% comment %}
+    <script async src="{{ 'custom.js'  | asset_url }}"></script>
+    {% endcomment %}
+    <script>
+        if (window.addEventListener) 
+        {
+            window.addEventListener('load', function()
+            {
+                setTimeout(function() 
+                {
+                    var oScript = document.createElement("script");
+                    oScript.src = "{{ 'custom.js' | asset_url }}";
+                    document.body.appendChild(oScript);
+                }, 300);
+            }, false);
+        }
+        else 
+        {
+            window.attachEvent('onload', function() 
+            {
+                setTimeout(function() {
+                    var oScript = document.createElement("script");
+                    oScript.src = "{{ 'custom.js' | asset_url }}";
+                    document.body.appendChild(oScript);
+                }, 300);
+            });
+        }
+    </script>
+    <!-- jQuery Dependent -->
+    <script async src="{{ 'api.jquery.js' | shopify_asset_url }}"></script>
+    <script>window.lazySizesConfig = window.lazySizesConfig || {};</script>
+    <script async src="{{ 'lazysizes.js' | asset_url }}"></script>
+    {% comment %}
+    {{ 'instafeed.js'  | asset_url | script_tag }}
+    {% endcomment %}
     <script defer src="{{ 'handlebars.min.js' | asset_url }}"></script>
-  <script>
-    
-      if (window.addEventListener) {
-        window.addEventListener('load', function(){
-
-          setTimeout(function() {  var oScript = document.createElement("script");
-                                 oScript.src = "{{ 'handlebars.min.js'  | asset_url }}";
-                                 document.body.appendChild(oScript);
-                                 defer = true;
-                                }, 5000);
-        }, false);
-
-      }
-      else {
-
-        window.attachEvent('onload', function() {
-          setTimeout(function() {
-            var oScript = document.createElement("script");
-            oScript.src = "{{ 'handlebars.min.js'  | asset_url }}";
-            document.body.appendChild(oScript);
-            defer = true;
-          }, 5000);
-        });
-
-      }
-    
-  </script>
-<!--   <script>
-    $(document).ready(function(){
-      $('div,a').removeClass('will-animate')f
-    })
-    
-  </script> -->
-
-     <script>
-       $.get('https://ipapi.co/json/?key=IX0DS7rj2EW5hKbSMdpug5VCTbZbucsUCiwAhlLMMyLHDuK2CM', function(data){
-         if (data.country === 'CA') 
+    <script>
+        if (window.addEventListener) 
         {
-         	        window.location.replace("https://hydropeptide.ca/");
+            window.addEventListener('load', function()
+            {
+                setTimeout(function() 
+                {  
+                    var oScript = document.createElement("script");
+                    oScript.src = "{{ 'handlebars.min.js' | asset_url }}";
+                    document.body.appendChild(oScript);
+                    defer = true;
+                }, 5000);
+            }, false);
         }
-        else if (data.country === 'GB') 
+        else 
         {
-         	        window.location.replace("https://hydropeptide.co.uk/");
+            window.attachEvent('onload', function() 
+            {
+                setTimeout(function() 
+                {
+                    var oScript = document.createElement("script");
+                    oScript.src = "{{ 'handlebars.min.js'  | asset_url }}";
+                    document.body.appendChild(oScript);
+                    defer = true;
+                }, 5000);
+            });
         }
-       })
+    </script>
+    <script>
+        $.get('https://ipapi.co/json/?key=IX0DS7rj2EW5hKbSMdpug5VCTbZbucsUCiwAhlLMMyLHDuK2CM', function(data)
+        {
+            if (data.country === 'CA') 
+            {
+         	    window.location.replace("https://hydropeptide.ca/");
+            }
+            else if (data.country === 'GB') 
+            {
+                window.location.replace("https://hydropeptide.co.uk/");
+            }
+        })
     </script> 
-  {% include 'vital-loader' %}
-  {% capture cfh %}{{ content_for_header }}{% endcapture %}
-   {% if settings.show_reviews and settings.enable_yotpo and settings.yotpo_ID != '' %}
-  {% include 'yotpo-script' %}
-  {% endif %}
-  {% include 'sca.freegifts' %}
-  {% include 'sca-quick-view-init' %}
+    {% liquid 
+        render 'vital-loader'
+        if settings.show_reviews and settings.enable_yotpo and settings.yotpo_ID != ''
+            render 'yotpo-script'
+        endif
+        render 'sca.freegifts'
+        render 'sca-quick-view-init'
+        render 'pagefly-header'
+        render 'giftship'
+    %}
+    {{ content_for_header }}
+    {% render 'wiser' %}
+    {% render 'wiser_popup' %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-307722835"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag()
+        {
+            dataLayer.push(arguments);
+            }
+        gtag('js', new Date());
+        gtag('config', 'AW-307722835');
+    </script>
+    {% if request.page_type == 'article' or request.page_type == 'blog' %}
+        {% render 'philyra-popup' %}
+        <script async src="{{ 'philyra.js' | asset_url }}"></script>
+    {% endif %}
+    <script async src="https://schemaplus-cdn.s3.amazonaws.com/loader-ee0e897a303f0605bd009f9409811dda-hydropeptidestore.min.js"></script>
+    <!-- Narrativ Tag Begin -->
+    <script type="text/javascript">
+        (function (window, document, accountId) 
+        {
+            var b = document.createElement("script");
+            b.type = "text/javascript";
+            b.src = "https://static.narrativ.com/tags/narrativ-brand.1.0.0.js";
+            b.async = true;
+            b.id = 'nrtvTag';
+            b.setAttribute('data-narrativ-id', accountId);
+            var a = document.getElementsByTagName("script")[0];
+            a.parentNode.insertBefore(b, a);
+        })(window, document, 1410);
+    </script>
+    <!-- Narrativ Tag End -->
+</head>
+{% capture body_class %}{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} image-hover-light cta-fill-{{ settings.cta_button_style }} {% if settings.show_custom_cursor %}custom-cursor{% endif %} {% if settings.transition_images_fade %}enable-fade-in{% endif %} {% if settings.transition_grid_items %}show-grid-items-transition{% endif %}{% endcapture %}
+<body id="{{ page_title | handle }}" class="{{ body_class }}" >
+    {% render 'elevar-body-end' %}
+    <div id="extole-get-overlay">{% render 'Extole-overlay-tag' %}</div>
+    {% section 'popup' %}
+    <div class="pageWrap">
+        {% section 'header' %}
+        <div class="bodyWrap {% if request.path contains 'apps/store-locator' %} store_locator_main {% endif %}">
+            {% if request.path contains 'apps/store-locator' %}
+                {% render 'storelocator' %}
+            {% endif %}
+            {{ content_for_layout }}
+            <limespot></limespot>
+            {% comment %}
+            {% section 'emailpopup' %}
+            {% endcomment %}
+            {% section 'newsletter' %}
+            {% section 'footer' %}
+        </div> <!-- END bodyWrap -->
+    </div> <!-- END pageWrap -->
+    <!-- AJAX Mustache Templates -->
+    {% render 'ajax-cart' %}
+    {% render 'cart-popover' %}
+    {% render 'cart-sidebar' %}
+    <script async src="{{ 'option_selection.js' | shopify_asset_url }}"></script>
+    <script async src="{{ 'shop.js' | asset_url }}"></script>
+    {% render 'load-spinner' %}
+    {% comment %}{% include 'search-autocomplete' %}{% endcomment %}
+    <script>
+        Shopify.money_format = '{{ shop.money_format }}';
+    </script>
+    {% if settings.show_multiple_currencies %}
+        {% render 'currencies' %}
+    {% endif %}
+    {% render 'sca-quick-view-template' %}
+    <!--   <script src="//code.tidio.co/gpdbsivwvvp0jko9bc4vmpdky9uqjny5.js" async></script> -->
+    <script>
+        if (window.addEventListener) 
+        {
+            window.addEventListener('load', function()
+            {
+                setTimeout(function() 
+                {  
+                    var oScript = document.createElement("script");
+                    oScript.src = "//code.tidio.co/gpdbsivwvvp0jko9bc4vmpdky9uqjny5.js";
+                    document.body.appendChild(oScript);
+                }, 8000);
+            }, false);
+        }
+        else 
+        {
+            window.attachEvent('onload', function() 
+            {
+                setTimeout(function() 
+                {
+                    var oScript = document.createElement("script");
+                    oScript.src = "//code.tidio.co/gpdbsivwvvp0jko9bc4vmpdky9uqjny5.js";
+                    document.body.appendChild(oScript);
+                }, 8000);
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function () 
+        {
+            $('body').delegate('button#addToCartButton', 'click', function()
+            {
+                var prodID = jQuery(this).data("product-id");
+                var prodIMG = jQuery(this).data("product-img");
+                var prodPrice = jQuery(this).data("product-price");
+                var prodTitle = jQuery(this).data("product-title");
+                $.ajax({
+                    type: "POST",
+                    url: "/cart/add.js",
+                    data: {
+                        quantity: 1,
+                        id: prodID,
+                    },
+                    dataType: "json",
+                    success: function (success) 
+                    {
+                        $("div#CartPopoverCont").addClass("is-visible");
+                        var cart_cot = $("div#CartToggleItemCount").text();
+                        var sum = Number(cart_cot) + Number(1);
+                        cart_data();
+                    },
+                    error: function (error) {},
+                });
 
-  {% render 'pagefly-header' %}
+            });
+        });
+    </script>
+   {% render 'afterpay' %}
+    <script async src="{{ 'lazy.js' | asset_url }}"></script>
+    <img loading="lazy" data-src="https://listen.audiohook.com/4eaff59d-7c6d-405f-aeaa-93ce663573a6/pixel.png" style="display: none;">
+    <script async src="{{ 'custom.min.js' | asset_url }}"></script>
+    <!-- <script src="https://cdn.attn.tv/hydropeptide/dtag.js"></script> -->
+    {% render 'wisepops-generated' %}
+    <script>
+        var windowWidth,lazyLink,lazyImages,lazyBackground,lazyIframe,lazyScripts,navigator_platform,lazyLoadedJS,src,style,datasrc,urls,analytics,s,x,i,j,flag;function init(){flag&&(flag=0,lazyLoadImg(),lazyLoadBackground(),lazyLoadIframe(),load_all_js())}function isElementInViewport(t){var a=t.getBoundingClientRect();return a.top>=0&&a.left>=0&&a.bottom<=(window.innerHeight||document.documentElement.clientHeight)&&a.right<=(window.innerWidth||document.documentElement.clientWidth)}function lazyLoadLink(){lazyLink.forEach(function(t){t.href=null==t.dataset.href?t.href:t.dataset.href})}function lazyLoadImg(){lazyImages.forEach(function(t){null!=(src=windowWidth<600?null==t.dataset.mobsrc?t.dataset.src:t.dataset.mobsrc:t.dataset.src)&&(t.src=src),t.classList.remove("lazy2")})}function lazyLoadImg2(){lazyImages.forEach(function(t){isElementInViewport(t)&&(null!=(src=windowWidth<600?null==t.dataset.mobsrc?t.dataset.src:t.dataset.mobsrc:t.dataset.src)&&(t.src=src),t.classList.remove("lazy"))})}function lazyLoadBackground(){lazyBackground.forEach(function(t){lazybg=windowWidth<600?null==t.dataset.mobstyle?t.dataset.style:t.dataset.mobstyle:t.dataset.style,null!=lazybg&&(t.style=lazybg),t.classList.remove("lazybg")})}function lazyLoadIframe(){lazyIframe.forEach(function(t){t.src=null==t.dataset.src?t.src:t.dataset.src})}function lazyLoadScripts(){j!=lazyScripts.length&&("lazyload2"==lazyScripts[j].getAttribute("type")?(lazyScripts[j].setAttribute("type","lazyloaded"),void 0!==lazyScripts[j].dataset.src?((s=document.createElement("script")).src=lazyScripts[j].dataset.src,document.body.appendChild(s),s.onload=function(){j++,lazyLoadScripts()}):((s=document.createElement("script")).innerHTML=lazyScripts[j].innerHTML,document.body.appendChild(s),j++,lazyLoadScripts())):(j++,lazyLoadScripts()))}function lazyLoadCss(t){(s=document.createElement("link")).rel="stylesheet",s.href=t,document.getElementsByTagName("head")[0].appendChild(s)}function lazyLoadJS(t){if(lazyLoadedJS)return setTimeout(function(){lazyLoadJS(t)},200),!1;lazyLoadedJS=1,(s=document.createElement("script")).src=t,s.onload=function(){lazyLoadedJS=0},document.body.appendChild(s)}document.addEventListener("DOMContentLoaded",function(){windowWidth=screen.width,lazyLink=document.querySelectorAll("link"),lazyImages=document.querySelectorAll("img.lazy2"),nolazyImages=document.querySelectorAll("img.lazy"),lazyBackground=document.querySelectorAll(".lazybg"),lazyIframe=document.querySelectorAll("iframe"),lazyScripts=document.getElementsByTagName("script"),navigator_platform=navigator.platform,i=0,j=0,flag=1,window.addEventListener("scroll",function(){init()}),window.addEventListener("mousemove",function(){init()}),window.addEventListener("touchstart",function(){init()}),"Linux x86_64"!=navigator_platform&&init(),setTimeout(function(){init()},60000)});
+        function load_all_js() 
+        {
+            setTimeout(function() 
+            {
+                const wnw_load = new Event('wnw_load');
+                window.dispatchEvent(wnw_load);
+            }, 100);
+            lazyLoadJS("https://h30-deploy.hiconversion.com/origin/personalize/static/core.js");
+            lazyLoadJS("https://cdn.attn.tv/hydropeptide/dtag.js");
+            j=0;
+            lazyScripts = document.getElementsByTagName("script");
+            lazyLoadScripts();
 
-  {% include 'giftship' %} 
-
-
- 
- 
-{% include 'wiser' %}{% include 'wiser_popup' %}
-  
-  <script src="https://www.googletagmanager.com/gtag/js?id=AW-307722835"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'AW-307722835');
-  </script>
-	{%- if dropinblog == 1 -%}{{ dropinblog_head_bottom }}{%- endif -%}
-{% if request.page_type == 'article' or request.page_type == 'blog' %}{% render 'philyra-popup' %}<script src="{{ 'philyra.js' | asset_url }}"></script>{% endif %}
- 
-  
-  <script src="https://schemaplus-cdn.s3.amazonaws.com/loader-ee0e897a303f0605bd009f9409811dda-hydropeptidestore.min.js"></script>
-  
-  
-  <!-- Narrativ Tag Begin -->
+            setInterval(function() {
+                lazyImages = document.querySelectorAll('img.lazy2');
+                lazyBackground = document.querySelectorAll('.lazybg');
+                lazyLoadImg();
+                lazyLoadBackground();
+            }, 2000);
+        }    
+    </script>  
+    <img loading="lazy" width="" height="" src="https://listen.audiohook.com/4eaff59d-7c6d-405f-aeaa-93ce663573a6/pixel.png" style="display: none;">
+    <!--   <script type="text/javascript">
+    usi_installed = 0; USI_installCode = function() { if (usi_installed == 0) { usi_installed = 1; var USI_headID = document.getElementsByTagName("head")[0]; var USI_installID = document.createElement('script'); USI_installID.type = 'text/javascript'; USI_installID.src = 'https://www.upsellit.com/active/hydropeptide.jsp'; USI_headID.appendChild(USI_installID); } }; if (typeof(document.readyState) != "undefined" && document.readyState === "complete") { USI_installCode(); } else if (window.addEventListener){ window.addEventListener('load', USI_installCode, true); } else if (window.attachEvent) { window.attachEvent('onload', USI_installCode); } else { USI_installCode(); } setTimeout("USI_installCode()", 10000);
+    </script> -->
+    {% render 'adroll' %}
+    <script defer src="https://static.myshlf.us/Affiliates/sms_aff_clicktrack.js"></script>
+    <!-- CRITEO START -->
+    {% render 'criteo-tracking' %}
+    <!-- CRITEO END -->
+    <!--  Extole Core Tag  -->
+    <script src='https://share.hydropeptide.com/core.js' async></script>
+    <!--  Extole Core Tag End  -->
   
     <script type="text/javascript">
-      (function (window, document, accountId) {
-          var b = document.createElement("script");
-          b.type = "text/javascript";
-          b.src = "https://static.narrativ.com/tags/narrativ-brand.1.0.0.js";
-          b.async = true;
-          b.id = 'nrtvTag';
-          b.setAttribute('data-narrativ-id', accountId);
-          var a = document.getElementsByTagName("script")[0];
-          a.parentNode.insertBefore(b, a);
-      })(window, document, 1410);
-</script>
-  
-    <!-- Narrativ Tag End -->
-  
-  
-</head>
- 
- 
-{% capture body_class %}{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} image-hover-light cta-fill-{{settings.cta_button_style}} {% if settings.show_custom_cursor %}custom-cursor{% endif %} {% if settings.transition_images_fade %}enable-fade-in{% endif %} {% if settings.transition_grid_items %}show-grid-items-transition{% endif %}{% endcapture %}
+        // Overrides:
+        // var afterpay_min = 0.04;            // As per your Afterpay contract.
+        // var afterpay_max = 2000.00;         // As per your Afterpay contract.
+        // var afterpay_cbt_enabled = false;   // As per your Afterpay contract; change to true to display Cross-Border Trade artwork (for AU/NZ).
+        // var afterpay_logo_theme = 'colour'; // Can be 'colour', 'black' or 'white'.
+        // var afterpay_product_selector = '#product-price-selector';
+        // var afterpay_cart_integration_enabled = true;
+        // var afterpay_cart_static_selector = '#cart-subtotal-selector';
 
-
-<body id="{{ page_title | handle }}" class="{{ body_class }}" >
-  {% render 'elevar-body-end' %}
-
-  <div id="extole-get-overlay">{% render 'Extole-overlay-tag' %}</div>
-<!--   <script>
-    if(screen.availWidth > 768)
-    {
-      document.querySelector('#extole-get-overlay').style.display = 'block';
-    }
-    else if(screen.availWidth < 768 )
-    {
-      document.querySelector('#extole-get-overlay').style.display = 'none';
-    }
-  </script> -->
-
-  {% section 'popup' %}
-
-  <div class="pageWrap">
-
-    {% section 'header' %}
-    <div class="bodyWrap {% if request.path contains 'apps/store-locator' %} store_locator_main {% endif %}">
-
-      {% if request.path contains 'apps/store-locator' %}
-      {% include 'storelocator' %}
-      {% endif %}
-
-      {{ content_for_layout }}
-<limespot></limespot>
-      {% comment %}
-      {% section 'emailpopup' %}
-      {% endcomment %}
-      {% section 'newsletter' %}
-      {% section 'footer' %}
-
-    </div> <!-- END bodyWrap -->
-  </div> <!-- END pageWrap -->
-
-  <!-- AJAX Mustache Templates -->
-  
-  {% include 'ajax-cart' %}
-  {% include 'cart-popover' %}
-
-
-  
-  {% include 'cart-sidebar' %}
-
-  
-  <script src="{{ 'option_selection.js' | shopify_asset_url }}"></script>
-  <script src="{{ 'shop.js' | asset_url }}"></script>
-  
-
-  {% include 'load-spinner' %}
-  {% comment %}{% include 'search-autocomplete' %}{% endcomment %}
-  <script>Shopify.money_format = '{{ shop.money_format }}';</script>
-
-  {% if settings.show_multiple_currencies %}
-  {% include 'currencies' %}
-  {% endif %}
-  {% include 'sca-quick-view-template' %}
- 
- 
-<!--   <script src="//code.tidio.co/gpdbsivwvvp0jko9bc4vmpdky9uqjny5.js" async></script> -->
-  
-  <script>
-    
-      if (window.addEventListener) {
-        window.addEventListener('load', function(){
-
-          setTimeout(function() {  
-            var oScript = document.createElement("script");
-            oScript.src = "//code.tidio.co/gpdbsivwvvp0jko9bc4vmpdky9uqjny5.js";
-            document.body.appendChild(oScript);
-          }, 8000);
-        }, false);
-
-      }
-      else {
-
-        window.attachEvent('onload', function() {
-          setTimeout(function() {
-            var oScript = document.createElement("script");
-            oScript.src = "//code.tidio.co/gpdbsivwvvp0jko9bc4vmpdky9uqjny5.js";
-            document.body.appendChild(oScript);
-          }, 8000);
-        });
-
-      }
-    
-  </script>
-  <script>
-    $(document).ready(function () {
-      console.log('doc ready');
-      $('body').delegate('button#addToCartButton', 'click', function(){
-        console.log('adding to cart');
-        var prodID = jQuery(this).data("product-id");
-        var prodIMG = jQuery(this).data("product-img");
-        var prodPrice = jQuery(this).data("product-price");
-        var prodTitle = jQuery(this).data("product-title");
-        $.ajax({
-          type: "POST",
-          url: "/cart/add.js",
-          data: {
-            quantity: 1,
-            id: prodID,
-          },
-          dataType: "json",
-          success: function (success) {
-            $("div#CartPopoverCont").addClass("is-visible");
-            var cart_cot = $("div#CartToggleItemCount").text();
-            var sum = Number(cart_cot) + Number(1);
-
-            cart_data();
-
-          },
-          error: function (error) {},
-        });
-
-      });
-    });
-  </script>
-   {% render 'afterpay' %}
-
-  <script src="{{ 'lazy.js'  | asset_url }}"></script>
-  
-<img data-src="https://listen.audiohook.com/4eaff59d-7c6d-405f-aeaa-93ce663573a6/pixel.png" style="display: none;"> <script src="{{ 'custom.min.js' | asset_url }}"></script>
-
-<!-- <script src="https://cdn.attn.tv/hydropeptide/dtag.js"></script> -->
-
-  {% include 'wisepops-generated' %}
- 
-  <script>
-var windowWidth,lazyLink,lazyImages,lazyBackground,lazyIframe,lazyScripts,navigator_platform,lazyLoadedJS,src,style,datasrc,urls,analytics,s,x,i,j,flag;function init(){flag&&(flag=0,lazyLoadImg(),lazyLoadBackground(),lazyLoadIframe(),load_all_js())}function isElementInViewport(t){var a=t.getBoundingClientRect();return a.top>=0&&a.left>=0&&a.bottom<=(window.innerHeight||document.documentElement.clientHeight)&&a.right<=(window.innerWidth||document.documentElement.clientWidth)}function lazyLoadLink(){lazyLink.forEach(function(t){t.href=null==t.dataset.href?t.href:t.dataset.href})}function lazyLoadImg(){lazyImages.forEach(function(t){null!=(src=windowWidth<600?null==t.dataset.mobsrc?t.dataset.src:t.dataset.mobsrc:t.dataset.src)&&(t.src=src),t.classList.remove("lazy2")})}function lazyLoadImg2(){lazyImages.forEach(function(t){isElementInViewport(t)&&(null!=(src=windowWidth<600?null==t.dataset.mobsrc?t.dataset.src:t.dataset.mobsrc:t.dataset.src)&&(t.src=src),t.classList.remove("lazy"))})}function lazyLoadBackground(){lazyBackground.forEach(function(t){lazybg=windowWidth<600?null==t.dataset.mobstyle?t.dataset.style:t.dataset.mobstyle:t.dataset.style,null!=lazybg&&(t.style=lazybg),t.classList.remove("lazybg")})}function lazyLoadIframe(){lazyIframe.forEach(function(t){t.src=null==t.dataset.src?t.src:t.dataset.src})}function lazyLoadScripts(){j!=lazyScripts.length&&("lazyload2"==lazyScripts[j].getAttribute("type")?(lazyScripts[j].setAttribute("type","lazyloaded"),void 0!==lazyScripts[j].dataset.src?((s=document.createElement("script")).src=lazyScripts[j].dataset.src,document.body.appendChild(s),s.onload=function(){j++,lazyLoadScripts()}):((s=document.createElement("script")).innerHTML=lazyScripts[j].innerHTML,document.body.appendChild(s),j++,lazyLoadScripts())):(j++,lazyLoadScripts()))}function lazyLoadCss(t){(s=document.createElement("link")).rel="stylesheet",s.href=t,document.getElementsByTagName("head")[0].appendChild(s)}function lazyLoadJS(t){if(lazyLoadedJS)return setTimeout(function(){lazyLoadJS(t)},200),!1;lazyLoadedJS=1,(s=document.createElement("script")).src=t,s.onload=function(){lazyLoadedJS=0},document.body.appendChild(s)}document.addEventListener("DOMContentLoaded",function(){windowWidth=screen.width,lazyLink=document.querySelectorAll("link"),lazyImages=document.querySelectorAll("img.lazy2"),nolazyImages=document.querySelectorAll("img.lazy"),lazyBackground=document.querySelectorAll(".lazybg"),lazyIframe=document.querySelectorAll("iframe"),lazyScripts=document.getElementsByTagName("script"),navigator_platform=navigator.platform,i=0,j=0,flag=1,window.addEventListener("scroll",function(){init()}),window.addEventListener("mousemove",function(){init()}),window.addEventListener("touchstart",function(){init()}),"Linux x86_64"!=navigator_platform&&init(),setTimeout(function(){init()},60000)});
-
-function load_all_js() {
-	
-  console.log("Yes-optimization");
-  setTimeout(function() {
-    const wnw_load = new Event('wnw_load');
-    window.dispatchEvent(wnw_load);
-  }, 100);
-
-  lazyLoadJS("https://h30-deploy.hiconversion.com/origin/personalize/static/core.js");
-  lazyLoadJS("https://cdn.attn.tv/hydropeptide/dtag.js");
-
-	j=0;
-	lazyScripts = document.getElementsByTagName("script");
-	lazyLoadScripts();
-
-	setInterval(function() {
-		lazyImages = document.querySelectorAll('img.lazy2');
-		lazyBackground = document.querySelectorAll('.lazybg');
-		lazyLoadImg();
-		lazyLoadBackground();
-	}, 2000);
-}    
-</script>  
-  
-  <img src="https://listen.audiohook.com/4eaff59d-7c6d-405f-aeaa-93ce663573a6/pixel.png" style="display: none;">
-
-<!--   <script type="text/javascript">
-usi_installed = 0; USI_installCode = function() { if (usi_installed == 0) { usi_installed = 1; var USI_headID = document.getElementsByTagName("head")[0]; var USI_installID = document.createElement('script'); USI_installID.type = 'text/javascript'; USI_installID.src = 'https://www.upsellit.com/active/hydropeptide.jsp'; USI_headID.appendChild(USI_installID); } }; if (typeof(document.readyState) != "undefined" && document.readyState === "complete") { USI_installCode(); } else if (window.addEventListener){ window.addEventListener('load', USI_installCode, true); } else if (window.attachEvent) { window.attachEvent('onload', USI_installCode); } else { USI_installCode(); } setTimeout("USI_installCode()", 10000);
-</script> -->
-  {% include 'adroll' %}
-  
-  
-<script defer src="https://static.myshlf.us/Affiliates/sms_aff_clicktrack.js"></script>
-  
-<!-- CRITEO START -->
-{% include 'criteo-tracking' %}
-<!-- CRITEO END -->
-  
-<!--  Extole Core Tag  -->
-  
-  <script src='https://share.hydropeptide.com/core.js' async></script>
-  
-<!--  Extole Core Tag End  -->
-  
-  <script type="text/javascript">
-// Overrides:
-// var afterpay_min = 0.04;            // As per your Afterpay contract.
-// var afterpay_max = 2000.00;         // As per your Afterpay contract.
-// var afterpay_cbt_enabled = false;   // As per your Afterpay contract; change to true to display Cross-Border Trade artwork (for AU/NZ).
-// var afterpay_logo_theme = 'colour'; // Can be 'colour', 'black' or 'white'.
-// var afterpay_product_selector = '#product-price-selector';
-// var afterpay_cart_integration_enabled = true;
-// var afterpay_cart_static_selector = '#cart-subtotal-selector';
-
-// Non-editable fields:
-var afterpay_shop_currency = {{ shop.currency | json }};
-var afterpay_cart_currency = {{ cart.currency.iso_code | json }};
-var afterpay_shop_money_format = {{ shop.money_format | json }};
-var afterpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
-var afterpay_theme_name = {{ theme.name | json }};
-var afterpay_product = {{ product | json }};
-var afterpay_current_variant = {{ product.selected_or_first_available_variant | json }};
-var afterpay_cart_total_price = {{ cart.total_price | json }};
-var afterpay_js_snippet_version = '1.0.12';
-</script>
-<script type="text/javascript" src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
-<!-- End Shopify-Afterpay JavaScript Snippet (v1.0.12) -->
-
-
-<!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-<!-- PAGEFLY CART HELPER - DO NOT DELETE -->
- 
-  <script>
-         try {
-         setTimeout(function () {
-           window.__pagefly_helper_store__ &&
-             window.__pagefly_helper_store__.subscribe(function (res) {
-               function cart_data() {
-                $(".cart_list_main").empty();
-                console.log('sidecart is empty');
-                Shopify.getCart(function (cart) {
-                  console.log(cart);
-                  $.each(cart.items, function (key, value) {
-                    $(".cart_list_main").append(
-                      $(
-                        '<div class="cart_list sicart" data-pro-id="' +
-                        value.variant_id +
-                        '"><img class="sicart" src="' +
-                        value.featured_image.url +
-                        '" alt="">  <div class="cart_item_details sicart"><h4 class="sicart">' +
-                        value.title +
-                        '</h4>    <p class="sicart"><b class="sicart">Price:</b> <span class="side_cart_p_price sicart">' +
-                        Shopify.formatMoney(value.line_price, "{{ shop.money }}") +
-                                            '</span></p>    <p class="sicart"><b class="sicart">Quantity:</b> <span class="side_cart_p_quant sicart"><i class="fa fa-minus sicart" id="quantity_update" onclick="c_update_min('+value.variant_id+', '+value.quantity+')" aria-hidden="true"></i>' +
-                                            value.quantity +
-                                            '<i class="fa fa-plus sicart" id="quantity_update" onclick="c_update_plus('+value.variant_id+', '+value.quantity+')" aria-hidden="true"></i></span></p> <p class="sicart"> <a onclick="c_remove('+value.variant_id+')" class="CartRemovePro sicart" href="javascript:void(0)" >Remove</a> </p>  </div></div>'
-                                           )
-                      );
-                      });
-                    $(".footer .cart_total span.right").html(
-                      Shopify.formatMoney(cart.total_price, "{{ shop.money }}")
-                                         );
-                      $("div#CartToggleItemCount").text(cart.item_count);
-                  });
+        // Non-editable fields:
+        var afterpay_shop_currency = {{ shop.currency | json }};
+        var afterpay_cart_currency = {{ cart.currency.iso_code | json }};
+        var afterpay_shop_money_format = {{ shop.money_format | json }};
+        var afterpay_shop_permanent_domain = {{ shop.permanent_domain | json }};
+        var afterpay_theme_name = {{ theme.name | json }};
+        var afterpay_product = {{ product | json }};
+        var afterpay_current_variant = {{ product.selected_or_first_available_variant | json }};
+        var afterpay_cart_total_price = {{ cart.total_price | json }};
+        var afterpay_js_snippet_version = '1.0.12';
+    </script>
+    <script async type="text/javascript" src="https://static.afterpay.com/shopify-afterpay-javascript.js"></script>
+    <!-- End Shopify-Afterpay JavaScript Snippet (v1.0.12) -->
+    <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <!-- PAGEFLY CART HELPER - DO NOT DELETE -->
+    <script>
+        try {
+            setTimeout(function () {
+                window.__pagefly_helper_store__ &&
+                window.__pagefly_helper_store__.subscribe(function (res) {
+                function cart_data() {
+                    $(".cart_list_main").empty();
+                    console.log('sidecart is empty');
+                    Shopify.getCart(function (cart) {
+                        console.log(cart);
+                        $.each(cart.items, function (key, value) {
+                            $(".cart_list_main").append(
+                                $(
+                                    '<div class="cart_list sicart" data-pro-id="' +
+                                    value.variant_id +
+                                    '"><img class="sicart" src="' +
+                                    value.featured_image.url +
+                                    '" alt="">  <div class="cart_item_details sicart"><h4 class="sicart">' +
+                                    value.title +
+                                    '</h4>    <p class="sicart"><b class="sicart">Price:</b> <span class="side_cart_p_price sicart">' +
+                                    Shopify.formatMoney(value.line_price, "{{ shop.money }}") +
+                                    '</span></p>    <p class="sicart"><b class="sicart">Quantity:</b> <span class="side_cart_p_quant sicart"><i class="fa fa-minus sicart" id="quantity_update" onclick="c_update_min('+value.variant_id+', '+value.quantity+')" aria-hidden="true"></i>' +
+                                    value.quantity +
+                                    '<i class="fa fa-plus sicart" id="quantity_update" onclick="c_update_plus('+value.variant_id+', '+value.quantity+')" aria-hidden="true"></i></span></p> <p class="sicart"> <a onclick="c_remove('+value.variant_id+')" class="CartRemovePro sicart" href="javascript:void(0)" >Remove</a> </p>  </div></div>'
+                                )
+                            );
+                        });
+                        $(".footer .cart_total span.right").html(
+                            Shopify.formatMoney(cart.total_price, "{{ shop.money }}")
+                        );
+                        $("div#CartToggleItemCount").text(cart.item_count);
+                    });
                 }
-             cart_data()           
-              Cart.popover.show(res)
-
-});
-         }, 2500);
-       } catch (e) {
-         console.warn(e);
-       }
-   </script> 
-  </body>
+                cart_data()           
+                Cart.popover.show(res)
+            });
+        }, 2500);
+        } 
+        catch (e) 
+        {
+            console.warn(e);
+        }
+    </script> 
+</body>
 </html>
   <!-- Begin Shopify-Afterpay JavaScript Snippet (v1.0.12) -->
-
-
- 
-
-
