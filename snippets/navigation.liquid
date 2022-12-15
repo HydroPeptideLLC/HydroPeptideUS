@@ -13,59 +13,90 @@
     endif
 %}
 {% if section.settings.show_search %}
-    <div class="nav-search">
-        <a {% if is_hamburger_nav == false %} tabindex="{{ index }}"{% endif %} id="firstFocus" class="js-searchToggle searchToggle" aria-expanded="false">
-            {% render 'icon-search' %}
-            <i class="icon-close"></i>
-            {% if is_hamburger_nav %}
-                <span class="nav-search__title">{{ 'general.slide_out_navigation.search_label' | t }}</span>
-            {% endif %}
-        </a>
-        <div class="nav-search-overlay">
-            <div class="nav-search-scroller">
-                <div class="nav-search-container">
-                    <form action="/search" method="get" class="search-form" role="search" {% unless is_hamburger_nav %}autocomplete="off"autocorrect="off"autocapitalize="off"spellcheck="false"maxlength="250"{% endunless %}>
-                        <div class="inputGroup">
-                            <label for="search-field" class="accessible-label">{{ 'general.slide_out_navigation.search_label' | t }}</label>
-                            <input tabindex="3" class="nav-search-input" name="q" type="search" id="search-field" placeholder="{{ 'general.slide_out_navigation.search_placeholder' | t }}" value="{{ search.terms | escape }}" />
-                            <input type="hidden" name="type" value="product" />
-                            <button tabindex="4" type="submit" class="nav-search-submit icon-arrow-right"></button>
-                        </div>
-                        {%- unless is_hamburger_nav -%}
-                            <label for="search-field" class="icon-search">{% render 'icon-search' %}</label>
-                            <a tabindex="{{ index }}" class="js-searchToggle searchToggle" aria-expanded="true">
-                                <i class="icon-close"></i>
-                            </a>
-                        {%- endunless -%}
-                    </form>       
-                    {%- unless is_hamburger_nav -%}
-                        {%- assign popular_links = section.settings.menu_searches_list -%}
-                        {%- unless popular_links == blank -%}
-                            <p class="results__popular-title">{{ 'search.content.popular' | t }}</p>
-                            <ul class="results__popular-links">
-                                {%- for link in linklists.popular-links-header.links -%}
-                                {% comment %}
-                                link in linklists.popular-links-header.links
-                                link in linklists[popular_links].links
-                                {% endcomment %}
-                                    <li><a href="{{ link.url }}" tabindex="3" aria-expanded="false">{{ link.title | escape }}</a></li>
-                                {%- endfor -%}
-                            </ul>
-                        {%- endunless -%}
-                        <div id="search-results" class="results"></div>
-                    {%- endunless -%}
-                </div>
+  <div class="nav-search">
+    <a
+      {% if is_hamburger_nav == false %}
+      tabindex="{{ index }}"
+      {% endif %}
+      id="firstFocus"
+      class="js-searchToggle searchToggle"
+      aria-expanded="false">
+      {% render 'icon-search' %}
+      <i class="icon-close"></i>
+      {% if is_hamburger_nav %}
+        <span class="nav-search__title">{{ 'general.slide_out_navigation.search_label' | t }}</span>
+      {% endif %}
+    </a>
+    <div class="nav-search-overlay">
+      <div class="nav-search-scroller">
+        <div class="nav-search-container">
+          <form
+            action="/search"
+            method="get"
+            class="search-form"
+            role="search"
+            {% unless is_hamburger_nav %}autocomplete="off"autocorrect="off"autocapitalize="off"spellcheck="false"maxlength="250"{% endunless %}>
+            <div class="inputGroup">
+              <label for="search-field" class="accessible-label">{{ 'general.slide_out_navigation.search_label' | t }}</label>
+              <input
+                tabindex="3"
+                class="nav-search-input"
+                name="q"
+                type="search"
+                id="search-field"
+                placeholder="{{ 'general.slide_out_navigation.search_placeholder' | t }}"
+                value="{{ search.terms | escape }}" />
+              <input
+                type="hidden"
+                name="type"
+                value="product" />
+              <button
+                tabindex="4"
+                type="submit"
+                class="nav-search-submit icon-arrow-right"></button>
             </div>
+            {%- unless is_hamburger_nav -%}
+              <label for="search-field" class="icon-search">{% render 'icon-search' %}</label>
+              <a
+                tabindex="{{ index }}"
+                class="js-searchToggle searchToggle"
+                aria-expanded="true">
+                <i class="icon-close"></i>
+              </a>
+            {%- endunless -%}
+          </form>
+          {%- unless is_hamburger_nav -%}
+            {%- assign popular_links = section.settings.menu_searches_list -%}
+            {%- unless popular_links == blank -%}
+              <p class="results__popular-title">{{ 'search.content.popular' | t }}</p>
+              <ul class="results__popular-links">
+                {%- for link in linklists.popular-links-header.links -%}
+                  {% comment %}
+                  link in linklists.popular-links-header.links
+                  link in linklists[popular_links].links
+                  {% endcomment %}
+                  <li>
+                    <a
+                      href="{{ link.url }}"
+                      tabindex="3"
+                      aria-expanded="false">{{ link.title | escape }}</a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endunless -%}
+            <div id="search-results" class="results"></div>
+          {%- endunless -%}
         </div>
+      </div>
     </div>
+  </div>
 {% endif %}
 <nav class="menu {% if has_meganav %}menu--has-meganav{% endif %}">
-    {% comment %}
-    Loop through the first link list.
-    {% endcomment %}
-    {% if menuPrimary != blank %}
-        {% for link in linklists[menuPrimary].links %}
-            {% liquid 
+  {% comment %}
+  Loop through the first link list.
+  {% endcomment %}{% if menuPrimary != blank %}
+    {% for link in linklists[menuPrimary].links %}
+      {% liquid 
                 assign has_sub_menu = false
                 for sublink in link.links
                     if link.levels > 0
@@ -81,145 +112,201 @@
                     assign shop_menu = true
                 endif
             %}
-            <li class="menu-item{% if has_sub_menu == true %} has-submenu{% endif %} {% if is_meganav %}menu-item--meganav{% endif %} primary_menu hide-menu">
-            <!-- LINKS -->
-                <a {% if has_sub_menu %}aria-haspopup="true"{% endif %} {% if forloop.first and section.settings.show_search == false %}id="firstFocus"{% endif %} class="visible-nav-link" tabindex="{{ index }}" href="{{ link.url }}" aria-expanded="false">{{ link.title | escape }}</a>
-                {% if link.levels > 0 %}
-                    {% if is_meganav %}
-                        <div class="megamenu-wrapper">
-                            <div class="row">
-                                <div class="megamenu-inner">
-                    {% endif %}
-                    {%- capture submenuClass -%}
-                        {%- if is_meganav -%}
-                            submenu--items-{{ link.links.size }}
-                        {%- endif -%}
-                    {%- endcapture -%}
-                        <!-- MEGANAV IMAGE AND TEXT -->
-                        {%- if is_meganav -%}
-                            {%- if image != blank or image_heading != blank -%}
-                                <div class="megamenu__image">
-                                    {%- if image -%}
-                                        {%- capture meganav_image -%}
-                                            {%- assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' -%}
-                                            {%- render 'theme-rias' -%}
-                                            <img class="fade-in" loading="lazy" data-src="{{ image_url_pattern }}" data-widths="[{{ image_widths }}]" data-aspectratio="{{ image.aspect_ratio }}" data-sizes="auto" alt="{{ image.alt }}">
-                                            <noscript>
-                                                <img loading="lazy" width="{{ image.width }}" height="{{ image.height }}" src="{{ image | image_url: '1024x' }}" alt="{{ image.alt }}">
-                                            </noscript>
-                                        {%- endcapture -%}
-                                        {%- unless image_link == blank -%}
-                                            <a href="{{ image_link }}" tabindex="{{ index | plus: 1 }}">{{ meganav_image }}</a>
-                                            {%- else -%}
-                                                {{ meganav_image }}
-                                        {%- endunless -%}
-                                    {%- endif -%}
-                                    {%- unless image_heading == blank -%}
-                                        <h4><span>{{ image_heading }}</span></h4>
-                                    {%- endunless -%}
-                                </div>
-                            {%- endif -%}
-                        {%- endif -%}
-                        <!-- END MEGANAV IMAGE AND TEXT -->
-                        <style>
-                            @media screen and (width > = 2600) 
-                            {
-                                .megamenu__image 
-                                {
-                                    margin-right: 5% !important;
-                                }
-                            }
-                            @media screen and (width < 2600) 
-                            {
-                                .megamenu__image 
-                                {
-                                    margin-right: 3% !important;
-                                }
-                            }
-                        </style>
-                        <ul class="submenu {{ submenuClass }}" {% if shop_menu %}style=" margin: 0 !important; margin-top: -0.25% !important; padding-right: 0 !important; width: 50% !important;"{% endif %}>
-                            {% if is_hamburger_nav %}
-                                <!-- BACK LINK -->
-                                <li class="submenu-back"><a class="submenu-back--link first-back--link" data-sub-links="{{ link.levels }}" tabindex="{{ index | plus: 1 }}" href="#0">{{ link.title | escape }}</a></li>
-                            {% endif %}
-                            <!-- SUBMENU LINKS -->
-                            {% for sublink in link.links %}
-                                <li data-levels="{{ sublink.levels }}" class="submenu-item {% if sublink.levels > 0 %}has-submenu{% endif %}" style="padding: 0; {% if forloop.first %}width: 20%; {% endif %}">
-                                    <!-- SUBLINK TITLE -->
-                                    <a {% if has_sub_menu %}aria-haspopup="true"{% endif %}{% if forloop.last == true %} data-last="true"{% endif %} class="submenu-item--link {% if is_meganav %}submenu-item__title{% endif %}" tabindex="{{ index | plus: 1 }}" href="{{ sublink.url }}" aria-expanded="false">{{ sublink.title }}</a>
-                                    {% if sublink.levels > 0 %}
-                                        <!-- BEGIN SUB SUB LINK -->
-                                        <ul class="submenu">
-                                            {% if is_hamburger_nav %}
-                                                <!-- BACK LINK -->
-                                                <li class="submenu-back"><a class="submenu-back--link" data-sub-links="{{ link.levels }}" tabindex="{{ index | plus: 1 }}" href="#0">{{ sublink.title | escape }}</a></li>
-                                            {% endif %}
-                                            <!-- SUBMENU LINKS -->
-                                            {% for subsublink in sublink.links %}
-                                                <li class="submenu-item"><a {% if forloop.last == true %}data-last="true"{% endif %} class="submenu-item--link" tabindex="{{ index | plus: 1 }}" href="{{ subsublink.url }}">{{ subsublink.title }}</a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    {% endif %}
-                                </li>
-                                <!-- END SUBSUBLINK -->
-                            {% endfor %}
-                        </ul>
-                        <style>
-                            .megamenu-inner 
-                            {
-                                position: relative;
-                            }
-                            .megamenu__image_two 
-                            {
-                                position: absolute;
-                                top: 0;
-                                right: 0;
-                                margin-right: 38px
-                            }
-                        </style>
-                        <!-- MEGANAV IMAGE AND TEXT -->
-                        {%- if is_meganav -%}
-                            {%- if image_two != blank or image_heading_two != blank -%}
-                                <div class="megamenu__image_two" style="">
-                                    {%- if image_two -%}
-                                        {%- capture meganav_image_two -%}
-                                            {%- assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' -%}
-                                            {%- render 'theme-rias' -%}
-                                            <img class="fade-in" loading="lazy" height="{{ image_two.height }}" width="{{ image_two.width }}" data-src="{{ image_two | image_url }}" data-widths="[{{ image_widths }}]" data-aspectratio="{{ image_two.aspect_ratio }}" data-sizes="auto" alt="{{ image_two.alt }}">
-                                            <noscript>
-                                                <img src="{{ image.alt | image_url: '1024x' }}" loading="lazy" height="{{ image.height }}" width="{{ image.width }}" alt="{{ image.alt }}">
-                                            </noscript>
-                                        {%- endcapture -%}
-                                        {%- unless image_link == blank -%}
-                                            <a href="{{ image_link_two }}" tabindex="{{ index | plus: 1 }}">{{ meganav_image_two }}</a>
-                                            {%- else -%}
-                                                {{ meganav_image }}
-                                        {%- endunless -%}
-                                    {%- endif -%}
-                                    {%- unless image_heading == blank -%}
-                                        <h4><span>{{ image_heading }}</span></h4>
-                                    {%- endunless -%}
-                                </div>
-                            {%- endif -%}
-                        {%- endif -%}
-                        <!-- END MEGANAV IMAGE AND TEXT -->
-                        {% if is_meganav %}
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END MEGAMENU WRAPPER -->
-                    {% endif %}
+        <li class="menu-item{% if has_sub_menu == true %} has-submenu{% endif %} {% if is_meganav %}menu-item--meganav{% endif %} primary_menu hide-menu">
+        <!-- LINKS -->
+        <a
+          {% if has_sub_menu %}aria-haspopup="true"{% endif %}
+          {% if forloop.first and section.settings.show_search == false %}id="firstFocus"{% endif %}
+          class="visible-nav-link"
+          tabindex="{{ index }}"
+          href="{{ link.url }}"
+          aria-expanded="false">{{ link.title | escape }}</a>
+        {% if link.levels > 0 %}
+          {% if is_meganav %}
+            <div class="megamenu-wrapper">
+              <div class="row">
+                <div class="megamenu-inner">
                 {% endif %}
-            </li>
-        {% endfor %}
-    {% endif %}
-    {% comment %}
-    Loop through the second link list.
-    {% endcomment %}
-    {% if menuSecondary != blank %}
-        <span class="menu-divider menu-item primary_menu hide-menu"></span>
-        {% for link in linklists[menuSecondary].links %}
-            {% liquid 
+                {%- capture submenuClass -%}
+                  {%- if is_meganav -%}
+                    submenu--items-{{ link.links.size }}
+                  {%- endif -%}
+                {%- endcapture -%}
+                <!-- MEGANAV IMAGE AND TEXT -->
+                {%- if is_meganav -%}
+                  {%- if image != blank or image_heading != blank -%}
+                    <div class="megamenu__image">
+                      {%- if image -%}
+                        {%- capture meganav_image -%}
+                          {%- assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' -%}
+                          {%- include 'theme-rias' -%}
+                          <img
+                            class="fade-in"
+                            loading="lazy"
+                            data-src="{{ image_url_pattern }}"
+                            data-widths="[{{ image_widths }}]"
+                            data-aspectratio="{{ image.aspect_ratio }}"
+                            data-sizes="auto"
+                            alt="{{ image.alt }}">
+                          <noscript>
+                            <img
+                              loading="lazy"
+                              width="{{ image.width }}"
+                              height="{{ image.height }}"
+                              src="{{ image | image_url }}"
+                              alt="{{ image.alt }}">
+                          </noscript>
+                        {%- endcapture -%}
+                        {%- unless image_link == blank -%}
+                          <a href="{{ image_link }}" tabindex="{{ index | plus: 1 }}">{{ meganav_image }}</a>
+                        {%- else -%}
+                          {{ meganav_image }}
+                        {%- endunless -%}
+                      {%- endif -%}
+                      {%- unless image_heading == blank -%}
+                        <h4>
+                          <span>{{ image_heading }}</span>
+                        </h4>
+                      {%- endunless -%}
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+                <!-- END MEGANAV IMAGE AND TEXT -->
+                <style>
+                  @media screen and (width > = 2600) {
+                    .megamenu__image {
+                      margin-right: 5% !important;
+                    }
+                  }
+                  @media screen and (width < 2600) {
+                    .megamenu__image {
+                      margin-right: 3% !important;
+                    }
+                  }
+                </style>
+                <ul class="submenu {{ submenuClass }}" {% if shop_menu %}style=" margin: 0 !important; margin-top: -0.25% !important; padding-right: 0 !important; width: 50% !important;"{% endif %}>
+                  {% if is_hamburger_nav %}
+                    <!-- BACK LINK -->
+                    <li class="submenu-back">
+                      <a
+                        class="submenu-back--link first-back--link"
+                        data-sub-links="{{ link.levels }}"
+                        tabindex="{{ index | plus: 1 }}"
+                        href="#0">{{ link.title | escape }}</a>
+                    </li>
+                  {% endif %}
+                  <!-- SUBMENU LINKS -->
+                  {% for sublink in link.links %}
+                    <li
+                      data-levels="{{ sublink.levels }}"
+                      class="submenu-item {% if sublink.levels > 0 %}has-submenu{% endif %}"
+                      style="padding: 0; {% if forloop.first %}width: 20%; {% endif %}">
+                      <!-- SUBLINK TITLE -->
+                      <a
+                        {% if has_sub_menu %}aria-haspopup="true"{% endif %}{% if forloop.last == true %}data-last="true"{% endif %}
+                        class="submenu-item--link {% if is_meganav %}submenu-item__title{% endif %}"
+                        tabindex="{{ index | plus: 1 }}"
+                        href="{{ sublink.url }}"
+                        aria-expanded="false">{{ sublink.title }}</a>
+                      {% if sublink.levels > 0 %}
+                        <!-- BEGIN SUB SUB LINK -->
+                        <ul class="submenu">
+                          {% if is_hamburger_nav %}
+                            <!-- BACK LINK -->
+                            <li class="submenu-back">
+                              <a
+                                class="submenu-back--link"
+                                data-sub-links="{{ link.levels }}"
+                                tabindex="{{ index | plus: 1 }}"
+                                href="#0">{{ sublink.title | escape }}</a>
+                            </li>
+                          {% endif %}
+                          <!-- SUBMENU LINKS -->
+                          {% for subsublink in sublink.links %}
+                            <li class="submenu-item">
+                              <a
+                                {% if forloop.last == true %}data-last="true"{% endif %}
+                                class="submenu-item--link"
+                                tabindex="{{ index | plus: 1 }}"
+                                href="{{ subsublink.url }}">{{ subsublink.title }}</a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </li>
+                    <!-- END SUBSUBLINK -->
+                  {% endfor %}
+                </ul>
+                <style>
+                  .megamenu-inner {
+                    position: relative;
+                  }
+                  .megamenu__image_two {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    margin-right: 38px
+                  }
+                </style>
+                <!-- MEGANAV IMAGE AND TEXT -->
+                {%- if is_meganav -%}
+                  {%- if image_two != blank or image_heading_two != blank -%}
+                    <div class="megamenu__image_two" style="">
+                      {%- if image_two -%}
+                        {%- capture meganav_image_two -%}
+                          {%- assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' -%}
+                          {%- render 'theme-rias' -%}
+                          <img
+                            class="fade-in"
+                            loading="lazy"
+                            height="{{ image_two.height }}"
+                            width="{{ image_two.width }}"
+                            data-src="{{ image_two | image_url }}"
+                            data-widths="[{{ image_widths }}]"
+                            data-aspectratio="{{ image_two.aspect_ratio }}"
+                            data-sizes="auto"
+                            alt="{{ image_two.alt }}">
+                          <noscript>
+                            <img
+                              src="{{ image.alt | image_url: '1024x' }}"
+                              loading="lazy"
+                              height="{{ image.height }}"
+                              width="{{ image.width }}"
+                              alt="{{ image.alt }}">
+                          </noscript>
+                        {%- endcapture -%}
+                        {%- unless image_link == blank -%}
+                          <a href="{{ image_link_two }}" tabindex="{{ index | plus: 1 }}">{{ meganav_image_two }}</a>
+                        {%- else -%}
+                          {{ meganav_image }}
+                        {%- endunless -%}
+                      {%- endif -%}
+                      {%- unless image_heading == blank -%}
+                        <h4>
+                          <span>{{ image_heading }}</span>
+                        </h4>
+                      {%- endunless -%}
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+                <!-- END MEGANAV IMAGE AND TEXT -->
+                {% if is_meganav %}
+                </div>
+              </div>
+            </div>
+            <!-- END MEGAMENU WRAPPER -->
+          {% endif %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  {% endif %}
+  {% comment %}
+  Loop through the second link list.
+  {% endcomment %}
+  {% if menuSecondary != blank %}
+    <span class="menu-divider menu-item primary_menu hide-menu"></span>
+    {% for link in linklists[menuSecondary].links %}
+      {% liquid 
                 assign has_sub_menu = false
                 for sublink in link.links
                     if forloop.first
@@ -234,84 +321,145 @@
                     endif
                 endfor
             %}
-            <li class="menu-item{% if has_sub_menu == true %} has-submenu{% endif %} secondary_menu hide-menu">
-                <!-- LINKS -->
-                <a {% if has_sub_menu %}aria-haspopup="true"{% endif %} {% if forloop.first and section.settings.show_search == false %}id="firstFocus"{% endif %} class="visible-nav-link" tabindex="{{ index }}" href="{{ link.url }}">{{ link.title | escape }}</a>
-                {% if link.levels %}
-                    <ul class="submenu">
-                        <!-- BACK LINK -->
-                        <li class="submenu-back"><a class="submenu-back--link first-back--link" data-sub-links="{{ link.levels }}" tabindex="{{ index }}" href="#0">{{ link.title | escape }}</a></li>
-                        <!-- SUBMENU LINKS -->
-                        {% for sublink in link.links %}
-                            <li data-levels="{{ sublink.levels }}" class="submenu-item {% if sublink.levels > 0 %}has-submenu{% endif %}">
-                                <!-- SUBLINK TITLE -->
-                                <a {% if has_sub_menu %}aria-haspopup="true"{% endif %} {% if forloop.last == true %} data-last="true"{% endif %} class="submenu-item--link" tabindex="{{ index }}" href="{{ sublink.url }}">{{ sublink.title }}</a>
-                                <!-- BEGIN SUB SUB LINK -->
-                                <ul class="submenu">
-                                    <!-- BACK LINK -->
-                                    <li class="submenu-back"><a class="submenu-back--link" data-sub-links="{{ link.levels }}" tabindex="{{ index }}" href="#0">{{ sublink.title | escape }}</a></li>
-                                    <!-- SUBMENU LINKS -->
-                                    {% for subsublink in sublink.links %}
-                                        <li class="submenu-item"><a {% if forloop.last == true %}data-last="true"{% endif %} class="submenu-item--link" tabindex="{{ index }}" href="{{ subsublink.url }}">{{ subsublink.title }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </li>
-                            <!-- END SUBSUBLINK -->
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+        <li class="menu-item{% if has_sub_menu == true %} has-submenu{% endif %} secondary_menu hide-menu">
+        <!-- LINKS -->
+        <a
+          {% if has_sub_menu %}aria-haspopup="true"{% endif %}
+          {% if forloop.first and section.settings.show_search == false %}id="firstFocus"{% endif %}
+          class="visible-nav-link"
+          tabindex="{{ index }}"
+          href="{{ link.url }}">{{ link.title | escape }}</a>
+        {% if link.levels %}
+          <ul class="submenu">
+            <!-- BACK LINK -->
+            <li class="submenu-back">
+              <a
+                class="submenu-back--link first-back--link"
+                data-sub-links="{{ link.levels }}"
+                tabindex="{{ index }}"
+                href="#0">{{ link.title | escape }}</a>
             </li>
-        {% endfor %}
-    {% endif %}
-    {% if is_hamburger_nav %}
-        <li class="menu-item">
-            {% render 'Extole-mobile-menu-tag' %}
-        </li>
-    {% endif %}
-    <style>
-        .hide-menu 
-        {
-            display: none;
-        }
-    </style>
-    <script>
-        if (window.innerWidth >= 1280) 
-        {
-            $(".primary_menu").removeClass("hide-menu");
-        } 
-        else if (window.innerWidth < 1280) 
-        {
-            $(".secondary_menu").removeClass("hide-menu");
-        }
-    </script>
+            <!-- SUBMENU LINKS -->
+            {% for sublink in link.links %}
+              <li data-levels="{{ sublink.levels }}" class="submenu-item {% if sublink.levels > 0 %}has-submenu{% endif %}">
+                <!-- SUBLINK TITLE -->
+                <a
+                  {% if has_sub_menu %}aria-haspopup="true"{% endif %}
+                  {% if forloop.last == true %}
+                  data-last="true"
+                  {% endif %}
+                  class="submenu-item--link"
+                  tabindex="{{ index }}"
+                  href="{{ sublink.url }}">{{ sublink.title }}</a>
+                <!-- BEGIN SUB SUB LINK -->
+                <ul class="submenu">
+                  <!-- BACK LINK -->
+                  <li class="submenu-back">
+                    <a
+                      class="submenu-back--link"
+                      data-sub-links="{{ link.levels }}"
+                      tabindex="{{ index }}"
+                      href="#0">{{ sublink.title | escape }}</a>
+                  </li>
+                  <!-- SUBMENU LINKS -->
+                  {% for subsublink in sublink.links %}
+                    <li class="submenu-item">
+                      <a
+                        {% if forloop.last == true %}data-last="true"{% endif %}
+                        class="submenu-item--link"
+                        tabindex="{{ index }}"
+                        href="{{ subsublink.url }}">{{ subsublink.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </li>
+              <!-- END SUBSUBLINK -->
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  {% endif %}
+  {% if is_hamburger_nav %}
+    <li class="menu-item">
+      {% render 'Extole-mobile-menu-tag' %}
+    </li>
+  {% endif %}
+  <style>
+    .hide-menu {
+      display: none;
+    }
+  </style>
+  <script>
+    if (window.innerWidth >= 1280) {
+      $(".primary_menu").removeClass("hide-menu");
+    } else if (window.innerWidth < 1280) {
+      $(".secondary_menu").removeClass("hide-menu");
+    }
+  </script>
 </nav>
 {% if is_hamburger_nav %}
-    {% if settings.twitter_url != '' or settings.facebook_url != '' or settings.instagram_url != '' or settings.pinterest_url != '' or settings.youtube_url != '' or settings.tumblr_url != '' or settings.rss_url != '' %}
-        <div class="nav-footer">
-            <div class="nav-social">
-                {% if settings.twitter_url != '' %}
-                    <a tabindex="{{ index }}" aria-label="{{ 'general.footer.twitter' | t }}" href="{{settings.twitter_url}}" target="_blank" class="visible-nav-link nav-social-link icon-twitter"></a>
-                {% endif %}
-                {% if settings.facebook_url != '' %}
-                    <a tabindex="{{ index }}" aria-label="{{ 'general.footer.facebook' | t }}" href="{{settings.facebook_url}}" target="_blank" class="visible-nav-link nav-social-link icon-facebook"></a>
-                {% endif %}
-                {% if settings.instagram_url != '' %}
-                    <a tabindex="{{ index }}" aria-label="{{ 'general.footer.instagram' | t }}" href="{{settings.instagram_url}}" target="_blank" class="visible-nav-link nav-social-link icon-instagram"></a>
-                {% endif %}
-                {% if settings.pinterest_url != '' %}
-                    <a tabindex="{{ index }}" aria-label="{{ 'general.footer.pinterest' | t }}" href="{{settings.pinterest_url}}" target="_blank" class="visible-nav-link nav-social-link icon-pinterest"></a>
-                {% endif %}
-                {% if settings.youtube_url != '' %}
-                    <a tabindex="{{ index }}" aria-label="{{ 'general.footer.youtube' | t }}" href="{{settings.youtube_url}}" target="_blank" class="visible-nav-link nav-social-link icon-youtube"></a>
-                {% endif %}
-                {% if settings.tumblr_url != '' %}
-                    <a tabindex="{{ index }}" aria-label="{{ 'general.footer.tumblr' | t }}" href="{{settings.tumblr_url}}" target="_blank" class="visible-nav-link nav-social-link icon-tumblr"></a>
-                {% endif %}
-                {% if settings.rss_url != '' %}
-                    <a tabindex="{{ index }}" aria-label="{{ 'general.footer.rss' | t }}" href="{{settings.rss_url}}" target="_blank" class="visible-nav-link nav-social-link icon-rss"></a>
-                {% endif %}
-                <span tabindex="-1" class="last-focusable-element"></span>
-            </div>
-        </div>
-    {% endif %}
+  {% if settings.twitter_url != '' or settings.facebook_url != '' or settings.instagram_url != '' or settings.pinterest_url != '' or settings.youtube_url != '' or settings.tumblr_url != '' or settings.rss_url != '' %}
+    <div class="nav-footer">
+      <div class="nav-social">
+        {% if settings.twitter_url != '' %}
+          <a
+            tabindex="{{ index }}"
+            aria-label="{{ 'general.footer.twitter' | t }}"
+            href="{{settings.twitter_url}}"
+            target="_blank"
+            class="visible-nav-link nav-social-link icon-twitter"></a>
+        {% endif %}
+        {% if settings.facebook_url != '' %}
+          <a
+            tabindex="{{ index }}"
+            aria-label="{{ 'general.footer.facebook' | t }}"
+            href="{{settings.facebook_url}}"
+            target="_blank"
+            class="visible-nav-link nav-social-link icon-facebook"></a>
+        {% endif %}
+        {% if settings.instagram_url != '' %}
+          <a
+            tabindex="{{ index }}"
+            aria-label="{{ 'general.footer.instagram' | t }}"
+            href="{{settings.instagram_url}}"
+            target="_blank"
+            class="visible-nav-link nav-social-link icon-instagram"></a>
+        {% endif %}
+        {% if settings.pinterest_url != '' %}
+          <a
+            tabindex="{{ index }}"
+            aria-label="{{ 'general.footer.pinterest' | t }}"
+            href="{{settings.pinterest_url}}"
+            target="_blank"
+            class="visible-nav-link nav-social-link icon-pinterest"></a>
+        {% endif %}
+        {% if settings.youtube_url != '' %}
+          <a
+            tabindex="{{ index }}"
+            aria-label="{{ 'general.footer.youtube' | t }}"
+            href="{{settings.youtube_url}}"
+            target="_blank"
+            class="visible-nav-link nav-social-link icon-youtube"></a>
+        {% endif %}
+        {% if settings.tumblr_url != '' %}
+          <a
+            tabindex="{{ index }}"
+            aria-label="{{ 'general.footer.tumblr' | t }}"
+            href="{{settings.tumblr_url}}"
+            target="_blank"
+            class="visible-nav-link nav-social-link icon-tumblr"></a>
+        {% endif %}
+        {% if settings.rss_url != '' %}
+          <a
+            tabindex="{{ index }}"
+            aria-label="{{ 'general.footer.rss' | t }}"
+            href="{{settings.rss_url}}"
+            target="_blank"
+            class="visible-nav-link nav-social-link icon-rss"></a>
+        {% endif %}
+        <span tabindex="-1" class="last-focusable-element"></span>
+      </div>
+    </div>
+  {% endif %}
 {% endif %}
