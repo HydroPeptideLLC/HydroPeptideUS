@@ -92,15 +92,15 @@
           <div class="block u-center announcement-bar desktop_bar">
             {% for block in section.blocks %}
               {% liquid 
-                            assign startdate = block.settings.start_date | date: '%s'
-                            assign enddate = block.settings.end_date | date: '%s'
-                            assign now = 'now' | date: "%Y-%m-%d  %H:%M %p"
-                            assign currenttime = now | date: '%s'
-                        %}
+                    assign startdate = block.settings.start_date | date: '%s'
+                    assign enddate = block.settings.end_date | date: '%s'
+                    assign now = 'now' | date: "%Y-%m-%d  %H:%M %p"
+                    assign currenttime = now | date: '%s'
+                %}
               {% if currenttime >= startdate and currenttime <= enddate %}
                 {% if block.settings.text1 != blank %}
                   <a href="{{ block.settings.link1 }}" class="announcement-bar announcement-bar--link">
-                    <p class="alert-title h4 announcement-bar__message" style="color: {{block.settings.color_text}}">{{ block.settings.text1 | escape }}</p>
+                    <p class="alert-title h4 announcement-bar__message" style="color: {{ block.settings.color_text }}">{{ block.settings.text1 | escape }}</p>
                   </a>
                 {% endif %}
               {% endif %}
