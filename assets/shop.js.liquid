@@ -4037,7 +4037,7 @@ jQuery( function ($) {
 	 *
 	 * Key:
 	 * * el = ELEMENT attached to, one or more .js-collectionBlock
-	 * * handle = product HANDLE, delivered from the front-end {{product.handle}} attached to .js-quickView
+	 * * handle = product HANDLE, delivered from the front-end {{ product.handle }} attached to .js-quickView
 	 * * obj = product OBJECT, in JSON
 	 */
 	var QuickView = {
@@ -4310,7 +4310,7 @@ jQuery( function ($) {
           "undefined"==typeof freegifts_product_json&&(window.freegifts_product_json=function(e){if(e){for(var i=0;i<e.options.length;i++)if(option=e.options[i],option.values)for(var r=0;r<option.values.length;r++)(option.values[r].endsWith("(Freegifts)")||option.values[r].endsWith("% off)"))&&(option.values.splice(r,1),r--);for(var a=function(e){for(var i in e)if(e.hasOwnProperty(i))return!1;return!0},p=e.price,t=e.price_max,o=e.price_min,n=e.compare_at_price,_=e.compare_at_price_max,c=e.compare_at_price_min,i=0;i<e.variants.length;i++){var r=e.variants[i],s=r.option3?r.option3:r.option2?r.option2:r.option1;"undefined"!=typeof SECOMAPP&&"undefined"!=typeof SECOMAPP.gifts_list_avai&&!a(SECOMAPP.gifts_list_avai)&&"undefined"!=typeof SECOMAPP.gifts_list_avai[r.id]||s.endsWith("(Freegifts)")||s.endsWith("% off)")?(e.variants.splice(i,1),i-=1):(t>=r.price&&(t=r.price,p=r.price),o<=r.price&&(o=r.price),r.compare_at_price&&(_>=r.compare_at_price&&(_=r.compare_at_price,n=r.compare_at_price),c<=r.compare_at_price&&(c=r.compare_at_price)),1==r.available&&(e.available=!0))}e.price=p,e.price_max=o,e.price_min=t,e.compare_at_price=n,e.compare_at_price_max=c,e.compare_at_price_min=_,e.price_varies=o>t?!0:!1,e.compare_at_price_varies=c>_?!0:!1}return e});
           	product_obj[current_product] = freegifts_product_json(product_obj[current_product]);
 			new Shopify.OptionSelectors(select, {
-				product: product_obj[current_product], // this is the {{product | json}} from the front-end
+				product: product_obj[current_product], // this is the {{ product | json }} from the front-end
 				onVariantSelected: selectCallback
 			});
 
@@ -5248,12 +5248,11 @@ var Product = {
 			modal.addClass('is-hiding');
 			setTimeout(function(){
 				modal.removeClass('is-hiding is-visible');
-				modal.find('img').panzoom('destroy').remove(); // kill zoom and remove <img>
+				modal.find('img').panzoom('destroy').remove(); // kill zoom and remove image
 			}, 300);
 		}
 	}
 }
-
 var RelatedProducts = {
     init: function() {
     	var $container = $( '[data-section-type="related-products"]' );
@@ -5261,27 +5260,22 @@ var RelatedProducts = {
 		var productId = $container.data('product-id');
 		var limit = $container.data('limit');
 		var requestUrl = '/recommendations/products?section_id=' + sectionId + '&limit=' + limit + '&product_id=' + productId;
-
       	$.get(requestUrl)
         	.done(function(data) {
 				var inner = $( data ).find( '[data-section-type="related-products"]' ).html();
 				$container.hide().html( inner ).slideDown( 'slow' );
-
 				// Fade in loaded items
 				Site.animations.animateAll();
         });
     }
 }
-
 var Blog = {
 	init: function() {
 		var self = this;
 		var $blog = $('#blog-template');
 		var showFeatured = $blog.data('featured');
 		var itemSelector = $('.blogModule-posts');
-
 		Blog.truncateText( itemSelector );
-
 		$(window)
 			.on('resize', Reqs.throttle(function() {
 				Blog.truncateText( itemSelector );
@@ -5289,26 +5283,21 @@ var Blog = {
 			.on('load', function() {
 				Blog.truncateText( itemSelector );
 			});
-
 		if (showFeatured) {
 			self.featuredTruncate();
 			$(window)
 				.on('resize', Reqs.throttle(self.featuredTruncate, 50))
 				.on('load', self.featuredTruncate);
-
 			// Start from second page if featured article enabled
 			$blog.find('.loadMore').trigger('click');
 		}
-
 		$(document).on('ajaxify:updated', function() {
 			self.truncateText( itemSelector );
 		});
-
 		var container = $('.blogModule-posts');
 		var item = '.blogModule-posts__post';
 		Site.scroller( container, item );
 	},
-
 	truncateText: function( itemSelector ) {
 		var textHasImage = itemSelector.find('.blogModule-posts__post--has-image').find('.h3, .excerpt');
 		var textNoImage = itemSelector.find('.blogModule-posts__post--no-image').find('.h3, .excerpt');
@@ -5373,7 +5362,7 @@ var Reqs = {
 		 *
 		 * EXAMPLE
 		 * Given this html:
-		 * <div class="container"><img src="myawesomeimage" /></div>
+		 / <div class="container"><img loading="lazy" width="" height="" src="myawesomeimage"/></div>
 		 * $('.container').imagefill(); // image stretches to fill container
 		 *
 		 * REQUIRES:
