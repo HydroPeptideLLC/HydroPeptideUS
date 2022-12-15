@@ -139,11 +139,11 @@
                       {%- if image -%}
                         {%- capture meganav_image -%}
                           {%- assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' -%}
-                          {% include 'theme-rias' %}
+                          {% render 'theme-rias' %}
                           <img
                             class="fade-in"
                             loading="lazy"
-                            data-src="{{ image }}"
+                            data-src="{{ image_url_pattern }}"
                             data-widths="[{{ image_widths }}]"
                             data-aspectratio="{{ image.aspect_ratio }}"
                             data-sizes="auto"
@@ -268,7 +268,7 @@
                             alt="{{ image_two.alt }}">
                           <noscript>
                             <img
-                              src="{{ image }}"
+                              src="{{ image_two }}"
                               loading="lazy"
                               height="{{ image.height }}"
                               width="{{ image.width }}"
@@ -278,7 +278,7 @@
                         {%- unless image_link == blank -%}
                           <a href="{{ image_link_two }}" tabindex="{{ index | plus: 1 }}">{{ meganav_image_two }}</a>
                         {%- else -%}
-                          {{ meganav_image }}
+                          {{ meganav_image_two }}
                         {%- endunless -%}
                       {%- endif -%}
                       {%- unless image_heading == blank -%}
