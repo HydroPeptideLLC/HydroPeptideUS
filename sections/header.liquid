@@ -188,7 +188,7 @@
             {% if section.settings.nav_layout == 'standard' %}
               <nav role="navigation" class="nav-standard nav-main">
                 {% assign is_hamburger_nav = false %}
-                {% render 'navigation', is_hamburger_nav: false, menuPrimary: menuPrimary %}
+                {% include 'navigation' %}
               </nav>
             {% endif %}
           </div>
@@ -278,7 +278,7 @@
         <i class="icon-close"></i>
       </div>
       {% assign is_hamburger_nav = true %}
-      {% render 'navigation' %}
+      {% include 'navigation' %}
     </div>
   </nav>
   <div id="extole-get-mobile" style="background-color: #6c9dea; color: white; text-align: center;">
