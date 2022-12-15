@@ -152,9 +152,9 @@
                             {%- if template == 'index' or template == 'collection' -%}
                             {% comment %} Show home logo first if home page {% endcomment %}
                                 {%- if logo -%}
-                                    <img src="{{ logo | img_url: 'master' }}" loading="lazy" width="{{ logo.width }}" height="{{ logo.height }}" class="logo logo-home" data-aspectratio="{{ logo.aspect_ratio }}" alt="{{ logo.alt | escape }}">
+                                    <img src="{{ logo | image_url }}" loading="lazy" width="{{ logo.width }}" height="{{ logo.height }}" class="logo logo-home" data-aspectratio="{{ logo.aspect_ratio }}" alt="{{ logo.alt | escape }}">
                                     {%- if logo_other -%}
-                                        <img src="{{ logo_other | image_url: 'master' }}" loading="lazy" width="{{ logo_other.width }}" height="{{ logo_other.height }}" class="logo logo-other" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
+                                        <img src="{{ logo_other | img_url: 'master' }}" loading="lazy" width="{{ logo_other.width }}" height="{{ logo_other.height }}" class="logo logo-other" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
                                     {%- endif -%}
                                 {%- elsif logo_other -%}
                                     <img src="{{ logo_other | image_url: '500x' }}" loading="lazy" width="{{ logo_other.width }}" height="{{ logo_other.height }}" class="logo" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
