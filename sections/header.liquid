@@ -23,28 +23,28 @@
     %}
     {% if currenttime >= startdate and currenttime <= enddate %}
         <div class="top-img">
-            <a href="{{ section.settings.top_link }}" style="background-color: {{ section.settings.top_image_color }}"><img loading="lazy" width="{{ section.settings.top_image.width }}" height="{{ section.settings.top_image.height }}" src="{{ section.settings.top_image | image_url: 'master' }}" alt=""></a>
+            <a href="{{ section.settings.top_link }}" style="background-color: {{ section.settings.top_image_color }}"><img loading="lazy" width="{{ section.settings.top_image.width }}" height="{{ section.settings.top_image.height }}" src="{{ section.settings.top_image | image_url }}" alt=""></a>
         </div>
         {% if section.settings.top_image_mobile %}
             <div class="top-img-mobile">
-                <a href="{{ section.settings.top_link }}" style="background-color: {{ section.settings.top_image_color }}"><img loading="lazy" width="{{ section.settings.top_image_mobile.width }}" height="{{ section.settings.top_image_mobile.height }}" src="{{ section.settings.top_image_mobile | image_url: 'master' }}" alt=""></a>
+                <a href="{{ section.settings.top_link }}" style="background-color: {{ section.settings.top_image_color }}"><img loading="lazy" width="{{ section.settings.top_image_mobile.width }}" height="{{ section.settings.top_image_mobile.height }}" src="{{ section.settings.top_image_mobile | image_url }}" alt=""></a>
             </div>
         {% else %}
             <div class="top-img-mobile">
-                <a href="{{ section.settings.top_link }}" style="background-color: {{ section.settings.top_image_color }}"><img loading="lazy" width="{{ section.settings.top_image.width }}" height="{{ section.settings.top_image.height }}" src="{{ section.settings.top_image | image_url: 'master' }}" alt=""></a>
+                <a href="{{ section.settings.top_link }}" style="background-color: {{ section.settings.top_image_color }}"><img loading="lazy" width="{{ section.settings.top_image.width }}" height="{{ section.settings.top_image.height }}" src="{{ section.settings.top_image | image_url }}" alt=""></a>
             </div>
         {% endif %}
     {% elsif currenttime > secondstartdate and currenttime <= secondenddate %}
         <div class="top-img">
-            <a href="{{ section.settings.top_link2 }}" style="background-color: {{ section.settings.top_image_color1 }}"><img loading="lazy" width="{{ section.settings.top_image2.width }}" height="{{ section.settings.top_image2.height }}" src="{{ section.settings.top_image2 | image_url: 'master' }}" alt=""></a>
+            <a href="{{ section.settings.top_link2 }}" style="background-color: {{ section.settings.top_image_color1 }}"><img loading="lazy" width="{{ section.settings.top_image2.width }}" height="{{ section.settings.top_image2.height }}" src="{{ section.settings.top_image2 | image_url }}" alt=""></a>
         </div>
         {% if section.settings.top_image_mobile2 %}
             <div class="top-img-mobile">
-                <a href="{{ section.settings.top_link2 }}" style="background-color: {{ section.settings.top_image_color1 }}"><img loading="lazy" width="{{ section.settings.top_image_mobile2.width }}" height="{{ section.settings.top_image_mobile2.height }}" src="{{ section.settings.top_image_mobile2 | image_url: 'master' }}" alt=""></a>
+                <a href="{{ section.settings.top_link2 }}" style="background-color: {{ section.settings.top_image_color1 }}"><img loading="lazy" width="{{ section.settings.top_image_mobile2.width }}" height="{{ section.settings.top_image_mobile2.height }}" src="{{ section.settings.top_image_mobile2 | image_url }}" alt=""></a>
             </div>
         {% else %}
             <div class="top-img-mobile">
-                <a href="{{ section.settings.top_link2 }}" style="background-color: {{ section.settings.top_image_color1 }}"><img loading="lazy" width="{{ section.settings.top_image2.width }}" height="{{ section.settings.top_image2.height }}" src="{{ section.settings.top_image2 | image_url: 'master' }}" alt=""></a>
+                <a href="{{ section.settings.top_link2 }}" style="background-color: {{ section.settings.top_image_color1 }}"><img loading="lazy" width="{{ section.settings.top_image2.width }}" height="{{ section.settings.top_image2.height }}" src="{{ section.settings.top_image2 | image_url }}" alt=""></a>
             </div>
         {% endif %}
     {% endif %}
@@ -157,14 +157,14 @@
                                         <img src="{{ logo_other | image_url }}" loading="lazy" width="{{ logo_other.width }}" height="{{ logo_other.height }}" class="logo logo-other" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
                                     {%- endif -%}
                                 {%- elsif logo_other -%}
-                                    <img src="{{ logo_other | image_url: '500x' }}" loading="lazy" width="{{ logo_other.width }}" height="{{ logo_other.height }}" class="logo" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
+                                    <img src="{{ logo_other | image_url }}" loading="lazy" width="{{ logo_other.width }}" height="{{ logo_other.height }}" class="logo" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
                                 {%- endif -%}
                             {%- else -%}
                                 {% comment %} Show other logo first if other than home page {% endcomment %}
                                 {%- if logo_other -%}
-                                    <img src="{{ logo_other | image_url: '500x' }}" loading="lazy" width="{{ logo_other.width }}" height="{{ logo_other.height }}" class="logo" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
+                                    <img src="{{ logo_other | image_url }}" loading="lazy" width="{{ logo_other.width }}" height="{{ logo_other.height }}" class="logo" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
                                 {%- elsif logo -%}
-                                    <img src="{{ logo | image_url: '500x' }}" loading="lazy" width="{{ logo.width }}" height="{{ logo.height }}" class="logo" data-aspectratio="{{ logo.aspect_ratio }}" alt="{{ logo.alt | escape }}">
+                                    <img src="{{ logo | image_url }}" loading="lazy" width="{{ logo.width }}" height="{{ logo.height }}" class="logo" data-aspectratio="{{ logo.aspect_ratio }}" alt="{{ logo.alt | escape }}">
                                 {%- endif -%}
                             {%- endif -%}
                         </a>
