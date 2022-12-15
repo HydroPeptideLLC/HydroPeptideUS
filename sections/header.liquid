@@ -49,7 +49,6 @@
         {% endif %}
     {% endif %}
 {% endif %}
-
 {% if section.settings.show_announcement %}
     {% comment %} {% render 'announcement-bar' %} {% endcomment %}
     <div class="js-siteAlert siteAlert container-wrap" data-status="{{ section.settings.show_announcement }}" data-status-mobile="{{ section.settings.show_announcement_on_mobile }}">
@@ -80,7 +79,6 @@
         </div>
     </div>
 {% endif %}
-
 {% liquid 
     assign position = 'is-hamburger'
     if section.settings.nav_layout == 'standard'
@@ -95,23 +93,22 @@
     assign show_shop_name = section.settings.show_site_name
 %}
 <style>
-  .main-logo__image {
-    width: {{ logo_width }}
-    ;
-  }
-
-  @media screen and (min-width: 768px) {
-    .site-header:not(.has-scrolled) .main-logo__image {
-      width: {{ logo_width }}
-      ;
+    .main-logo__image 
+    {
+        width: {{ logo_width }};
     }
-    .main-logo__image {
-      max-width: {{ logo_width }}
-      ;
+    @media screen and (min-width: 768px) 
+    {
+        .site-header:not(.has-scrolled) .main-logo__image 
+        {
+            width: {{ logo_width }};
+        }
+        .main-logo__image 
+        {
+            max-width: {{ logo_width }};
+        }
     }
-  }
 </style>
-
 {%  liquid 
     assign cart_count = 0
     for item in cart.items
@@ -155,7 +152,7 @@
                             {%- if template == 'index' or template == 'collection' -%}
                             {% comment %} Show home logo first if home page {% endcomment %}
                                 {%- if logo -%}
-                                    <img src="{{ logo | image_url: '500x' }}" loading="lazy" width="{{ logo.width }}" height="{{ logo.height }}" class="logo logo-home" data-aspectratio="{{ logo.aspect_ratio }}" alt="{{ logo.alt | escape }}">
+                                    <img src="{{ logo | image_url: 'master' }}" loading="lazy" width="{{ logo.width }}" height="{{ logo.height }}" class="logo logo-home" data-aspectratio="{{ logo.aspect_ratio }}" alt="{{ logo.alt | escape }}">
                                     {%- if logo_other -%}
                                         <img src="{{ logo_other | image_url: '500x' }}" loading="lazy" width="{{ logo_other.width }}" height="{{ logo_other.height }}" class="logo logo-other" data-aspectratio="{{ logo_other.aspect_ratio }}" alt="{{ logo_other.alt | escape }}">
                                     {%- endif -%}
