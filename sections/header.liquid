@@ -188,7 +188,7 @@
             {% if section.settings.nav_layout == 'standard' %}
               <nav role="navigation" class="nav-standard nav-main">
                 {% assign is_hamburger_nav = false %}
-                {% render 'navigation', is_hamburger_nav: is_hamburger_nav %}
+                {% render 'navigation', is_hamburger_nav: false %}
               </nav>
             {% endif %}
           </div>
