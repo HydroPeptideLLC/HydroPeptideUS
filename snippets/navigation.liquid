@@ -97,8 +97,8 @@
                             <div class="megamenu__image">
                                 {%- if image -%}
                                     {%- capture meganav_image -%}
-                                        {%- assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' -%}
                                         {% liquid 
+                                            assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400'
                                             assign image_url_pattern = image | image_url
                                             assign image_widths_array = image_widths | split: ','
                                             capture valid_image_widths
