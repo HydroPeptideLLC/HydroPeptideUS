@@ -1115,7 +1115,7 @@
               "banner_cta_color": "#ffffff",
               "link": "shopify:\/\/collections\/gift-value-sets",
               "desktop_banner_content_position": "float: right !important;",
-              "x-axis-position": 100,
+              "x-axis-position": 0,
               "banner_content_position": "padding: 0px 0 550px !important;"
             }
           },
