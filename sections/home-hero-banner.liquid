@@ -4,35 +4,41 @@
       <div class="container">
         <div class="content">
           <h1 style="color: {{ block.settings.text_color }} !important;">{{ block.settings.title }}</h1>
-          <p style="margin-bottom: 13.5% !important; color: {{ block.settings.text_color }} !important;">{{ block.settings.short_text }}</p>
-          <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.banner_cta_color }} !important">{{ block.settings.cta }}</a>
+          <p style="margin-bottom: 13.5% !important; color: {{ block.settings.text_color }} !important;">
+            {{ block.settings.short_text }}
+          </p>
+          <a
+            href="{{ block.settings.link }}"
+            style="background-color: {{ block.settings.banner_cta_color }} !important"
+          >
+            {{- block.settings.cta -}}
+          </a>
         </div>
         <style>
-          .content 
+          .content
           {
             max-width: 500px;
             word-wrap: normal;
           }
-          .home_hero_banner.banner_{{ forloop.index }} 
+          .home_hero_banner.banner_{{ forloop.index }}
           {
             background-image: url({{ block.settings.background_image | image_url }});
           }
-          @media screen and (min-width: 768px) 
+          @media screen and (min-width: 768px)
           {
-            .content 
+            .content
             {
-              {% comment %} {{ block.settings.desktop_banner_content_position }} {% endcomment %}
               position: relative;
               left: {{ block.settings.x-axis-position }}% - 500px;
             }
           }
-          @media screen and (max-width: 767px) 
+          @media screen and (max-width: 767px)
           {
-            .home_hero_banner.banner_{{ forloop.index }} 
+            .home_hero_banner.banner_{{ forloop.index }}
             {
               background-image: url({{ block.settings.background_image_mobile | image_url }});
             }
-            .content 
+            .content
             {
               {{ block.settings.banner_content_position }}
             }
@@ -44,111 +50,108 @@
 </div>
 {% schema %}
 {
-	"name": "Home hero section",
-	"settings": [
-		
-	],
-	"blocks": [
-		{
-			"type": "gallery_image",
-			"name": "Banner Slide",
-			"settings": [
-				{
-                  "type": "image_picker",
-                  "id": "background_image",
-                  "label": "Background Image"
-                },
-                {
-                  "type": "image_picker",
-                  "id": "background_image_mobile",
-                  "label": "Background Mobile Image"
-                },
-                {
-                    "type": "text",
-                    "id": "title",
-                    "label": "Title",
-                    "default": "Revamp Your Regimen Kit"
-                },
-                {
-                    "type": "textarea",
-                    "id": "short_text",
-                    "label": "Text",
-                    "default": "Give your skincare routine a makeover"
-                },
-                {
-                  "type": "color",
-                  "id": "text_color",
-                  "label": "Text Color",
-                  "default": "#000000"
-                },
-                {
-                    "type": "text",
-                    "id": "cta",
-                    "label": "Button label"
-                },
-                {
-                    "type": "color",
-                    "label": "CTA color",
-                    "id": "banner_cta_color",
-                    "default": "#000000"
-                },
-                {
-                    "type": "url",
-                    "id": "link",
-                    "label": "Button link"
-                },
-                {
-                   "type": "select",
-                   "id": "desktop_banner_content_position",
-                   "options": [
-                      { "value": "float: left !important;", "label": "Left"},
-                      { "value": "margin-left: 48.4% !important;", "label": "Center"},
-                      { "value": "float: right !important;", "label": "Right"}
-                   ],
-                   "label": "Content Position on Desktop",
-				            "default": "float: right !important;"
-                },
-                {
-                  "id": "x-axis-position",
-                  "type": "range",
-                  "min": 0,
-                  "max": 100,
-                  "step": 10,
-                  "unit": "%",
-                  "label": "Position From Left",
-                  "default": 100
-                },
-				        {
-                   "type": "select",
-                   "id": "banner_content_position",
-                   "options": [
-                      { "value": "padding: 0px 0 550px !important;", "label": "Top"},
-                      { "value": "padding: 190px 0 190px !important;", "label": "Center"},
-                      { "value": "padding: 322px 0 55px !important;", "label": "Bottom"}
-                   ],
-                   "label": "Content Position on Mobile",
-				   "default":   "padding: 322px 0 55px !important;"
-                }
-			]
-		}
-	],
-	"presets": [
-		{
-            "category": "Banner",
-            "name": "Home Hero banner",
-			"blocks": [
-				{
-					"type": "gallery_image"
-				},
-				{
-					"type": "gallery_image"
-				},
-				{
-					"type": "gallery_image"
-				}
-			]
-		}
-	]
-
+  "name": "Home hero section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "gallery_image",
+      "name": "Banner Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image_mobile",
+          "label": "Background Mobile Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Revamp Your Regimen Kit"
+        },
+        {
+          "type": "textarea",
+          "id": "short_text",
+          "label": "Text",
+          "default": "Give your skincare routine a makeover"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "text",
+          "id": "cta",
+          "label": "Button label"
+        },
+        {
+          "type": "color",
+          "label": "CTA color",
+          "id": "banner_cta_color",
+          "default": "#000000"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button link"
+        },
+        {
+          "type": "select",
+          "id": "desktop_banner_content_position",
+          "options": [
+            { "value": "float: left !important;", "label": "Left" },
+            { "value": "margin-left: 48.4% !important;", "label": "Center" },
+            { "value": "float: right !important;", "label": "Right" }
+          ],
+          "label": "Content Position on Desktop",
+          "default": "float: right !important;"
+        },
+        {
+          "id": "x-axis-position",
+          "type": "range",
+          "min": 0,
+          "max": 1260,
+          "step": 126,
+          "unit": "px",
+          "label": "Position From Left",
+          "default": 0
+        },
+        {
+          "type": "select",
+          "id": "banner_content_position",
+          "options": [
+            { "value": "padding: 0px 0 550px !important;", "label": "Top" },
+            { "value": "padding: 190px 0 190px !important;", "label": "Center" },
+            { "value": "padding: 322px 0 55px !important;", "label": "Bottom" }
+          ],
+          "label": "Content Position on Mobile",
+          "default": "padding: 322px 0 55px !important;"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Banner",
+      "name": "Home Hero banner",
+      "blocks": [
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
