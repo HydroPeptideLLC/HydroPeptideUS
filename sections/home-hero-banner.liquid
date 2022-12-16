@@ -23,7 +23,7 @@
             {
               {% comment %} {{ block.settings.desktop_banner_content_position }} {% endcomment %}
               position: relative;
-              left: {{ block.settings.x-axis-position }}% - 500px;
+              left: Math({{ block.settings.x-axis-position }}px - 500px);
             }
           }
           @media screen and (max-width: 767px) 
@@ -112,11 +112,11 @@
                   "id": "x-axis-position",
                   "type": "range",
                   "min": 0,
-                  "max": 100,
-                  "step": 10,
-                  "unit": "%",
+                  "max": 1260,
+                  "step": 100,
+                  "unit": "px",
                   "label": "Position From Left",
-                  "default": 100
+                  "default": 1260
                 },
 				        {
                    "type": "select",
