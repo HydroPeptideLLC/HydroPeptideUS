@@ -1,22 +1,29 @@
 {% comment %}
 Create the URL pattern for lazyloading RIAS
-{% endcomment %}
-{% assign image_url_pattern = image | image_url | replace: '_1x1.', '_{width}x.' %}
-{% comment %}
-Split the image_widths string into an array
-{% endcomment %}{% assign image_widths_array = image_widths | split: ',' %}
+{% assign image_url_pattern = image | image_url %}
+Split the image_widths string into an array{% assign image_widths_array = image_widths | split: ',' %}
 {% capture valid_image_widths %}
-  {% for width in image_widths_array %}
-    {% comment %}
-    Make sure the image width is greater than each image_widths
-    {% endcomment %}
-    {% assign width_num = width | plus: 0 | round %}
-    {% if image.width >= width_num %}
-      {{ width_num }},{% endif %}
-  {% endfor %}
-  {{ image.width }}
+{% for width in image_widths_array %}
+Make sure the image width is greater than each image_widths
+{% assign width_num = width | plus: 0 | round %}
+{% if image.width >= width_num %}
+{{ width_num }},{% endif %}
+{% endfor %}
+{{ image.width }}
 {% endcapture %}
-{% comment %}
 Remove white space, line breaks, last comma
-{% endcomment %}
-{% assign image_widths = valid_image_widths | strip_newlines | remove: ' ' %}
+{% assign image_widths = valid_image_widths | strip_newlines | remove: ' ' %}{% endcomment %}
+{% liquid 
+    assign image_url_pattern = image | image_url
+    assign image_widths_array = image_widths | split: ','
+    capture valid_image_widths
+        for width in image_widths_array
+            assign width_num = width | plus: 0 | round
+            if image.width >= width_num
+                echo width_num
+            endif
+        endfor
+        echo image.width
+    endcapture
+    assign image_widths = valid_image_widths | strip_newlines | remove: ' '
+%}
