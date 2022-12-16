@@ -21,7 +21,9 @@
           {
             .content 
             {
-              {{ block.settings.desktop_banner_content_position }}
+              {% comment %} {{ block.settings.desktop_banner_content_position }} {% endcomment %}
+              position: relative;
+              left: {{ block.settings.x-axis-position }};
             }
           }
           @media screen and (max-width: 767px) 
