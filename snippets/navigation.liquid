@@ -96,7 +96,7 @@
                         {%- if image != blank or image_heading != blank -%}
                             <div class="megamenu__image">
                                 {%- if image -%}
-                                    {%- capture meganav_image -%}
+                                    {%- capture meganav_image -%} 
                                         {% liquid 
                                             assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400'
                                             assign image_url_pattern = image | image_url
@@ -110,7 +110,6 @@
                                                 endfor
                                                 echo image.width
                                             endcapture
-                                            assign image_widths = valid_image_widths | strip_newlines | remove: ' '
                                         %}
                                         <img class="fade-in" loading="lazy" data-src="{{ image_url_pattern }}" data-widths="[{{ image_widths }}]" data-aspectratio="{{ image.aspect_ratio }}" data-sizes="auto" alt="{{ image.alt }}">
                                         <noscript>
