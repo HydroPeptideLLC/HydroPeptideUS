@@ -1,38 +1,43 @@
 <div class="hero_slider_content">
   {% for block in section.blocks %}
-  <div class="home_hero_banner banner_{{ forloop.index }}">
-    <div class="container">
-      <div class="content">
-        <h1 style="color: {{ block.settings.text_color }} !important;">{{ block.settings.title }}</h1>
-        <p style="margin-bottom: 13.5% !important; color: {{ block.settings.text_color }} !important;">{{ block.settings.short_text }}</p>
-        <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.banner_cta_color }} !important">{{ block.settings.cta }}</a>
+    <div class="home_hero_banner banner_{{ forloop.index }}">
+      <div class="container">
+        <div class="content">
+          <h1 style="color: {{ block.settings.text_color }} !important;">{{ block.settings.title }}</h1>
+          <p style="margin-bottom: 13.5% !important; color: {{ block.settings.text_color }} !important;">{{ block.settings.short_text }}</p>
+          <a href="{{ block.settings.link }}" style="background-color: {{ block.settings.banner_cta_color }} !important">{{ block.settings.cta }}</a>
+        </div>
+        <style>
+          .content 
+          {
+            max-width: 500px;
+            word-wrap: normal;
+          }
+          .home_hero_banner.banner_{{ forloop.index }} 
+          {
+            background-image: url({{ block.settings.background_image | image_url }});
+          }
+          @media screen and (min-width: 768px) 
+          {
+            .content 
+            {
+              {{ block.settings.desktop_banner_content_position }}
+            }
+          }
+          @media screen and (max-width: 767px) 
+          {
+            .home_hero_banner.banner_{{ forloop.index }} 
+            {
+              background-image: url({{ block.settings.background_image_mobile | image_url }});
+            }
+            .content 
+            {
+              {{ block.settings.banner_content_position }}
+            }
+          }
+        </style>
       </div>
-          <style>
-              .content {
-                  max-width: 500px;
-                  word-wrap: normal;
-              }
-              .home_hero_banner.banner_{{ forloop.index }} {
-                  background-image: url({{ block.settings.background_image | img_url: 'master' }});
-              }
-              @media (min-width: 768px) {
-                  .content {
-                      {{ block.settings.desktop_banner_content_position }}
-                  }
-                }
-              @media (max-width: 767px) {
-/*                     .home_hero_banner > .container {
-                      margin-top: 60% !important;
-                    } */
-                  .home_hero_banner.banner_{{ forloop.index }} {
-                      background-image: url({{ block.settings.background_image_mobile | img_url: 'master' }});
-                  }
-                  .content {
-                      {{ block.settings.banner_content_position }}
-                  }
-          </style>
     </div>
-  </div>
   {% endfor %}
 </div>
 {% schema %}
@@ -99,9 +104,19 @@
                       { "value": "float: right !important;", "label": "Right"}
                    ],
                    "label": "Content Position on Desktop",
-				   "default": "float: right !important;"
+				            "default": "float: right !important;"
                 },
-				{
+                {
+                  "id": "x-axis-position",
+                  "type": "range",
+                  "min": 0,
+                  "max": 100,
+                  "step": 10,
+                  "unit": "%",
+                  "label": "Position From Left",
+                  "default": 100
+                }
+				        {
                    "type": "select",
                    "id": "banner_content_position",
                    "options": [
