@@ -1100,11 +1100,6 @@
           "html_area": "<!-- -->"
         }
       },
-      "1603745663be86b54b": {
-        "type": "home-hero-banner",
-        "settings": {
-        }
-      },
       "16037470913a92e976": {
         "type": "Home-image-text",
         "disabled": true,
@@ -2163,7 +2158,6 @@
       }
     },
     "content_for_index": [
-      "1603745663be86b54b",
       "161523620177931d18",
       "16037470913a92e976",
       "1620789323d007fdc4",
