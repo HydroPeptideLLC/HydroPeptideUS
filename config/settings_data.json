@@ -2155,9 +2155,68 @@
           "desktop_bg": "shopify:\/\/shop_images\/MicrosoftTeams-image_4_e06beb54-f56c-4ecd-bc48-52833a63a09c.png",
           "mobile_bg": "shopify:\/\/shop_images\/MicrosoftTeams-image_5_7c20835f-8804-4fe1-8ae1-ec356e42e1ee.png"
         }
+      },
+      "9d15991e-4873-4107-a8b7-f7b166fd0892": {
+        "type": "home-hero-banner",
+        "blocks": {
+          "9d15991e-4873-4107-a8b7-f7b166fd0892-16712386544e615db0-0": {
+            "type": "gallery_image",
+            "settings": {
+              "background_image": "shopify:\/\/shop_images\/102722_HolidayKits_HomepageBanner_Desktop_v3.png",
+              "background_image_mobile": "shopify:\/\/shop_images\/102722_HolidayKits_HomepageBanner_Mobile_NoText_1.png",
+              "title": "Revamp Your Regimen Kit",
+              "short_text": "Give your skincare routine a makeover",
+              "text_color": "#000000",
+              "cta": "This is a CTA",
+              "banner_cta_color": "#000000",
+              "link": "",
+              "desktop_banner_content_position": "float: right !important;",
+              "x-content-position": 810,
+              "banner_content_position": "padding: 322px 0 55px !important;"
+            }
+          },
+          "9d15991e-4873-4107-a8b7-f7b166fd0892-16712386544e615db0-1": {
+            "type": "gallery_image",
+            "disabled": true,
+            "settings": {
+              "title": "Revamp Your Regimen Kit",
+              "short_text": "Give your skincare routine a makeover",
+              "text_color": "#000000",
+              "cta": "",
+              "banner_cta_color": "#000000",
+              "link": "",
+              "desktop_banner_content_position": "float: right !important;",
+              "x-content-position": 90,
+              "banner_content_position": "padding: 322px 0 55px !important;"
+            }
+          },
+          "9d15991e-4873-4107-a8b7-f7b166fd0892-16712386544e615db0-2": {
+            "type": "gallery_image",
+            "disabled": true,
+            "settings": {
+              "title": "Revamp Your Regimen Kit",
+              "short_text": "Give your skincare routine a makeover",
+              "text_color": "#000000",
+              "cta": "",
+              "banner_cta_color": "#000000",
+              "link": "",
+              "desktop_banner_content_position": "float: right !important;",
+              "x-content-position": 90,
+              "banner_content_position": "padding: 322px 0 55px !important;"
+            }
+          }
+        },
+        "block_order": [
+          "9d15991e-4873-4107-a8b7-f7b166fd0892-16712386544e615db0-0",
+          "9d15991e-4873-4107-a8b7-f7b166fd0892-16712386544e615db0-1",
+          "9d15991e-4873-4107-a8b7-f7b166fd0892-16712386544e615db0-2"
+        ],
+        "settings": {
+        }
       }
     },
     "content_for_index": [
+      "9d15991e-4873-4107-a8b7-f7b166fd0892",
       "161523620177931d18",
       "16037470913a92e976",
       "1620789323d007fdc4",
