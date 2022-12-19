@@ -33,20 +33,18 @@
 	
 	<div class="collectionGrid-row row row-lg inline {% if enable_carousel %}collection-slider js-collection-slider{% endif %}">
 		{% comment %} Collection Block, contains .js-quickView {% endcomment %}
-		{% liquid 
-            if collection1
-                if enable_carousel
-                    assign productLimit = false
-                endif
-                for product in collection1.products
-                    render 'collectionGrid-block', image_size_class: image_size_class
-                endfor
-            else
-                for i in (1..productLimit)
-                    render 'collectionGrid-block', image_size_class: image_size_class, fallback: true
-                endfor
-            endif
-        %}
+		{% if collection1 %}
+            {% if enable_carousel %}
+                {% assign productLimit = false %}
+            {% endif %}
+            {% for product in collection1.products %}
+                {% include 'collectionGrid-block', image_size_class: image_size_class %}
+            {% endfor %}
+        {% else %}
+            {%for i in (1..productLimit) %}
+                {% include 'collectionGrid-block', image_size_class: image_size_class, fallback: true %}
+            {% endfor %}
+        {% endif %}
 		{% unless enable_carousel %}
 			{% comment %} Spacers for inline-block based collectionGrid {% endcomment %}
 			{% for i in (1..3) %}
