@@ -185,7 +185,7 @@
           <div class="collectionBlock-hover">
             <span
               class="collectionBlock-hover lazyload fade-in"
-              data-bgset="{% include 'bgset', image: product.images[1] %}"
+              data-bgset="{% render 'bgset', image: product.images[1] %}"
               data-sizes="auto"
             ></span>
           </div>
@@ -259,7 +259,7 @@
       {% endif %}
       <div class="swatches-fake">
         {% if sca_product_variantCount > 1 and color_swatches == true %}
-          {% include 'swatch' with 'Color' %}
+          {% render 'swatch' with 'Color' %}
         {% endif %}
       </div>
     </div>
