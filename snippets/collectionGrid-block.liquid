@@ -25,19 +25,11 @@
     data-animation="fadeInUp"
   >
     <div class="collectionBlock-image {{ image_size_class }} svg-placeholder">
-      {% liquid
-        capture current
-          cycle 1, 2, 3, 4, 5, 6
-        endcapture
-      %}
+      {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
       {{ 'product-' | append: current | placeholder_svg_tag }}
 
       {%- if settings.hover_image == true -%}
-        {% liquid
-          capture current_next
-            cycle 5, 6, 1, 2, 3, 4
-          endcapture
-        %}
+        {% capture current %}{% cycle 5, 6, 1, 2, 3, 4 %}{% endcapture %}
         <span class="collectionBlock-hover collectionBlock-hover--placeholder">
           {{- 'product-' | append: current_next | placeholder_svg_tag: 'svg-placeholder' -}}
         </span>
