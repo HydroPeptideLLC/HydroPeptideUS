@@ -207,7 +207,7 @@
                                                 echo image.width
                                             endcapture
                                         %}
-                                        <img class="fade-in" height="{{ image_two.height }}" width="{{ image_two.width }}" data-src="{{ image_url_pattern }}" data-widths="[{{ image_widths }}]" data-aspectratio="{{ image_two.aspect_ratio }}" data-sizes="auto" alt="{{ image_two.alt }}">
+                                        <img class="fade-in lazyload" height="{{ image_two.height }}" width="{{ image_two.width }}" data-src="{{ image_url_pattern }}" data-widths="[{{ image_widths }}]" data-aspectratio="{{ image_two.aspect_ratio }}" data-sizes="auto" alt="{{ image_two.alt }}">
                                         <noscript>
                                             <img src="{{ image_url_pattern }}" loading="lazy" height="{{ image.height }}" width="{{ image.width }}" alt="{{ image.alt }}">
                                         </noscript>
