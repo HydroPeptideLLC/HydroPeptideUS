@@ -196,7 +196,7 @@
                                         {%- assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' -%}
                                         {% liquid 
                                             assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400'
-                                            assign image_url_pattern = image | image_url
+                                            assign image_url_pattern = image_two | image_url
                                             assign image_widths_array = image_widths | split: ','
                                             capture valid_image_widths
                                                 for width in image_widths_array
@@ -208,7 +208,7 @@
                                                 echo image.width
                                             endcapture
                                         %}
-                                        <img class="fade-in" loading="lazy" height="{{ image_two.height }}" width="{{ image_two.width }}" data-src="{{ image_url_pattern }}" data-widths="[{{ image_widths }}]" data-aspectratio="{{ image_two.aspect_ratio }}" data-sizes="auto" alt="{{ image_two.alt }}">
+                                        <img class="fade-in" height="{{ image_two.height }}" width="{{ image_two.width }}" data-src="{{ image_url_pattern }}" data-widths="[{{ image_widths }}]" data-aspectratio="{{ image_two.aspect_ratio }}" data-sizes="auto" alt="{{ image_two.alt }}">
                                         <noscript>
                                             <img src="{{ image_url_pattern }}" loading="lazy" height="{{ image.height }}" width="{{ image.width }}" alt="{{ image.alt }}">
                                         </noscript>
