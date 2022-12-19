@@ -97,7 +97,7 @@
     <a
       aria-label="{{ product.title }}"
       href="{{ product.url | within: collection }}"
-      title="{% if product.object_type == 'product' %}{{ product.featured_image.alt }}{%elsif product.object_type == 'article' %}{{ product.title | escape }}{% endif %}"
+      title="{% if product.object_type == 'product' %}{{ product.featured_image.alt }}{% elsif product.object_type == 'article' %}{{ product.title | escape }}{% endif %}"
       class="collectionBlock-image {{ image_size_class }} lazyload fade-in {% if product.images[1] != blank and settings.hover_image == true %}has-second-image{% endif %}"
       style="padding-top: {{ blockPadding | append: '%' }}"
       data-bgset="{% include 'bgset', image: product.featured_image %}"
@@ -116,7 +116,7 @@
       {%- endif -%}
       {% if product.object_type == 'product' %}
         {% if on_sale == true or sold_out == true %}
-          <span class="product-status-flag{%if sold_out == true %} is-sold-out{%endif%}{{on_sale_class}}">
+          <span class="product-status-flag{% if sold_out == true %} is-sold-out{% endif %}{{ on_sale_class }}">
             {% if sold_out == true %}
               {{ 'products.labels.sold_out' | t }}
             {% else %}
