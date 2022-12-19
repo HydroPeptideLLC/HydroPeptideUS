@@ -1,7 +1,7 @@
 {% comment %} Site Navigation {% endcomment %}
 {% liquid 
     assign index = 2
-    assign image = section.settings.meganav_image
+    assign image_one = section.settings.meganav_image
     assign image_heading = section.settings.meganav_image_heading
     assign image_link = section.settings.meganav_image_link
     assign image_two = section.settings.meganav_image_two
@@ -93,27 +93,27 @@
                     {%- endcapture -%}
                     <!-- MEGANAV IMAGE AND TEXT -->
                     {%- if is_meganav -%}
-                        {%- if image != blank or image_heading != blank -%}
+                        {%- if image_one != blank or image_heading != blank -%}
                             <div class="megamenu__image">
-                                {%- if image -%}
+                                {%- if image_one -%}
                                     {%- capture meganav_image -%} 
                                         {% liquid 
                                             assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400'
-                                            assign image_url_pattern = image | image_url
+                                            assign image_url_pattern = image_one | image_url
                                             assign image_widths_array = image_widths | split: ','
                                             capture valid_image_widths
-                                                for width in image_widths_array
+                                                for width in image_widths_array 
                                                     assign width_num = width | plus: 0 | round
-                                                    if image.width >= width_num
+                                                    if image_one.width >= width_num
                                                         echo width_num
                                                     endif
                                                 endfor
-                                                echo image.width
+                                                echo image_one.width
                                             endcapture
                                         %}
-                                        <img class="fade-in" height="{{ image.height }}" width="{{ image.width }}" data-src="{{ image_url_pattern }}" data-widths="[{{ image_widths }}]" data-aspectratio="{{ image.aspect_ratio }}" data-sizes="auto" alt="{{ image.alt }}">
+                                        <img class="fade-in" height="{{ image_one.height }}" width="{{ image_one.width }}" data-src="{{ image_url_pattern }}" data-widths="[{{ image_widths }}]" data-aspectratio="{{ image_one.aspect_ratio }}" data-sizes="auto" alt="lets test this">
                                         <noscript>
-                                            <img loading="lazy" width="{{ image.width }}" height="{{ image.height }}" src="{{ image_url_pattern }}" alt="{{ image.alt }}">
+                                            <img loading="lazy" width="{{ image_one.width }}" height="{{ image_one.height }}" src="{{ image_url_pattern }}" alt="{{ image.alt }}">
                                         </noscript>
                                     {%- endcapture -%}
                                     {%- unless image_link == blank -%}
