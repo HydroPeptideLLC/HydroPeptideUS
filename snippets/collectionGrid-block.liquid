@@ -92,7 +92,7 @@
       title="{% if product.object_type == 'product' %}{{ product.featured_image.alt }}{% elsif product.object_type == 'article' %}{{ product.title | escape }}{% endif %}"
       class="collectionBlock-image {{ image_size_class }} lazyload fade-in {% if product.images[1] != blank and settings.hover_image == true %}has-second-image{% endif %}"
       style="padding-top: {{ blockPadding | append: '%' }}"
-      data-bgset="{% render 'bgset', image: product.featured_image %}"
+      data-bgset="{% include 'bgset', image: product.featured_image %}"
       data-sizes="auto"
       data-parent-fit="cover"
       data-aspectratio="{{ product.featured_image.aspect_ratio }}"
@@ -101,7 +101,7 @@
         <div class="collectionBlock-hover">
           <span
             class="collectionBlock-hover lazyload fade-in"
-            data-bgset="{% render 'bgset', image: product.images[1] %}"
+            data-bgset="{% include 'bgset', image: product.images[1] %}"
             data-sizes="auto"
           ></span>
         </div>
@@ -128,7 +128,7 @@
             {% assign featured_image = product.featured_image %}
             <div
               class="quickview-product-image quickView-variant-img--is-active fade-in"
-              data-bgset="{% render 'bgset', image: featured_image %}"
+              data-bgset="{% include 'bgset', image: featured_image %}"
               data-image="{{ featured_image | image_url }}"
               data-sizes="auto"
               data-parent-fit="contain"
@@ -138,7 +138,7 @@
               {% unless image == featured_image %}
                 <div
                   class="quickview-product-image fade-in"
-                  data-bgset="{% render 'bgset', image: image %}"
+                  data-bgset="{% include 'bgset', image: image %}"
                   loading="lazy"
                   data-sizes="auto"
                   data-parent-fit="contain"
@@ -154,8 +154,8 @@
       name="add"
       id="addToCartButton"
       data-product-title="{{ product.title | truncate: 25 }}"
-      data-product-img="{{ product.featured_image | image_url }}"
-      data-product-price="{{ product.variants.first.price  | money_without_trailing_zeros }}"
+      data-product-img="{{ product.featured_image | img_url }}"
+      data-product-price="{{ product.variants.first.price | money_without_trailing_zeros }}"
       data-product-id="{{ product.variants.first.id }}"
       style="{% if product.available %} {% else %}opacity: 0; visibility: hidden;{% endif %}"
     >

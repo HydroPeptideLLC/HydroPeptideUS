@@ -39,18 +39,18 @@
                     assign productLimit = false
                 endif
                 for product in collection1.products
-                    render 'collectionGrid-block'
+                    render 'collectionGrid-block', image_size_class: image_size_class
                 endfor
             else
                 for i in (1..productLimit)
-                    render 'collectionGrid-block', fallback: true
+                    render 'collectionGrid-block', image_size_class: image_size_class, fallback: true
                 endfor
             endif
         %}
 		{% unless enable_carousel %}
 			{% comment %} Spacers for inline-block based collectionGrid {% endcomment %}
 			{% for i in (1..3) %}
-				<div class="gridSpacer item block s1 sm_s12 lg_s1{{ columnsSize }}"></div>
+				<div class="gridSpacer item block s1 sm_s12 lg_s1 {{ columnsSize }}"></div>
 			{% endfor %}
 		{% endunless %}
 	</div>
