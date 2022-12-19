@@ -1,1 +1,9 @@
-{{ content_for_index }}{% include 'wiser_recentview' %}{% include 'wiser_trending' %}{% include 'wiser_topselling' %}{% include 'wiser_newarrivals' %}{% include 'wiser_featured' %}{% include 'wiser_recent_related' %}
+{{ content_for_index }}
+{% liquid
+  render 'wiser_recentview'
+  render 'wiser_trending'
+  render 'wiser_topselling'
+  render 'wiser_newarrivals'
+  render 'wiser_featured'
+  render 'wiser_recent_related'
+%}
