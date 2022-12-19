@@ -111,7 +111,7 @@
                                                 echo image.width
                                             endcapture
                                         %}
-                                        <img class="fade-in" loading="lazy" height="{{ image.height }}" width="{{ image.width }}" data-src="{{ image_url_pattern }}" data-widths="[{{ image_widths }}]" data-aspectratio="{{ image.aspect_ratio }}" data-sizes="auto" alt="{{ image.alt }}">
+                                        <img class="fade-in" height="{{ image.height }}" width="{{ image.width }}" data-src="{{ image_url_pattern }}" data-widths="[{{ image_widths }}]" data-aspectratio="{{ image.aspect_ratio }}" data-sizes="auto" alt="{{ image.alt }}">
                                         <noscript>
                                             <img loading="lazy" width="{{ image.width }}" height="{{ image.height }}" src="{{ image_url_pattern }}" alt="{{ image.alt }}">
                                         </noscript>
@@ -193,7 +193,6 @@
                             <div class="megamenu__image_two" style="">
                                 {%- if image_two -%}
                                     {%- capture meganav_image_two -%}
-                                        {%- assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' -%}
                                         {% liquid 
                                             assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400'
                                             assign image_url_pattern = image_two | image_url
