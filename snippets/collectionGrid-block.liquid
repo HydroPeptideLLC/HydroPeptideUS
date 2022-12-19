@@ -135,20 +135,22 @@
           <div class="quickview-product-images" data-handle="{{ product.handle }}" style="display: none">
             {% assign featured_image = product.featured_image %}
             <div
-              class="quickview-product-image quickView-variant-img--is-active lazyload fade-in"
-              data-bgset="{% include 'bgset', image: featured_image %}"
-              data-image="{{ featured_image | img_url: 'master' }}"
+              class="quickview-product-image quickView-variant-img--is-active fade-in"
+              data-bgset="{% render 'bgset', image: featured_image %}"
+              data-image="{{ featured_image | image_url }}"
               data-sizes="auto"
               data-parent-fit="contain"
+              loading="lazy"
             ></div>
             {% for image in product.images %}
               {% unless image == featured_image %}
                 <div
-                  class="quickview-product-image lazyload fade-in"
-                  data-bgset="{% include 'bgset', image: image %}"
+                  class="quickview-product-image fade-in"
+                  data-bgset="{% render 'bgset', image: image %}"
+                  loading="lazy"
                   data-sizes="auto"
                   data-parent-fit="contain"
-                  data-image="{{ image | img_url: 'master' }}"
+                  data-image="{{ image | image_url }}"
                 ></div>
               {% endunless %}
             {% endfor %}
