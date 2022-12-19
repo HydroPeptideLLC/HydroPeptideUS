@@ -38,11 +38,11 @@
                 {% assign productLimit = false %}
             {% endif %}
             {% for product in collection1.products %}
-                {% include 'collectionGrid-block', image_size_class: image_size_class %}
+                {% include 'collectionGrid-block' %}
             {% endfor %}
         {% else %}
-            {%for i in (1..productLimit) %}
-                {% include 'collectionGrid-block', image_size_class: image_size_class, fallback: true %}
+            {% for i in (1..productLimit) %}
+                {% include 'collectionGrid-block', fallback: true %}
             {% endfor %}
         {% endif %}
 		{% unless enable_carousel %}
