@@ -1,7 +1,6 @@
 {% comment %}
   Icons row
 {% endcomment %}
-
 {% assign background = section.settings.color_icons_bg %}
 {% assign color = section.settings.color_icons_text %}
 
@@ -24,16 +23,13 @@
                   endfor
                 endcapture
               %}
-
               <div class="icons-row__item">
                 {% if icon != blank %}
                   <span class="icons-row__icon iconsmind-{{ icon }}"></span>
                 {% endif %}
-
                 {% if title != blank %}
                   <h3 class="icons-row__title">{{ title }}</h3>
                 {% endif %}
-
                 {% if content != blank %}
                   <p class="icons-row__content">{{ content }}</p>
                 {% endif %}
