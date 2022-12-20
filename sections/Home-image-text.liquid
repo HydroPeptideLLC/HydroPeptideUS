@@ -5,96 +5,106 @@
       <p>{{ section.settings.subheading }}</p>
     </div>
     {% for block in section.blocks %}
-    
-    {% comment %}
-    <div class="image_text_block {% if block.settings.show_right %}right_image{% endif %}">
-      <div class="img_block">
-        <img data-src="{{ block.settings.banner_image | img_url: 'master' }}" alt="{{ block.settings.title }}" class="normal lazy">
-        <img data-src="{{ block.settings.banner_rollover_image | img_url: 'master' }}" alt="{{ block.settings.title }}" class="rollover lazy">
+      {% comment %}
+        <div class="image_text_block {% if block.settings.show_right %}right_image{% endif %}">
+          <div class="img_block">
+            <img data-src="{{ block.settings.banner_image | img_url: 'master' }}" alt="{{ block.settings.title }}" class="normal lazy">
+            <img data-src="{{ block.settings.banner_rollover_image | img_url: 'master' }}" alt="{{ block.settings.title }}" class="rollover lazy">
+          </div>
+          <div class="content_bock">
+            <h3>{{ block.settings.title }}</h3>
+            <p class="sub_title">{{ block.settings.sub_title }}</p>
+            <p class="price">{{ block.settings.price }}</p>
+            <p class="content_text">{{ block.settings.content }}</p>
+            <a href="{{ block.settings.link }}">{{ block.settings.cta }}</a>
+          </div>
+        </div>
+      {% endcomment %}
+
+      <div class="image_text_block">
+        <a href="{{ block.settings.link }}">
+          <img
+            data-src="{{ block.settings.banner_image | image_url }}"
+            alt="{{ block.settings.title }}"
+            class="normal lazy2"
+          >
+          <img
+            data-src="{{ block.settings.banner_image_desktop | image_url }}"
+            alt="{{ block.settings.title }}"
+            class="normal desktop_rollover lazy2"
+          >
+          <img
+            data-src="{{ block.settings.banner_rollover_image | image_url }}"
+            alt="{{ block.settings.title }}"
+            class="rollover lazy2"
+          >
+        </a>
       </div>
-      <div class="content_bock">
-        <h3>{{ block.settings.title }}</h3>
-        <p class="sub_title">{{ block.settings.sub_title }}</p>
-        <p class="price">{{ block.settings.price }}</p>
-        <p class="content_text">{{ block.settings.content }}</p>
-        <a href="{{ block.settings.link }}">{{ block.settings.cta }}</a>
-      </div>
-    </div>
-    {% endcomment %}
-    
-    <div class="image_text_block">
-      <a href="{{ block.settings.link }}">
-        <img data-src="{{ block.settings.banner_image | img_url: 'master' }}" alt="{{ block.settings.title }}" class="normal lazy2">
-        <img data-src="{{ block.settings.banner_image_desktop | img_url: 'master' }}" alt="{{ block.settings.title }}" class="normal desktop_rollover lazy2">
-        <img data-src="{{ block.settings.banner_rollover_image | img_url: 'master' }}" alt="{{ block.settings.title }}" class="rollover lazy2">
-      </a>
-    </div>
-    
     {% endfor %}
   </div>
 </div>
 
 {% schema %}
 {
-	"name": "Home Promotion banners",
-	"settings": [
-		{
-			"type": "text",
-			"id": "subheading",
-			"label": "Subheading",
-			"default": "Enhance your skincare's benefits for next level luminosity."
-		},
-		{
-			"type": "textarea",
-			"id": "title",
-			"label": "Heading",
-			"default": "Glow-Getting Heroes"
-		}
-	],
-	"blocks": [
-		{
-			"type": "gallery_image",
-			"name": "Image",
-			"settings": [
-				{
-                  "type": "image_picker",
-                  "id": "banner_image",
-                  "label": "Banner Image"
-                },
-				{
-                  "type": "image_picker",
-                  "id": "banner_image_desktop",
-                  "label": "Banner Image Rollover(desktop hover)"
-                },
-				{
-                  "type": "image_picker",
-                  "id": "banner_rollover_image",
-                  "label": "Mobile Image"
-                },
-                {
-                    "type": "url",
-                    "id": "link",
-                    "label": "link"
-                }
-			]
-		}
-	],
-	"presets": [
-		{
-			"category": "Promotion",
-			"name": "Home Promotion banners",
-			"blocks": [
-				{
-					"type": "gallery_image"
-				},
-				{
-					"type": "gallery_image"
-				},
-				{
-					"type": "gallery_image"
-				}
-			]
-		}
-	]
+  "name": "Home Promotion banners",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Enhance your skincare's benefits for next level luminosity."
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Heading",
+      "default": "Glow-Getting Heroes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Banner Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_image_desktop",
+          "label": "Banner Image Rollover(desktop hover)"
+        },
+        {
+          "type": "image_picker",
+          "id": "banner_rollover_image",
+          "label": "Mobile Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Promotion",
+      "name": "Home Promotion banners",
+      "blocks": [
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        },
+        {
+          "type": "gallery_image"
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

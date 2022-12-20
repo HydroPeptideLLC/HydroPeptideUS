@@ -1,5 +1,5 @@
-{% comment %}  
-Icons Group
+{% comment %}
+  Icons Group
 {% endcomment %}
 
 {% assign background = section.settings.color_icons_bg %}
@@ -7,36 +7,50 @@ Icons Group
 {% assign icon_color = section.settings.color_icons %}
 
 {% if section.blocks.size > 0 %}
-<div data-section-id="{{ section.id }}" data-section-type="icons-row">
-  <div class="icons-row--background {{ section.settings.icon_group_spacing }}" style="color: {{ color }}; background-color: {{ background }};">
-    <div class="container">
-      <div class="row row-lg">
-        <div class="icons-row-wrapper">
-          {% for block in section.blocks %}
-            {% assign title = block.settings.title %}
-            {% assign content = block.settings.content %}
-            {% assign icon_words = block.settings.icon | split: ' ' %}
-            {%- capture icon -%}{%- for word in icon_words -%}{%- unless forloop.index == 1 -%}-{%- endunless -%}{{ word | lowercase | capitalize }}{%- endfor -%}{%- endcapture -%}
+  <div data-section-id="{{ section.id }}" data-section-type="icons-row">
+    <div
+      class="icons-row--background {{ section.settings.icon_group_spacing }}"
+      style="color: {{ color }}; background-color: {{ background }};"
+    >
+      <div class="container">
+        <div class="row row-lg">
+          <div class="icons-row-wrapper">
+            {% for block in section.blocks %}
+              {% liquid
+                assign title = block.settings.title
+                assign content = block.settings.content
+                assign icon_words = block.settings.icon | split: ' '
+                capture icon
+                  for word in icon_words
+                    unless forloop.index == 1
+                    endunless
+                    echo word | downcase | capitalize
+                  endfor
+                endcapture
+              %}
 
-            <div class="block xs_s1 {{ section.settings.icons_group_column }}" style="padding: {{ section.settings.icons_gutter_spacing }}px">
-              {% if icon != blank %}
-              <span class="icons-row__icon iconsmind-{{ icon }}" style="color: {{ icon_color }}"></span>
-              {% endif %}
+              <div
+                class="block xs_s1 {{ section.settings.icons_group_column }}"
+                style="padding: {{ section.settings.icons_gutter_spacing }}px"
+              >
+                {% if icon != blank %}
+                  <span class="icons-row__icon iconsmind-{{ icon }}" style="color: {{ icon_color }}"></span>
+                {% endif %}
 
-              {% if title != blank %}
-              <h3 class="icons-row__title">{{ title }}</h3>
-              {% endif %}
+                {% if title != blank %}
+                  <h3 class="icons-row__title">{{ title }}</h3>
+                {% endif %}
 
-              {% if content != blank %}
-              <p class="icons-row__content">{{ content }}</p>
-              {% endif %}
-            </div>
-          {% endfor %}
+                {% if content != blank %}
+                  <p class="icons-row__content">{{ content }}</p>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 {% endif %}
 
 {% schema %}
