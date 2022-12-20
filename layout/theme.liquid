@@ -194,11 +194,11 @@
         if settings.show_reviews and settings.enable_yotpo and settings.yotpo_ID != ''
             render 'yotpo-script'
         endif
-        render 'sca.freegifts'
         render 'sca-quick-view-init'
         render 'pagefly-header'
         render 'giftship'
     %}
+    {% include 'sca.freegifts' %}
     {{ content_for_header }}
     {% render 'wiser' %}
     {% render 'wiser_popup' %}
@@ -365,7 +365,6 @@
     <!--  Extole Core Tag  -->
     <script src='https://share.hydropeptide.com/core.js' async></script>
     <!--  Extole Core Tag End  -->
-  
     <script type="text/javascript">
         // Overrides:
         // var afterpay_min = 0.04;            // As per your Afterpay contract.
