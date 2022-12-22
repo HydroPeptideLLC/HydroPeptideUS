@@ -1,31 +1,30 @@
 {%include 'sca_freegift_price' with product %}
 {% comment %} Settings {% endcomment %}
-{% assign image_gallery = section.settings.image_gallery %}
-{% assign image_size = section.settings.image_size %}
-{% assign add_cart_position = section.settings.add_cart_position %}
-{% assign zoom = false %}
-{%- if image_gallery == 'zoom' -%}
-	{% assign zoom = true %}
-{%- endif -%}
-{% assign arrows = section.settings.product_slideshow_arrows %}
-{% assign dots = section.settings.product_slideshow_dots %}
-{% assign layout = 4 %}
-{% assign tab_1 = section.settings.page_tab_1 %}
-{% assign tab_2 = section.settings.page_tab_2 %}
-{% assign tab_3 = section.settings.page_tab_3 %}
-{% assign tab_4 = section.settings.page_tab_4 %}
-{% assign product_layout = section.settings.product_layout %}
-{% assign color_swatches = settings.color_swatches %}
-{% assign show_reviews = settings.show_reviews %}
-
-{% assign sold_out = true %}
-{% if product.available %}
-	{% assign sold_out = false %}
-{% endif %}
-
+{% liquid 
+	assign image_gallery = section.settings.image_gallery
+	assign image_size = section.settings.image_size
+	assign add_cart_position = section.settings.add_cart_position
+	assign zoom = false
+	if image_gallery == 'zoom'
+		assign zoom = true
+	endif
+	assign arrows = section.settings.product_slideshow_arrows
+	assign dots = section.settings.product_slideshow_dots
+	assign layout = 4
+	assign tab_1 = section.settings.page_tab_1
+	assign tab_2 = section.settings.page_tab_2
+	assign tab_3 = section.settings.page_tab_3
+	assign tab_4 = section.settings.page_tab_4
+	assign product_layout = section.settings.product_layout
+	assign color_swatches = settings.color_swatches
+	assign show_reviews = settings.show_reviews
+	assign sold_out = true
+	if product.available
+		assign sold_out = false
+	endif
+%}
 <!-- Mustache Templates for rendering variant popover -->
 <div data-section-id="{{ section.id }}" data-section-type="product-template">
-  
 {%- include 'bold-product' with product, hide_action: 'break', output: 'none' -%}
 	<section class="product container-wrap js-product-template clearfix js-product-template--{{section.id}} product-layout--{{ product_layout }}" data-show_reviews="{{ show_reviews }}">
 		<div class="container">
@@ -36,7 +35,6 @@
 					{% endif %}
 				</div>
 			</div>
-
 			<div class="row row-lg row--{{ product_layout }} js-row--{{ product_layout }}">
 				<div class="product-layout-{{ layout }}--images product-layout-images product-layout-images--{{ image_size }} xxl_s12 xl_s12 lg_s12 s1">
 					{% comment %} Set the layout for the variant images {% endcomment %}
@@ -52,91 +50,75 @@
 						{% endif %}
 						{% assign length = forloop.length %}
 					{% endfor %}
-
 					{% if product_layout == 'slideshow' %}
                   		<div class="productImgSlider-wrapper"> 
-                          <div class="productImgSlider js-productImgSlider js-productImgContainer " data-gallery="{{ image_gallery }}" data-dots="{{ dots }}" data-arrows="{{ arrows }}" data-zoom="{{ zoom }}" id="js-productImgSlider--{{ section.id }}">
-                              {% for image in product.images %}
-
-                                  {% assign has_video = false %}
-                                  {% assign image_alt = image.alt | escape %}
-
-                                  {% if image_alt contains 'youtube' %}
-                                      {% assign has_video = true %}
-                                      {% assign video_type = 'youtube' %}
-                                  {% elsif image_alt contains 'vimeo' %}
-                                      {% assign has_video = true %}
-                                      {% assign video_type = 'vimeo' %}
-                                  {% endif %}
-
-                                  <div class="js-slide {{ thumbnail_width }} product-image product-image--fit {% if forloop.length == 1 %}product-image--single{% endif %} lazyload fade-in" data-image="{{ image | product_img_url: 'master'}}" data-zoom-image="{{ image | product_img_url: 'master'}}"  data-id="{{ image.id }}" data-bgset="{% include 'bgset', image: image %}" data-sizes="auto" data-parent-fit="contain" data-aspect-ratio="{{ image.aspect_ratio }}">
-                                      <noscript>
-                                          <div class="product-image--no-js" style="background: url({{ image | img_url: '2048x' }}) no-repeat center center; background-size: contain;"></div>
-                                      </noscript>
-
-                                      {%- if has_video -%}
-                                          <div class="product-image__video">
-                                              <a href="{{ image_alt }}" class="js-video"><span class="icon-play"></span></a>
-                                          </div>
-                                      {%- else -%}
-
-                                          {%- if image_gallery == 'lightbox' -%}
-                                              <a href="{{ image | product_img_url: 'master'}}" rel="lightbox" class="product-image-lightbox"></a>
-                                          {%- endif -%}
-
-                                          {%- if image_gallery == 'zoom' -%}
-                                              <div class="zoom-container"></div>
-                                          {%- endif -%}
-
-                                      {%- endif -%}
-                                  </div>
-                              {% endfor %}
-                          </div>
-
-                          {% if product.images.size > 1 %}
-                          <div class="productImgSlider-nav js-productImgSlider-nav {% if product.images.size < 6 %}inline_navitem{% endif %}">
-                              {% for image in product.images %}
-                          
-								{% assign has_video = false %}
-								{% assign image_alt = image.alt | escape %}
-
-								{% if image_alt contains 'youtube' %}
-									{% assign has_video = true %}
-									{% assign video_type = 'youtube' %}
-								{% elsif image_alt contains 'vimeo' %}
-									{% assign has_video = true %}
-									{% assign video_type = 'vimeo' %}
-								{% endif %} 
-                            
-                                  {% assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' %}
-                                  {% include 'theme-rias' %}
-                                  <div class="js-slide {{ thumbnail_width }} product-image-thumb {% if has_video %}has_video{% endif %}{% if forloop.index == 1 %}active{% endif %}" data-image="{{ image | product_img_url: 'master'}}">
-                                      <img
-                                           class="lazyload fade-in product-image-thumb {% if forloop.index == 1 %}active{% endif %}-img"
-                                           data-src="{{ image_url_pattern }}"
-                                           data-widths= "[{{ image_widths }}]"
-                                           data-aspectratio="{{image.aspect_ratio }}"
-                                           data-sizes="auto"
-                                           alt="{{ image.alt | escape }}"
-                                           itemprop="image"
-                                           >
-                                      {% if has_video %}
-                                          <div class="product-image__video">
-                                                  <a href="{{ image_alt }}" class="js-video"><span class="icon-play"></span></a>
-                                          </div>
-                                      {% endif %}
-                                      <noscript>
-                                          <img src="{{ image | img_url: 'master' }}" alt="{{ image.alt | escape }}">
-                                      </noscript>
-                                  </div>
-                              {% endfor %}
-                          </div>                          
-                          {% endif %}
+                          	<div class="productImgSlider js-productImgSlider js-productImgContainer " data-gallery="{{ image_gallery }}" data-dots="{{ dots }}" data-arrows="{{ arrows }}" data-zoom="{{ zoom }}" id="js-productImgSlider--{{ section.id }}">
+                              	{% for image in product.images %}
+									{% assign has_video = false %}
+									{% assign image_alt = image.alt | escape %}
+									{% if image_alt contains 'youtube' %}
+										{% assign has_video = true %}
+										{% assign video_type = 'youtube' %}
+									{% elsif image_alt contains 'vimeo' %}
+										{% assign has_video = true %}
+										{% assign video_type = 'vimeo' %}
+									{% endif %}
+									<div class="js-slide {{ thumbnail_width }} product-image product-image--fit {% if forloop.length == 1 %}product-image--single{% endif %} lazyload fade-in" data-image="{{ image | product_img_url: 'master'}}" data-zoom-image="{{ image | product_img_url: 'master'}}"  data-id="{{ image.id }}" data-bgset="{% include 'bgset', image: image %}" data-sizes="auto" data-parent-fit="contain" data-aspect-ratio="{{ image.aspect_ratio }}">
+                                      	<noscript>
+                                          	<div class="product-image--no-js" style="background: url({{ image | img_url: '2048x' }}) no-repeat center center; background-size: contain;"></div>
+                                      	</noscript>
+                                      	{%- if has_video -%}
+											<div class="product-image__video">
+                                              	<a href="{{ image_alt }}" class="js-video"><span class="icon-play"></span></a>
+                                          	</div>
+                                      	{%- else -%}
+											{%- if image_gallery == 'lightbox' -%}
+												<a href="{{ image | product_img_url: 'master'}}" rel="lightbox" class="product-image-lightbox"></a>
+											{%- endif -%}
+											{%- if image_gallery == 'zoom' -%}
+												<div class="zoom-container"></div>
+											{%- endif -%}
+                                      	{%- endif -%}
+                                  	</div>
+                              	{% endfor %}
+                          	</div>
+                          	{% if product.images.size > 1 %}
+                          		<div class="productImgSlider-nav js-productImgSlider-nav {% if product.images.size < 6 %}inline_navitem{% endif %}">
+                              		{% for image in product.images %}
+										{% liquid 
+											assign has_video = false
+											assign image_alt = image.alt | escape
+											if image_alt contains 'youtube'
+												assign has_video = true
+												assign video_type = 'youtube'
+											elsif image_alt contains 'vimeo'
+												assign has_video = true
+												assign video_type = 'vimeo'
+											endif
+										%}
+										{% assign image_widths = '295,394,590,700,800,1000,1200,1500,1800,2000,2400' %}
+                                  		{% include 'theme-rias' %}
+                                 	 	<div class="js-slide {{ thumbnail_width }} product-image-thumb {% if has_video %}has_video{% endif %}{% if forloop.index == 1 %}active{% endif %}" data-image="{{ image | product_img_url: 'master'}}">
+                                      		<img class="lazyload fade-in product-image-thumb {% if forloop.index == 1 %}active{% endif %}-img" data-src="{{ image_url_pattern }}" data-widths= "[{{ image_widths }}]" data-aspectratio="{{image.aspect_ratio }}" data-sizes="auto" alt="{{ image.alt | escape }}" itemprop="image">
+                                      		{% if has_video %}
+                                          		<div class="product-image__video">
+                                                  	<a href="{{ image_alt }}" class="js-video"><span class="icon-play"></span></a>
+                                          		</div>
+                                      		{% endif %}
+                                      		<noscript>
+                                          		<img src="{{ image | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+                                      		</noscript>
+                                  		</div>
+                              		{% endfor %}
+                          		</div>                          
+                          	{% endif %}
                   		</div>
 					{% else %}
 						<div class="productImgScroller js-productImgScroller js-productImgContainer " data-gallery="{{ image_gallery }}" data-dots="{{ dots }}" data-arrows="{{ arrows }}" data-zoom="{{ zoom }}">
 							{% for image in product.images %}
+								{% liquid 
 
+								%}
 								{% assign has_video = false %}
 								{% assign image_alt = image.alt | escape %}
 
@@ -287,7 +269,7 @@
                                       {% unless variant.title contains '(Freegifts)' %}
 
 										{%unless variant.metafields.secomapp.freegifts %}
-											<option{% if variant == first_variant %} selected{% endif %} value="{{ variant.id }}" data-sku="{{variant.sku}}" data-qty="{{ variant.inventory_quantity }}">
+											<option {% if variant == first_variant %} selected{% endif %} value="{{ variant.id }}" data-sku="{{variant.sku}}" data-qty="{{ variant.inventory_quantity }}">
 												{{ variant.title }} - {{ variant.price | money | strip_html }}
 											</option>
                                      	{%endunless%}
@@ -308,120 +290,100 @@
                                       	<meta itemprop="priceValidUntil" content="">
 										<link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
-                                      {% if section.settings.show_quantity %}
-                                      <div class="productForm-select">
-                                        <label for="quantity">{{ 'products.form.qty' | t }}</label>
-                                        <select name="quantity" id="quantity">
-                                          {% for i in (1..9) %}
-                                          <option value="{{ i }}">{{ i }}</option>
-                                          {% endfor %}
-                                        </select>
-                                        {% assign current_variant = product.selected_or_first_available_variant %}
-                                        {% if product.available %}
-
-                                        <a id="prod_add_to_cart" href="javascript:void(0);">ADD TO CART</a>
-
-                                        <p id="sold_out" style="border: 1px solid #aaa;
-                                                                padding: 13px 30px;
-                                                                margin-left: 30px;
-                                                                background: #aaa;
-                                                                font-weight: bold; display: none">SOLD OUT</p>
-
+                                      	{% if section.settings.show_quantity %}
+                                      		<div class="productForm-select">
+                                        		<label for="quantity">{{ 'products.form.qty' | t }}</label>
+                                        		<select name="quantity" id="quantity">
+                                          			{% for i in (1..9) %}
+                                          				<option value="{{ i }}">{{ i }}</option>
+                                          			{% endfor %}
+                                        		</select>
+                                        		{% assign current_variant = product.selected_or_first_available_variant %}
+                                        		{% if product.available %}
+                                        			<a id="prod_add_to_cart" href="javascript:void(0);">ADD TO CART</a>
+													<p id="sold_out" style="border: 1px solid #aaa; padding: 13px 30px; margin-left: 30px; background: #aaa; font-weight: bold; display: none">SOLD OUT</p>
+                                        		{% endif %}
                                         {% endif %}
-                                        {% endif %}
-
 										{% if template contains 'product' %}
 											{% if settings.enable_payment_button %}
 												{{ form | payment_button }}
 											{% endif %}
 										{% endif %}
-
+										</div>
 									</div>
-                              
-								</div>
-							{% endform %}
-                                  <style>
-                                    	.product-form {
-                                        	position: relative !important;
-                                           	height: 240px !important; 
-                                        }
-                                    	afterpay-placement {
-                                        	position: absolute; 
-                                          	bottom: 0 !important;
-                                        }
-                                  </style>
-                            <div class="dk-flat-static"></div>
-                          
-							<div class="sca-fg-cat-list" style="display:none;" name="secomapp-fg-data-{{ product.id }}"> </div>
-{% comment %}
-							{% if section.settings.show_newsletter %}
-								<div class="notification-form {% unless sold_out %}visually-hidden{% endunless %}">
-									{% form 'customer' %}
-										{% assign text_newsletter = section.settings.text_newsletter %}
-										{% if text_newsletter != blank %}
-											<label for="contact[email]">{{ text_newsletter }}</label>
-										{% endif %}
-										<div class="js-signUp-form signUp-form">
-											<input type="hidden" id="contact_tags" name="contact[tags]" value="newsletter"/>
-											<div class="inputGroup mc-field-group">
-												<input class="signUp-input required email" type="email" value="" name="contact[email]" id="contact[email]" placeholder="{{ 'general.newsletter_signup.email_placeholder' | t }}">
-												<input type="hidden" id="newsletter-first-name" name="contact[first_name]" value="Newsletter" />
-												<input type="hidden" id="newsletter-last-name" name="contact[last_name]" value="Subscriber" />
-												<span class="signUp-mailIcon icon-mail"></span>
-												<button type="submit" class="signUp-submit icon-arrow-right" name="subscribe" id="mc-embedded-subscribe"></button>
+								{% endform %}
+                                  	<style>
+                                    	.product-form {position: relative !important; height: 240px !important; }
+                                    	.afterpay-placement {position: absolute; bottom: 0 !important;}
+                                  	</style>
+                           			<div class="dk-flat-static"></div>
+                          			<div class="sca-fg-cat-list" style="display:none;" name="secomapp-fg-data-{{ product.id }}"> </div>
+								{% comment %}{% if section.settings.show_newsletter %}
+									<div class="notification-form {% unless sold_out %}visually-hidden{% endunless %}">
+										{% form 'customer' %}
+											{% assign text_newsletter = section.settings.text_newsletter %}
+											{% if text_newsletter != blank %}
+												<label for="contact[email]">{{ text_newsletter }}</label>
+											{% endif %}
+											<div class="js-signUp-form signUp-form">
+												<input type="hidden" id="contact_tags" name="contact[tags]" value="newsletter"/>
+												<div class="inputGroup mc-field-group">
+													<input class="signUp-input required email" type="email" value="" name="contact[email]" id="contact[email]" placeholder="{{ 'general.newsletter_signup.email_placeholder' | t }}">
+													<input type="hidden" id="newsletter-first-name" name="contact[first_name]" value="Newsletter" />
+													<input type="hidden" id="newsletter-last-name" name="contact[last_name]" value="Subscriber" />
+													<span class="signUp-mailIcon icon-mail"></span>
+													<button type="submit" class="signUp-submit icon-arrow-right" name="subscribe" id="mc-embedded-subscribe"></button>
+												</div>
 											</div>
-										</div>
-										{% if form.posted_successfully? %}
-											<div class="signUp-confirmation p">{{ 'general.newsletter_signup.success_message' | t }}</div>
-										{% elsif form.errors %}
-											{{ form.errors | default_errors }}
+											{% if form.posted_successfully? %}
+												<div class="signUp-confirmation p">{{ 'general.newsletter_signup.success_message' | t }}</div>
+											{% elsif form.errors %}
+												{{ form.errors | default_errors }}
+											{% endif %}
+										{% endform %}
+									</div>
+								{% endif %}{% endcomment %}
+								{% if settings.share_on_facebook or settings.share_on_twitter or settings.share_on_pinterest %}
+									<div class="product-share">
+										<span class="socialBar p">{% include 'site-shareLinks' %}</span>
+									</div>
+								{% endif %}
+								{% if tab_1 != blank or tab_2 != blank or tab_3 != blank %}
+									<div class="product-tabs js-product-tabs">
+										{% if tab_1 != blank %}
+											<div class="product-tab">
+												<div class="product-tab-title" itemprop="title">{{ pages[tab_1].title }} <span class="icon-toggle"></span></div>
+												<div class="product-tab-content" itemprop="content">{{pages[tab_1].content}}</div>
+											</div>
 										{% endif %}
-									{% endform %}
-								</div>
-							{% endif %}
-{% endcomment %}
-							{% if settings.share_on_facebook or settings.share_on_twitter or settings.share_on_pinterest %}
-							<div class="product-share">
-								<span class="socialBar p">{% include 'site-shareLinks' %}</span>
+										{% if tab_2 != blank %}
+											<div class="product-tab">
+												<div class="product-tab-title" itemprop="title">{{ pages[tab_2].title }} <span class="icon-toggle"></span></div>
+												<div class="product-tab-content" itemprop="content">{{pages[tab_2].content}}</div>
+											</div>
+										{% endif %}
+										{% if tab_3 != blank %}
+											<div class="product-tab">
+												<div class="product-tab-title" itemprop="title">{{ pages[tab_3].title }} <span class="icon-toggle"></span></div>
+												<div class="product-tab-content" itemprop="content">{{pages[tab_3].content}}</div>
+											</div>
+										{% endif %}
+										{% if tab_4 != blank %}
+											<div class="product-tab">
+												<div class="product-tab-title" itemprop="title">{{ pages[tab_3].title }} <span class="icon-toggle"></span></div>
+												<div class="product-tab-content" itemprop="content">{{pages[tab_3].content}}</div>
+											</div>
+										{% endif %}
+									</div>
+								{% endif %}
 							</div>
-							{% endif %}
-							{% if tab_1 != blank or tab_2 != blank or tab_3 != blank %}
-								<div class="product-tabs js-product-tabs">
-									
-									{% if tab_1 != blank %}
-										<div class="product-tab">
-											<div class="product-tab-title" itemprop="title">{{ pages[tab_1].title }} <span class="icon-toggle"></span></div>
-											<div class="product-tab-content" itemprop="content">{{pages[tab_1].content}}</div>
-										</div>
-									{% endif %}
-									{% if tab_2 != blank %}
-										<div class="product-tab">
-											<div class="product-tab-title" itemprop="title">{{ pages[tab_2].title }} <span class="icon-toggle"></span></div>
-											<div class="product-tab-content" itemprop="content">{{pages[tab_2].content}}</div>
-										</div>
-									{% endif %}
-									{% if tab_3 != blank %}
-										<div class="product-tab">
-											<div class="product-tab-title" itemprop="title">{{ pages[tab_3].title }} <span class="icon-toggle"></span></div>
-											<div class="product-tab-content" itemprop="content">{{pages[tab_3].content}}</div>
-										</div>
-									{% endif %}
-                                    {% if tab_4 != blank %}
-										<div class="product-tab">
-											<div class="product-tab-title" itemprop="title">{{ pages[tab_3].title }} <span class="icon-toggle"></span></div>
-											<div class="product-tab-content" itemprop="content">{{pages[tab_3].content}}</div>
-										</div>
-									{% endif %}
-								</div>
-							{% endif %}
 						</div>
+                  		<div class="brand_icons">
+                    		<img class="desktop_only" style="padding-top: 0 !important;" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/HPWeb-PDP-Desktop-BrandIcons.gif?v=1601568732">
+                  		</div>
 					</div>
-                  <div class="brand_icons">
-                    <img class="desktop_only" style="padding-top: 0 !important;" src="https://cdn.shopify.com/s/files/1/0027/5179/1157/files/HPWeb-PDP-Desktop-BrandIcons.gif?v=1601568732">
-                  </div>
 				</div>
 			</div>
-		</div>
 	</section>
 
 
