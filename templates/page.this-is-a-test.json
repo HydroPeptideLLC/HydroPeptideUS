@@ -22,40 +22,10 @@
             "desktop_banner_content_position": "float: right !important;",
             "banner_content_position": "padding: 322px 0 55px !important;"
           }
-        },
-        "template--16040175632574__0d1c865e-1333-4eac-a0ea-b968a67ff2c9-167183174097497cd9-1": {
-          "type": "gallery_image",
-          "disabled": true,
-          "settings": {
-            "title": "Revamp Your Regimen Kit",
-            "short_text": "Give your skincare routine a makeover",
-            "text_color": "#000000",
-            "cta": "",
-            "banner_cta_color": "#000000",
-            "link": "",
-            "desktop_banner_content_position": "float: right !important;",
-            "banner_content_position": "padding: 322px 0 55px !important;"
-          }
-        },
-        "template--16040175632574__0d1c865e-1333-4eac-a0ea-b968a67ff2c9-167183174097497cd9-2": {
-          "type": "gallery_image",
-          "disabled": true,
-          "settings": {
-            "title": "Revamp Your Regimen Kit",
-            "short_text": "Give your skincare routine a makeover",
-            "text_color": "#000000",
-            "cta": "",
-            "banner_cta_color": "#000000",
-            "link": "",
-            "desktop_banner_content_position": "float: right !important;",
-            "banner_content_position": "padding: 322px 0 55px !important;"
-          }
         }
       },
       "block_order": [
-        "template--16040175632574__0d1c865e-1333-4eac-a0ea-b968a67ff2c9-167183174097497cd9-0",
-        "template--16040175632574__0d1c865e-1333-4eac-a0ea-b968a67ff2c9-167183174097497cd9-1",
-        "template--16040175632574__0d1c865e-1333-4eac-a0ea-b968a67ff2c9-167183174097497cd9-2"
+        "template--16040175632574__0d1c865e-1333-4eac-a0ea-b968a67ff2c9-167183174097497cd9-0"
       ],
       "settings": {
       }
