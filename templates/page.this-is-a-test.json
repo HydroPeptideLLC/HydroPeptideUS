@@ -1,10 +1,5 @@
 {
   "sections": {
-    "main": {
-      "type": "page-hero",
-      "settings": {
-      }
-    },
     "0d1c865e-1333-4eac-a0ea-b968a67ff2c9": {
       "type": "gg-hero-banner",
       "blocks": {
