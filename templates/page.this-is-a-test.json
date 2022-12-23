@@ -24,9 +24,44 @@
       ],
       "settings": {
       }
+    },
+    "bb0e6b86-7803-46ff-bfb3-10f3b080f912": {
+      "type": "Home_happy_customer",
+      "blocks": {
+        "template--16040175632574__bb0e6b86-7803-46ff-bfb3-10f3b080f912-1671832066b6a970a4-0": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Moisture_Reset_600.jpg",
+            "title": "sdfasdfasdfasdf",
+            "button_text": "sdfsdfs",
+            "link": ""
+          }
+        },
+        "template--16040175632574__bb0e6b86-7803-46ff-bfb3-10f3b080f912-1671832066b6a970a4-1": {
+          "type": "gallery_image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Daily_Drench_Blog.jpg",
+            "title": "asgagadfasdfagadf",
+            "button_text": "sdfsdfsdfs",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16040175632574__bb0e6b86-7803-46ff-bfb3-10f3b080f912-1671832066b6a970a4-0",
+        "template--16040175632574__bb0e6b86-7803-46ff-bfb3-10f3b080f912-1671832066b6a970a4-1"
+      ],
+      "settings": {
+        "sub_title": "Skincare for happy cells",
+        "testimonial": "We take an epigenetic approach to aging, meaning we focus on ingredients that are going to signal positive cell health because happy cells mean more youthful acting skin.",
+        "author": "- Dr. Neal Kitchen, Chief Geneticist",
+        "cta": "Learn More",
+        "cta_link": ""
+      }
     }
   },
   "order": [
-    "0d1c865e-1333-4eac-a0ea-b968a67ff2c9"
+    "0d1c865e-1333-4eac-a0ea-b968a67ff2c9",
+    "bb0e6b86-7803-46ff-bfb3-10f3b080f912"
   ]
 }
