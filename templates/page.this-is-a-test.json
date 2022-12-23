@@ -1,6 +1,7 @@
 {
   "sections": {
     "main": {
+      "name": "This is a Test",
       "type": "page-hero",
       "settings": {
       }
