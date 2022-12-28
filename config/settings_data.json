@@ -1120,6 +1120,7 @@
           },
           "7a51d953-6adc-43f3-bee7-f9bb33641cce": {
             "type": "gallery_image",
+            "disabled": true,
             "settings": {
               "background_image": "shopify:\/\/shop_images\/102722_HolidayKits_HomepageBanner_Desktop_v3.png",
               "background_image_mobile": "shopify:\/\/shop_images\/102722_HolidayKits_HomepageBanner_Mobile_NoText_1.png",
