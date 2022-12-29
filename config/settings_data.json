@@ -1103,6 +1103,21 @@
       "1603745663be86b54b": {
         "type": "home-hero-banner",
         "blocks": {
+          "68b0e187-9c48-4658-9662-820f0c2c91fb": {
+            "type": "gallery_image",
+            "settings": {
+              "background_image": "shopify:\/\/shop_images\/122122_January_HomepageBanner_Desktop.png",
+              "background_image_mobile": "shopify:\/\/shop_images\/122122_January_HomepageBanner_Mobile.png",
+              "title": "The clean, clinical method.",
+              "short_text": "A professional-grade home routine for truly radiant, glowing skin.  ",
+              "text_color": "#000000",
+              "cta": "Shop Now",
+              "banner_cta_color": "#ffffff",
+              "link": "shopify:\/\/collections\/best-sellers",
+              "desktop_banner_content_position": "float: left !important;",
+              "banner_content_position": "padding: 0px 0 550px !important;"
+            }
+          },
           "7a51d953-6adc-43f3-bee7-f9bb33641cce": {
             "type": "gallery_image",
             "settings": {
@@ -1232,6 +1247,7 @@
           }
         },
         "block_order": [
+          "68b0e187-9c48-4658-9662-820f0c2c91fb",
           "7a51d953-6adc-43f3-bee7-f9bb33641cce",
           "ffe2babb-97cd-4c55-8887-adf6d2ddd0e0",
           "56b3ff0b-3422-424b-b68e-aee09e5fb65e",
