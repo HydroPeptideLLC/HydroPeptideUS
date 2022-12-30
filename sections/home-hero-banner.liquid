@@ -26,7 +26,7 @@
           }
           @media screen and (min-width: 768px)
           {
-            .content
+             .banner_{{ forloop.index }} > .container > .content
             {
               {% comment %} {{ block.settings.desktop_banner_content_position }} {% endcomment %}
               position: relative;
@@ -39,7 +39,7 @@
             {
               background-image: url({{ block.settings.background_image_mobile | image_url }});
             }
-            .content
+             .banner_{{ forloop.index }} > .container > .content
             {
               {{ block.settings.banner_content_position }}
             }
