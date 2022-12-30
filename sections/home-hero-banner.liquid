@@ -34,7 +34,7 @@
                             .home_hero_banner.banner_{{ forloop.index }} {
                                 background-image: url({{ block.settings.background_image_mobile | img_url: 'master' }});
                             }
-                            .content {
+                            .banner_{{ forloop.index }} > .container > .content {
                                 {{ block.settings.banner_content_position }}
                             }
         </style>
