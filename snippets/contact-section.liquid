@@ -10,7 +10,7 @@
       </div>
     </section>
   {% endif %}
-  
+
   <div class="container-wrap">
     <div class="contact-form-container container">
       <div class="row row-med">
@@ -20,7 +20,7 @@
               {% if contact_heading != blank %}
                 <h1>{{ contact_heading }}</h1>
               {% endif %}
-              
+
               {% if contact_content != blank %}
                 <div class="content-wrapper text-content rte">
                   {{ contact_content }}
@@ -28,7 +28,7 @@
               {% endif %}
             </div>
           {% endif %}
-          
+
           {% include 'contact-form' %}
         </div>
       </div>

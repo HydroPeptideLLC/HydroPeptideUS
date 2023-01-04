@@ -1,23 +1,22 @@
 {% comment %} Settings {% endcomment %}
-{% assign showBlogName = section.settings.show_blog_name %}
-{% assign showRSS = section.settings.show_rss %}
-{% assign showComments = section.settings.show_comments %}
-{% assign showFeatured = section.settings.show_featured_post %}
-{% assign articleColumns = section.settings.article_columns | plus: 0 %}
-{% assign articleRows = section.settings.article_rows %}
-{% assign articleLimit = articleColumns | times: articleRows %}
-{% assign columnsSize = articleColumns | replace: '1', '' %}
-{% assign accent_line = section.settings.accent_line %}
-{% assign accent_line_color = section.settings.accent_line_color %}
-
+{% liquid 
+  assign showBlogName = section.settings.show_blog_name
+  assign showRSS = section.settings.show_rss
+  assign showComments = section.settings.show_comments
+  assign showFeatured = section.settings.show_featured_post
+  assign articleColumns = section.settings.article_columns | plus: 0
+  assign articleRows = section.settings.article_rows
+  assign articleLimit = articleColumns | times: articleRows
+  assign columnsSize = articleColumns | replace: '1', ''
+  assign accent_line = section.settings.accent_line 
+  assign accent_line_color = section.settings.accent_line_color
+%}
 {%- if accent_line_color != blank -%}
 <style>
   .article .accent-line--straight { background-color: {{ accent_line_color }}; }
   .article .accent-line--curved svg path { fill: {{ accent_line_color }}; }
 </style>
 {%- endif -%}
-
-
 <div class="blog-header row row-lg">
   <div class="blog_header_nav">
   

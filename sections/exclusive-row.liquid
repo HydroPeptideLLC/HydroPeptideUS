@@ -1,65 +1,58 @@
 <div class="exclusive_min">
   <div class="exclusive-row">
-    
-   {% for block in section.blocks %} 
-    
- 
-    {% assign startdate =  block.settings.start_date | date: '%s' %}
-   
-      {% assign enddate =  block.settings.end_date | date: '%s' %}
-     {% assign now =  'now' | date: "%Y-%m-%d  %H:%M %p" %}
-     {% assign currenttime =  now | date: '%s' %}
-  
-     {% if currenttime >= startdate and currenttime <= enddate %}
-    {% capture image_layout %}
-      <div class="feature-row__item">
-        {% if block.settings.image != blank %}
-          <noscript>
-            {{ block.settings.image | img_url: 'master' | img_tag: block.settings.image.alt, 'feature-row__image-no-js' }}
-          </noscript>
-          <div class="feature-row__image-wrapper" >
-            {% assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-            <img class="feature-row__image lazyload"
-              src="{{ block.settings.image | img_url: 'master' }}"
-             
-              alt="{{ block.settings.image.alt | escape }}">
+
+    {% for block in section.blocks %}
+      {% liquid 
+        assign startdate =  block.settings.start_date | date: '%s'
+        assign enddate =  block.settings.end_date | date: '%s'
+        assign now =  'now' | date: "%Y-%m-%d  %H:%M %p"
+        assign currenttime =  now | date: '%s'
+      %}
+      {% if currenttime >= startdate and currenttime <= enddate %}
+        {% capture image_layout %}
+          <div class="feature-row__item">
+            {% if block.settings.image != blank %}
+              <noscript>
+                {{ block.settings.image | img_url: 'master' | img_tag: block.settings.image.alt, 'feature-row__image-no-js' }}
+              </noscript>
+              <div class="feature-row__image-wrapper">
+                {% assign img_url = block.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+                <img
+                  class="feature-row__image lazyload"
+                  src="{{ block.settings.image | img_url: 'master' }}"
+                  alt="{{ block.settings.image.alt | escape }}">
+              </div>
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+        {% endcapture %}
+        <div class="feature-row">
+          {% if block.settings.layout == 'left' %}
+            {{ image_layout }}
+          {% endif %}
+          <div class="feature-row__item feature-row__text feature-row__text--{{ block.settings.layout }}">
+            {% if block.settings.title != blank %}
+              <h2 class="h3">{{ block.settings.title | escape }}</h2>
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <div class="rte-setting featured-row__subtext">{{ block.settings.text }}</div>
+            {% endif %}
+            {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+              <a href="{{ block.settings.button_link }}" class="btn">
+                {{ block.settings.button_label | escape }}
+              </a>
+            {% endif %}
+          </div>
+
+          {% if block.settings.layout == 'right' %}
+            {{ image_layout }}
+          {% endif %}
         </div>
-        {% else %}
-          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-        {% endif %}
-      </div>
-    {% endcapture %}
-
-    <div class="feature-row">
-      {% if block.settings.layout == 'left' %}
-        {{ image_layout }}
+        <hr class="hr--small">
       {% endif %}
-
-      <div class="feature-row__item feature-row__text feature-row__text--{{ block.settings.layout }}">
-        {% if block.settings.title != blank %}
-          <h2  class="h3">{{ block.settings.title | escape }}</h2>
-        {% endif %}
-        {% if block.settings.text != blank %}
-          <div  class="rte-setting featured-row__subtext">{{ block.settings.text }}</div>
-        {% endif %}
-       
-    
-        {% if block.settings.button_label != blank and block.settings.button_link != blank %}
-          <a  href="{{ block.settings.button_link }}" class="btn">
-            {{ block.settings.button_label | escape }}
-          </a>
-        {% endif %}
-      </div>
-
-      {% if block.settings.layout == 'right' %}
-        {{ image_layout }}
-      {% endif %}
-      
-    </div>
-    <hr class="hr--small">
-    {% endif %}
     {% endfor %}
-    
+
   </div>
 </div>
 
@@ -68,77 +61,70 @@
     "name": "Exclusive",
     "settings": [
       {
-      "id": "text-box",
-      "type": "text",
-      "label": "Heading",
-      "default": "Title"
-    }
+        "id": "text-box",
+        "type": "text",
+        "label": "Heading",
+        "default": "Title"
+      }
     ],
     "blocks": [
-        {
-          "type": "select",
-          "name": "Add Row",
-          "settings": [
-            {
-              "id": "image",
-              "type": "image_picker",
-                "label": "Image"
-            },
-            {
+      {
         "type": "select",
-        "id": "layout",
-        "label": "Image alignment",
-        "default": "left",
-        "options": [
+        "name": "Add Row",
+        "settings": [
           {
-            "value": "left",
-            "label": "Left"
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
           },
           {
-            "value": "right",
-            "label": "Right"
+            "type": "select",
+            "id": "layout",
+            "label": "Image alignment",
+            "default": "left",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              }, {
+                "value": "right",
+                "label": "Right"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Image with text"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>contents</p>"
+          }, {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label"
+          }, {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }, {
+            "type": "text",
+            "id": "start_date",
+            "label": "Start Date",
+            "default": "1970-01-01 11:50 PM"
+          }, {
+            "type": "text",
+            "id": "end_date",
+            "label": "End Date",
+            "default": "2050-03-12 11:50 PM"
           }
         ]
-      },
-		{
-        "type": "text",
-        "id": "title",
-        "label": "Heading",
-        "default": "Image with text"
-      },
-         {
-        "type": "richtext",
-        "id": "text",
-        "label": "Text",
-        "default": "<p>contents</p>"
-      },
-      {
-        "type": "text",
-        "id": "button_label",
-        "label": "Button label"
-      },
-     
-     
-      {
-        "type": "url",
-        "id": "button_link",
-        "label": "Button link"
-      },
-       {
-        "type": "text",
-        "id": "start_date",
-        "label": "Start Date",
-		 "default": "1970-01-01 11:50 PM"
-       },
-      {
-        "type": "text",
-        "id": "end_date",
-        "label": "End Date",
-        "default": "2050-03-12 11:50 PM"
-       }
-          ]
-        }
-      ],
+      }
+    ],
     "presets": [
       {
         "name": "Exclusive Row",
@@ -146,4 +132,4 @@
       }
     ]
   }
-{% endschema %} 
+{% endschema %}

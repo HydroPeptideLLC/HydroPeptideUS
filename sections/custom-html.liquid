@@ -1,10 +1,14 @@
 {% comment %} Settings {% endcomment %}
-{%- assign subheading = section.settings.subheading -%}
-{%- assign heading = section.settings.title -%}
-{%- assign html = section.settings.html -%}
-
-<section class="custom-html-section" data-section-id="{{ section.id }}" data-section-type="custom-html">
-   {%- unless heading == blank and subheading == blank -%}
+{% liquid 
+  assign subheading = section.settings.subheading
+  assign heading = section.settings.title
+  assign html = section.settings.html
+%}
+<section
+  class="custom-html-section"
+  data-section-id="{{ section.id }}"
+  data-section-type="custom-html">
+  {%- unless heading == blank and subheading == blank -%}
     <div class="page-title">
       <div class="container">
         <div class="row row-lg">
@@ -19,7 +23,6 @@
       </div>
     </div>
   {% endunless %}
-
   <div class="custom-html">
     <div class="container">
       <div class="row row-lg">
@@ -34,33 +37,31 @@
 </section>
 
 {% schema %}
-{
-  "name": "Custom HTML",
-  "settings": [
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "Subeading",
-      "default": "Custom content"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "HTML code"
-    },
-    {
-      "type": "html",
-      "id": "html",
-      "label": "Custom HTML",
-      "default": "<p>Once you write some HTML, it will render right here.</p>"
-    }
-  ],
-  "presets": [
-    {
-      "category": "Advanced",
-      "name": "Custom HTML"
-    }
-  ]
-}
+  {
+    "name": "Custom HTML",
+    "settings": [
+      {
+        "type": "text",
+        "id": "subheading",
+        "label": "Subeading",
+        "default": "Custom content"
+      }, {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "HTML code"
+      }, {
+        "type": "html",
+        "id": "html",
+        "label": "Custom HTML",
+        "default": "<p>Once you write some HTML, it will render right here.</p>"
+      }
+    ],
+    "presets": [
+      {
+        "category": "Advanced",
+        "name": "Custom HTML"
+      }
+    ]
+  }
 {% endschema %}

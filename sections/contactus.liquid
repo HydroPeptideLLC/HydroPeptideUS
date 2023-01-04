@@ -1,33 +1,138 @@
-
-
-
 <div class="spa_header_img medium--down-show mobileview">
   {% if section.settings.image != blank %}
-      <img src="{{ section.settings.image | img_url: '2048x'}}"class="home-desktop-banner">
-{% endif %}
+    <img src="{{ section.settings.image | img_url: '2048x'}}"class="home-desktop-banner">
+  {% endif %}
   {% if section.settings.mobile_image != blank %}
-  <img src="{{section.settings.mobile_image | img_url: 'master'}}"class="home-mobile-banner"> {% endif %} 
+    <img src="{{section.settings.mobile_image | img_url: 'master'}}"class="home-mobile-banner">
+  {% endif %}
 </div>
 <div class="custom_wrapper padding_120">
   <div class="grid">
     <div class="grid__item large--one-whole">
       <header class="section-header text-center">
-        <h1>{{ page.title }}</h1> {% comment %}
-        <hr class="hr--small">{% endcomment %} </header>
+        <h1>{{ page.title }}</h1>
+        {% comment %}
+        <hr class="hr--small">{% endcomment %}
+      </header>
       <div class="two-col-main">
         <div class="grid__item large--three-fifths small--one-whole">
-          <div class="rte rte--nomargin rte--indented-images form_content"> {{ page.content }} </div>
+          <div class="rte rte--nomargin rte--indented-images form_content">
+            {{ page.content }}
+          </div>
         </div>
         <div class="grid__item large--two-fifths small--one-whole">
           <div class="form-vertical">
             <h3>Send Us A Message</h3>
-             {% form 'contact', action: "https://vital-forms-api.c1.humanpresence.app/api/form/vfob/5a56e06f-a104-4da6-bb48-b803e3fea411$5c66af7d714a5300b9b45916", data-vfib: "0" %}
- {% comment %} Successful message {% endcomment %} {% if form.posted_successfully? %} <p class="note form-success"> {{ 'contact.form.post_success' | t }} </p> {% endif %} {{ form.errors | default_errors }} <div class="grid grid--small form_right"> <label for="ContactFormName" class="hidden-label">First Name <span class="asterisk">*</span></label> <input type="text" id="ContactFormName" class="input-full firstname" name="contact[first-name]" autocapitalize="words" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" required> <label for="ContactFormName" class="hidden-label">Last Name</label> <input type="text" id="ContactFormLastName" class="input-full lastname" name="contact[last-name]" autocapitalize="words" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"> <label for="ContactFormSubject">Subject</label> <input type="text" class="input-full" name="contact[subject]" value"Email From Contact us Form" /> <label for="ContactFormEmail" class="hidden-label">{{ 'contact.form.email' | t }} <span class="asterisk">*</span></label> <input type="email" id="ContactFormEmail" class="input-full" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" required> <label for="ContactFormPhone" class="hidden-label">Phone</label> <input type="text" id="ContactFormPhone" class="input-full phonenum" name="contact[phone]" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}"> <label for="ContactFormMessage" class="hidden-label">{{ 'contact.form.message' | t }} <span class="asterisk">*</span></label> <textarea rows="10" id="ContactFormMessage" class="input-full" name="contact[body]" required>{% if form.body %}{{ form.body }}{% endif %}</textarea> <div style="display:none;" id="validatedata"> <div class="questionval"> How much is: <input type="text" disabled="disabled" id="question" /> </div> <div class="answerval"> Answer:<span class="asterisk">*</span> <input type="text" id="answer" /><span style="color:red;" id="incorrectanswer"></span> </div> </div> <input id="contactsubmit" type="submit" class="btn contact_submit" value="SUBMIT"> </div> {% endform %}
-
+            {% form 'contact', action: "https://vital-forms-api.c1.humanpresence.app/api/form/vfob/5a56e06f-a104-4da6-bb48-b803e3fea411$5c66af7d714a5300b9b45916", data-vfib: "0" %}
+              {% comment %} Successful message {% endcomment %}
+              {% if form.posted_successfully? %}
+                <p class="note form-success">
+                  {{ 'contact.form.post_success' | t }}
+                </p>
+              {% endif %}
+              {{ form.errors | default_errors }}
+              <div class="grid grid--small form_right">
+                <label for="ContactFormName" class="hidden-label">First Name
+                  <span class="asterisk">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="ContactFormName"
+                  class="input-full firstname"
+                  name="contact[first-name]"
+                  autocapitalize="words"
+                  value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                  required>
+                <label for="ContactFormName" class="hidden-label">Last Name</label>
+                <input
+                  type="text"
+                  id="ContactFormLastName"
+                  class="input-full lastname"
+                  name="contact[last-name]"
+                  autocapitalize="words"
+                  value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
+                <label for="ContactFormSubject">Subject</label>
+                <input
+                  type="text"
+                  class="input-full"
+                  name="contact[subject]"
+                  value"Email From Contact us Form" />
+                <label for="ContactFormEmail" class="hidden-label">{{ 'contact.form.email' | t }}
+                  <span class="asterisk">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="ContactFormEmail"
+                  class="input-full"
+                  name="contact[email]"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                  required>
+                <label for="ContactFormPhone" class="hidden-label">Phone</label>
+                <input
+                  type="text"
+                  id="ContactFormPhone"
+                  class="input-full phonenum"
+                  name="contact[phone]"
+                  value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+                <label for="ContactFormMessage" class="hidden-label">{{ 'contact.form.message' | t }}
+                  <span class="asterisk">*</span>
+                </label>
+                <textarea
+                  rows="10"
+                  id="ContactFormMessage"
+                  class="input-full"
+                  name="contact[body]"
+                  required>
+                  {% if form.body %}
+                    {{ form.body }}{% endif %}
+                </textarea>
+                <div style="display:none;" id="validatedata">
+                  <div class="questionval">
+                    How much is: <input
+                      type="text"
+                      disabled="disabled"
+                      id="question" />
+                  </div>
+                  <div class="answerval">
+                    Answer:<span class="asterisk">*</span>
+                    <input type="text" id="answer" /><span style="color:red;" id="incorrectanswer"></span>
+                  </div>
+                </div>
+                <input
+                  id="contactsubmit"
+                  type="submit"
+                  class="btn contact_submit"
+                  value="SUBMIT">
+              </div>
+            {% endform %}
           </div>
         </div>
       </div>
     </div>
   </div>
-</div> {% schema %} { "name": " Banner", "class": "contactbanner", "settings": [ { "type": "image_picker", "id": "image", "label": "Image" }, { "type": "image_picker", "id": "mobile_image", "label": "Mobile Image" } ], "presets": [ { "name": "Banner", "category":
-"Custom" } ] } {% endschema %}
+</div>
+{% schema %}
+  {
+    "name": " Banner",
+    "class": "contactbanner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }, {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Banner",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}
