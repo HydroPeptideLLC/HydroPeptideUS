@@ -1,92 +1,85 @@
 {% if section.blocks.size > 0 %}
   <div id="product-gallary" class="owl-carousel owl-theme">
     {% for block in section.blocks %}
-    <div class="item">
-      <img src="{{ block.settings.gall_image | img_url: 'master' }}">
-    </div>
+      <div class="item">
+        <img src="{{ block.settings.gall_image | img_url: 'master' }}">
+      </div>
     {% endfor %}
   </div>
 {% endif %}
-
 {{ 'owl.carousel.css' | asset_url | stylesheet_tag }}
 {{ 'owl.theme.css' | asset_url | stylesheet_tag }}
-{{ 'owl.carousel.js'  | asset_url | script_tag }}
+{{ 'owl.carousel.js' | asset_url | script_tag }}
 <script type="text/javascript">
-		jQuery("#product-gallary").owlCarousel({
-			center: false,
-			loop:true,
-			margin:5,
-			nav : true, // Show next and prev buttons
-			slideSpeed : 300,
-			paginationSpeed : 400,
-			singleItem:false,
-			autoplay:true,
-			autoplayHoverPause:true,
-			dots:false,
-			callbacks: true,
-          	items:6,
-			responsive:{
-				0:{
-					items:1,
-					dots:true,
-					autoWidth: false				
-				},
-              	480:{
-					items:2,					
-					center: false								
-				},
-              	768:{
-					items:3,					
-					center: false								
-				},
-				1030:{
-					items:5,					
-					center: false								
-				}
-			}
-			
-		});	
-	</script>
-
-
-
+  jQuery('#product-gallary').owlCarousel({
+    center: false,
+    loop: true,
+    margin: 5,
+    nav: true, // Show next and prev buttons
+    slideSpeed: 300,
+    paginationSpeed: 400,
+    singleItem: false,
+    autoplay: true,
+    autoplayHoverPause: true,
+    dots: false,
+    callbacks: true,
+    items: 6,
+    responsive: {
+      0: {
+        items: 1,
+        dots: true,
+        autoWidth: false,
+      },
+      480: {
+        items: 2,
+        center: false,
+      },
+      768: {
+        items: 3,
+        center: false,
+      },
+      1030: {
+        items: 5,
+        center: false,
+      },
+    },
+  });
+</script>
 {% schema %}
-  {
-    "name": "Product Gallary",
-    "settings": [
-	 ],
-	 "blocks": [
-      {
-        "type": "Gallary",
-        "name": "Product Gallary",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "gall_image",
-            "label": "Image"
-          }
-
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Product Gallary",
-        "category": "Image",
-        "blocks": [
-          {
-            "type": "Gallary"
-          },
-          {
-            "type": "Gallary"
-          },
-          {
-            "type": "Gallary"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "name": "Product Gallary",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "Gallary",
+      "name": "Product Gallary",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "gall_image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Gallary",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "Gallary"
+        },
+        {
+          "type": "Gallary"
+        },
+        {
+          "type": "Gallary"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
 
 {% stylesheet %}

@@ -1,30 +1,29 @@
 {% comment %} Settings {% endcomment %}
-
-{%- assign mosaic_blocks_layout = section.settings.blocks_layout -%} 
-{%- assign mosaic_blocks_height = section.settings.blocks_height -%} 
-{%- assign mosaic_blocks_arrows_color = section.settings.arrows_color -%} 
-{%- assign mosaic_blocks_size = 0 -%} 
-{%- assign mosaic_has_text = false -%} 
-{%- assign mosaic_hide_image_mobile = section.settings.hide_image_mobile -%} 
-{%- assign image_blocks_count = 0 -%} 
-
+{% liquid
+  assign mosaic_blocks_layout = section.settings.blocks_layout
+  assign mosaic_blocks_height = section.settings.blocks_height
+  assign mosaic_blocks_arrows_color = section.settings.arrows_color
+  assign mosaic_blocks_size = 0
+  assign mosaic_has_text = false
+  assign mosaic_hide_image_mobile = section.settings.hide_image_mobile
+  assign image_blocks_count = 0
+%}
 {%- unless section.blocks.size == 0 -%}
-	{%- capture mosaic_blocks_content -%}
+  {%- capture mosaic_blocks_content -%}
 		{%- for block in section.blocks -%}
 			{%- case block.type -%}
 				{%- when 'image' -%}
-					{%- assign mosaic_blocks_size = mosaic_blocks_size | plus: 1 -%} 
-					{%- assign image_blocks_count = image_blocks_count | plus: 1 -%} 
-					{%- assign image = block.settings.image -%}
-					{%- assign link = block.settings.link -%}
-
-					
+					{% liquid 
+						assign mosaic_blocks_size = mosaic_blocks_size | plus: 1
+						assign image_blocks_count = image_blocks_count | plus: 1
+						assign image = block.settings.image
+						assign link = block.settings.link
+					%}
 					{%- capture image_link -%}
 						{%- unless link == blank -%}
 							<a href="{{ link }}" class="mosaic__block-link"></a>
 						{%- endunless -%}
 					{%- endcapture -%}
-
 					<div class="mosaic__block mosaic__block--image" data-block="mosaic" {{ block.shopify_attributes }}>
 						{%- unless image == blank -%}
 							<div class="mosaic__block-bg lazyload fade-in"
@@ -46,12 +45,13 @@
 					</div>
 
 				{%- when 'video' -%}
-					{%- assign mosaic_blocks_size = mosaic_blocks_size | plus: 1 -%} 
-					{%- assign image_blocks_count = image_blocks_count | plus: 1 -%} 
-					{%- assign image = block.settings.image -%}
-					{%- assign link = block.settings.link -%}
-					{%- assign color_style = block.settings.style -%}
-					
+					{% liquid 
+						assign mosaic_blocks_size = mosaic_blocks_size | plus: 1
+						assign image_blocks_count = image_blocks_count | plus: 1
+						assign image = block.settings.image
+						assign link = block.settings.link
+						assign color_style = block.settings.style
+					%}
 					{%- capture image_link -%}
 						{%- unless link == blank -%}
 							<a href="{{ link }}" class="mosaic__block-link mosaic__block-link--video js-video">
@@ -135,12 +135,13 @@
 						{%- endunless -%}
 					</div>
 				{%- when 'collection' -%}
-					{%- assign mosaic_blocks_size = mosaic_blocks_size | plus: 1 -%} 
-					{%- assign image_blocks_count = image_blocks_count | plus: 1 -%} 
-					{%- assign collection_handle = block.settings.collection -%}
-					{%- assign collection = collections[collection_handle] -%}
-					{%- assign image = block.settings.image -%}
-
+					{% liquid 
+						assign mosaic_blocks_size = mosaic_blocks_size | plus: 1
+						assign image_blocks_count = image_blocks_count | plus: 1
+						assign collection_handle = block.settings.collection
+						assign collection = collections[collection_handle]
+						assign image = block.settings.image
+					%}
 					<div class="mosaic__block mosaic__block--collection" {{ block.shopify_attributes }}>
 						{%- unless collection.empty? -%}
 				        	{%- if image == blank -%}
@@ -197,19 +198,20 @@
 	{%- endcapture -%}
 {%- endunless -%}
 
-{%- assign blocksCount = 'no-blocks' -%}
-{%- if mosaic_blocks_size == 1 -%}
-	{%- assign blocksCount = 'one' -%}
-{%- elsif mosaic_blocks_size == 2 -%}
-	{%- assign blocksCount = 'two' -%}
-{%- elsif mosaic_blocks_size == 3 -%}
-	{%- assign blocksCount = 'three' -%}
-{%- elsif mosaic_blocks_size == 4 -%}
-	{%- assign blocksCount = 'four' -%}
-{%- elsif mosaic_blocks_size == 5 -%}
-	{%- assign blocksCount = 'five' -%}
-{%- endif -%}
-
+{% liquid
+  assign blocksCount = 'no-blocks'
+  if mosaic_blocks_size == 1
+    assign blocksCount = 'one'
+  elsif mosaic_blocks_size == 2
+    assign blocksCount = 'two'
+  elsif mosaic_blocks_size == 3
+    assign blocksCount = 'three'
+  elsif mosaic_blocks_size == 4
+    assign blocksCount = 'four'
+  elsif mosaic_blocks_size == 5
+    assign blocksCount = 'five'
+  endif
+%}
 {%- capture mosaic_blocks -%}
 	{%- unless mosaic_blocks_content == blank -%}
 		<div class="mosaic__blocks js-mosaic__blocks mosaic__blocks--{{ blocksCount }} mosaic__blocks--{{ mosaic_blocks_layout }} mosaic__blocks--arrows-{{ mosaic_blocks_arrows_color }}">
@@ -219,43 +221,43 @@
 {%- endcapture -%}
 
 {%- unless section.blocks.size == 0 -%}
-	{%- for block in section.blocks -%}
-		{%- case block.type -%}
-			{%- when 'text' -%}
-				{%- capture mosaic_text -%}
-					{%- assign heading = block.settings.title -%}
-					{%- assign subheading = block.settings.subheading -%}
-					{%- assign text = block.settings.text -%}
-					{%- assign button_label = block.settings.button_label -%}
-
-					{%- unless heading == blank and subheading == blank and text == blank and button_label == blank -%}
-						{%- assign mosaic_has_text = true -%} 
-						<div class="mosaic__content mosaic__content--{{ blocksCount }}" {{ block.shopify_attributes }}>
-							<div class="mosaic__content-container">
-								{%- unless subheading == blank -%}
-									<h4 class="mosaic__subheading subheading-text">{{ subheading }}</h4>
-								{%- endunless -%}
-								{%- unless heading == blank -%}
-									<h2 class="mosaic__heading">{{ heading }}</h2>
-								{%- endunless -%}
-								{%- unless text == blank -%}
-									<p class="mosaic__text">{{ text| truncate: 120 }}</p>
-								{%- endunless -%}
-								{%- unless button_label == blank -%}
-									{%- if block.settings.button_link != blank -%}
-										{% assign button_link = block.settings.button_link %}
-									{%- else -%}
-										{% assign button_link = '#!' %}
-									{%- endif -%}
-									<a href="{{ button_link }}" class="button">{{ button_label }}</a>
-								{%- endunless -%}
-							</div>
-						</div>
-					{%- endunless -%}
-				{%- endcapture -%}
-
-		{%- endcase -%}
-	{%- endfor -%}
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'text' -%}
+        {%- capture mosaic_text -%}
+			{% liquid 
+				assign heading = block.settings.title
+				assign subheading = block.settings.subheading
+				assign text = block.settings.text
+				assign button_label = block.settings.button_label
+			%}
+			{%- unless heading == blank and subheading == blank and text == blank and button_label == blank -%}
+				{%- assign mosaic_has_text = true -%} 
+				<div class="mosaic__content mosaic__content--{{ blocksCount }}" {{ block.shopify_attributes }}>
+					<div class="mosaic__content-container">
+						{%- unless subheading == blank -%}
+							<h4 class="mosaic__subheading subheading-text">{{ subheading }}</h4>
+						{%- endunless -%}
+						{%- unless heading == blank -%}
+							<h2 class="mosaic__heading">{{ heading }}</h2>
+						{%- endunless -%}
+						{%- unless text == blank -%}
+							<p class="mosaic__text">{{ text| truncate: 120 }}</p>
+						{%- endunless -%}
+						{%- unless button_label == blank -%}
+							{%- if block.settings.button_link != blank -%}
+								{% assign button_link = block.settings.button_link %}
+							{%- else -%}
+								{% assign button_link = '#!' %}
+							{%- endif -%}
+							<a href="{{ button_link }}" class="button">{{ button_label }}</a>
+						{%- endunless -%}
+					</div>
+				</div>
+			{%- endunless -%}
+		{%- endcapture -%}
+    {%- endcase -%}
+  {%- endfor -%}
 {%- endunless -%}
 
 {%- capture mosaic_banner -%}
@@ -297,219 +299,219 @@
 {%- endcapture -%}
 
 <section class="section-mosaic container-wrap" data-section-type="mosaic" data-section-id="{{ section.id }}">
-	<div class="row">
-		<div class="block {% if mosaic_has_text == false %}block--no-text{% endif %} {% if image_blocks_count == 4%}block--images-only{% endif %} block--left block--{{ mosaic_blocks_height }} s1 lg_s12">
-			{{ mosaic_text }}
-			{{ mosaic_blocks }}
-		</div>
-		<div class="block block--{{ mosaic_blocks_height }} s1 lg_s12">
-			{{ mosaic_banner }}
-		</div>
-	</div>
+  <div class="row">
+    <div class="block {% if mosaic_has_text == false %}block--no-text{% endif %} {% if image_blocks_count == 4%}block--images-only{% endif %} block--left block--{{ mosaic_blocks_height }} s1 lg_s12">
+      {{ mosaic_text }}
+      {{ mosaic_blocks }}
+    </div>
+    <div class="block block--{{ mosaic_blocks_height }} s1 lg_s12">
+      {{ mosaic_banner }}
+    </div>
+  </div>
 </section>
 
 {% comment %} Schema {% endcomment %}
 {% schema %}
-	{
-		"name": "Mosaic",
-		"max_blocks": 5,
-		"settings": [
-			{
-				"type": "header",
-				"content": "Fixed image"
-			},
-			{
-				"type": "image_picker",
-				"id": "image",
-				"label": "Choose image"
-			},
-			{
-				"type": "image_picker",
-				"id": "mobile_image",
-				"label": "Choose mobile image"
-			},
-			{
-				"type": "text",
-				"id": "image_text",
-				"label": "Text"
-			},
-			{
-				"type": "url",
-				"id": "image_link",
-				"label": "Link"
-			},
-			{
-				"type": "checkbox",
-				"id": "hide_image_mobile",
-				"label": "Hide on mobile",
-				"default": false
-			},
-			{
-				"type": "header",
-				"content": "Blocks layout"
-			},
-			{
-				"type": "select",
-				"id": "blocks_height",
-				"label": "Height",
-				"default": "default-height",
-				"options": [
-					{ "label": "Full height", "value": "full-height" },
-					{ "label": "3/4 height", "value": "default-height" }
-				]
-			},
-			{
-				"type": "select",
-				"id": "blocks_layout",
-				"label": "Layout",
-				"default": "offset",
-				"options": [
-					{ "label": "Split", "value": "split" },
-					{ "label": "Offset", "value": "offset" }
-				]
-			},
-			{
-				"type": "select",
-				"id": "arrows_color",
-				"label": "Mobile arrows color",
-				"default": "white",
-				"options": [
-					{ "label": "White", "value": "white" },
-					{ "label": "Black", "value": "black" }
-				]
-			}
-		],
-		"blocks": [
-			{
-				"type": "text",
-				"name": "Text",
-				"limit": 1,
-				"settings": [
-					{
-						"type": "text",
-						"id": "title",
-						"label": "Heading",
-						"default": "Modular"
-					},
-					{
-						"type": "text",
-						"id": "subheading",
-						"label": "Subheading",
-						"default": "Best Seller"
-					},
-					{
-						"type": "textarea",
-						"id": "text",
-						"label": "Text",
-						"default": "Showcase a two of your best products, video, a collection, or text with the blocks in this section."
-					},
-					{
-						"type": "text",
-						"id": "button_label",
-						"label": "Button label",
-						"default": "Shop now"
-					},
-					{
-						"type": "url",
-						"id": "button_link",
-						"label": "Button link"
-					}
-				]
-			},
-			{
-				"type": "image",
-				"name": "Image",
-				"settings": [
-					{
-						"type": "image_picker",
-						"id": "image",
-						"label": "Image"
-					},
-					{
-						"type": "url",
-						"id": "link",
-						"label": "Link"
-					}
-				]
-			},
-			{
-				"type": "video",
-				"name": "Video",
-				"settings": [
-					{
-						"type": "image_picker",
-						"id": "image",
-						"label": "Image"
-					},
-					{
-						"id": "link",
-						"type": "video_url",
-						"label": "Link",
-						"accept": ["youtube", "vimeo"],
-						"default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
-					},
-				    {
-						"type": "select",
-						"id": "style",
-						"label": "Button style",
-						"default": "light",
-						"options": [
-							{
-							  "value": "light",
-							  "label": "Light"
-							},
-							{
-							  "value": "dark",
-							  "label": "Dark"
-							}
-						]
-				    }
-				]
-			},
-			{
-				"type": "product",
-				"name": "Product",
-				"settings": [
-					{
-						"type": "product",
-						"id": "product",
-						"label": "Choose product"
-					}
-				]
-			},
-			{
-			  "type": "collection",
-			  "name": "Collection",
-			  "settings": [
-					{
-						"type": "collection",
-						"id": "collection",
-						"label": "Choose collection"
-					},
-					{
-						"type": "image_picker",
-						"id": "image",
-						"label": "Replacement image"
-					}
-				]
-			}
-		],
-	  "presets": [
-			{
-				"name": "Mosaic",
-			  "category": "Image",
-			  "blocks": [
-					{
-						"type": "text"
-					},
-					{
-						"type": "product"
-					},
-					{
-						"type": "product"
-					}
-				]
-			}
-		]
-	}
+{
+  "name": "Mosaic",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Fixed image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Choose image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Choose mobile image"
+    },
+    {
+      "type": "text",
+      "id": "image_text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "image_link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_image_mobile",
+      "label": "Hide on mobile",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Blocks layout"
+    },
+    {
+      "type": "select",
+      "id": "blocks_height",
+      "label": "Height",
+      "default": "default-height",
+      "options": [
+        { "label": "Full height", "value": "full-height" },
+        { "label": "3/4 height", "value": "default-height" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "blocks_layout",
+      "label": "Layout",
+      "default": "offset",
+      "options": [
+        { "label": "Split", "value": "split" },
+        { "label": "Offset", "value": "offset" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "arrows_color",
+      "label": "Mobile arrows color",
+      "default": "white",
+      "options": [
+        { "label": "White", "value": "white" },
+        { "label": "Black", "value": "black" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Modular"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "Best Seller"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Showcase a two of your best products, video, a collection, or text with the blocks in this section."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label",
+          "default": "Shop now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "id": "link",
+          "type": "video_url",
+          "label": "Link",
+          "accept": ["youtube", "vimeo"],
+          "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Button style",
+          "default": "light",
+          "options": [
+            {
+              "value": "light",
+              "label": "Light"
+            },
+            {
+              "value": "dark",
+              "label": "Dark"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Choose product"
+        }
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Choose collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Replacement image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mosaic",
+      "category": "Image",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}

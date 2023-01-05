@@ -1,21 +1,20 @@
 {% comment %} Settings {% endcomment %}
-{% assign instaToken = section.settings.instaToken %}
-{% assign rows = section.settings.rows | plus:0 %}
-{% assign columns = section.settings.columns | plus: 0 %}
-{% assign instaPostCount = rows | times: columns %}
-{% assign enableFeaturedImage = section.settings.show_featured %}
-{% if enableFeaturedImage %}
-  {% assign instaPostCount = instaPostCount | minus: 3 %}
-{% endif %}
-
-{% assign title = section.settings.title %}
-{% assign cta = section.settings.cta %}
-{% assign link = section.settings.link %}
-
-{% assign color_text = section.settings.color_text %}
-{% assign color_overlay = section.settings.color_overlay %}
-{% assign overlay_opacity = section.settings.overlay_opacity | times: 0.01 | round: 2 %}
-
+{% liquid
+  assign instaToken = section.settings.instaToken
+  assign rows = section.settings.rows | plus: 0
+  assign columns = section.settings.columns | plus: 0
+  assign instaPostCount = rows | times: columns
+  assign enableFeaturedImage = section.settings.show_featured
+  if enableFeaturedImage
+    assign instaPostCount = instaPostCount | minus: 3
+  endif
+  assign title = section.settings.title
+  assign cta = section.settings.cta
+  assign link = section.settings.link
+  assign color_text = section.settings.color_text
+  assign color_overlay = section.settings.color_overlay
+  assign overlay_opacity = section.settings.overlay_opacity | times: 0.01 | round: 2
+%}
 <style>
   #instagram-module-{{ section.id }} .instagram-img__overlay::before { background-color: {{ color_overlay }}; opacity: {{ overlay_opacity }}; }
   #instagram-module-{{ section.id }} .instagram-img__content { color: {{ color_text }}; }
@@ -23,45 +22,61 @@
   {% if enableFeaturedImage %}
     {% assign itemIndex = columns | minus: 1 | times: 2 %}
     @media screen and (min-width: 768px) {
-      #instagram-module-{{ section.id }} .instagram-img__wrapper:nth-child({{ itemIndex }}) { clear: left; }  
+      #instagram-module-{{ section.id }} .instagram-img__wrapper:nth-child({{ itemIndex }}) { clear: left; }
     }
   {% endif %}
 </style>
 
 {% comment %} Section {% endcomment %}
-<section class="instagram container-wrap style-default" id="instagram-module-{{ section.id }}" data-section-type="instagram">
-    <div class="instagram-inner">
-        {% unless title == blank and showCTA == false %}
-            <div class="instagram-titles row row-lg inline u-center">
-                {% if title != blank %}
-                    <h1 class="instagram-title inline-block align-c">{{ title }}</h1>
-                {% endif %}
-                {% if cta != blank %}
-                    <a aria-label="{{ 'instagram.link_label' | t }}" {% if link != blank %}href="{{ link }}"{% endif %} class="instagram-follow button">
-                        <i class="icon-instagram"></i>{{ cta | truncate: 20 }}
-                    </a>
-                {% endif %}
-            </div>
-        {% endunless %}
-        {% if section.settings.instaToken != blank %}
-            <div class="js-instafeed instagram-slider instagram-slider--{{ columns | append: '-columns'}} row row-lg inline js-insta-slider" id="instagram-{{ section.id }}" data-insta-token="{{ instaToken }}" data-insta-count="{{ instaPostCount }}" data-featured-image="{{ enableFeaturedImage }}"></div>
-        {% else %}
-            <div class="js-instaholder instagram-slider instagram-slider--{{ columns | append: '-columns'}} row row-lg inline">
-                {% for i in (1.. instaPostCount ) %}
-                    <div class="instagram-img__wrapper {% if enableFeaturedImage and forloop.index == 1 %}instagram-img__wrapper--featured{% endif %}">
-                        <a aria-label="{{ 'instagram.link_label' | t }}" class="instagram-img is-placeholder" target="_blank">
-                            {{ 'image' | placeholder_svg_tag }}
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
+<section
+  class="instagram container-wrap style-default"
+  id="instagram-module-{{ section.id }}"
+  data-section-type="instagram"
+>
+  <div class="instagram-inner">
+    {% unless title == blank and showCTA == false %}
+      <div class="instagram-titles row row-lg inline u-center">
+        {% if title != blank %}
+          <h1 class="instagram-title inline-block align-c">{{ title }}</h1>
         {% endif %}
-    </div>
+        {% if cta != blank %}
+          <a
+            aria-label="{{ 'instagram.link_label' | t }}"
+            {% if link != blank %}
+              href="{{ link }}"
+            {% endif %}
+            class="instagram-follow button"
+          >
+            <i class="icon-instagram"></i>{{ cta | truncate: 20 }}
+          </a>
+        {% endif %}
+      </div>
+    {% endunless %}
+    {% if section.settings.instaToken != blank %}
+      <div
+        class="js-instafeed instagram-slider instagram-slider--{{ columns | append: '-columns'}} row row-lg inline js-insta-slider"
+        id="instagram-{{ section.id }}"
+        data-insta-token="{{ instaToken }}"
+        data-insta-count="{{ instaPostCount }}"
+        data-featured-image="{{ enableFeaturedImage }}"
+      ></div>
+    {% else %}
+      <div class="js-instaholder instagram-slider instagram-slider--{{ columns | append: '-columns'}} row row-lg inline">
+        {% for i in (1..instaPostCount) %}
+          <div class="instagram-img__wrapper {% if enableFeaturedImage and forloop.index == 1 %}instagram-img__wrapper--featured{% endif %}">
+            <a aria-label="{{ 'instagram.link_label' | t }}" class="instagram-img is-placeholder" target="_blank">
+              {{ 'image' | placeholder_svg_tag }}
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
 </section>
 
 {% comment %} Schema {% endcomment %}
 {% schema %}
-    {
+{
   "name": "Instagram feed",
   "settings": [
     {

@@ -1,161 +1,155 @@
-{% comment %} <section class="page-af-title hide-title container-wrap">
-    <div class="container title-container">
-        <div class="row row-lg inline title-row">
-          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-            <h1 id="af-page-title">{{ section.settings.title }}</h1>
-          <br/>
-            <button class="btn btn-med p93" id="header-af-btn"><a href="https://www.ascendpartner.com/affiliate/registration?refid=165981" target="_blank">Become an Affiliate!</a></button>
-        </div>
-    </div>
-</section> {% endcomment %}
+{% comment %}
+  <section class="page-af-title hide-title container-wrap">
+      <div class="container title-container">
+          <div class="row row-lg inline title-row">
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+              <h1 id="af-page-title">{{ section.settings.title }}</h1>
+            <br/>
+              <button class="btn btn-med p93" id="header-af-btn"><a href="https://www.ascendpartner.com/affiliate/registration?refid=165981" target="_blank">Become an Affiliate!</a></button>
+          </div>
+      </div>
+  </section>
+{% endcomment %}
 <section class="page-af-title container-wrap" style="max-height: 500px !important">
-    <div class="home_hero_banner lazybg banner_1" style="max-height: 500px !important" data-style="background-image: url({{ section.settings.desktop_top_image | img_url: 'master' }})" data-mobstyle="background-image: url({{ section.settings.mobile_top_image | img_url: 'master' }})">
-      <div class="container" style="max-height: 500px !important">
-        <div class="content u-center" style="max-width: 500px; float:left !important; max-height: 500px !important">
-          <h1 style="font-family: 'TT Norms Bold' !important; font-size: 27.6px !important; line-height:30.36px">{{ section.settings.title }}</h1>
-          <button class="btn btn-med" href="https://www.ascendpartner.com/affiliate/registration?refid=165981" target="_blank">Become an Affiliate!</button>
+  <div
+    class="home_hero_banner lazybg banner_1"
+    style="max-height: 500px !important"
+    data-style="background-image: url({{ section.settings.desktop_top_image | img_url: 'master' }})"
+    data-mobstyle="background-image: url({{ section.settings.mobile_top_image | img_url: 'master' }})"
+  >
+    <div class="container" style="max-height: 500px !important">
+      <div class="content u-center" style="max-width: 500px; float:left !important; max-height: 500px !important">
+        <h1 style="font-family: 'TT Norms Bold' !important; font-size: 27.6px !important; line-height:30.36px">
+          {{ section.settings.title }}
+        </h1>
+        <button
+          class="btn btn-med"
+          href="https://www.ascendpartner.com/affiliate/registration?refid=165981"
+          target="_blank"
+        >
+          Become an Affiliate!
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="page-content" style="padding: 2.5% 0;">
+  <div class="container-wrap">
+    <div class="container text-content rte">
+      <div class="row row-{{ section.settings.first-section-row-width }}">
+        {{ section.settings['first-section-text'] }}
+      </div>
+    </div>
+  </div>
+</section>
+<section class="af-highlights" style="padding: 2% 0;">
+  <div class="container-wrap">
+    <div class="container">
+      <div class="row row-med u-center inline" style="padding-bottom: 1%">
+        <h2 class="af-texts">{{ section.settings['mid-section-title'] }}</h2>
+      </div>
+      <div class="row row-med inline af-grid" style="padding: 1.5% 0;">
+        <div class="left-af u-center p16 s13" style="float: left;">
+          <img class="" src="{{ section.settings.top-left-point-image | img_url }}">
+          <div class="af-texts">{{ section.settings['top-left-text'] }}</div>
+        </div>
+        <div class="right-af u-center p16 s13" style="float: right;">
+          <img class="" src="{{ section.settings.top-right-point-image | img_url }}">
+          <div class="af-texts">{{ section.settings['top-right-text'] }}</div>
+        </div>
+      </div>
+      <div class="row row-med inline af-grid" style="padding: 1.5% 0;">
+        <div class="left-af u-center p16 s13" style="float: left;">
+          <img class="" src="{{ section.settings.bottom-left-point-image | img_url }}">
+          <div class="af-texts">{{ section.settings['bottom-left-text'] }}</div>
+        </div>
+        <div class="right-af u-center p16 s13" style="float: right;">
+          <img class="" src="{{ section.settings.bottom-right-point-image | img_url }}">
+          <div class="af-texts">{{ section.settings['bottom-right-text'] }}</div>
         </div>
       </div>
     </div>
-</section>
-<section class="page-content" style="padding: 2.5% 0;">
-    <div class="container-wrap">
-        <div class="container text-content rte">
-            <div class="row row-{{ section.settings.first-section-row-width }}">
-                {{ section.settings.first-section-text }}
-            </div>
-        </div>
+    <div class="row row-med inline af-grid">
+      <div class="u-center">
+        <button class="btn btn-med join-btn">
+          <a class="join-now" href="https://www.ascendpartner.com/affiliate/registration?refid=165981" target="_blank">
+            {{- section.settings['mid-section-button'] -}}
+          </a>
+        </button>
+      </div>
     </div>
+  </div>
 </section>
-<section class="af-highlights" style="padding: 2% 0;">
-    <div class="container-wrap">
-        <div class="container">
-                <div class="row row-med u-center inline" style="padding-bottom: 1%">
-                    <h2 class="af-texts">{{ section.settings.mid-section-title }}</h2>
-                </div>
-                <div class="row row-med inline af-grid" style="padding: 1.5% 0;">
-                    <div class="left-af u-center p16 s13" style="float: left;">
-                        <img class="" src="{{ section.settings.top-left-point-image | img_url }}"/>
-                        <div class="af-texts">{{ section.settings.top-left-text }}</div>
-                    </div>
-                    <div class="right-af u-center p16 s13"  style="float: right;">
-                        <img class="" src="{{ section.settings.top-right-point-image | img_url }}"/>
-                        <div class="af-texts">{{ section.settings.top-right-text }}</div>
-                    </div>
-                </div>
-                <div class="row row-med inline af-grid" style="padding: 1.5% 0;">
-                    <div class="left-af u-center p16 s13" style="float: left;">
-                        <img class="" src="{{ section.settings.bottom-left-point-image | img_url }}"/>
-                        <div class="af-texts">{{ section.settings.bottom-left-text }}</div>
-                    </div>
-                    <div class="right-af u-center p16 s13"  style="float: right;">
-                        <img class="" src="{{ section.settings.bottom-right-point-image | img_url }}"/>
-                        <div class="af-texts">{{ section.settings.bottom-right-text }}</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row row-med inline af-grid">
-              <div class="u-center">
-                <button class="btn btn-med join-btn"><a class="join-now" href="https://www.ascendpartner.com/affiliate/registration?refid=165981" target="_blank">{{ section.settings.mid-section-button }}</a></button>
-              </div>
-          </div>
-        </div>
-    </div>
-</section> 
 <section class="after-content" style="padding-top: {{ section.settings.last-section-top-padding }}px !important;">
-    <div class="container-wrap">
-        <div class="container text-content rte">
-            <div class="row row-med" id="final-text">
-              <p>{{ section.settings.last-section-text }}</p>
-            </div>
-        </div>
+  <div class="container-wrap">
+    <div class="container text-content rte">
+      <div class="row row-med" id="final-text">
+        <p>{{ section.settings['last-section-text'] }}</p>
+      </div>
     </div>
+  </div>
 </section>
-
 <style>
-  h1 {
-    font-family: "TT Norms Bold" !important;
-    font-size: 27.6px !important;
-  }
-  .af-texts {
-    color: {{ section.settings.mid-section-text-color }} !important;
-  }
-  #final-text>p>a {
-    color: #0000ff !important;
-  }
-  .join-btn {
-    color: {{ section.settings.mid-section-btn-text-color }} !important;
-    background-color: {{ section.settings.mid-section-btn-color }} !important;
-  }
-/*   .join-now {
-    color: {{ section.settings.mid-section-btn-text-color }} !important;
-  } */
-  .page-af-title>.home_hero_banner {
-    background-color: #d69999;
-    background-repeat: no-repeat;
-    background-size: cover;
-    max-height: 500px !important;
-  }
-/*   .mobile-af-page-title {
-    word-wrap: normal;
-    text-align: center;
-  } */
-  .mobile-page-af-title>.home_hero_banner {
-    background-repeat: no-repeat;
-    background-size: cover;
-    max-height: 500px;
-  }
-  h2 {
-    text-transform: uppercase;
-  }
-  .af-highlights {
-    background-color: {{ section.settings.mid-section-bg-color }} !important;
-    color: {{ section.settings.med-section-text-color }} !important;
-  }
-  #header-af-btn {
-        background-color: {{ section.settings.title_button_color }} !important;
-    }
-  .left-af {
-    height: 175px;
-  }
-  .right-af {
-    height: 175px;
-  }
-  .after-content {
-    padding-top: {{ section.settings.last-section-top-padding }} !important;
-  }
+  h1{font-family:"TT Norms Bold" !important;font-size:27.6px !important}.af-texts{color:{{section.settings.mid-section-text-color}}!important}#final-text > p > a{color:#0000ff !important}.join-btn{color:{{section.settings.mid-section-btn-text-color}}!important;background-color:{{section.settings.mid-section-btn-color}}!important}.page-af-title > .home_hero_banner{background-color:#d69999;background-repeat:no-repeat;background-size:cover;max-height:500px !important}.mobile-page-af-title > .home_hero_banner{background-repeat:no-repeat;background-size:cover;max-height:500px}h2{text-transform:uppercase}.af-highlights{background-color:{{section.settings.mid-section-bg-color}}!important;color:{{section.settings.med-section-text-color}}!important}#header-af-btn{background-color:{{section.settings.title_button_color}}!important}.left-af{height:175px}.right-af{height:175px}.after-content{padding-top:{{section.settings.last-section-top-padding}}!important}
 </style>
-
 {% schema %}
-  {
+{
   "name": "New Affiliate Page",
   "settings": [
-    {"type": "header", "content": "Header"},
-    {"type": "image_picker", "id": "desktop_top_image", "label": "Choose Desktop Image", "info": "Recomended Size 1920p x 600px"},
-    {"type": "image_picker", "id": "mobile_top_image", "label": "Choose Mobile Image", "info": "Recomended Width 600px"},
-    {"type": "text", "id": "title", "label": "Title"},
-    {"type": "color", "id": "title_button_color", "label": "Choose Title Button Color", "default": "#6d9dea"},
-    {"type": "header", "content": "First Section (First white section)"},
-    {"type": "richtext", "id": "first-section-text", "label": "First Section Text"},
-    {"type": "select", "id": "first-section-row-width", "label": "Select Row Width", "options": [{"value": "sm", "label": "Small"},{"value": "med", "label": "Medium"},{"value": "lg", "label": "Large"}], "default": "med"},
-    {"type": "header", "content": "Middle Section (Blue section)"},
-    {"type": "text", "id": "mid-section-title", "label": "Middle Section Title"},
-    {"type": "color", "id": "mid-section-bg-color", "label": "Middle Section Background Color", "default": "#a7c4f3"},
-    {"type": "color", "id": "mid-section-text-color", "label": "Middle Section Text Color", "default": "#ffffff"},
-    {"type": "image_picker", "id": "top-left-point-image", "label": "Choose Image for Top Left"},
-    {"type": "textarea", "id": "top-left-text", "label": "Top Left Text" },
-    {"type": "image_picker", "id": "top-right-point-image", "label": "Choose Image for Top Right"},
-    {"type": "textarea", "id": "top-right-text", "label": "Top Right Text"},
-    {"type": "image_picker", "id": "bottom-left-point-image", "label": "Choose Image for Bottom Left"},
-    {"type": "textarea", "id": "bottom-left-text", "label": "Bottom Left Text"},
-    {"type": "image_picker", "id": "bottom-right-point-image", "label": "Choose Image for Bottom Right"},
-    {"type": "textarea", "id": "bottom-right-text", "label": "Bottom Right Text"},
-    {"type": "text", "id": "mid-section-button", "label": "Middle Section Button Text"},
-    {"type": "color", "id": "mid-section-btn-color", "label": "Middle Button Color", "default": "#d69999"},
-    {"type": "color", "id": "mid-section-btn-text-color", "label": "Middle Button Text Color", "default": "#000000"},
-    {"type": "header", "content": "Last Section (Last white section)"},
-    {"type": "range", "id": "last-section-top-padding", "label": "Last Section Top Padding", "min": 0, "max": 5, "step": 0.2, "default": 1},
-    {"type": "richtext", "id": "last-section-text","label": "Last Section Text"}
+    { "type": "header", "content": "Header" },
+    {
+      "type": "image_picker",
+      "id": "desktop_top_image",
+      "label": "Choose Desktop Image",
+      "info": "Recomended Size 1920p x 600px"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_top_image",
+      "label": "Choose Mobile Image",
+      "info": "Recomended Width 600px"
+    },
+    { "type": "text", "id": "title", "label": "Title" },
+    { "type": "color", "id": "title_button_color", "label": "Choose Title Button Color", "default": "#6d9dea" },
+    { "type": "header", "content": "First Section (First white section)" },
+    { "type": "richtext", "id": "first-section-text", "label": "First Section Text" },
+    {
+      "type": "select",
+      "id": "first-section-row-width",
+      "label": "Select Row Width",
+      "options": [
+        { "value": "sm", "label": "Small" },
+        { "value": "med", "label": "Medium" },
+        { "value": "lg", "label": "Large" }
+      ],
+      "default": "med"
+    },
+    { "type": "header", "content": "Middle Section (Blue section)" },
+    { "type": "text", "id": "mid-section-title", "label": "Middle Section Title" },
+    { "type": "color", "id": "mid-section-bg-color", "label": "Middle Section Background Color", "default": "#a7c4f3" },
+    { "type": "color", "id": "mid-section-text-color", "label": "Middle Section Text Color", "default": "#ffffff" },
+    { "type": "image_picker", "id": "top-left-point-image", "label": "Choose Image for Top Left" },
+    { "type": "textarea", "id": "top-left-text", "label": "Top Left Text" },
+    { "type": "image_picker", "id": "top-right-point-image", "label": "Choose Image for Top Right" },
+    { "type": "textarea", "id": "top-right-text", "label": "Top Right Text" },
+    { "type": "image_picker", "id": "bottom-left-point-image", "label": "Choose Image for Bottom Left" },
+    { "type": "textarea", "id": "bottom-left-text", "label": "Bottom Left Text" },
+    { "type": "image_picker", "id": "bottom-right-point-image", "label": "Choose Image for Bottom Right" },
+    { "type": "textarea", "id": "bottom-right-text", "label": "Bottom Right Text" },
+    { "type": "text", "id": "mid-section-button", "label": "Middle Section Button Text" },
+    { "type": "color", "id": "mid-section-btn-color", "label": "Middle Button Color", "default": "#d69999" },
+    { "type": "color", "id": "mid-section-btn-text-color", "label": "Middle Button Text Color", "default": "#000000" },
+    { "type": "header", "content": "Last Section (Last white section)" },
+    {
+      "type": "range",
+      "id": "last-section-top-padding",
+      "label": "Last Section Top Padding",
+      "min": 0,
+      "max": 5,
+      "step": 0.2,
+      "default": 1
+    },
+    { "type": "richtext", "id": "last-section-text", "label": "Last Section Text" }
   ]
 }
 {% endschema %}
