@@ -1423,10 +1423,10 @@
           "b69586c7-aa5c-4c88-8086-79a7381c5e25": {
             "type": "gallery_image",
             "settings": {
-              "banner_image": "shopify:\/\/shop_images\/100722_DailyDrench_SubBanner.png",
-              "banner_image_desktop": "shopify:\/\/shop_images\/100722_DailyDrench_SubBanner_b74371a8-9e26-45a3-adac-c4884ae452f3.png",
-              "banner_rollover_image": "shopify:\/\/shop_images\/100722_DailyDrench_SubBanner_Mobile.png",
-              "link": "shopify:\/\/products\/daily-drench"
+              "banner_image": "shopify:\/\/shop_images\/100722_InnerDermRx_SubBanner.png",
+              "banner_image_desktop": "shopify:\/\/shop_images\/100722_InnerDermRx_SubBanner_71305bad-87c7-4261-b76d-1d4a01087a3d.png",
+              "banner_rollover_image": "shopify:\/\/shop_images\/100722_InnerDermRx_SubBanner_Mobile.png",
+              "link": "shopify:\/\/products\/innerderm-rx"
             }
           }
         },
